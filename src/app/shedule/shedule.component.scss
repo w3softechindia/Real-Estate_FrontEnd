@@ -1,0 +1,22 @@
+.main-content {
+    display: flex;
+    justify-content: space-between; /* Sidebar left, summary right */
+    align-items: flex-start;        /* Top aligned - no vertical gaps */
+    padding: 0 20px;                /* Optional horizontal padding */
+  }
+  
+  .schedule-summary-container {
+    width: fit-content;
+    padding: 10px 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  
+  .summary-heading {
+    font-size: 28px;
+    color: #333;
+    margin: 0;
+  }
+  

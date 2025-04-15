@@ -1,0 +1,113 @@
+
+
+
+<!-- ------------------------------------------------------------------------------------------- -->
+<div class="main-nav">
+  <!-- Logo Image -->
+  <img class="logo-img" src="" alt="">
+
+  <!-- Menu Toggle Button -->
+  <button
+    type="button"
+    class="menu-toggle-btn"
+    (click)="changeMenuSize()"
+    aria-label="Show Full Sidebar"
+  >
+    <i class="ri-menu-2-line menu-icon"></i>
+  </button>
+
+  <!-- Navigation Items -->
+  <ngx-simplebar class="scrollbar">
+    <ul class="navbar-nav" id="navbar-nav">
+      @for (item of menuItems; track item.label; let first = $first) {
+        @if (item.isTitle) {
+          <li class="menu-title">{{ item.label }}</li>
+        } @else {
+          <ng-container
+            *ngTemplateOutlet="
+              hasSubmenu(item) ? MenuItemWithChildren : MenuItem;
+              context: { menu: item, linkClassName: 'nav-link', itemClassName: 'nav-item' }
+            "
+          >
+          </ng-container>
+        }
+      }
+    </ul>
+  </ngx-simplebar>
+</div>
+
+<!-- MenuItemWithChildren Template -->
+<ng-template
+#MenuItemWithChildren
+let-menu="menu"
+let-itemClassName="itemClassName"
+let-linkClassName="linkClassName"
+let-subMenuClassNames="subMenuClassNames"
+>
+<li [class]="itemClassName">
+  <a
+    [class]="linkClassName"
+    [ngClass]="{ active: activeMenuItems.includes(menu.key) }"
+    (click)="toggleMenuItem(menu, collapse)"
+    role="button"
+    [attr.aria-expanded]="!menu.collapsed"
+    [attr.aria-controls]="menu.key"
+  >
+    <span *ngIf="menu.icon" class="nav-icon">
+      <i [class]="menu.icon"></i>
+    </span>
+    <span class="nav-text">{{ menu.label }}</span>
+  </a>
+  <div
+    #collapse="ngbCollapse"
+    [(ngbCollapse)]="menu.collapsed"
+    class="collapse"
+  >
+    <ul [class]="subMenuClassNames">
+      @for (child of menu.children; track child.label) {
+        <ng-container
+          *ngTemplateOutlet="
+            hasSubmenu(child) ? MenuItemWithChildren : MenuItem;
+            context: { menu: child, linkClassName: 'sub-nav-link', itemClassName: 'sub-nav-item' }
+          "
+        >
+        </ng-container>
+      }
+    </ul>
+  </div>
+</li>
+</ng-template>
+
+<!-- MenuItem Template -->
+<ng-template
+#MenuItem
+let-menu="menu"
+let-linkClassName="linkClassName"
+let-itemClassName="itemClassName"
+>
+<li
+  [class]="itemClassName"
+  [ngClass]="{ active: activeMenuItems.includes(menu.key) }"
+>
+  <a
+    [routerLink]="menu.url"
+    [class]="linkClassName"
+    [ngClass]="{
+      active: activeMenuItems.includes(menu.key),
+      disabled: menu.isDisabled
+    }"
+    [attr.aria-controls]="menu.key"
+  >
+    <span *ngIf="menu.icon" class="nav-icon">
+      <i [class]="menu.icon"></i>
+    </span>
+    <span class="nav-text">{{ menu.label }}</span>
+    <span *ngIf="menu.badge" class="badge badge-pill text-end bg-{{ menu.badge.variant }}">
+      {{ menu.badge.text }}
+    </span>
+  </a>
+</li>
+</ng-template>
+
+
+
