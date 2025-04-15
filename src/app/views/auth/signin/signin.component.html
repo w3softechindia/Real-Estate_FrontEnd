@@ -10,50 +10,26 @@
         </p>
 
         <div class="px-4">
-          <form
-            [formGroup]="signinForm"
-            (ngSubmit)="onLogin()"
-            class="authentication-form"
-          >
+          <form [formGroup]="signinForm" (ngSubmit)="onLogin()" class="authentication-form">
             <div class="mb-3">
               <label class="form-label" for="example-email">Email</label>
-              <input
-                type="email"
-                id="example-email"
-                formControlName="email"
+              <input type="email" id="example-email" formControlName="email"
                 [ngClass]="{ 'is-invalid': submitted && form['email'].errors }"
-                class="form-control bg-light bg-opacity-50 border-light py-2"
-                placeholder="Enter your email"
-              />
+                class="form-control bg-light bg-opacity-50 border-light py-2" placeholder="Enter your email" />
             </div>
             <div class="mb-3">
-              <a
-                routerLink="/auth/reset-password"
-                class="float-end text-muted text-unline-dashed ms-1"
-                >Reset password</a
-              >
+              <a routerLink="/auth/reset-password" class="float-end text-muted text-unline-dashed ms-1">Reset
+                password</a>
               <label class="form-label" for="example-password">Password</label>
-              <input
-                type="text"
-                id="example-password"
-                formControlName="password"
-                [ngClass]="{
+              <input type="text" id="example-password" formControlName="password" [ngClass]="{
                   'is-invalid': submitted && form['password'].errors,
-                }"
-                class="form-control bg-light bg-opacity-50 border-light py-2"
-                placeholder="Enter your password"
-              />
+                }" class="form-control bg-light bg-opacity-50 border-light py-2" placeholder="Enter your password" />
+            
             </div>
             <div class="mb-3">
               <div class="form-check">
-                <input
-                  type="checkbox"
-                  class="form-check-input"
-                  id="checkbox-signin"
-                />
-                <label class="form-check-label" for="checkbox-signin"
-                  >Remember me</label
-                >
+                <input type="checkbox" class="form-check-input" id="checkbox-signin" />
+                <label class="form-check-label" for="checkbox-signin">Remember me</label>
               </div>
             </div>
 
@@ -64,36 +40,13 @@
             </div>
           </form>
 
-          <!-- <p class="mt-3 fw-semibold no-span">OR sign with</p>
-
-          <div class="text-center">
-            <a
-              href="javascript:void(0);"
-              class="btn btn-outline-light shadow-none"
-              ><i class="bx bxl-google fs-20"></i
-            ></a>
-            <a
-              href="javascript:void(0);"
-              class="btn btn-outline-light shadow-none ms-1"
-              ><i class="ri-facebook-fill fs-20"></i
-            ></a>
-            <a
-              href="javascript:void(0);"
-              class="btn btn-outline-light shadow-none ms-1"
-              ><i class="bx bxl-github fs-20"></i
-            ></a>
-          </div> -->
         </div>
       </div>
     </div>
 
     <p class="mb-0 text-center text-white">
       New here?
-      <a
-        routerLink="/auth/sign-up"
-        class="text-reset text-unline-dashed fw-bold ms-1"
-        >Sign Up</a
-      >
+      <a routerLink="/auth/sign-up" class="text-reset text-unline-dashed fw-bold ms-1">Sign Up</a>
     </p>
   </div>
 </div>

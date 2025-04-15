@@ -94,7 +94,7 @@ export const MENU_ITEMS: MenuItemType[] = [
   },
   {
     key: 'agents',
-    label: 'Agents',
+    label: 'Agency',
     icon: 'ri-group-line',
     collapsed: true,
     children: [
@@ -112,13 +112,13 @@ export const MENU_ITEMS: MenuItemType[] = [
       },
       {
         key: 'agent-details',
-        label: 'Agent Details',
+        label: 'Agency Details',
         url: '/agents/details',
         parentKey: 'agents',
       },
       {
         key: 'add-agent',
-        label: 'Add Agent',
+        label: 'Add Agency',
         url: '/agents/add',
         parentKey: 'agents',
       },
@@ -790,4 +790,358 @@ export const MENU_ITEMS: MenuItemType[] = [
   //   icon: 'ri-prohibited-2-line',
   //   isDisabled: true,
   // },
+
+
+  
+  
+    
+  
 ]
+
+// ----------------------------------------------------------------------------------------------------
+
+
+
+export const CUSTOM_MENU: MenuItemType[] = [
+  {
+    key: 'menu',
+    label: 'MENU',
+    isTitle: true,
+  },
+  {
+    key: 'dashboards',
+    label: 'Dashboards',
+    icon: 'ri-dashboard-2-line',
+    collapsed: false,
+    children: [
+      {
+        key: 'analytics',
+        label: 'Analytics',
+        url: '/dashboards/analytics',
+        parentKey: 'dashboards',
+      },
+      {
+        key: 'agent',
+        label: 'Agent',
+        url: '/dashboards/agent',
+        parentKey: 'dashboards',
+      },
+      {
+        key: 'customer',
+        label: 'Customer',
+        url: '/dashboards/customer',
+        parentKey: 'dashboards',
+      },
+    ],
+  },
+  {
+    key: 'property',
+    label: 'My Properties',
+    icon: 'ri-community-line',
+    collapsed: true,
+    children: [
+      {
+        key: 'property-grid',
+        label: 'Property Grid',
+        url: '/property/grid',
+        parentKey: 'property',
+      },
+      {
+        key: 'property-list',
+        label: 'Property List',
+        url: '/property/list',
+        parentKey: 'property',
+      },
+      {
+        key: 'property-details',
+        label: 'Property Details',
+        url: '/property/details',
+        parentKey: 'property',
+      },
+      {
+        key: 'add-property',
+        label: 'Add Property',
+        url: '/property/add',
+        parentKey: 'property',
+      },
+    ],
+  },
+  {
+    key: 'agents',
+    label: 'My Agents',
+    icon: 'ri-group-line',
+    collapsed: true,
+    children: [
+      {
+        key: 'agents-list',
+        label: 'List View',
+        url: '/agents/list',
+        parentKey: 'agents',
+      },
+      {
+        key: 'agents-grid-view',
+        label: 'Grid View',
+        url: '/agents/grid',
+        parentKey: 'agents',
+      },
+      {
+        key: 'agent-details',
+        label: 'Agent Details',
+        url: '/agents/details',
+        parentKey: 'agents',
+      },
+      {
+        key: 'add-agent',
+        label: 'Add Agent',
+        url: '/agents/add',
+        parentKey: 'agents',
+      },
+    ],
+  },
+  {
+    key: 'customers',
+    label: 'My Customers',
+    icon: 'ri-contacts-book-3-line',
+    collapsed: true,
+    children: [
+      {
+        key: 'list-view',
+        label: 'List View',
+        url: '/customers/list',
+        parentKey: 'customers',
+      },
+      {
+        key: 'grid-view',
+        label: 'Grid View',
+        url: '/customers/grid',
+        parentKey: 'customers',
+      },
+      {
+        key: 'customer-details',
+        label: 'Customer Details',
+        url: '/customers/details',
+        parentKey: 'customers',
+      },
+      {
+        key: 'add-customer',
+        label: 'Add Customer',
+        url: '/customers/add',
+        parentKey: 'customers',
+      },
+    ],
+  },
+  {
+    key: 'orders',
+    label: 'Orders',
+    icon: 'ri-home-office-line',
+    url: '/orders',
+  },
+  {
+    key: 'transactions',
+    label: 'Transactions',
+    icon: 'ri-arrow-left-right-line',
+    url: '/transactions',
+  },
+  {
+    key: 'reviews',
+    label: 'Reviews',
+    icon: 'ri-chat-quote-line',
+    url: '/reviews',
+  },
+  {
+    key: 'messages',
+    label: 'Messages',
+    icon: 'ri-discuss-line',
+    url: '/messages',
+  },
+  {
+    key: 'inbox',
+    label: 'Inbox',
+    icon: 'ri-inbox-line',
+    url: '/inbox',
+  },
+ 
+
+];
+
+
+
+
+
+
+export const CUSTOM_MENUU: MenuItemType[] = [
+  {
+    key: 'menu',
+    label: 'MENU',
+    isTitle: true,
+  },
+  {
+    key: 'dashboards',
+    label: 'Dashboards',
+    icon: 'ri-dashboard-2-line',
+    collapsed: false,
+    children: [
+      {
+        key: 'analytics',
+        label: 'Analytics',
+        url: '/dashboards/analytics',
+        parentKey: 'dashboards',
+      },
+      {
+        key: 'agent',
+        label: 'Agent',
+        url: '/dashboards/agent',
+        parentKey: 'dashboards',
+      },
+      {
+        key: 'customer',
+        label: 'Customer',
+        url: '/dashboards/customer',
+        parentKey: 'dashboards',
+      },
+    ],
+  },
+  {
+    key: 'property',
+    label: 'My Properties',
+    icon: 'ri-community-line',
+    collapsed: true,
+    children: [
+      {
+        key: 'property-grid',
+        label: 'Property Grid',
+        url: '/property/grid',
+        parentKey: 'property',
+      },
+      {
+        key: 'property-list',
+        label: 'Property List',
+        url: '/property/list',
+        parentKey: 'property',
+      },
+      {
+        key: 'property-details',
+        label: 'Property Details',
+        url: '/property/details',
+        parentKey: 'property',
+      },
+      {
+        key: 'add-property',
+        label: 'Add Property',
+        url: '/property/add',
+        parentKey: 'property',
+      },
+    ],
+  },
+  {
+    key: 'agents',
+    label: 'Leads & Enquiries',
+    icon: 'ri-group-line',
+    collapsed: true,
+    children: [
+      {
+        key: 'agents-list',
+        label: 'List View',
+        url: '/agents/list',
+        parentKey: 'agents',
+      },
+      {
+        key: 'agents-grid-view',
+        label: 'Grid View',
+        url: '/agents/grid',
+        parentKey: 'agents',
+      },
+      {
+        key: 'agent-details',
+        label: 'Agent Details',
+        url: '/agents/details',
+        parentKey: 'agents',
+      },
+      {
+        key: 'add-agent',
+        label: 'Add',
+        url: '/agents/add',
+        parentKey: 'agents',
+      },
+    ],
+  },
+  {
+    key: 'dashboards',
+    label: 'Client Management',
+    icon: 'ri-dashboard-2-line',
+    collapsed: false,
+    children: [
+      {
+        key: 'analytics',
+        label: 'Analytics',
+        url: '/dashboards/analytics',
+        parentKey: 'dashboards',
+      },
+      {
+        key: 'agent',
+        label: 'Agent',
+        url: '/dashboards/agent',
+        parentKey: 'dashboards',
+      },
+      {
+        key: 'customer',
+        label: 'Customer',
+        url: '/dashboards/customer',
+        parentKey: 'dashboards',
+      },
+    ],
+  },
+  {
+    key: 'customers',
+    label: 'Schedule & Appointments',
+    icon: 'ri-contacts-book-3-line',
+    collapsed: true,
+    children: [
+      {
+        key: 'list-view',
+        label: 'List View',
+        url: '/customers/list',
+        parentKey: 'customers',
+      },
+      {
+        key: 'grid-view',
+        label: 'Grid View',
+        url: '/customers/grid',
+        parentKey: 'customers',
+      },
+      {
+        key: 'customer-details',
+        label: 'Customer Details',
+        url: '/customers/details',
+        parentKey: 'customers',
+      },
+      {
+        key: 'add-customer',
+        label: 'Add Customer',
+        url: '/customers/add',
+        parentKey: 'customers',
+      },
+    ],
+  },
+  
+  {
+    key: 'transactions',
+    label: 'Transactions',
+    icon: 'ri-arrow-left-right-line',
+    url: '/transactions',
+  },
+  {
+    key: 'reviews',
+    label: 'Reviews',
+    icon: 'ri-chat-quote-line',
+    url: '/reviews',
+  },
+  {
+    key: 'messages',
+    label: 'Messages',
+    icon: 'ri-discuss-line',
+    url: '/messages',
+  },
+
+];
+
