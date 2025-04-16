@@ -10,6 +10,7 @@ import {
   type InMemoryScrollingOptions,
 } from '@angular/router'
 import {
+  HTTP_INTERCEPTORS,
   provideHttpClient,
   withFetch,
   withInterceptorsFromDi,
@@ -27,6 +28,7 @@ import { AuthenticationEffects } from '@store/authentication/authentication.effe
 import { FakeBackendProvider } from '@core/helper/fake-backend'
 import { provideToastr } from 'ngx-toastr'
 import { DecimalPipe } from '@angular/common'
+import { AuthInterceptor } from './authorization/interceptor/auth.interceptor'
 
 const scrollConfig: InMemoryScrollingOptions = {
   scrollPositionRestoration: 'top',
@@ -48,5 +50,6 @@ export const appConfig: ApplicationConfig = {
     provideEffects(AuthenticationEffects, CalendarEffects),
     provideHttpClient(withFetch(), withInterceptorsFromDi()),
     provideToastr({}),
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
   ],
 }
