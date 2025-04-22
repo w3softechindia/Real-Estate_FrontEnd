@@ -9,7 +9,7 @@ export class AuthService {
   constructor(private router: Router) { }
 
   public userLogout() {
-    this.router.navigate(['/login']);
+    this.router.navigate(['/auth/sign-in']);
     localStorage.removeItem('jwtToken');
     sessionStorage.clear();
     localStorage.clear();

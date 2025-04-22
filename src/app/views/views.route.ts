@@ -20,6 +20,11 @@ export const VIEWS_ROUTES: Route[] = [
       import('./property/property.route').then((mod) => mod.PROPERTY_ROUTES),
   },
   {
+    path: 'agency',
+    loadChildren: () =>
+      import('./agency/agency.route').then((mod) => mod.AGENCY_ROUTES),
+  },
+  {
     path: 'agents',
     loadChildren: () =>
       import('./agents/agents.route').then((mod) => mod.AGENT_ROUTES),

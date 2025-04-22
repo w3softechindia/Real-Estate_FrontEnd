@@ -18,9 +18,8 @@ import { getSidebarsize } from '@store/layout/layout-selector'
     SimplebarAngularModule,
     CommonModule,
     NgbCollapseModule,
-    RouterModule,
-    LogoBoxComponent,
-  ],
+    RouterModule
+],
   templateUrl: './sidebar.component.html',
   styles: ``,
 })
