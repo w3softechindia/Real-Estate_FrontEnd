@@ -1,3 +1,4 @@
+import { AuthService } from '@/app/authorization/auth.service';
 import { Component } from '@angular/core';
 
 @Component({
@@ -8,5 +9,11 @@ import { Component } from '@angular/core';
   styleUrl: './agenttopbar.component.scss'
 })
 export class AgenttopbarComponent {
+
+  constructor(private auth:AuthService){}
+
+  logout() {
+   this.auth.userLogout();
+  }
 
 }

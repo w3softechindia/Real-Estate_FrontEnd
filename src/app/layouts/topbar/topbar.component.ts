@@ -15,6 +15,7 @@ import { SimplebarAngularModule } from 'simplebar-angular'
 import { notificationsData } from './data'
 import { DOCUMENT } from '@angular/common'
 import { logout } from '@store/authentication/authentication.actions'
+import { AuthService } from '@/app/authorization/auth.service'
 
 type FullScreenTypes = {
   requestFullscreen?: () => Promise<void>
@@ -47,8 +48,8 @@ export class TopbarComponent {
   router = inject(Router)
   store = inject(Store)
 
-  constructor(@Inject(DOCUMENT) private document: Document & FullScreenTypes) {
-    this.element = this.document.documentElement as FullScreenTypes
+  constructor(@Inject(DOCUMENT) private document: Document & FullScreenTypes, private auth:AuthService) {
+    this.element = this.document.documentElement as FullScreenTypes;
   }
 
   settingMenu() {
@@ -107,6 +108,6 @@ export class TopbarComponent {
   }
 
   logout() {
-    this.store.dispatch(logout())
+    this.auth.userLogout();
   }
 }

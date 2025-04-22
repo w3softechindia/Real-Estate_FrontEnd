@@ -11,6 +11,7 @@ import { findAllParent, findMenuItem } from '@core/helper/utils'
 import { LogoBoxComponent } from '@component/logo-box.component'
 import { changesidebarsize } from '@store/layout/layout-action'
 import { getSidebarsize } from '@store/layout/layout-selector'
+import { AuthService } from '@/app/authorization/auth.service'
 
 @Component({
   selector: 'app-agencysidebar',
@@ -40,7 +41,7 @@ export class AgencysidebarComponent {
   
     store = inject(Store)
   
-    constructor() {
+    constructor(private auth:AuthService) {
       this.router.events.forEach((event) => {
         if (event instanceof NavigationEnd) {
           this.trimmedURL = this.router.url?.replaceAll(
@@ -194,5 +195,10 @@ export class AgencysidebarComponent {
         document.documentElement.setAttribute('data-menu-size', size)
       })
     }
+
+    
+      logout() {
+       this.auth.userLogout();
+      }
   
 }

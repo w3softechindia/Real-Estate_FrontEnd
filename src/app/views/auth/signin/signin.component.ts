@@ -1,6 +1,10 @@
+import { AuthService } from '@/app/authorization/auth.service'
+import { RealEStateService } from '@/app/services/real-estate.service'
 import { CommonModule } from '@angular/common'
-import { Component, inject } from '@angular/core'
+import { Component, inject, OnInit } from '@angular/core'
 import {
+  FormBuilder,
+  FormGroup,
   FormsModule,
   ReactiveFormsModule,
   UntypedFormBuilder,
@@ -20,86 +24,78 @@ import { login } from '@store/authentication/authentication.actions'
     RouterModule,
     CommonModule,
     FormsModule,
-    ReactiveFormsModule,
-    LogoBoxComponent,
-  ],
+    ReactiveFormsModule
+],
   templateUrl: './signin.component.html',
   styles: ``,
 })
-export class SigninComponent {
-  signinForm!: UntypedFormGroup
+export class SigninComponent implements OnInit{
+  signinForm!: FormGroup
   submitted: boolean = false
-
-  public fb = inject(UntypedFormBuilder)
-  store = inject(Store)
-  route = inject(Router)
-  service = inject(AuthenticationService)
-
-
-  
-
 
   user = {
     email: '',
     password: ''
   };
 
-  constructor() {
-    this.signinForm = this.fb.group({
-      email: ['user@demo.com', [Validators.required, Validators.email]],
-      password: ['123456', [Validators.required]],
-    })
+  constructor(
+    private fb: UntypedFormBuilder,
+    private router: Router,
+    private authService: AuthService,
+    private service:RealEStateService
+  ) { }
 
-    // this.signinForm = this.fb.group({
-    //   email: ['', [Validators.required, Validators.email]],  // No default value here
-    //   password: ['', [Validators.required]],  // No default value here
-    // });
-    
+  ngOnInit(): void {
+    this.signinForm = this.fb.group({
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required]],
+    });
   }
+
+  
 
   get form() {
     return this.signinForm.controls
   }
 
-
-
   onLogin() {
     this.submitted = true
     if (this.signinForm.valid) {
-      const email = this.form['email'].value // Get the username from the form
-      const password = this.form['password'].value // Get the password from the form
+      const user = {
+        email: this.form['email'].value,
+        password: this.form['password'].value,
+      };
 
-      console.log(this.user.email); // User email after form submission
+      this.service.login(user).subscribe((data:any)=>{
+        console.log(data)
+        const jwtToken = data.jwtToken;
+        const user = data.estateUser;
+        const role = user.roles[0].roleName;
+        const userId = user.id;
+        const userEmail= user.email;
 
-      // Login Api
-      this.store.dispatch(login({ email: email, password: password }))
+        this.authService.setToken(jwtToken);
+        this.authService.setEmail(userEmail);
+        this.authService.setRoles(role);
+
+        switch (role) {
+          case 'Admin':
+            alert('Welcome Admin');
+            this.router.navigate(['/adminDashboard']);
+            break;
+          case 'Agency':
+            alert('Welcome Agency');
+            this.router.navigate(['/agencyDashboard']);
+            break;
+          case 'Agent':
+            alert('Welcome Agent');
+            this.router.navigate(['/agentDashboard']);
+            break;
+          default:
+            alert('Invalid Role');
+        }
+      })
     }
   }
-  
-  
-  // onLogin() {
-  //   this.submitted = true;
-
-  //   if (this.signinForm.invalid) {
-  //     return;
-  //   }
-
-  //   const user = {
-  //     email: this.signinForm.get('email')?.value,
-  //     password: this.signinForm.get('password')?.value,
-  //   };
-
-  //   console.log('User Email:', user.email);
-  //   console.log('User Password:', user.password);
-
-  //   // Do something with the user object, like dispatching an action
-  //   // this.store.dispatch(login({ email: user.email, password: user.password }));
-    
-  //   // Optionally navigate
-  //   this.route.navigate(['/dashboards/analytics']);
-  // }
-
-
-  
 
 }

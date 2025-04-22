@@ -14,12 +14,16 @@ import { AGENCY_ROUTES } from './agency.route'
 import { SchedulesComponent } from '@views/apps/widgets/components/schedules/schedules.component'
 import { SheduleComponent } from './shedule/shedule.component'
 import { AGENT_ROUTESS } from './agent.route'
+import { AdminGuard } from './authorization/guards/adminGuard/admin.guard'
+import { AnalyticsComponent } from '@views/dashboards/analytics/analytics.component'
+import { AgentComponent } from '@views/dashboards/agent/agent.component'
+import { CustomerComponent } from '@views/dashboards/customer/customer.component'
 
 
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: 'dashboards/analytics',
+    redirectTo: 'auth/sign-in',
     pathMatch: 'full',
   },
   {
@@ -27,19 +31,8 @@ export const routes: Routes = [
     component: MainLayoutComponent,
     loadChildren: () =>
       import('./views/views.route').then((mod) => mod.VIEWS_ROUTES),
-    canActivate: [
-      (url: any) => {
-        const router = inject(Router)
-        const authService = inject(AuthenticationService)
-        if (!authService.session) {
-          return router.createUrlTree(['/auth/sign-in'], {
-            queryParams: { returnUrl: url._routerState.url },
-          })
-        }
-        return true
-      },
-    ],
   },
+
   {
     path: 'auth',
     component: AuthLayoutComponent,
@@ -47,31 +40,40 @@ export const routes: Routes = [
       import('./views/auth/auth.route').then((mod) => mod.AUTH_ROUTES),
   },
   {
+    path: 'adminDashboard',
+    component: MainLayoutComponent,
+    loadChildren: () =>
+      import('./views/views.route').then((mod) => mod.VIEWS_ROUTES),
+  },  
+  {
     path: 'pages',
     component: AuthLayoutComponent,
     loadChildren: () =>
       import('./views/extra/extra.route').then((mod) => mod.OTHER_PAGE_ROUTE),
   },
-  { path: 'agency', component: AgencyComponent },
+  { path: 'agencyDashboard', component: AgencyComponent },
   { path: 'agencysidebar', component: AgencysidebarComponent },
   { path: 'agentdashboardsidebar', component: AgentdashboardComponent },
-  {path:'agentdashboard', component:AgentmaindashboardComponent},
-
-  {path : 'shl', component:SheduleComponent},
- 
-
-  // {
-  //   path: 'aggeent',
-  //   component: AgentmaindashboardComponent,
-  //   loadChildren: () =>
-  //     import('./agent.route').then((mod) => mod.AGENT_ROUTESS),
-  // },
-
- 
+  { path: 'shl', component: SheduleComponent },
   {
-    path: 'agent', // If you're using "aggeent", keep it. But "agent" is better.
+    path: 'agentDashboard',
     component: AgentmaindashboardComponent,
     children: AGENT_ROUTESS
-  }
-
+  },
+  // {path:'admin',component:AnalyticsComponent}
+  {
+      path: 'analytics',
+      component: AnalyticsComponent,
+      data: { title: 'Analytics' },
+    },
+    {
+      path: 'agent',
+      component: AgentComponent,
+      data: { title: 'Dashboard' },
+    },
+    {
+      path: 'customer',
+      component: CustomerComponent,
+      data: { title: 'Dashboard' },
+    },
 ]
