@@ -98,6 +98,24 @@ export const MENU_ITEMS: MenuItemType[] = [
     icon: 'ri-group-line',
     collapsed: true,
     children: [
+      // {
+      //   key: 'agents-list',
+      //   label: 'List View',
+      //   url: '/agents/list',
+      //   parentKey: 'agents',
+      // },
+      // {
+      //   key: 'agents-grid-view',
+      //   label: 'Grid View',
+      //   url: '/agents/grid',
+      //   parentKey: 'agents',
+      // },
+      // {
+      //   key: 'agent-details',
+      //   label: 'Agency Details',
+      //   url: '/agents/details',
+      //   parentKey: 'agents',
+      // },
       {
         key: 'agency-list',
         label: 'Agencies List',
