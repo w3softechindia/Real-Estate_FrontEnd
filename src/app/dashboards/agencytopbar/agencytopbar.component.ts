@@ -1,3 +1,4 @@
+import { AuthService } from '@/app/authorization/auth.service';
 import { Component } from '@angular/core';
 
 @Component({
@@ -8,5 +9,9 @@ import { Component } from '@angular/core';
   styleUrl: './agencytopbar.component.scss'
 })
 export class AgencytopbarComponent {
+logout() {
+throw new Error('Method not implemented.');
+}
 
+  
 }

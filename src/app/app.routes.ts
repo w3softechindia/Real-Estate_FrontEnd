@@ -19,6 +19,7 @@ import { AnalyticsComponent } from '@views/dashboards/analytics/analytics.compon
 import { AgentComponent } from '@views/dashboards/agent/agent.component'
 import { CustomerComponent } from '@views/dashboards/customer/customer.component'
 import { AgencyanalyticsComponent } from './dashboards/agencyanalytics/agencyanalytics.component'
+import { AgencyssidebarComponent } from './dashboards/agencyssidebar/agencyssidebar.component'
 
 export const routes: Routes = [
   {
@@ -52,9 +53,10 @@ export const routes: Routes = [
       import('./views/extra/extra.route').then((mod) => mod.OTHER_PAGE_ROUTE),
   },
   { path: 'agencyDashboard', component: AgencyComponent },
-  { path: 'agencysidebar', component: AgencysidebarComponent },
+  { path: 'agencymaindashboard', component: AgencysidebarComponent },
   { path: 'agentdashboardsidebar', component: AgentdashboardComponent },
   { path: 'shl', component: SheduleComponent },
+  {path:'agencyssidebar' , component:AgencyssidebarComponent},
 
 
 
