@@ -835,21 +835,21 @@ export const CUSTOM_MENU: MenuItemType[] = [
       {
         key: 'analytics',
         label: 'Analytics',
-        url: '/dashboards/analytics',
+        url: '/agencyanaylitcs',
         parentKey: 'dashboards',
       },
-      {
-        key: 'agent',
-        label: 'Agent',
-        url: '/dashboards/agent',
-        parentKey: 'dashboards',
-      },
-      {
-        key: 'customer',
-        label: 'Customer',
-        url: '/dashboards/customer',
-        parentKey: 'dashboards',
-      },
+      // {
+      //   key: 'agent',
+      //   label: 'Agent',
+      //   url: '/dashboards/agent',
+      //   parentKey: 'dashboards',
+      // },
+      // {
+      //   key: 'customer',
+      //   label: 'Customer',
+      //   url: '/dashboards/customer',
+      //   parentKey: 'dashboards',
+      // },
     ],
   },
   {
@@ -858,30 +858,30 @@ export const CUSTOM_MENU: MenuItemType[] = [
     icon: 'ri-community-line',
     collapsed: true,
     children: [
-      {
-        key: 'property-grid',
-        label: 'Property Grid',
-        url: '/property/grid',
-        parentKey: 'property',
-      },
+      // {
+      //   key: 'property-grid',
+      //   label: 'Property Grid',
+      //   url: '/property/grid',
+      //   parentKey: 'property',
+      // },
       {
         key: 'property-list',
         label: 'Property List',
         url: '/property/list',
         parentKey: 'property',
       },
-      {
-        key: 'property-details',
-        label: 'Property Details',
-        url: '/property/details',
-        parentKey: 'property',
-      },
-      {
-        key: 'add-property',
-        label: 'Add Property',
-        url: '/property/add',
-        parentKey: 'property',
-      },
+      // {
+      //   key: 'property-details',
+      //   label: 'Property Details',
+      //   url: '/property/details',
+      //   parentKey: 'property',
+      // },
+      // {
+      //   key: 'add-property',
+      //   label: 'Add Property',
+      //   url: '/property/add',
+      //   parentKey: 'property',
+      // },
     ],
   },
   {
@@ -896,18 +896,18 @@ export const CUSTOM_MENU: MenuItemType[] = [
         url: '/agents/list',
         parentKey: 'agents',
       },
-      {
-        key: 'agents-grid-view',
-        label: 'Grid View',
-        url: '/agents/grid',
-        parentKey: 'agents',
-      },
-      {
-        key: 'agent-details',
-        label: 'Agent Details',
-        url: '/agents/details',
-        parentKey: 'agents',
-      },
+      // {
+      //   key: 'agents-grid-view',
+      //   label: 'Grid View',
+      //   url: '/agents/grid',
+      //   parentKey: 'agents',
+      // },
+      // {
+      //   key: 'agent-details',
+      //   label: 'Agent Details',
+      //   url: '/agents/details',
+      //   parentKey: 'agents',
+      // },
       {
         key: 'add-agent',
         label: 'Add Agent',
@@ -918,34 +918,34 @@ export const CUSTOM_MENU: MenuItemType[] = [
   },
   {
     key: 'customers',
-    label: 'My Customers',
+    label: 'Bookings',
     icon: 'ri-contacts-book-3-line',
     collapsed: true,
     children: [
-      {
-        key: 'list-view',
-        label: 'List View',
-        url: '/customers/list',
-        parentKey: 'customers',
-      },
-      {
-        key: 'grid-view',
-        label: 'Grid View',
-        url: '/customers/grid',
-        parentKey: 'customers',
-      },
+      // {
+      //   key: 'list-view',
+      //   label: 'List View',
+      //   url: '/customers/list',
+      //   parentKey: 'customers',
+      // },
+      // {
+      //   key: 'grid-view',
+      //   label: 'Grid View',
+      //   url: '/customers/grid',
+      //   parentKey: 'customers',
+      // },
       {
         key: 'customer-details',
-        label: 'Customer Details',
+        label: 'Token List',
         url: '/customers/details',
         parentKey: 'customers',
       },
-      {
-        key: 'add-customer',
-        label: 'Add Customer',
-        url: '/customers/add',
-        parentKey: 'customers',
-      },
+      // {
+      //   key: 'add-customer',
+      //   label: 'Add Customer',
+      //   url: '/customers/add',
+      //   parentKey: 'customers',
+      // },
     ],
   },
   {
@@ -1005,18 +1005,18 @@ export const CUSTOM_MENUU: MenuItemType[] = [
         url: '/dashboards/analytics',
         parentKey: 'dashboards',
       },
-      {
-        key: 'agent',
-        label: 'Agent',
-        url: '/dashboards/agent',
-        parentKey: 'dashboards',
-      },
-      {
-        key: 'customer',
-        label: 'Customer',
-        url: '/dashboards/customer',
-        parentKey: 'dashboards',
-      },
+      // {
+      //   key: 'agent',
+      //   label: 'Agent',
+      //   url: '/dashboards/agent',
+      //   parentKey: 'dashboards',
+      // },
+      // {
+      //   key: 'customer',
+      //   label: 'Customer',
+      //   url: '/dashboards/customer',
+      //   parentKey: 'dashboards',
+      // },
     ],
   },
   {
@@ -1025,59 +1025,59 @@ export const CUSTOM_MENUU: MenuItemType[] = [
     icon: 'ri-community-line',
     collapsed: true,
     children: [
-      {
-        key: 'property-grid',
-        label: 'Property Grid',
-        url: '/property/grid',
-        parentKey: 'property',
-      },
+      // {
+      //   key: 'property-grid',
+      //   label: 'Property Grid',
+      //   url: '/property/grid',
+      //   parentKey: 'property',
+      // },
       {
         key: 'property-list',
         label: 'Property List',
         url: '/property/list',
         parentKey: 'property',
       },
-      {
-        key: 'property-details',
-        label: 'Property Details',
-        url: '/property/details',
-        parentKey: 'property',
-      },
-      {
-        key: 'add-property',
-        label: 'Add Property',
-        url: '/property/add',
-        parentKey: 'property',
-      },
+      // {
+      //   key: 'property-details',
+      //   label: 'Property Details',
+      //   url: '/property/details',
+      //   parentKey: 'property',
+      // },
+      // {
+      //   key: 'add-property',
+      //   label: 'Add Property',
+      //   url: '/property/add',
+      //   parentKey: 'property',
+      // },
     ],
   },
   {
     key: 'agents',
-    label: 'Leads & Enquiries',
+    label: 'Leads & Visits',
     icon: 'ri-group-line',
     collapsed: true,
     children: [
       {
         key: 'agents-list',
-        label: 'List View',
+        label: 'Add Leads',
         url: '/agents/list',
         parentKey: 'agents',
       },
       {
         key: 'agents-grid-view',
-        label: 'Grid View',
+        label: 'Leads List',
         url: '/agents/grid',
         parentKey: 'agents',
       },
       {
         key: 'agent-details',
-        label: 'Agent Details',
+        label: 'Add Visits',
         url: '/agents/details',
         parentKey: 'agents',
       },
       {
         key: 'add-agent',
-        label: 'Add',
+        label: 'visit List',
         url: '/agents/add',
         parentKey: 'agents',
       },
@@ -1085,28 +1085,28 @@ export const CUSTOM_MENUU: MenuItemType[] = [
   },
   {
     key: 'dashboards',
-    label: 'Client Management',
+    label: 'Bookings',
     icon: 'ri-dashboard-2-line',
     collapsed: false,
     children: [
       {
         key: 'analytics',
-        label: 'Analytics',
+        label: 'Add Token',
         url: '/dashboards/analytics',
         parentKey: 'dashboards',
       },
       {
         key: 'agent',
-        label: 'Agent',
+        label: 'Feature Process',
         url: '/dashboards/agent',
         parentKey: 'dashboards',
       },
-      {
-        key: 'customer',
-        label: 'Customer',
-        url: '/dashboards/customer',
-        parentKey: 'dashboards',
-      },
+      // {
+      //   key: 'customer',
+      //   label: 'Customer',
+      //   url: '/dashboards/customer',
+      //   parentKey: 'dashboards',
+      // },
     ],
   },
   {
@@ -1142,24 +1142,24 @@ export const CUSTOM_MENUU: MenuItemType[] = [
     ],
   },
   
-  {
-    key: 'transactions',
-    label: 'Transactions',
-    icon: 'ri-arrow-left-right-line',
-    url: '/transactions',
-  },
+  // {
+  //   key: 'transactions',
+  //   label: 'Transactions',
+  //   icon: 'ri-arrow-left-right-line',
+  //   url: '/transactions',
+  // },
   {
     key: 'reviews',
     label: 'Reviews',
     icon: 'ri-chat-quote-line',
     url: '/reviews',
   },
-  {
-    key: 'messages',
-    label: 'Messages',
-    icon: 'ri-discuss-line',
-    url: '/messages',
-  },
+  // {
+  //   key: 'messages',
+  //   label: 'Messages',
+  //   icon: 'ri-discuss-line',
+  //   url: '/messages',
+  // },
 
 ];
 
