@@ -1,0 +1,58 @@
+<app-agencytopbar></app-agencytopbar>
+
+<div class="page-layout">
+  <app-agencyssidebar></app-agencyssidebar>
+
+  <div class="main-content">
+    <div class="list-header">
+      <h2>Token List</h2>
+    </div>
+
+    <div class="table-view">
+      <table>
+        <thead>
+          <tr>
+            <th>Token Amount</th>
+            <th>Agent Name</th>
+            <th>Customer Name</th>
+            <th>Date</th>
+            <th>View</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let token of tokenList">
+            <td>{{ token.amount | currency }}</td>
+            <td>{{ token.agentName }}</td>
+            <td>{{ token.customerName }}</td>
+            <td>{{ token.date | date: 'MMM d, y' }}</td>
+            <td>
+              <button class="view-btn" (click)="viewToken(token)">View</button>
+            </td>
+            <td>
+              <button class="accept-btn" (click)="acceptToken(token)">Accept</button>
+              <button class="reject-btn" (click)="rejectToken(token)">Reject</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Popup Modal -->
+    <div class="modal-overlay" *ngIf="selectedToken">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>Token Details</h3>
+          <button class="close-btn" (click)="closeModal()">X</button>
+        </div>
+        <div class="modal-body">
+          <p><strong>Token Amount:</strong> {{ selectedToken.amount | currency }}</p>
+          <p><strong>Agent Name:</strong> {{ selectedToken.agentName }}</p>
+          <p><strong>Customer Name:</strong> {{ selectedToken.customerName }}</p>
+          <p><strong>Date:</strong> {{ selectedToken.date | date: 'fullDate' }}</p>
+          <p><strong>Additional Info:</strong> {{ selectedToken.details }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

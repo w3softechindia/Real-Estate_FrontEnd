@@ -1,0 +1,53 @@
+<app-agencytopbar></app-agencytopbar>
+
+<div class="page-layout">
+  <app-agencyssidebar></app-agencyssidebar>
+
+  <div class="main-content">
+    <div class="list-header">
+      <h2>Agency List</h2>
+      <div class="view-toggle">
+        <button (click)="viewMode = 'table'" [class.active]="viewMode === 'table'">Table View</button>
+        <button (click)="viewMode = 'grid'" [class.active]="viewMode === 'grid'">Grid View</button>
+      </div>
+    </div>
+
+    <!-- Table View -->
+    <div *ngIf="viewMode === 'table'" class="table-view">
+      <table>
+        <thead>
+          <tr>
+            <th>Agent Name</th>
+            <th>Address</th>
+            <th>City</th>
+            <th>State</th>
+            <th>Pincode</th>
+            <th>Registration Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let agency of agencies">
+            <td>{{ agency.agentName }}</td>
+            <td>{{ agency.address }}</td>
+            <td>{{ agency.city }}</td>
+            <td>{{ agency.state }}</td>
+            <td>{{ agency.pincode }}</td>
+            <td>{{ agency.registrationDate | date }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Grid View -->
+    <div *ngIf="viewMode === 'grid'" class="grid-view">
+      <div class="agency-card" *ngFor="let agency of agencies">
+        <h3>{{ agency.agentName }}</h3>
+        <p><strong>Address:</strong> {{ agency.address }}</p>
+        <p><strong>City:</strong> {{ agency.city }}</p>
+        <p><strong>State:</strong> {{ agency.state }}</p>
+        <p><strong>Pincode:</strong> {{ agency.pincode }}</p>
+        <p><strong>Registered On:</strong> {{ agency.registrationDate | date }}</p>
+      </div>
+    </div>
+  </div>
+</div>

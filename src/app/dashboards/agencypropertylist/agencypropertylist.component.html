@@ -1,0 +1,62 @@
+<app-agencytopbar></app-agencytopbar>
+
+<div class="page-layout">
+  <app-agencyssidebar></app-agencyssidebar>
+
+  <div class="main-content">
+    <div class="list-header">
+      <h2>Property List</h2>
+      <div class="view-toggle">
+        <button (click)="viewMode = 'table'" [class.active]="viewMode === 'table'">Table View</button>
+        <button (click)="viewMode = 'grid'" [class.active]="viewMode === 'grid'">Grid View</button>
+      </div>
+    </div>
+
+    <!-- Table View -->
+    <div *ngIf="viewMode === 'table'" class="table-view">
+      <table>
+        <thead>
+          <tr>
+            <th>Property Name</th>
+            <th>Location</th>
+            <th>City</th>
+            <th>State</th>
+            <th>Pincode</th>
+            <th>Price</th>
+            <th>Area (Sq Ft)</th>
+            <th>Type</th>
+            <th>Status</th>
+            <th>Posted Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let property of properties">
+            <td>{{ property.name }}</td>
+            <td>{{ property.location }}</td>
+            <td>{{ property.city }}</td>
+            <td>{{ property.state }}</td>
+            <td>{{ property.pincode }}</td>
+            <td>{{ property.price | currency }}</td>
+            <td>{{ property.area }} sq ft</td>
+            <td>{{ property.type }}</td>
+            <td>{{ property.status }}</td>
+            <td>{{ property.postedDate | date: 'MMM d, y' }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Grid View -->
+    <div *ngIf="viewMode === 'grid'" class="grid-view">
+      <div class="property-card" *ngFor="let property of properties">
+        <h3>{{ property.name }}</h3>
+        <p><strong>Location:</strong> {{ property.location }}, {{ property.city }}, {{ property.state }} - {{ property.pincode }}</p>
+        <p><strong>Price:</strong> {{ property.price | currency }}</p>
+        <p><strong>Area:</strong> {{ property.area }} sq ft</p>
+        <p><strong>Type:</strong> {{ property.type }}</p>
+        <p><strong>Status:</strong> {{ property.status }}</p>
+        <p><strong>Posted:</strong> {{ property.postedDate | date: 'MMM d, y' }}</p>
+      </div>
+    </div>
+  </div>
+</div>
