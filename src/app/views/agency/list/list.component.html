@@ -10,13 +10,8 @@
               <div class="col-lg-6">
                 <form class="app-search d-none d-md-block me-auto">
                   <div class="position-relative">
-                    <input
-                      type="search"
-                      class="form-control"
-                      placeholder="Search Agency"
-                      autocomplete="off"
-                      value=""
-                    />
+                    <input type="search" class="form-control border-0" placeholder="Search..." [(ngModel)]="searchTerm"
+                (ngModelChange)="onSearchChange($event)" [ngModelOptions]="{standalone: true}" />
                     <iconify-icon
                       icon="solar:magnifer-broken"
                       class="search-widget-icon"
@@ -26,7 +21,7 @@
               </div>
               <div class="col-lg-4">
                 <h5 class="text-dark fw-medium mb-0">
-                  311 <span class="text-muted"> Agencies</span>
+                 <span class="text-muted"> Agencies</span>
                 </h5>
               </div>
             </div>

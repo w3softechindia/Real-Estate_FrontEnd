@@ -5,42 +5,42 @@
     >
       <thead class="bg-light-subtle">
         <tr>
-          <th>Agent Photo & Name</th>
+          <th>Agent Name</th>
           <th>Address</th>
           <th>Email</th>
           <th>Contact</th>
-          <th>Experience</th>
-          <th>Date</th>
+          <!-- <th>Experience</th> -->
+          <th>Agency Name</th>
           <th>Status</th>
           <th>Action</th>
         </tr>
       </thead>
       <tbody>
-        @for (item of agentList; track $index) {
+        @for (item of filteredAgents; track $index) {
           <tr>
             <td>
               <div class="d-flex align-items-center gap-2">
-                <div>
+                <!-- <div>
                   <img
                     [src]="item.image"
                     alt=""
                     class="avatar-sm rounded-circle"
                   />
-                </div>
+                </div> -->
                 <div>
                   <a
                     href="javascript:void(0);"
                     class="text-dark fw-medium fs-15"
-                    >{{ item.name }}</a
+                    >{{ item.agentName }}</a
                   >
                 </div>
               </div>
             </td>
             <td>{{ item.address }}</td>
             <td>{{ item.email }}</td>
-            <td>{{ item.phone }}</td>
-            <td>{{ item.experience }}</td>
-            <td>{{ item.dateJoined }}</td>
+            <td>{{ item.phoneNumber }}</td>
+            <!-- <td>{{ item.experience }}</td> -->
+            <td>{{ item.agency.agencyName }}</td>
             <td>
               <span
                 class="badge py-1 px-2 fs-13"
