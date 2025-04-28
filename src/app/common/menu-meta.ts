@@ -143,6 +143,20 @@ export const MENU_ITEMS: MenuItemType[] = [
     ],
   },
   {
+    key: 'agents',
+    label: 'Agents',
+    icon: 'ri-contacts-book-3-line',
+    collapsed: true,
+    children: [
+      {
+        key: 'list-view',
+        label: 'List View',
+        url: '/agents/list',
+        parentKey: 'agents',
+      }
+    ],
+  },
+  {
     key: 'customers',
     label: 'Customers',
     icon: 'ri-contacts-book-3-line',
@@ -154,18 +168,18 @@ export const MENU_ITEMS: MenuItemType[] = [
         url: '/customers/list',
         parentKey: 'customers',
       },
-      {
-        key: 'grid-view',
-        label: 'Grid View',
-        url: '/customers/grid',
-        parentKey: 'customers',
-      },
-      {
-        key: 'customer-details',
-        label: 'Customer Details',
-        url: '/customers/details',
-        parentKey: 'customers',
-      },
+      // {
+      //   key: 'grid-view',
+      //   label: 'Grid View',
+      //   url: '/customers/grid',
+      //   parentKey: 'customers',
+      // },
+      // {
+      //   key: 'customer-details',
+      //   label: 'Customer Details',
+      //   url: '/customers/details',
+      //   parentKey: 'customers',
+      // },
       // {
       //   key: 'add-customer',
       //   label: 'Add Customer',
