@@ -20,6 +20,10 @@ import { AgentComponent } from '@views/dashboards/agent/agent.component'
 import { CustomerComponent } from '@views/dashboards/customer/customer.component'
 import { AgencyanalyticsComponent } from './dashboards/agencyanalytics/agencyanalytics.component'
 import { AgencyssidebarComponent } from './dashboards/agencyssidebar/agencyssidebar.component'
+import { AgencyaddagentComponent } from './dashboards/agencyaddagent/agencyaddagent.component'
+import { AgencyagentslistComponent } from './dashboards/agencyagentslist/agencyagentslist.component'
+import { AgencypropertylistComponent } from './dashboards/agencypropertylist/agencypropertylist.component'
+import { AgencytokenlistComponent } from './dashboards/agencytokenlist/agencytokenlist.component'
 
 export const routes: Routes = [
   {
@@ -62,6 +66,10 @@ export const routes: Routes = [
 
 
   {path:'agencyanaylitcs', component:AgencyanalyticsComponent},
+  {path:'agencyaddagent', component:AgencyaddagentComponent},
+  {path:'agentslistagency', component:AgencyagentslistComponent},
+  {path:'agencypropertylist',component:AgencypropertylistComponent},
+  {path:'agencytokenlist', component:AgencytokenlistComponent},
   
   {
     path: 'agentDashboard',

@@ -1,0 +1,152 @@
+.page-layout {
+    display: flex;
+  }
+  
+  app-agencyssidebar {
+    width: 250px;
+    flex-shrink: 0;
+  }
+  
+  .main-content {
+    flex-grow: 1;
+    padding: 40px;
+    background: #f7f9fc;
+    min-height: calc(100vh - 80px);
+    position: relative;
+  }
+  
+  .list-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+  
+    h2 {
+      font-weight: 600;
+      color: #333;
+    }
+  }
+  
+  .table-view {
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+  
+      th, td {
+        padding: 15px;
+        text-align: center;
+        border-bottom: 1px solid #eee;
+        font-size: 15px;
+      }
+  
+      th {
+        background: #e9f0f7;
+        font-weight: 600;
+        color: #333;
+        font-size: 16px;
+      }
+  
+      tr:hover {
+        background: #f1f5f9;
+      }
+  
+      .view-btn, .accept-btn, .reject-btn {
+        padding: 8px 14px;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 14px;
+        transition: all 0.3s;
+      }
+  
+      .view-btn {
+        background: #17a2b8;
+        color: white;
+  
+        &:hover {
+          background: #138496;
+        }
+      }
+  
+      .accept-btn {
+        background: #28a745;
+        color: white;
+        margin-right: 5px;
+  
+        &:hover {
+          background: #218838;
+        }
+      }
+  
+      .reject-btn {
+        background: #dc3545;
+        color: white;
+  
+        &:hover {
+          background: #c82333;
+        }
+      }
+    }
+  }
+  
+  /* Modal Popup */
+  .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  .modal-content {
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    width: 400px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+    position: relative;
+  }
+  
+  .modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  
+    h3 {
+      margin: 0;
+      color: #007bff;
+    }
+  
+    .close-btn {
+      background: transparent;
+      border: none;
+      font-size: 22px;
+      font-weight: bold;
+      color: #333;
+      cursor: pointer;
+    }
+  }
+  
+  .modal-body {
+    margin-top: 20px;
+  
+    p {
+      margin-bottom: 12px;
+      font-size: 15px;
+      color: #555;
+  
+      strong {
+        color: #333;
+      }
+    }
+  }
+  

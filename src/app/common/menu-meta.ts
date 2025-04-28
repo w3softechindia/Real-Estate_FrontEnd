@@ -881,7 +881,7 @@ export const CUSTOM_MENU: MenuItemType[] = [
       {
         key: 'property-list',
         label: 'Property List',
-        url: '/property/list',
+        url: '/agencypropertylist',
         parentKey: 'property',
       },
       // {
@@ -907,7 +907,7 @@ export const CUSTOM_MENU: MenuItemType[] = [
       {
         key: 'agents-list',
         label: 'List View',
-        url: '/agents/list',
+        url: '/agentslistagency',
         parentKey: 'agents',
       },
       // {
@@ -925,7 +925,7 @@ export const CUSTOM_MENU: MenuItemType[] = [
       {
         key: 'add-agent',
         label: 'Add Agent',
-        url: '/agents/add',
+        url: '/agencyaddagent',
         parentKey: 'agents',
       },
     ],
@@ -951,7 +951,7 @@ export const CUSTOM_MENU: MenuItemType[] = [
       {
         key: 'customer-details',
         label: 'Token List',
-        url: '/customers/details',
+        url: '/agencytokenlist',
         parentKey: 'customers',
       },
       // {
