@@ -22,5 +22,4 @@ export class ListComponent {
     console.log('Search term:', term);
     this.searchService.updateSearchTerm(term);
   }
-  
 }

@@ -18,7 +18,8 @@ import { AdminGuard } from './authorization/guards/adminGuard/admin.guard'
 import { AnalyticsComponent } from '@views/dashboards/analytics/analytics.component'
 import { AgentComponent } from '@views/dashboards/agent/agent.component'
 import { CustomerComponent } from '@views/dashboards/customer/customer.component'
-
+import { AgencyanalyticsComponent } from './dashboards/agencyanalytics/agencyanalytics.component'
+import { AgencyssidebarComponent } from './dashboards/agencyssidebar/agencyssidebar.component'
 
 export const routes: Routes = [
   {
@@ -44,7 +45,7 @@ export const routes: Routes = [
     component: MainLayoutComponent,
     loadChildren: () =>
       import('./views/views.route').then((mod) => mod.VIEWS_ROUTES),
-  },  
+  },
   {
     path: 'pages',
     component: AuthLayoutComponent,
@@ -52,28 +53,35 @@ export const routes: Routes = [
       import('./views/extra/extra.route').then((mod) => mod.OTHER_PAGE_ROUTE),
   },
   { path: 'agencyDashboard', component: AgencyComponent },
-  { path: 'agencysidebar', component: AgencysidebarComponent },
+  { path: 'agencymaindashboard', component: AgencysidebarComponent },
   { path: 'agentdashboardsidebar', component: AgentdashboardComponent },
   { path: 'shl', component: SheduleComponent },
+  {path:'agencyssidebar' , component:AgencyssidebarComponent},
+
+
+
+
+  {path:'agencyanaylitcs', component:AgencyanalyticsComponent},
+  
   {
     path: 'agentDashboard',
     component: AgentmaindashboardComponent,
-    children: AGENT_ROUTESS
+    children: AGENT_ROUTESS,
   },
   // {path:'admin',component:AnalyticsComponent}
   {
-      path: 'analytics',
-      component: AnalyticsComponent,
-      data: { title: 'Analytics' },
-    },
-    {
-      path: 'agent',
-      component: AgentComponent,
-      data: { title: 'Dashboard' },
-    },
-    {
-      path: 'customer',
-      component: CustomerComponent,
-      data: { title: 'Dashboard' },
-    },
+    path: 'analytics',
+    component: AnalyticsComponent,
+    data: { title: 'Analytics' },
+  },
+  {
+    path: 'agent',
+    component: AgentComponent,
+    data: { title: 'Dashboard' },
+  },
+  {
+    path: 'customer',
+    component: CustomerComponent,
+    data: { title: 'Dashboard' },
+  },
 ]
