@@ -15,7 +15,7 @@
         </tr>
       </thead>
       <tbody>
-        @for (item of agentList; track $index) {
+        @for (item of filteredAgencies; track $index) {
           <tr>
             <td>
               <div class="d-flex align-items-center gap-2">
@@ -30,15 +30,15 @@
                   <a
                     href="javascript:void(0);"
                     class="text-dark fw-medium fs-15"
-                    >{{ item.name }}</a
+                    >{{ item.agencyName }}</a
                   >
                 </div>
               </div>
             </td>
-            <td>{{ item.address }}</td>
+            <td>{{ item.agencyAddress }}</td>
             <td>{{ item.email }}</td>
-            <td>{{ item.phone }}</td>
-            <td>{{ item.dateJoined }}</td>
+            <td>{{ item.phoneNumber }}</td>
+            <td>{{ item.registrationDate }}</td>
             <td>
               <span
                 class="badge py-1 px-2 fs-13"

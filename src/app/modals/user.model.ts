@@ -25,6 +25,8 @@ export interface Role {
     fbUrl: string;
     instagramUrl: string;
     twitterUrl: string;
+    registrationDate: string;
+    status:string;
     agents: Agent[];
   }
   
@@ -36,6 +38,8 @@ export interface Role {
     city: string;
     state: string;
     agency: Agency;
+    registrationDate: string;
+    status:string;
     customers: Customer[];
   }
   
@@ -47,6 +51,8 @@ export interface Role {
     city: string;
     state: string;
     agent: Agent;
-    agencyId: number;
+    registrationDate: string;
+    status:string;
+    agencyName: string;
   }
   

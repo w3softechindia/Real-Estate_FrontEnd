@@ -19,4 +19,16 @@ export class RealEStateService {
   registerAgency(agency:Agency):Observable<any>{
     return this.http.post(`${this.baseUrl}/addAgency`,agency)
   }
+
+  getAllAgencies():Observable<any[]>{
+    return this.http.get<any[]>(`${this.baseUrl}/getAllAgencies`);
+  }
+
+  getAllCustomers():Observable<any[]>{
+    return this.http.get<any[]>(`${this.baseUrl}/getAllCustomers`)
+  }
+
+  getAllAgents():Observable<any[]>{
+    return this.http.get<any[]>(`${this.baseUrl}/getAllAgents`)
+  }
 }

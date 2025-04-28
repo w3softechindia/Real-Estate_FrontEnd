@@ -16,6 +16,8 @@ import { notificationsData } from './data'
 import { DOCUMENT } from '@angular/common'
 import { logout } from '@store/authentication/authentication.actions'
 import { AuthService } from '@/app/authorization/auth.service'
+import { SearchService } from '@/app/services/search-service'
+import { FormsModule } from '@angular/forms'
 
 type FullScreenTypes = {
   requestFullscreen?: () => Promise<void>
@@ -34,13 +36,14 @@ type FullScreenTypes = {
 @Component({
   selector: 'app-topbar',
   standalone: true,
-  imports: [SimplebarAngularModule, NgbDropdownModule, RouterLink],
+  imports: [SimplebarAngularModule, NgbDropdownModule, RouterLink, FormsModule],
   templateUrl: './topbar.component.html',
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class TopbarComponent {
   notificationList = notificationsData
   element!: FullScreenTypes
+  searchTerm: string = '';
 
   @Output() settingsButtonClicked = new EventEmitter()
   @Output() mobileMenuButtonClicked = new EventEmitter()
@@ -48,8 +51,12 @@ export class TopbarComponent {
   router = inject(Router)
   store = inject(Store)
 
-  constructor(@Inject(DOCUMENT) private document: Document & FullScreenTypes, private auth:AuthService) {
+  constructor(@Inject(DOCUMENT) private document: Document & FullScreenTypes, private auth:AuthService, private searchService:SearchService) {
     this.element = this.document.documentElement as FullScreenTypes;
+  }
+
+  onSearchChange(term: string) {
+    this.searchService.updateSearchTerm(term);
   }
 
   settingMenu() {
