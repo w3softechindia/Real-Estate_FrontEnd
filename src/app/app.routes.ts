@@ -24,6 +24,12 @@ import { AgencyaddagentComponent } from './dashboards/agencyaddagent/agencyaddag
 import { AgencyagentslistComponent } from './dashboards/agencyagentslist/agencyagentslist.component'
 import { AgencypropertylistComponent } from './dashboards/agencypropertylist/agencypropertylist.component'
 import { AgencytokenlistComponent } from './dashboards/agencytokenlist/agencytokenlist.component'
+import { AgentanalyticsComponent } from './dashboards/agentanalytics/agentanalytics.component'
+import { AgentpropertylistComponent } from './dashboards/agentpropertylist/agentpropertylist.component'
+import { AgentaddleadsComponent } from './dashboards/agentaddleads/agentaddleads.component'
+import { AgentaddvisitsComponent } from './dashboards/agentaddvisits/agentaddvisits.component'
+import { AgentleadslistComponent } from './dashboards/agentleadslist/agentleadslist.component'
+import { AgentvisitlistComponent } from './dashboards/agentvisitlist/agentvisitlist.component'
 
 export const routes: Routes = [
   {
@@ -60,17 +66,22 @@ export const routes: Routes = [
   { path: 'agencymaindashboard', component: AgencysidebarComponent },
   { path: 'agentdashboardsidebar', component: AgentdashboardComponent },
   { path: 'shl', component: SheduleComponent },
-  {path:'agencyssidebar' , component:AgencyssidebarComponent},
+  { path: 'agencyssidebar', component: AgencyssidebarComponent },
 
+  { path: 'agencyanaylitcs', component: AgencyanalyticsComponent },
+  { path: 'agencyaddagent', component: AgencyaddagentComponent },
+  { path: 'agentslistagency', component: AgencyagentslistComponent },
+  { path: 'agencypropertylist', component: AgencypropertylistComponent },
+  { path: 'agencytokenlist', component: AgencytokenlistComponent },
 
+//Agent Routingss.........
+{path:'agentanalytics',component:AgentanalyticsComponent},
+{path:'agentpropertylist',component:AgentpropertylistComponent},
+{path:'agentaddleads',component:AgentaddleadsComponent},
+{path:'agentaddvisit',component:AgentaddvisitsComponent},
+{path:'agentleadlist',component:AgentleadslistComponent},
+{path:'agentvisitlist',component:AgentvisitlistComponent},
 
-
-  {path:'agencyanaylitcs', component:AgencyanalyticsComponent},
-  {path:'agencyaddagent', component:AgencyaddagentComponent},
-  {path:'agentslistagency', component:AgencyagentslistComponent},
-  {path:'agencypropertylist',component:AgencypropertylistComponent},
-  {path:'agencytokenlist', component:AgencytokenlistComponent},
-  
   {
     path: 'agentDashboard',
     component: AgentmaindashboardComponent,

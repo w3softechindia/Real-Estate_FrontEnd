@@ -1,0 +1,62 @@
+<app-agenttopbar></app-agenttopbar>
+<app-agentdashboard></app-agentdashboard>
+
+<div class="main-layout">
+    <div class="page-layout">
+      <div class="container">
+    
+     <div  class="table-view">
+        <table>
+          <thead>
+            <tr>
+              <th>Property Name</th>
+              <th>Location</th>
+              <th>City</th>
+              <th>State</th>
+              <th>Pincode</th>
+              <th>Price</th>
+              <th>Area (Sq Ft)</th>
+              <th>Type</th>
+              <th>Status</th>
+              <th>Posted Date</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let property of properties; let i=index">
+              <td>{{ property.name }}</td>
+              <td>{{ property.location }}</td>
+              <td>{{ property.city }}</td>
+              <td>{{ property.state }}</td>
+              <td>{{ property.pincode }}</td>
+              <td>{{ property.price | currency }}</td>
+              <td>{{ property.area }} sq ft</td>
+              <td>{{ property.type }}</td>
+              <td>{{ property.status }}</td>
+              <td>{{ property.postedDate | date: 'MMM d, y' }}</td>
+              <td><button (click)="toggleView(i)" class="view-btn"><i class="fa fa-eye"></i></button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Detailed View (This will toggle visibility) -->
+      <div *ngIf="selectedPropertyIndex !== null" class="property-detail">
+        <h3>Property Details</h3>
+        <div *ngIf="selectedPropertyIndex !== null">
+          <p><strong>Name:</strong> {{ properties[selectedPropertyIndex].name }}</p>
+          <p><strong>Location:</strong> {{ properties[selectedPropertyIndex].location }}</p>
+          <p><strong>City:</strong> {{ properties[selectedPropertyIndex].city }}</p>
+          <p><strong>State:</strong> {{ properties[selectedPropertyIndex].state }}</p>
+          <p><strong>Pincode:</strong> {{ properties[selectedPropertyIndex].pincode }}</p>
+          <p><strong>Price:</strong> {{ properties[selectedPropertyIndex].price | currency }}</p>
+          <p><strong>Area:</strong> {{ properties[selectedPropertyIndex].area }} sq ft</p>
+          <p><strong>Type:</strong> {{ properties[selectedPropertyIndex].type }}</p>
+          <p><strong>Status:</strong> {{ properties[selectedPropertyIndex].status }}</p>
+          <p><strong>Posted Date:</strong> {{ properties[selectedPropertyIndex].postedDate | date: 'MMM d, y' }}</p>
+        </div>
+        <button (click)="closeDetailView()" class="close-btn">Close</button>
+      </div>
+
+</div>
+</div>
+</div>

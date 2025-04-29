@@ -1,0 +1,97 @@
+.main-layout {
+  position: absolute;
+  top: 70px;
+  left: 250px;
+  right: 0;
+  bottom: 0;
+  background: #f7f9fb;
+  padding: 20px;
+}
+
+.page-layout {
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+  max-width: 1000px;
+  margin: auto;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+.container{
+  display: flex;
+  gap: 3rem;
+}
+
+.graph-card {
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 20px;
+  margin-top: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 400px;
+}
+
+.bar-chart {
+  display: flex;
+  align-items: flex-end;
+  height: 200px;
+  gap: 8px;
+  margin-top: 20px;
+}
+
+.bar {
+  width: 30px;
+  background-color: #28a745;
+  border-radius: 4px 4px 0 0;
+  transition: height 0.3s;
+  cursor: pointer;
+}
+
+.month-labels {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  font-size: 12px;
+}
+
+.subtext {
+  color: #6c757d;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.line-chart {
+  position: relative;
+  height: 200px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.line-point {
+  width: 10px;
+  height: 10px;
+  background-color: #17a2b8;
+  border-radius: 50%;
+  position: relative;
+  transition: background-color 0.3s;
+  cursor: pointer;
+}
+
+.line-point::before {
+  content: '';
+  position: absolute;
+  width: 2px;
+  height: 100%;
+  background-color: #17a2b8;
+  top: -100%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.line-point:first-child::before {
+  display: none; /* No line for the first point */
+}
