@@ -1123,38 +1123,38 @@ export const CUSTOM_MENUU: MenuItemType[] = [
       // },
     ],
   },
-  {
-    key: 'customers',
-    label: 'Schedule & Appointments',
-    icon: 'ri-contacts-book-3-line',
-    collapsed: true,
-    children: [
-      {
-        key: 'list-view',
-        label: 'List View',
-        url: '/customers/list',
-        parentKey: 'customers',
-      },
-      {
-        key: 'grid-view',
-        label: 'Grid View',
-        url: '/customers/grid',
-        parentKey: 'customers',
-      },
-      {
-        key: 'customer-details',
-        label: 'Customer Details',
-        url: '/customers/details',
-        parentKey: 'customers',
-      },
-      {
-        key: 'add-customer',
-        label: 'Add Customer',
-        url: '/customers/add',
-        parentKey: 'customers',
-      },
-    ],
-  },
+  // {
+  //   key: 'customers',
+  //   label: 'Schedule & Appointments',
+  //   icon: 'ri-contacts-book-3-line',
+  //   collapsed: true,
+  //   children: [
+  //     {
+  //       key: 'list-view',
+  //       label: 'List View',
+  //       url: '/customers/list',
+  //       parentKey: 'customers',
+  //     },
+  //     {
+  //       key: 'grid-view',
+  //       label: 'Grid View',
+  //       url: '/customers/grid',
+  //       parentKey: 'customers',
+  //     },
+  //     {
+  //       key: 'customer-details',
+  //       label: 'Customer Details',
+  //       url: '/customers/details',
+  //       parentKey: 'customers',
+  //     },
+  //     {
+  //       key: 'add-customer',
+  //       label: 'Add Customer',
+  //       url: '/customers/add',
+  //       parentKey: 'customers',
+  //     },
+  //   ],
+  //},
   
   // {
   //   key: 'transactions',
