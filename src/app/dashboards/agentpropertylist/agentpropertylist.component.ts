@@ -180,4 +180,5 @@ closePropertyModal() {
   this.selectedProperty = null;
 }
 
+
 }

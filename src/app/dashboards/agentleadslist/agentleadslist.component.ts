@@ -6,7 +6,9 @@ import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-agentleadslist',
   standalone: true,
+
   imports: [AgenttopbarComponent,AgentdashboardComponent,CommonModule],
+
   templateUrl: './agentleadslist.component.html',
   styleUrl: './agentleadslist.component.scss'
 })
