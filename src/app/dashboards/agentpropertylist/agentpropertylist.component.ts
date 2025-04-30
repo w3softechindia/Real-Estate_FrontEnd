@@ -36,18 +36,148 @@ export class AgentpropertylistComponent {
       status: 'Sold',
       postedDate: new Date('2025-03-15')
     }
-    // You can add many more properties
+    ,
+    {
+      name: 'Green Villa',
+      location: 'Palm Street',
+      city: 'Los Angeles',
+      state: 'CA',
+      pincode: '90001',
+      price: 480000,
+      area: 2500,
+      type: 'Villa',
+      status: 'Sold',
+      postedDate: new Date('2025-03-15')
+    }
+    ,
+    {
+      name: 'Green Villa',
+      location: 'Palm Street',
+      city: 'Los Angeles',
+      state: 'CA',
+      pincode: '90001',
+      price: 480000,
+      area: 2500,
+      type: 'Villa',
+      status: 'Sold',
+      postedDate: new Date('2025-03-15')
+    }
+    ,
+    {
+      name: 'Green Villa',
+      location: 'Palm Street',
+      city: 'Los Angeles',
+      state: 'CA',
+      pincode: '90001',
+      price: 480000,
+      area: 2500,
+      type: 'Villa',
+      status: 'Sold',
+      postedDate: new Date('2025-03-15')
+    }
+    ,
+    {
+      name: 'Green Villa',
+      location: 'Palm Street',
+      city: 'Los Angeles',
+      state: 'CA',
+      pincode: '90001',
+      price: 480000,
+      area: 2500,
+      type: 'Villa',
+      status: 'Sold',
+      postedDate: new Date('2025-03-15')
+    }
+    ,
+    {
+      name: 'Green Villa',
+      location: 'Palm Street',
+      city: 'Los Angeles',
+      state: 'CA',
+      pincode: '90001',
+      price: 480000,
+      area: 2500,
+      type: 'Villa',
+      status: 'Sold',
+      postedDate: new Date('2025-03-15')
+    }
+    ,
+    {
+      name: 'Green Villa',
+      location: 'Palm Street',
+      city: 'Los Angeles',
+      state: 'CA',
+      pincode: '90001',
+      price: 480000,
+      area: 2500,
+      type: 'Villa',
+      status: 'Sold',
+      postedDate: new Date('2025-03-15')
+    }
+    ,
+    // {
+    //   name: 'Green Villa',
+    //   location: 'Palm Street',
+    //   city: 'Los Angeles',
+    //   state: 'CA',
+    //   pincode: '90001',
+    //   price: 480000,
+    //   area: 2500,
+    //   type: 'Villa',
+    //   status: 'Sold',
+    //   postedDate: new Date('2025-03-15')
+    // }
+    // ,
+    // {
+    //   name: 'Green Villa',
+    //   location: 'Palm Street',
+    //   city: 'Los Angeles',
+    //   state: 'CA',
+    //   pincode: '90001',
+    //   price: 480000,
+    //   area: 2500,
+    //   type: 'Villa',
+    //   status: 'Sold',
+    //   postedDate: new Date('2025-03-15')
+    // }
+    // ,
+    // {
+    //   name: 'Green Villa',
+    //   location: 'Palm Street',
+    //   city: 'Los Angeles',
+    //   state: 'CA',
+    //   pincode: '90001',
+    //   price: 480000,
+    //   area: 2500,
+    //   type: 'Villa',
+    //   status: 'Sold',
+    //   postedDate: new Date('2025-03-15')
+    // }
+    // ,
+    // {
+    //   name: 'Green Villa',
+    //   location: 'Palm Street',
+    //   city: 'Los Angeles',
+    //   state: 'CA',
+    //   pincode: '90001',
+    //   price: 480000,
+    //   area: 2500,
+    //   type: 'Villa',
+    //   status: 'Sold',
+    //   postedDate: new Date('2025-03-15')
+    // }
+    
   ];
 
-  selectedPropertyIndex: number | null = null;
+  selectedProperty: any = null;
 
   // Toggle the detailed view of the property
   toggleView(index: number): void {
-    this.selectedPropertyIndex = this.selectedPropertyIndex === index ? null : index;
+    this.selectedProperty = this.selectedProperty === this.properties[index] ? null : this.properties[index];
   }
 
-  // Close the detailed view
-  closeDetailView(): void {
-    this.selectedPropertyIndex = null;
-  }
+closePropertyModal() {
+  this.selectedProperty = null;
+}
+
 }
