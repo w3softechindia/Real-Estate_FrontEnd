@@ -30,7 +30,127 @@ agencies = [
     state: 'CA',
     pincode: 67890,
     registrationDate: new Date()
-  }
+  },
+  {
+    agentName: 'John Doe',
+    address: '123 Street',
+    city: 'New York',
+    state: 'NY',
+    pincode: 12345,
+    registrationDate: new Date()
+  },{
+    agentName: 'John Doe',
+    address: '123 Street',
+    city: 'New York',
+    state: 'NY',
+    pincode: 12345,
+    registrationDate: new Date()
+  },{
+    agentName: 'John Doe',
+    address: '123 Street',
+    city: 'New York',
+    state: 'NY',
+    pincode: 12345,
+    registrationDate: new Date()
+  },{
+    agentName: 'John Doe',
+    address: '123 Street',
+    city: 'New York',
+    state: 'NY',
+    pincode: 12345,
+    registrationDate: new Date()
+  },{
+    agentName: 'John Doe',
+    address: '123 Street',
+    city: 'New York',
+    state: 'NY',
+    pincode: 12345,
+    registrationDate: new Date()
+  },{
+    agentName: 'John Doe',
+    address: '123 Street',
+    city: 'New York',
+    state: 'NY',
+    pincode: 12345,
+    registrationDate: new Date()
+  },{
+    agentName: 'John Doe',
+    address: '123 Street',
+    city: 'New York',
+    state: 'NY',
+    pincode: 12345,
+    registrationDate: new Date()
+  },{
+    agentName: 'John Doe',
+    address: '123 Street',
+    city: 'New York',
+    state: 'NY',
+    pincode: 12345,
+    registrationDate: new Date()
+  },{
+    agentName: 'John Doe',
+    address: '123 Street',
+    city: 'New York',
+    state: 'NY',
+    pincode: 12345,
+    registrationDate: new Date()
+  },{
+    agentName: 'John Doe',
+    address: '123 Street',
+    city: 'New York',
+    state: 'NY',
+    pincode: 12345,
+    registrationDate: new Date()
+  },{
+    agentName: 'John Doe',
+    address: '123 Street',
+    city: 'New York',
+    state: 'NY',
+    pincode: 12345,
+    registrationDate: new Date()
+  },{
+    agentName: 'John Doe',
+    address: '123 Street',
+    city: 'New York',
+    state: 'NY',
+    pincode: 12345,
+    registrationDate: new Date()
+  },{
+    agentName: 'John Doe',
+    address: '123 Street',
+    city: 'New York',
+    state: 'NY',
+    pincode: 12345,
+    registrationDate: new Date()
+  },{
+    agentName: 'John Doe',
+    address: '123 Street',
+    city: 'New York',
+    state: 'NY',
+    pincode: 12345,
+    registrationDate: new Date()
+  },{
+    agentName: 'John Doe',
+    address: '123 Street',
+    city: 'New York',
+    state: 'NY',
+    pincode: 12345,
+    registrationDate: new Date()
+  },{
+    agentName: 'John Doe',
+    address: '123 Street',
+    city: 'New York',
+    state: 'NY',
+    pincode: 12345,
+    registrationDate: new Date()
+  },{
+    agentName: 'John Doe',
+    address: '123 Street',
+    city: 'New York',
+    state: 'NY',
+    pincode: 12345,
+    registrationDate: new Date()
+  },
   // Add more dummy data or real data
 ];
 
