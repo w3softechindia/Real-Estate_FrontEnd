@@ -38,8 +38,174 @@ properties = [
     type: 'Villa',
     status: 'Sold',
     postedDate: new Date('2025-03-15')
-  }
+  },
   // You can add many more properties
+  {
+    name: 'Sunshine Apartments',
+    location: '5th Avenue',
+    city: 'New York',
+    state: 'NY',
+    pincode: '10001',
+    price: 250000,
+    area: 1200,
+    type: 'Residential',
+    status: 'Available',
+    postedDate: new Date('2025-04-01')
+  }, {
+    name: 'Sunshine Apartments',
+    location: '5th Avenue',
+    city: 'New York',
+    state: 'NY',
+    pincode: '10001',
+    price: 250000,
+    area: 1200,
+    type: 'Residential',
+    status: 'Available',
+    postedDate: new Date('2025-04-01')
+  }, {
+    name: 'Sunshine Apartments',
+    location: '5th Avenue',
+    city: 'New York',
+    state: 'NY',
+    pincode: '10001',
+    price: 250000,
+    area: 1200,
+    type: 'Residential',
+    status: 'Available',
+    postedDate: new Date('2025-04-01')
+  }, {
+    name: 'Sunshine Apartments',
+    location: '5th Avenue',
+    city: 'New York',
+    state: 'NY',
+    pincode: '10001',
+    price: 250000,
+    area: 1200,
+    type: 'Residential',
+    status: 'Available',
+    postedDate: new Date('2025-04-01')
+  }, {
+    name: 'Sunshine Apartments',
+    location: '5th Avenue',
+    city: 'New York',
+    state: 'NY',
+    pincode: '10001',
+    price: 250000,
+    area: 1200,
+    type: 'Residential',
+    status: 'Available',
+    postedDate: new Date('2025-04-01')
+  }, {
+    name: 'Sunshine Apartments',
+    location: '5th Avenue',
+    city: 'New York',
+    state: 'NY',
+    pincode: '10001',
+    price: 250000,
+    area: 1200,
+    type: 'Residential',
+    status: 'Available',
+    postedDate: new Date('2025-04-01')
+  }, {
+    name: 'Sunshine Apartments',
+    location: '5th Avenue',
+    city: 'New York',
+    state: 'NY',
+    pincode: '10001',
+    price: 250000,
+    area: 1200,
+    type: 'Residential',
+    status: 'Available',
+    postedDate: new Date('2025-04-01')
+  }, {
+    name: 'Sunshine Apartments',
+    location: '5th Avenue',
+    city: 'New York',
+    state: 'NY',
+    pincode: '10001',
+    price: 250000,
+    area: 1200,
+    type: 'Residential',
+    status: 'Available',
+    postedDate: new Date('2025-04-01')
+  }, {
+    name: 'Sunshine Apartments',
+    location: '5th Avenue',
+    city: 'New York',
+    state: 'NY',
+    pincode: '10001',
+    price: 250000,
+    area: 1200,
+    type: 'Residential',
+    status: 'Available',
+    postedDate: new Date('2025-04-01')
+  }, {
+    name: 'Sunshine Apartments',
+    location: '5th Avenue',
+    city: 'New York',
+    state: 'NY',
+    pincode: '10001',
+    price: 250000,
+    area: 1200,
+    type: 'Residential',
+    status: 'Available',
+    postedDate: new Date('2025-04-01')
+  }, {
+    name: 'Sunshine Apartments',
+    location: '5th Avenue',
+    city: 'New York',
+    state: 'NY',
+    pincode: '10001',
+    price: 250000,
+    area: 1200,
+    type: 'Residential',
+    status: 'Available',
+    postedDate: new Date('2025-04-01')
+  }, {
+    name: 'Sunshine Apartments',
+    location: '5th Avenue',
+    city: 'New York',
+    state: 'NY',
+    pincode: '10001',
+    price: 250000,
+    area: 1200,
+    type: 'Residential',
+    status: 'Available',
+    postedDate: new Date('2025-04-01')
+  }, {
+    name: 'Sunshine Apartments',
+    location: '5th Avenue',
+    city: 'New York',
+    state: 'NY',
+    pincode: '10001',
+    price: 250000,
+    area: 1200,
+    type: 'Residential',
+    status: 'Available',
+    postedDate: new Date('2025-04-01')
+  }, {
+    name: 'Sunshine Apartments',
+    location: '5th Avenue',
+    city: 'New York',
+    state: 'NY',
+    pincode: '10001',
+    price: 250000,
+    area: 1200,
+    type: 'Residential',
+    status: 'Available',
+    postedDate: new Date('2025-04-01')
+  }, {
+    name: 'Sunshine Apartments',
+    location: '5th Avenue',
+    city: 'New York',
+    state: 'NY',
+    pincode: '10001',
+    price: 250000,
+    area: 1200,
+    type: 'Residential',
+    status: 'Available',
+    postedDate: new Date('2025-04-01')
+  },
 ];
 
 }

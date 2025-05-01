@@ -26,7 +26,63 @@ export class AgencytokenlistComponent {
       customerName: 'David Johnson',
       date: new Date('2025-04-15'),
       details: 'Booking token for property Green Villa'
-    }
+    },
+    {
+      amount: 5000,
+      agentName: 'John Doe',
+      customerName: 'Emily Clark',
+      date: new Date('2025-04-01'),
+      details: 'Booking token for property Sunshine Apartments'
+    },
+    {
+      amount: 5000,
+      agentName: 'John Doe',
+      customerName: 'Emily Clark',
+      date: new Date('2025-04-01'),
+      details: 'Booking token for property Sunshine Apartments'
+    },
+    {
+      amount: 5000,
+      agentName: 'John Doe',
+      customerName: 'Emily Clark',
+      date: new Date('2025-04-01'),
+      details: 'Booking token for property Sunshine Apartments'
+    },
+    {
+      amount: 5000,
+      agentName: 'John Doe',
+      customerName: 'Emily Clark',
+      date: new Date('2025-04-01'),
+      details: 'Booking token for property Sunshine Apartments'
+    },
+    {
+      amount: 5000,
+      agentName: 'John Doe',
+      customerName: 'Emily Clark',
+      date: new Date('2025-04-01'),
+      details: 'Booking token for property Sunshine Apartments'
+    },
+    {
+      amount: 5000,
+      agentName: 'John Doe',
+      customerName: 'Emily Clark',
+      date: new Date('2025-04-01'),
+      details: 'Booking token for property Sunshine Apartments'
+    },
+    {
+      amount: 5000,
+      agentName: 'John Doe',
+      customerName: 'Emily Clark',
+      date: new Date('2025-04-01'),
+      details: 'Booking token for property Sunshine Apartments'
+    },
+    {
+      amount: 5000,
+      agentName: 'John Doe',
+      customerName: 'Emily Clark',
+      date: new Date('2025-04-01'),
+      details: 'Booking token for property Sunshine Apartments'
+    },
   ];
   
   selectedToken: any = null;
