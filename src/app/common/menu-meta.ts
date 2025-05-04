@@ -1016,7 +1016,7 @@ export const CUSTOM_MENUU: MenuItemType[] = [
       {
         key: 'analytics',
         label: 'Analytics',
-        url: '/dashboards/analytics',
+        url: '/agentanalytics',
         parentKey: 'dashboards',
       },
       // {
@@ -1048,7 +1048,7 @@ export const CUSTOM_MENUU: MenuItemType[] = [
       {
         key: 'property-list',
         label: 'Property List',
-        url: '/property/list',
+        url: '/agentpropertylist',
         parentKey: 'property',
       },
       // {
@@ -1074,25 +1074,25 @@ export const CUSTOM_MENUU: MenuItemType[] = [
       {
         key: 'agents-list',
         label: 'Add Leads',
-        url: '/agents/list',
+        url: '/agentaddleads',
         parentKey: 'agents',
       },
       {
         key: 'agents-grid-view',
         label: 'Leads List',
-        url: '/agents/grid',
+        url: '/agentleadlist',
         parentKey: 'agents',
       },
       {
         key: 'agent-details',
         label: 'Add Visits',
-        url: '/agents/details',
+        url: '/agentaddvisit',
         parentKey: 'agents',
       },
       {
         key: 'add-agent',
         label: 'visit List',
-        url: '/agents/add',
+        url: '/agentvisitlist',
         parentKey: 'agents',
       },
     ],
