@@ -1,13 +1,12 @@
 .main-layout {
   position: absolute;
-  top: 180px; /* Increase the top margin to push everything down */
+  top: 80px; /* Increase the top margin to push everything down */
   left: 250px;
   right: 0;
   bottom: 0;
   background: #f7f9fb;
   padding: 20px;
   height: calc(100vh - 180px); /* Adjust height to account for the increased top margin */
-  overflow-y: auto;
 }
 
 .page-layout {
@@ -50,11 +49,14 @@ select {
   font-size: 20px;
   cursor: pointer;
   padding: 10px;
+  position: relative;
+  top: 15px;
 }
 
 .table-view {
   margin-top: 40px; /* Adding margin to push table down */
-  overflow-x: auto;
+  max-height: 400px;
+  overflow-y:scroll;
 }
 
 table {
