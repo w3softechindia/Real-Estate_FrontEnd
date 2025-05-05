@@ -54,30 +54,62 @@
             </div>
   
            </div>
-        <div class="table-view">
+           <div class="table-view">
             <table>
               <thead>
                 <tr>
-                  <th>lead Name</th>
-                  <th>property</th>
+                  <th>Lead Name</th>
+                  <th>Property</th>
                   <th>Date</th>
                   <th>Time</th>
-                  <th>FeedBack</th>
-                 </tr>
+                  <th>Feedback</th>
+                  <th>Action</th>
+                  <th>Status</th>
+                </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let visit of visits; let i=index">
-                  <td>{{ visit.name }}</td>
-                  <td>{{ visit.property }}</td>
-                  <td>{{visit.date }}</td>
-                  <td>{{ visit.time }}</td>
-                  <td>{{visit.feedback }}</td>
-                
-                  <!-- <td><button (click)="toggleView(i)" class="view-btn"><i class="fa fa-eye"></i></button></td> -->
-                </tr>
+                <ng-container *ngFor="let visit of visits; let i = index">
+                  <tr>
+                    <td>{{ visit.name }}</td>
+                    <td>{{ visit.property }}</td>
+                    <td>{{ visit.date }}</td>
+                    <td>{{ visit.time }}</td>
+                    <td>{{ visit.feedback }}</td>
+                    <td>
+                      <button (click)="onActionClick(i)" class="action">Action</button>
+                    </td>
+                    <td>{{ visit.status }}</td>
+                  </tr>
+                  <tr *ngIf="selectedVisitIndex === i">
+        
+                      <div class="outerContainer">
+                        <div class="innerContainer">
+                          <button class="close-btn" (click)="closePropertyModal()">X</button>
+                      
+                          <div class="status-selection">
+                            <label>
+                              <input type="radio" name="status" value="Reject" [(ngModel)]="selectedStatus" />
+                              Reject
+                            </label>
+                            <label>
+                              <input type="radio" name="status" value="Hold" [(ngModel)]="selectedStatus" />
+                              Hold
+                            </label>
+                            <label>
+                              <input type="radio" name="status" value="Token" [(ngModel)]="selectedStatus" />
+                              Token
+                            </label>
+                          </div>
+                      
+                          <button type="submit" (click)="submitStatus(i)" class="submit">Submit</button>
+                        </div>
+                      </div>
+                  </tr>
+                </ng-container>
               </tbody>
             </table>
           </div>
+          
 </div>
 </div>
 </div>

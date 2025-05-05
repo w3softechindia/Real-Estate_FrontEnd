@@ -6,7 +6,7 @@
     bottom: 0;
     background: #f7f9fb;
     padding: 20px;
-  height: 50vh;
+    height: 50vh;
   }
   
   .page-layout {
@@ -18,9 +18,12 @@
     background: #fff;
     border-radius: 12px;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-    
+    overflow: hidden;
   }
-
+  .table-view{
+    max-height: 400px;
+    overflow-y:scroll;
+  }
   table {
     width: 100%;
     border-collapse: collapse;
@@ -78,3 +81,15 @@
     border: none;
     background-color: #fff;
   }
+
+  .form-group {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* space between label and select */
+  }
+  
+  .form-group label {
+    white-space: nowrap;
+  }
+  
+  
