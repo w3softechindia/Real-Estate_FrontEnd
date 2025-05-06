@@ -4,7 +4,7 @@
 }
 
 app-agencyssidebar {
-  width: 250px; // Adjust according to your sidebar width
+  width: 250px;
   flex-shrink: 0;
 }
 
@@ -12,8 +12,8 @@ app-agencyssidebar {
   flex-grow: 1;
   padding: 40px;
   background: #f5f7fa;
-  min-height: calc(100vh - 80px); // Adjust based on topbar height
-  padding-top: 70px; // Added padding to ensure content doesn't overlap with top bar
+  min-height: calc(100vh - 80px);
+  padding-top: 70px;
 
   .list-header {
     display: flex;
@@ -47,12 +47,11 @@ app-agencyssidebar {
     }
   }
 
-  /* Table View with Scrollbar */
   .table-view {
-    overflow-x: auto; // Horizontal scrollbar if needed
-    max-height: 500px; // Limit the height to enable vertical scrolling
+    overflow-x: auto;
+    max-height: 500px;
     display: block;
-    margin-bottom: 20px; // Adjust space between table and other elements
+    margin-bottom: 20px;
 
     table {
       width: 100%;
@@ -62,7 +61,8 @@ app-agencyssidebar {
       overflow: hidden;
       box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
 
-      th, td {
+      th,
+      td {
         padding: 15px;
         text-align: left;
         border-bottom: 1px solid #eee;
@@ -81,7 +81,6 @@ app-agencyssidebar {
     }
   }
 
-  /* Grid View */
   .grid-view {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -113,4 +112,130 @@ app-agencyssidebar {
       }
     }
   }
+
+  .modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+
+    .modal-content {
+      background: white;
+      padding: 40px;
+      border-radius: 10px;
+      width: 500px;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+
+      h2 {
+        margin-bottom: 20px;
+      }
+
+      label {
+        display: block;
+        margin-bottom: 10px;
+        font-weight: 600;
+      }
+
+      input {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 15px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      }
+
+      .modal-actions {
+        display: flex;
+        justify-content: space-between;
+
+        button {
+          padding: 10px 20px;
+          background: #4c8bf5;
+          color: white;
+          border: none;
+          border-radius: 5px;
+          cursor: pointer;
+
+          &:hover {
+            background: #3b7de0;
+          }
+        }
+
+        .cancel-btn {
+          background: #f44336; /* Red color for cancel */
+        }
+      }
+    }
+  }
+}
+
+.update-btn,
+.delete-btn {
+  padding: 10px 20px;
+  margin: 5px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.update-btn {
+  background-color: #4caf50;
+  color: white;
+}
+
+.update-btn:hover {
+  background-color: #45a049;
+}
+
+.delete-btn {
+  background-color: #f44336;
+  color: white;
+}
+
+.delete-btn:hover {
+  background-color: #e53935;
+}
+
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  width: 400px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: space-between;
+}
+
+.update-btn, .cancel-btn {
+  padding: 10px 15px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.update-btn:hover, .cancel-btn:hover {
+  background-color: #45a049;
 }

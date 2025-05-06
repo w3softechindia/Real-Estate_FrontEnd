@@ -13,6 +13,7 @@ import { AgencytopbarComponent } from "../agencytopbar/agencytopbar.component";
 export class AgencypropertylistComponent {
 
   viewMode: 'table' | 'grid' = 'table';
+  
 
 properties = [
   {
@@ -51,150 +52,8 @@ properties = [
     type: 'Residential',
     status: 'Available',
     postedDate: new Date('2025-04-01')
-  }, {
-    name: 'Sunshine Apartments',
-    location: '5th Avenue',
-    city: 'New York',
-    state: 'NY',
-    pincode: '10001',
-    price: 250000,
-    area: 1200,
-    type: 'Residential',
-    status: 'Available',
-    postedDate: new Date('2025-04-01')
-  }, {
-    name: 'Sunshine Apartments',
-    location: '5th Avenue',
-    city: 'New York',
-    state: 'NY',
-    pincode: '10001',
-    price: 250000,
-    area: 1200,
-    type: 'Residential',
-    status: 'Available',
-    postedDate: new Date('2025-04-01')
-  }, {
-    name: 'Sunshine Apartments',
-    location: '5th Avenue',
-    city: 'New York',
-    state: 'NY',
-    pincode: '10001',
-    price: 250000,
-    area: 1200,
-    type: 'Residential',
-    status: 'Available',
-    postedDate: new Date('2025-04-01')
-  }, {
-    name: 'Sunshine Apartments',
-    location: '5th Avenue',
-    city: 'New York',
-    state: 'NY',
-    pincode: '10001',
-    price: 250000,
-    area: 1200,
-    type: 'Residential',
-    status: 'Available',
-    postedDate: new Date('2025-04-01')
-  }, {
-    name: 'Sunshine Apartments',
-    location: '5th Avenue',
-    city: 'New York',
-    state: 'NY',
-    pincode: '10001',
-    price: 250000,
-    area: 1200,
-    type: 'Residential',
-    status: 'Available',
-    postedDate: new Date('2025-04-01')
-  }, {
-    name: 'Sunshine Apartments',
-    location: '5th Avenue',
-    city: 'New York',
-    state: 'NY',
-    pincode: '10001',
-    price: 250000,
-    area: 1200,
-    type: 'Residential',
-    status: 'Available',
-    postedDate: new Date('2025-04-01')
-  }, {
-    name: 'Sunshine Apartments',
-    location: '5th Avenue',
-    city: 'New York',
-    state: 'NY',
-    pincode: '10001',
-    price: 250000,
-    area: 1200,
-    type: 'Residential',
-    status: 'Available',
-    postedDate: new Date('2025-04-01')
-  }, {
-    name: 'Sunshine Apartments',
-    location: '5th Avenue',
-    city: 'New York',
-    state: 'NY',
-    pincode: '10001',
-    price: 250000,
-    area: 1200,
-    type: 'Residential',
-    status: 'Available',
-    postedDate: new Date('2025-04-01')
-  }, {
-    name: 'Sunshine Apartments',
-    location: '5th Avenue',
-    city: 'New York',
-    state: 'NY',
-    pincode: '10001',
-    price: 250000,
-    area: 1200,
-    type: 'Residential',
-    status: 'Available',
-    postedDate: new Date('2025-04-01')
-  }, {
-    name: 'Sunshine Apartments',
-    location: '5th Avenue',
-    city: 'New York',
-    state: 'NY',
-    pincode: '10001',
-    price: 250000,
-    area: 1200,
-    type: 'Residential',
-    status: 'Available',
-    postedDate: new Date('2025-04-01')
-  }, {
-    name: 'Sunshine Apartments',
-    location: '5th Avenue',
-    city: 'New York',
-    state: 'NY',
-    pincode: '10001',
-    price: 250000,
-    area: 1200,
-    type: 'Residential',
-    status: 'Available',
-    postedDate: new Date('2025-04-01')
-  }, {
-    name: 'Sunshine Apartments',
-    location: '5th Avenue',
-    city: 'New York',
-    state: 'NY',
-    pincode: '10001',
-    price: 250000,
-    area: 1200,
-    type: 'Residential',
-    status: 'Available',
-    postedDate: new Date('2025-04-01')
-  }, {
-    name: 'Sunshine Apartments',
-    location: '5th Avenue',
-    city: 'New York',
-    state: 'NY',
-    pincode: '10001',
-    price: 250000,
-    area: 1200,
-    type: 'Residential',
-    status: 'Available',
-    postedDate: new Date('2025-04-01')
-  }, {
+  },
+  {
     name: 'Sunshine Apartments',
     location: '5th Avenue',
     city: 'New York',
@@ -206,6 +65,41 @@ properties = [
     status: 'Available',
     postedDate: new Date('2025-04-01')
   },
+  {
+    name: 'Sunshine Apartments',
+    location: '5th Avenue',
+    city: 'New York',
+    state: 'NY',
+    pincode: '10001',
+    price: 250000,
+    area: 1200,
+    type: 'Residential',
+    status: 'Available',
+    postedDate: new Date('2025-04-01')
+  },{
+    name: 'Sunshine Apartments',
+    location: '5th Avenue',
+    city: 'New York',
+    state: 'NY',
+    pincode: '10001',
+    price: 250000,
+    area: 1200,
+    type: 'Residential',
+    status: 'Available',
+    postedDate: new Date('2025-04-01')
+  }
 ];
+
+
+selectedProperty: any = null;
+
+viewDetails(property: any) {
+  this.selectedProperty = property;
+}
+
+closeModal() {
+  this.selectedProperty = null;
+}
+
 
 }

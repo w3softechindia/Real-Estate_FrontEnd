@@ -27,6 +27,7 @@
             <th>Type</th>
             <th>Status</th>
             <th>Posted Date</th>
+            <th>Actions</th>
           </tr>
         </thead>
         <tbody>
@@ -41,6 +42,7 @@
             <td>{{ property.type }}</td>
             <td>{{ property.status }}</td>
             <td>{{ property.postedDate | date: 'MMM d, y' }}</td>
+            <td><button (click)="viewDetails(property)">View Details</button></td>
           </tr>
         </tbody>
       </table>
@@ -56,7 +58,22 @@
         <p><strong>Type:</strong> {{ property.type }}</p>
         <p><strong>Status:</strong> {{ property.status }}</p>
         <p><strong>Posted:</strong> {{ property.postedDate | date: 'MMM d, y' }}</p>
+        <button (click)="viewDetails(property)">View Details</button>
       </div>
     </div>
+  </div>
+</div>
+
+<!-- Property Detail Modal -->
+<div class="modal" *ngIf="selectedProperty" (click)="closeModal()">
+  <div class="modal-content" (click)="$event.stopPropagation()">
+    <h3>{{ selectedProperty.name }}</h3>
+    <p><strong>Location:</strong> {{ selectedProperty.location }}, {{ selectedProperty.city }}, {{ selectedProperty.state }} - {{ selectedProperty.pincode }}</p>
+    <p><strong>Price:</strong> {{ selectedProperty.price | currency }}</p>
+    <p><strong>Area:</strong> {{ selectedProperty.area }} sq ft</p>
+    <p><strong>Type:</strong> {{ selectedProperty.type }}</p>
+    <p><strong>Status:</strong> {{ selectedProperty.status }}</p>
+    <p><strong>Posted:</strong> {{ selectedProperty.postedDate | date: 'MMM d, y' }}</p>
+    <button (click)="closeModal()">Close</button>
   </div>
 </div>
