@@ -7,8 +7,8 @@
     <div class="list-header">
       <h2>Agents List</h2>
       <div class="view-toggle">
-        <button (click)="viewMode = 'table'" [class.active]="viewMode === 'table'">Table View</button>
-        <button (click)="viewMode = 'grid'" [class.active]="viewMode === 'grid'">Grid View</button>
+        <button (click)="toggleViewMode()" [class.active]="viewMode === 'table'">Table View</button>
+        <button (click)="toggleViewMode()" [class.active]="viewMode === 'grid'">Grid View</button>
       </div>
     </div>
 
@@ -23,6 +23,7 @@
             <th>State</th>
             <th>Pincode</th>
             <th>Registration Date</th>
+            <th>Actions</th>
           </tr>
         </thead>
         <tbody>
@@ -33,6 +34,10 @@
             <td>{{ agency.state }}</td>
             <td>{{ agency.pincode }}</td>
             <td>{{ agency.registrationDate | date }}</td>
+            <td>
+              <button class="update-btn" (click)="openUpdateModal(agency)">Update</button>
+              <button class="delete-btn" (click)="deleteAgent(agency)">Delete</button>
+            </td>
           </tr>
         </tbody>
       </table>
@@ -47,7 +52,37 @@
         <p><strong>State:</strong> {{ agency.state }}</p>
         <p><strong>Pincode:</strong> {{ agency.pincode }}</p>
         <p><strong>Registered On:</strong> {{ agency.registrationDate | date }}</p>
+        <button class="update-btn" (click)="openUpdateModal(agency)">Update</button>
+        <button class="delete-btn" (click)="deleteAgent(agency)">Delete</button>
       </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Structure -->
+<div *ngIf="showModal" class="modal">
+  <div class="modal-content">
+    <h2>Edit Agent Details</h2>
+
+    <!-- Bind data to form inputs using ngModel -->
+    <label for="agentName">Agent Name:</label>
+    <input id="agentName" [(ngModel)]="selectedAgent.agentName" placeholder="Enter agent name">
+
+    <label for="address">Address:</label>
+    <input id="address" [(ngModel)]="selectedAgent.address" placeholder="Enter address">
+
+    <label for="city">City:</label>
+    <input id="city" [(ngModel)]="selectedAgent.city" placeholder="Enter city">
+
+    <label for="state">State:</label>
+    <input id="state" [(ngModel)]="selectedAgent.state" placeholder="Enter state">
+
+    <label for="pincode">Pincode:</label>
+    <input id="pincode" [(ngModel)]="selectedAgent.pincode" placeholder="Enter pincode">
+
+    <div class="modal-actions">
+      <button class="update-btn" (click)="updateAgent()">Update</button>
+      <button class="cancel-btn" (click)="closeModal()">Cancel</button>
     </div>
   </div>
 </div>
