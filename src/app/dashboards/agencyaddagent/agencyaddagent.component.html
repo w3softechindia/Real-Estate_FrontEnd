@@ -5,68 +5,70 @@
   <div class="main-content">
     <div class="form-card">
       <h2>Register a New Agent</h2>
-      <form>
+      <form (ngSubmit)="registerAgent()">
         <div class="form-row">
           <div class="form-group">
             <label for="agentName">Agent Name</label>
-            <input type="text" id="agentName" placeholder="Enter Agent Name" required>
+            <input type="text" id="agentName" [(ngModel)]="agent.agentName" name="agentName" placeholder="Enter Agent Name" required>
           </div>
 
           <div class="form-group">
             <label for="agentEmail">Email</label>
-            <input type="email" id="agentEmail" placeholder="Enter Agent Email" required>
+            <input type="email" id="agentEmail" [(ngModel)]="agent.email" name="agentEmail" placeholder="Enter Agent Email" required>
+          </div>
+
+          <div class="form-group">
+            <label for="agentPassword">Password</label>
+            <input type="password" id="password" [(ngModel)]="agent.password" name="agentPassword" placeholder="Enter Password" required>
           </div>
         </div>
+        
 
         <div class="form-row">
           <div class="form-group">
             <label for="agentPhone">Phone Number</label>
-            <input type="tel" id="agentPhone" placeholder="Enter Agent Phone Number" pattern="[0-9]{10}" required>
+            <input type="tel" id="agentPhone" [(ngModel)]="agent.phoneNumber" name="agentPhone" placeholder="Enter Agent Phone Number" pattern="[0-9]{10}" required>
           </div>
 
           <div class="form-group">
             <label for="agentAddress">Address</label>
-            <input type="text" id="agentAddress" placeholder="Enter Address" required>
+            <input type="text" id="agentAddress" [(ngModel)]="agent.address" name="agentAddress" placeholder="Enter Address" required>
           </div>
         </div>
 
         <div class="form-row">
           <div class="form-group">
             <label for="agentCity">City</label>
-            <input type="text" id="agentCity" placeholder="Enter City" required>
+            <input type="text" id="agentCity" [(ngModel)]="agent.city" name="agentCity" placeholder="Enter City" required>
           </div>
 
           <div class="form-group">
             <label for="agentState">State</label>
-            <input type="text" id="agentState" placeholder="Enter State" required>
+            <input type="text" id="agentState" [(ngModel)]="agent.state" name="agentState" placeholder="Enter State" required>
           </div>
         </div>
 
         <div class="form-row">
           <div class="form-group">
             <label for="agentPincode">Pincode</label>
-            <input type="number" id="agentPincode" placeholder="Enter Pincode" required>
+            <input type="number" id="agentPincode" [(ngModel)]="agent.pincode" name="agentPincode" placeholder="Enter Pincode" required>
           </div>
 
           <div class="form-group">
             <label for="agentAgency">Agency</label>
-            <input type="text" id="agentAgency" placeholder="Agency Name" readonly value="Your Agency Name">
+            <input type="text" id="agentAgency" [(ngModel)]="agent.agency.agencyName" name="agentAgency" placeholder="Agency Name" readonly>
           </div>
         </div>
 
         <div class="form-row">
           <div class="form-group">
             <label for="agentRole">Role</label>
-            <select id="agentRole" required>
-              <option value="agent">Agent</option>
-              <option value="manager">Manager</option>
-              <option value="assistant">Assistant</option>
-            </select>
+            <input type="text" id="agentRole" [(ngModel)]="agent.roles[0]" name="agentRole" value="Agent" readonly placeholder="Agent">
           </div>
 
           <div class="form-group">
             <label for="agentStartDate">Start Date</label>
-            <input type="date" id="agentStartDate" required>
+            <input type="date" id="agentStartDate" [(ngModel)]="agent.registrationDate" name="agentStartDate" required>
           </div>
         </div>
 
