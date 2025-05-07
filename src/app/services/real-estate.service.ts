@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Agency } from '../modals/user.model';
+import { Agency, Venture } from '../modals/user.model';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -30,5 +30,13 @@ export class RealEStateService {
 
   getAllAgents():Observable<any[]>{
     return this.http.get<any[]>(`${this.baseUrl}/getAllAgents`)
+  }
+
+  registerVenture(venture:Venture):Observable<any>{
+    return this.http.post(`${this.baseUrl}/addVenture`, venture);
+  }
+
+  getAllVentures():Observable<any[]>{
+    return this.http.get<any[]>(`${this.baseUrl}/getAllVentures`)
   }
 }
