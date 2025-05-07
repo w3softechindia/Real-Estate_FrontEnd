@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Agency, Agent, Venture } from '../modals/user.model';
 import { Observable } from 'rxjs';
@@ -52,6 +52,12 @@ export class RealEStateService {
 
   addAgent(email: string, agent: Agent): Observable<any> {
     return this.http.post(`${this.baseUrl}/addAgent?email=${email}`, agent);
+  }
+
+
+  getAgentsByAgency(agencyName: string): Observable<Agent[]> {
+    const params = new HttpParams().set('agencyName', agencyName);
+    return this.http.get<Agent[]>(`${this.baseUrl}/getAgentsByAgency`, { params });
   }
   
 }

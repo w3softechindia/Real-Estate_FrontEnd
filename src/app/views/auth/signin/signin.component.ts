@@ -77,6 +77,7 @@ export class SigninComponent implements OnInit{
         this.authService.setToken(jwtToken);
         this.authService.setEmail(userEmail);
         this.authService.setRoles(role);
+        this.authService.setAgencyData(user); // ✅ store full user
 
         switch (role) {
           case 'Admin':
