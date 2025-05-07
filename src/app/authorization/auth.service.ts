@@ -36,10 +36,15 @@ export class AuthService {
     sessionStorage.setItem('email', email);
   }
 
-  public getEmail() {
-    sessionStorage.getItem('email');
-  }
+  // public getEmail() {
+  //   sessionStorage.getItem('email');
+  // }
 
+
+   // Retrieve email from sessionStorage and return it as a string
+   public getEmail(): string {
+    return sessionStorage.getItem('email') || ''; // Return empty string if no email is found
+  }
   public setUserId(userId: number) {
     sessionStorage.setItem('userId', userId.toString());
   }
