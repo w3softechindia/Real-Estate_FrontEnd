@@ -3,6 +3,9 @@ import { AgencyssidebarComponent } from "../agencyssidebar/agencyssidebar.compon
 import { AgencytopbarComponent } from "../agencytopbar/agencytopbar.component";
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { AuthService } from '@/app/authorization/auth.service';
+import { RealEStateService } from '@/app/services/real-estate.service';
+import { Agent } from '@/app/modals/user.model';
 
 @Component({
   selector: 'app-agencyagentslist',
@@ -12,10 +15,32 @@ import { FormsModule } from '@angular/forms';
   styleUrls: ['./agencyagentslist.component.scss']
 })
 export class AgencyagentslistComponent {
+
   viewMode: 'table' | 'grid' = 'table';
   showModal: boolean = false;
   selectedAgent: any = {};
 
+
+  
+
+   agencyName: string = '';
+  
+   constructor(
+     private auth: AuthService,
+     private service: RealEStateService
+   ) {}
+ 
+   ngOnInit(): void {
+     this.agencyName = this.auth.getAgencyName();
+     console.log('Agency Name:', this.agencyName);
+     this.getAgents();
+   }
+   
+
+
+   
+
+   
   agencies = [
     {
       agentName: 'John Doe',
@@ -26,94 +51,33 @@ export class AgencyagentslistComponent {
       pincode:67578,
       registrationDate: new Date()
     },
-    {
-      agentName: 'John Doe',
-      address: '123 Street',
-      city: 'New York',
-      emaill: 'xyz@gmail.com',
-      contact: 987654321,
-      pincode:67578,
-      registrationDate: new Date()
-    },
-    {
-      agentName: 'John Doe',
-      address: '123 Street',
-      city: 'New York',
-      emaill: 'xyz@gmail.com',
-      contact: 987654321,
-      pincode:67578,
-      registrationDate: new Date()
-    },
-    {
-      agentName: 'John Doe',
-      address: '123 Street',
-      city: 'New York',
-      emaill: 'xyz@gmail.com',
-      contact: 987654321,
-      pincode:67578,
-      registrationDate: new Date()
-    },
-    {
-      agentName: 'Jack Doe',
-      address: '156Street',
-      city: 'York',
-      emaill: 'ghyz@gmail.com',
-      contact: 98734534321,
-      pincode:67548,
-      registrationDate: new Date()
-    }, {
-      agentName: 'John Doe',
-      address: '123 Street',
-      city: 'New York',
-      emaill: 'xyz@gmail.com',
-      contact: 987654321,
-      pincode:67578,
-      registrationDate: new Date()
-    }, {
-      agentName: 'Jack Doe',
-      address: '156Street',
-      city: 'York',
-      emaill: 'ghyz@gmail.com',
-      contact: 98734534321,
-      pincode:67548,
-      registrationDate: new Date()
-    },
-    {
-      agentName: 'Phnj Doe',
-      address: '156Street',
-      city: 'USA',
-      emaill: 'ghyz@gmail.com',
-      contact: 788566534321,
-      pincode:67548,
-      registrationDate: new Date()
-    },{
-      agentName: 'Phnj Doe',
-      address: '156Street',
-      city: 'USA',
-      emaill: 'ghyz@gmail.com',
-      contact: 788566534321,
-      pincode:67548,
-      registrationDate: new Date()
-    },{
-      agentName: 'Phnj Doe',
-      address: '156Street',
-      city: 'USA',
-      emaill: 'ghyz@gmail.com',
-      contact: 788566534321,
-      pincode:67548,
-      registrationDate: new Date()
-    },{
-      agentName: 'Phnj Doe',
-      address: '156Street',
-      city: 'USA',
-      emaill: 'ghyz@gmail.com',
-      contact: 788566534321,
-      pincode:67548,
-      registrationDate: new Date()
-    },
     
     // More agent data can be added here...
   ];
+
+
+
+  getAgents(): void {
+    const agencyNamee = this.agencyName; // or get it dynamically
+    this.service.getAgentsByAgency(agencyNamee).subscribe(
+      (agents: Agent[]) => {
+        console.log('Full agent objects:', agents);
+        agents.forEach(agent => {
+          console.log(agent); // 👈 Prints the entire Agent object
+        });
+      },
+      error => {
+        console.error('Error fetching agents:', error);
+      }
+    );
+  }
+
+
+
+
+
+
+
 
   toggleViewMode() {
     this.viewMode = this.viewMode === 'table' ? 'grid' : 'table';

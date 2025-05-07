@@ -60,4 +60,28 @@ export class AuthService {
   getAuthToken(): string {
     return sessionStorage.getItem('jwtToken') || '';
   }
+
+
+
+
+
+
+ 
+
+  public setAgencyData(user: any) {
+    sessionStorage.setItem('estateUser', JSON.stringify(user));
+  }
+  
+  public getAgencyData(): any {
+    const userString = sessionStorage.getItem('estateUser');
+    return userString ? JSON.parse(userString) : null;
+  }
+  
+  public getAgencyName(): string {
+    const user = this.getAgencyData();
+    return user && user.agencyName ? user.agencyName : '';
+  }
+  
+  
+    
 }
