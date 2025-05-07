@@ -1,0 +1,70 @@
+<app-agenttopbar></app-agenttopbar>
+<app-agentdashboard></app-agentdashboard>
+
+<div class="main-layout">
+    <div class="page-layout">
+      <div class="container">
+    
+<form class="visit-form">
+  <div class="form-group">
+    <label for="leadName">Lead Name</label>
+    <select id="leadName" name="leadName" required>
+      <option value="" disabled selected>Select Lead</option>
+      <!-- Options dynamically loaded -->
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label for="property">Property</label>
+    <select id="property" name="property" required>
+      <option value="" disabled selected>Select Property</option>
+      <option value="Villa">Villa</option>
+      <option value="Apartment">Apartmnet</option>
+      <option value="Independent">Independent</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label for="visitDate">Visit Date</label>
+    <input type="date" id="visitDate" name="visitDate" required />
+  </div>
+
+  <div class="form-group">
+    <label for="visitTime">Visit Time</label>
+    <input type="time" id="visitTime" name="visitTime" required />
+  </div>
+
+ 
+
+  <div class="form-group">
+    <label for="agentNotes">Agent Notes</label>
+    <textarea id="agentNotes" name="agentNotes" placeholder="Any specific instructions or notes..."></textarea>
+  </div>
+
+  <div class="form-group">
+    <label for="customerFeedback">Customer Feedback</label>
+    <textarea id="customerFeedback" name="customerFeedback" placeholder="Feedback from the customer after the visit..."></textarea>
+  </div>
+
+  <div class="form-group">
+    <label for="nextStep">Next Step</label>
+    <select id="nextStep" name="nextStep">
+      <option value="" disabled selected>Select Action</option>
+      <option value="Second Visit">Second Visit</option>
+      <option value="Documentation">Documentation</option>
+      <option value="Follow-up Call">Follow-up Call</option>
+      <option value="Drop Lead">Drop Lead</option>
+    </select>
+  </div>
+
+  <div class="button">
+    <button type="submit">Add Visit</button>
+  </div>
+</form>
+
+
+        
+    </div>
+</div>
+</div>
+

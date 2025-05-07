@@ -881,7 +881,7 @@ export const CUSTOM_MENU: MenuItemType[] = [
       {
         key: 'property-list',
         label: 'Property List',
-        url: '/property/list',
+        url: '/agencypropertylist',
         parentKey: 'property',
       },
       // {
@@ -907,7 +907,7 @@ export const CUSTOM_MENU: MenuItemType[] = [
       {
         key: 'agents-list',
         label: 'List View',
-        url: '/agents/list',
+        url: '/agentslistagency',
         parentKey: 'agents',
       },
       // {
@@ -925,7 +925,7 @@ export const CUSTOM_MENU: MenuItemType[] = [
       {
         key: 'add-agent',
         label: 'Add Agent',
-        url: '/agents/add',
+        url: '/agencyaddagent',
         parentKey: 'agents',
       },
     ],
@@ -951,7 +951,7 @@ export const CUSTOM_MENU: MenuItemType[] = [
       {
         key: 'customer-details',
         label: 'Token List',
-        url: '/customers/details',
+        url: '/agencytokenlist',
         parentKey: 'customers',
       },
       // {
@@ -1016,7 +1016,7 @@ export const CUSTOM_MENUU: MenuItemType[] = [
       {
         key: 'analytics',
         label: 'Analytics',
-        url: '/dashboards/analytics',
+        url: '/agentanalytics',
         parentKey: 'dashboards',
       },
       // {
@@ -1048,7 +1048,7 @@ export const CUSTOM_MENUU: MenuItemType[] = [
       {
         key: 'property-list',
         label: 'Property List',
-        url: '/property/list',
+        url: '/agentpropertylist',
         parentKey: 'property',
       },
       // {
@@ -1074,25 +1074,25 @@ export const CUSTOM_MENUU: MenuItemType[] = [
       {
         key: 'agents-list',
         label: 'Add Leads',
-        url: '/agents/list',
+        url: '/agentaddleads',
         parentKey: 'agents',
       },
       {
         key: 'agents-grid-view',
         label: 'Leads List',
-        url: '/agents/grid',
+        url: '/agentleadlist',
         parentKey: 'agents',
       },
       {
         key: 'agent-details',
         label: 'Add Visits',
-        url: '/agents/details',
+        url: '/agentaddvisit',
         parentKey: 'agents',
       },
       {
         key: 'add-agent',
         label: 'visit List',
-        url: '/agents/add',
+        url: '/agentvisitlist',
         parentKey: 'agents',
       },
     ],
@@ -1123,38 +1123,38 @@ export const CUSTOM_MENUU: MenuItemType[] = [
       // },
     ],
   },
-  {
-    key: 'customers',
-    label: 'Schedule & Appointments',
-    icon: 'ri-contacts-book-3-line',
-    collapsed: true,
-    children: [
-      {
-        key: 'list-view',
-        label: 'List View',
-        url: '/customers/list',
-        parentKey: 'customers',
-      },
-      {
-        key: 'grid-view',
-        label: 'Grid View',
-        url: '/customers/grid',
-        parentKey: 'customers',
-      },
-      {
-        key: 'customer-details',
-        label: 'Customer Details',
-        url: '/customers/details',
-        parentKey: 'customers',
-      },
-      {
-        key: 'add-customer',
-        label: 'Add Customer',
-        url: '/customers/add',
-        parentKey: 'customers',
-      },
-    ],
-  },
+  // {
+  //   key: 'customers',
+  //   label: 'Schedule & Appointments',
+  //   icon: 'ri-contacts-book-3-line',
+  //   collapsed: true,
+  //   children: [
+  //     {
+  //       key: 'list-view',
+  //       label: 'List View',
+  //       url: '/customers/list',
+  //       parentKey: 'customers',
+  //     },
+  //     {
+  //       key: 'grid-view',
+  //       label: 'Grid View',
+  //       url: '/customers/grid',
+  //       parentKey: 'customers',
+  //     },
+  //     {
+  //       key: 'customer-details',
+  //       label: 'Customer Details',
+  //       url: '/customers/details',
+  //       parentKey: 'customers',
+  //     },
+  //     {
+  //       key: 'add-customer',
+  //       label: 'Add Customer',
+  //       url: '/customers/add',
+  //       parentKey: 'customers',
+  //     },
+  //   ],
+  //},
   
   // {
   //   key: 'transactions',

@@ -1,5 +1,69 @@
-
-
-
 <app-agencytopbar></app-agencytopbar>
 <app-agencyssidebar></app-agencyssidebar>
+
+<div class="main-layout">
+  <div class="page-layout">
+    <div class="container">
+      <h2>Sales and Properties Performance</h2>
+
+      <!-- Year Filter -->
+      <div class="filter-section">
+        <label for="year-select">Select Year:</label>
+        <select id="year-select" name="year">
+          <option value="2023">2023</option>
+          <option value="2024">2024</option>
+          <option value="2025">2025</option>
+        </select>
+      </div>
+
+      <!-- Graph Cards (Side by Side) -->
+      <div class="graph-cards-container">
+        <!-- Sales Performance Card -->
+        <div class="graph-card">
+          <h3>Sales Performance</h3>
+          <div class="bar-chart">
+            <!-- 12 Months Data -->
+            <div class="bar" style="height: 80%;" title="Jan: $80k"></div>
+            <div class="bar" style="height: 60%;" title="Feb: $60k"></div>
+            <div class="bar" style="height: 90%;" title="Mar: $90k"></div>
+            <div class="bar" style="height: 50%;" title="Apr: $50k"></div>
+            <div class="bar" style="height: 70%;" title="May: $70k"></div>
+            <div class="bar" style="height: 60%;" title="Jun: $60k"></div>
+            <div class="bar" style="height: 85%;" title="Jul: $85k"></div>
+            <div class="bar" style="height: 65%;" title="Aug: $65k"></div>
+            <div class="bar" style="height: 75%;" title="Sep: $75k"></div>
+            <div class="bar" style="height: 60%;" title="Oct: $60k"></div>
+            <div class="bar" style="height: 90%;" title="Nov: $90k"></div>
+            <div class="bar" style="height: 50%;" title="Dec: $50k"></div>
+          </div>
+          <!-- Months below bars -->
+          <div class="month-labels">
+            <span>Jan</span>
+            <span>Feb</span>
+            <span>Mar</span>
+            <span>Apr</span>
+            <span>May</span>
+            <span>Jun</span>
+            <span>Jul</span>
+            <span>Aug</span>
+            <span>Sep</span>
+            <span>Oct</span>
+            <span>Nov</span>
+            <span>Dec</span>
+          </div>
+        </div>
+
+        <!-- Properties Distribution Card -->
+        <div class="graph-card">
+          <h3>Properties Distribution</h3>
+          <div class="pie-chart"></div>
+          <div class="legend">
+            <p><span class="color-box available"></span> Available Properties</p>
+            <p><span class="color-box sold"></span> Sold Properties</p>
+            <p><span class="color-box hold"></span> On Hold Properties</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,93 @@
+<app-agenttopbar></app-agenttopbar>
+<app-agentdashboard></app-agentdashboard>
+
+<div class="main-layout">
+    <div class="page-layout">
+      <div class="container">
+        <div class="form-container">
+            <form class="lead-form">
+      <div class="form-group">
+                    <label for="leadName">Lead Name</label>
+                    <input type="text" id="leadName" name="leadName" placeholder="Ravi Kumar" required>
+                </div>
+            
+                <div class="form-group">
+                    <label for="phoneNumber">Phone Number</label>
+                    <input type="tel" id="phoneNumber" name="phoneNumber" placeholder="7894561230" pattern="[0-9]{10}" required>
+                </div>
+            
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" placeholder="ravi@example.com">
+                </div>
+            
+                <!-- Lead Details -->
+                <div class="form-group">
+                    <label for="leadSource">Lead Source</label>
+                    <select id="leadSource" name="leadSource">
+                        <option value="" disabled selected>Select Source</option>
+                        <option value="Website">Website</option>
+                        <option value="Facebook">Facebook</option>
+                        <option value="Google Ads">Google Ads</option>
+                        <option value="Referral">Referral</option>
+                        <option value="Walk-in">Walk-in</option>
+                        <option value="Cold Call">Cold Call</option>
+                    </select>
+                </div>
+            
+                <div class="form-group">
+                    <label for="interestedIn">Interested In</label>
+                    <select id="interestedIn" name="interestedIn">
+                        <option value="" disabled selected>Select Type</option>
+                        <option value="Apartment">Apartment</option>
+                        <option value="Villa">Villa</option>
+                        <option value="Plot">Plot</option>
+                        <option value="Commercial Property">Commercial Property</option>
+                    </select>
+                </div>
+            
+                <div class="form-group">
+                    <label for="preferredLocation">Preferred Location</label>
+                    <input type="text" id="preferredLocation" name="preferredLocation" placeholder="Kondapur, Hyderabad">
+                </div>
+            
+                <div class="form-group">
+                    <label for="budget">Estimated Budget (₹)</label>
+                    <input type="number" id="budget" name="budget" placeholder="6000000">
+                </div>
+            
+              
+            
+                <div class="form-group">
+                    <label for="leadStatus">Lead Status</label>
+                    <select id="leadStatus" name="leadStatus">
+                        <option value="" disabled selected>Select Status</option>
+                        <option value="New">New</option>
+                        <option value="Contacted">Contacted</option>
+                        <option value="Interested">Interested</option>
+                        <option value="Not Interested">Not Interested</option>
+                        <option value="Converted">Converted</option>
+                        <option value="Closed">Closed</option>
+                    </select>
+                </div>
+            
+                <div class="form-group">
+                    <label for="followUpDate">Next Follow-Up Date</label>
+                    <input type="date" id="followUpDate" name="followUpDate">
+                </div>
+            
+                <div class="form-group">
+                    <label for="notes">Lead Notes</label>
+                    <textarea id="notes" name="notes" rows="4" placeholder="Add any extra information about the lead..."></textarea>
+                </div>
+            
+                <div class="button">
+                    <button type="submit">Add Lead</button>
+                </div>
+                
+            </form>
+        </div>
+        
+    </div>
+</div>
+</div>
