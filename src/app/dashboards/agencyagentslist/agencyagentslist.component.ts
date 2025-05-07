@@ -12,101 +12,134 @@ import { FormsModule } from '@angular/forms';
   styleUrls: ['./agencyagentslist.component.scss']
 })
 export class AgencyagentslistComponent {
-  viewMode: 'table' | 'grid' = 'table'; // Default view
-  showModal: boolean = false;  // Modal visibility flag
-  selectedAgent: any = {};  // Selected agent data for updating
+  viewMode: 'table' | 'grid' = 'table';
+  showModal: boolean = false;
+  selectedAgent: any = {};
 
   agencies = [
     {
       agentName: 'John Doe',
       address: '123 Street',
       city: 'New York',
-      state: 'NY',
-      pincode: 12345,
-      registrationDate: new Date()
-    },
-    {
-      agentName: 'Jane Smith',
-      address: '456 Avenue',
-      city: 'Los Angeles',
-      state: 'CA',
-      pincode: 67890,
+      emaill: 'xyz@gmail.com',
+      contact: 987654321,
+      pincode:67578,
       registrationDate: new Date()
     },
     {
       agentName: 'John Doe',
       address: '123 Street',
       city: 'New York',
-      state: 'NY',
-      pincode: 12345,
+      emaill: 'xyz@gmail.com',
+      contact: 987654321,
+      pincode:67578,
       registrationDate: new Date()
     },
     {
       agentName: 'John Doe',
       address: '123 Street',
       city: 'New York',
-      state: 'NY',
-      pincode: 12345,
+      emaill: 'xyz@gmail.com',
+      contact: 987654321,
+      pincode:67578,
       registrationDate: new Date()
     },
     {
       agentName: 'John Doe',
       address: '123 Street',
       city: 'New York',
-      state: 'NY',
-      pincode: 12345,
+      emaill: 'xyz@gmail.com',
+      contact: 987654321,
+      pincode:67578,
       registrationDate: new Date()
     },
     {
+      agentName: 'Jack Doe',
+      address: '156Street',
+      city: 'York',
+      emaill: 'ghyz@gmail.com',
+      contact: 98734534321,
+      pincode:67548,
+      registrationDate: new Date()
+    }, {
       agentName: 'John Doe',
       address: '123 Street',
       city: 'New York',
-      state: 'NY',
-      pincode: 12345,
+      emaill: 'xyz@gmail.com',
+      contact: 987654321,
+      pincode:67578,
+      registrationDate: new Date()
+    }, {
+      agentName: 'Jack Doe',
+      address: '156Street',
+      city: 'York',
+      emaill: 'ghyz@gmail.com',
+      contact: 98734534321,
+      pincode:67548,
       registrationDate: new Date()
     },
     {
-      agentName: 'John Doe',
-      address: '123 Street',
-      city: 'New York',
-      state: 'NY',
-      pincode: 12345,
+      agentName: 'Phnj Doe',
+      address: '156Street',
+      city: 'USA',
+      emaill: 'ghyz@gmail.com',
+      contact: 788566534321,
+      pincode:67548,
+      registrationDate: new Date()
+    },{
+      agentName: 'Phnj Doe',
+      address: '156Street',
+      city: 'USA',
+      emaill: 'ghyz@gmail.com',
+      contact: 788566534321,
+      pincode:67548,
+      registrationDate: new Date()
+    },{
+      agentName: 'Phnj Doe',
+      address: '156Street',
+      city: 'USA',
+      emaill: 'ghyz@gmail.com',
+      contact: 788566534321,
+      pincode:67548,
+      registrationDate: new Date()
+    },{
+      agentName: 'Phnj Doe',
+      address: '156Street',
+      city: 'USA',
+      emaill: 'ghyz@gmail.com',
+      contact: 788566534321,
+      pincode:67548,
       registrationDate: new Date()
     },
+    
     // More agent data can be added here...
   ];
 
-  // Toggle between table and grid views
   toggleViewMode() {
     this.viewMode = this.viewMode === 'table' ? 'grid' : 'table';
   }
 
-  // Open modal and set the selected agent
   openUpdateModal(agent: any) {
-    console.log("Opening modal with agent data:", agent);  // Debugging log
-    this.selectedAgent = { ...agent };  // Populate selectedAgent with the agent details
-    this.showModal = true;  // Make modal visible
+    console.log("Opening modal with agent data:", agent);
+    this.selectedAgent = { ...agent };
+    this.showModal = true;
   }
 
-  // Close modal
   closeModal() {
     this.showModal = false;
-    console.log("Modal closed");  // Debugging log
+    console.log("Modal closed");
   }
 
-  // Handle the update functionality
   updateAgent() {
-    console.log("Updating agent:", this.selectedAgent);  // Debugging log
-    // Perform the update logic here (e.g., update the agent in the list)
-    const index = this.agencies.findIndex(agent => agent.pincode === this.selectedAgent.pincode);
+    console.log("Updating agent:", this.selectedAgent);
+    const index = this.agencies.findIndex(agent => agent.emaill === this.selectedAgent.emaill);
     if (index !== -1) {
-      this.agencies[index] = { ...this.selectedAgent };  // Update the agent in the list
+      this.agencies[index] = { ...this.selectedAgent };
     }
-    this.closeModal();  // Close the modal after update
+    this.closeModal();
   }
 
-  // Delete an agent
   deleteAgent(agent: any) {
-    this.agencies = this.agencies.filter(a => a.pincode !== agent.pincode);
+    this.agencies = this.agencies.filter(a => a.emaill !== agent.emaill);
   }
 }
