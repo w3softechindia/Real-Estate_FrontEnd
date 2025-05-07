@@ -239,3 +239,27 @@ app-agencyssidebar {
 .update-btn:hover, .cancel-btn:hover {
   background-color: #45a049;
 }
+
+// ----------------------------------------------------------------------------
+.action-icon {
+  font-size: 18px;
+  cursor: pointer;
+  margin-right: 10px;
+  transition: color 0.3s;
+
+  &.view-icon {
+    color: #4caf50;
+
+    &:hover {
+      color: #388e3c;
+    }
+  }
+
+  &.delete-icon {
+    color: #f44336;
+
+    &:hover {
+      color: #d32f2f;
+    }
+  }
+}
