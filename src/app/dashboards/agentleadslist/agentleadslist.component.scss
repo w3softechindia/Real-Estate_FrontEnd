@@ -91,5 +91,68 @@
   .form-group label {
     white-space: nowrap;
   }
+
+  .modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .modal-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    width: 400px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  .modal-actions {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .update-btn, .cancel-btn {
+    padding: 10px 15px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .update-btn:hover, .cancel-btn:hover {
+    background-color: #45a049;
+  }
+  
+  // ----------------------------------------------------------------------------
+  .action-icon {
+    font-size: 18px;
+    cursor: pointer;
+    margin-right: 10px;
+    transition: color 0.3s;
+  
+    &.view-icon {
+      color: #4caf50;
+  
+      &:hover {
+        color: #388e3c;
+      }
+    }
+  
+    &.delete-icon {
+      color: #f44336;
+  
+      &:hover {
+        color: #d32f2f;
+      }
+    }
+  }
+  
+  
   
   
