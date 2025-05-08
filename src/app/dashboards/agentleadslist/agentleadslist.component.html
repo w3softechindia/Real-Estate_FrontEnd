@@ -60,31 +60,60 @@
                 <tr>
                   <th>lead Name</th>
                   <th>Location</th>
-                  <th>City</th>
-                  <th>State</th>
-                  <th>Pincode</th>
+                  <th>Budget</th>
+                  <th>Property</th>
                   <th>PhoneNo</th>
-                  <th>Type</th>
+                  <th>Source</th>
                   <th>Status</th>
+                  <th>Action</th>
                 </tr>
               </thead>
               <tbody>
                 <tr *ngFor="let lead of leads; let i=index">
-                  <td>{{ lead.name }}</td>
-                  <td>{{ lead.location }}</td>
-                  <td>{{lead.city }}</td>
-                  <td>{{ lead.state }}</td>
-                  <td>{{ lead.pincode }}</td>
-                  <!-- <td>{{ property.price | currency }}</td> -->
+                  <td>{{ lead.leadName }}</td>
+                  <td>{{ lead.preferredLocation }}</td>
+                  <td>{{ lead.estimatedBudget}}</td>
+                  <td>{{ lead.interestedIn }}</td>
                   <td>{{ lead.phoneNumber }} </td>
-                  <td>{{ lead.type }}</td>
-                  <td>{{ lead.status }}</td>
-                  <!-- <td><button (click)="toggleView(i)" class="view-btn"><i class="fa fa-eye"></i></button></td> -->
+                  <td>{{ lead.leadSource }}</td>
+                  <td>{{ lead.leadStatus }}</td>
+                  <td>              
+                    <i class="fas fa-eye action-icon view-icon" (click)="openUpdateModal(lead)" title="View/Update"></i>
+                    <i class="fas fa-trash-alt action-icon delete-icon" (click)="deleteLead(lead)" title="Delete"></i>
+                  </td>
                 </tr>
               </tbody>
             </table>
           </div>
 </div>
 </div>
+</div>
+
+<!-- Modal Structure -->
+<div *ngIf="showModal" class="modal">
+  <div class="modal-content">
+    <h2>Edit Lead Details</h2>
+
+    <!-- Bind data to form inputs using ngModel -->
+    <label for="agentName">Lead Name:</label>
+    <input id="agentName" [(ngModel)]="selectedLead.leadName" placeholder="Enter lead name">
+
+    <label for="address">Location:</label>
+    <input id="address" [(ngModel)]="selectedLead.preferredLocation" placeholder="Enter address">
+
+    <label for="city">PhoneNumber:</label>
+    <input id="city" [(ngModel)]="selectedLead.phoneNumber" placeholder="Enter city">
+
+    <label for="state">Source:</label>
+    <input id="state" [(ngModel)]="selectedLead.leadSource" placeholder="Enter state">
+
+    <label for="pincode">Status:</label>
+    <input id="pincode" [(ngModel)]="selectedLead.leadStatus" placeholder="Enter pincode">
+
+    <div class="modal-actions">
+      <!-- <button class="update-btn" (click)="updateLead()">Update</button> -->
+      <button class="cancel-btn" (click)="closeModal()">Cancel</button>
+    </div>
+  </div>
 </div>
 

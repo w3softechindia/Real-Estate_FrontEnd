@@ -1,6 +1,6 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Agency, Agent, Venture } from '../modals/user.model';
+import { Agency, Agent, Lead, Venture } from '../modals/user.model';
 import { Observable } from 'rxjs';
 
 
@@ -60,4 +60,20 @@ export class RealEStateService {
     return this.http.get<Agent[]>(`${this.baseUrl}/getAgentsByAgency`, { params });
   }
   
+
+
+
+
+
+
+
+  //Agent Operations
+  registerLead(lead:Lead):Observable<any>{
+return this.http.post(`${this.baseUrl}/addLead`,lead)
+  }
+
+  getAllLeads():Observable<any>{
+    return this.http.get(`${this.baseUrl}/getAllLeads`)
+  }
+ 
 }
