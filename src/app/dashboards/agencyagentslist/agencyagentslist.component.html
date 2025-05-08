@@ -7,8 +7,8 @@
     <div class="list-header">
       <h2>Agents List</h2>
       <div class="view-toggle">
-        <button (click)="viewMode = 'table'" [class.active]="viewMode === 'table'">Table View</button>
-        <button (click)="viewMode = 'grid'" [class.active]="viewMode === 'grid'">Grid View</button>
+        <button (click)="toggleViewMode()" [class.active]="viewMode === 'table'">Table View</button>
+        <button (click)="toggleViewMode()" [class.active]="viewMode === 'grid'">Grid View</button>
       </div>
     </div>
 
@@ -19,20 +19,27 @@
           <tr>
             <th>Agent Name</th>
             <th>Address</th>
+            <th>Email</th>
+            <th>Contact</th>
             <th>City</th>
-            <th>State</th>
-            <th>Pincode</th>
             <th>Registration Date</th>
+            <th>Actions</th>
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let agency of agencies">
-            <td>{{ agency.agentName }}</td>
-            <td>{{ agency.address }}</td>
-            <td>{{ agency.city }}</td>
-            <td>{{ agency.state }}</td>
-            <td>{{ agency.pincode }}</td>
-            <td>{{ agency.registrationDate | date }}</td>
+          <tr *ngFor="let ag of agennts">
+            <td>{{ ag.agentName }}</td>
+            <td>{{ ag.address }}</td>
+            <td>{{ ag.email}}</td>
+            <td>{{ ag.phoneNumber }}</td>
+            <td>{{ ag.city}}</td>
+            <td>{{ ag.registrationDate | date }}</td>
+            <td>
+             
+              <i class="fas fa-eye action-icon view-icon" (click)="openUpdateModal(ag)" title="View/Update"></i>
+              <i class="fas fa-trash-alt action-icon delete-icon" (click)="deleteAgent(ag)" title="Delete"></i>
+            
+            </td>
           </tr>
         </tbody>
       </table>
@@ -40,14 +47,45 @@
 
     <!-- Grid View -->
     <div *ngIf="viewMode === 'grid'" class="grid-view">
-      <div class="agency-card" *ngFor="let agency of agencies">
-        <h3>{{ agency.agentName }}</h3>
-        <p><strong>Address:</strong> {{ agency.address }}</p>
-        <p><strong>City:</strong> {{ agency.city }}</p>
-        <p><strong>State:</strong> {{ agency.state }}</p>
-        <p><strong>Pincode:</strong> {{ agency.pincode }}</p>
-        <p><strong>Registered On:</strong> {{ agency.registrationDate | date }}</p>
+      <div class="agency-card" *ngFor="let ag of agennts">
+        <h3>{{ ag.agentName }}</h3>
+        <p><strong>Address:</strong> {{ ag.address }}</p>
+        <p><strong>City:</strong> {{ ag.city }}</p>
+        <p><strong>Email:</strong> {{ ag.email }}</p>
+        <p><strong>Contact:</strong> {{ ag.phoneNumber }}</p>
+        <p><strong>Registered On:</strong> {{ ag.registrationDate | date }}</p>
+       
+        <i class="fas fa-eye action-icon view-icon" (click)="openUpdateModal(ag)" title="View/Update"></i>
+        <i class="fas fa-trash-alt action-icon delete-icon" (click)="deleteAgent(ag)" title="Delete"></i>
       </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Structure -->
+<div *ngIf="showModal" class="modal">
+  <div class="modal-content">
+    <h2>Edit Agent Details</h2>
+
+    <!-- Bind data to form inputs using ngModel -->
+    <label for="agentName">Agent Name:</label>
+    <input id="agentName" [(ngModel)]="selectedAgent.agentName" placeholder="Enter agent name">
+
+    <label for="address">Address:</label>
+    <input id="address" [(ngModel)]="selectedAgent.address" placeholder="Enter address">
+
+    <label for="city">City:</label>
+    <input id="city" [(ngModel)]="selectedAgent.city" placeholder="Enter city">
+
+    <label for="state">State:</label>
+    <input id="state" [(ngModel)]="selectedAgent.state" placeholder="Enter state">
+
+    <label for="pincode">Pincode:</label>
+    <input id="pincode" [(ngModel)]="selectedAgent.pincode" placeholder="Enter pincode">
+
+    <div class="modal-actions">
+      <button class="update-btn" (click)="updateAgent()">Update</button>
+      <button class="cancel-btn" (click)="closeModal()">Cancel</button>
     </div>
   </div>
 </div>
