@@ -27,18 +27,17 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let agency of agencies">
-            <td>{{ agency.agentName }}</td>
-            <td>{{ agency.address }}</td>
-            <td>{{ agency.emaill }}</td>
-            <td>{{ agency.contact }}</td>
-            <td>{{ agency.city}}</td>
-            <td>{{ agency.registrationDate | date }}</td>
+          <tr *ngFor="let ag of agennts">
+            <td>{{ ag.agentName }}</td>
+            <td>{{ ag.address }}</td>
+            <td>{{ ag.email}}</td>
+            <td>{{ ag.phoneNumber }}</td>
+            <td>{{ ag.city}}</td>
+            <td>{{ ag.registrationDate | date }}</td>
             <td>
-              <!-- <button class="update-btn" (click)="openUpdateModal(agency)">Update</button>
-              <button class="delete-btn" (click)="deleteAgent(agency)">Delete</button> -->
-              <i class="fas fa-eye action-icon view-icon" (click)="openUpdateModal(agency)" title="View/Update"></i>
-              <i class="fas fa-trash-alt action-icon delete-icon" (click)="deleteAgent(agency)" title="Delete"></i>
+             
+              <i class="fas fa-eye action-icon view-icon" (click)="openUpdateModal(ag)" title="View/Update"></i>
+              <i class="fas fa-trash-alt action-icon delete-icon" (click)="deleteAgent(ag)" title="Delete"></i>
             
             </td>
           </tr>
@@ -48,17 +47,16 @@
 
     <!-- Grid View -->
     <div *ngIf="viewMode === 'grid'" class="grid-view">
-      <div class="agency-card" *ngFor="let agency of agencies">
-        <h3>{{ agency.agentName }}</h3>
-        <p><strong>Address:</strong> {{ agency.address }}</p>
-        <p><strong>City:</strong> {{ agency.city }}</p>
-        <p><strong>Email:</strong> {{ agency.emaill }}</p>
-        <p><strong>Contact:</strong> {{ agency.contact }}</p>
-        <p><strong>Registered On:</strong> {{ agency.registrationDate | date }}</p>
-        <!-- <button class="update-btn" (click)="openUpdateModal(agency)">Update</button>
-        <button class="delete-btn" (click)="deleteAgent(agency)">Delete</button> -->
-        <i class="fas fa-eye action-icon view-icon" (click)="openUpdateModal(agency)" title="View/Update"></i>
-        <i class="fas fa-trash-alt action-icon delete-icon" (click)="deleteAgent(agency)" title="Delete"></i>
+      <div class="agency-card" *ngFor="let ag of agennts">
+        <h3>{{ ag.agentName }}</h3>
+        <p><strong>Address:</strong> {{ ag.address }}</p>
+        <p><strong>City:</strong> {{ ag.city }}</p>
+        <p><strong>Email:</strong> {{ ag.email }}</p>
+        <p><strong>Contact:</strong> {{ ag.phoneNumber }}</p>
+        <p><strong>Registered On:</strong> {{ ag.registrationDate | date }}</p>
+       
+        <i class="fas fa-eye action-icon view-icon" (click)="openUpdateModal(ag)" title="View/Update"></i>
+        <i class="fas fa-trash-alt action-icon delete-icon" (click)="deleteAgent(ag)" title="Delete"></i>
       </div>
     </div>
   </div>
@@ -67,7 +65,7 @@
 <!-- Modal Structure -->
 <div *ngIf="showModal" class="modal">
   <div class="modal-content">
-    <h2>Edit Agent Details</h2>
+    <h2>Edit Agent Details</h2> -->
 
     <!-- Bind data to form inputs using ngModel -->
     <label for="agentName">Agent Name:</label>

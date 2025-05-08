@@ -20,11 +20,10 @@ export class AgencyagentslistComponent {
   showModal: boolean = false;
   selectedAgent: any = {};
 
-
-  
-
    agencyName: string = '';
-  
+
+   agennts: Agent[] = []; 
+
    constructor(
      private auth: AuthService,
      private service: RealEStateService
@@ -38,44 +37,18 @@ export class AgencyagentslistComponent {
    
 
 
-   
-
-   
-  agencies = [
-    {
-      agentName: 'John Doe',
-      address: '123 Street',
-      city: 'New York',
-      emaill: 'xyz@gmail.com',
-      contact: 987654321,
-      pincode:67578,
-      registrationDate: new Date()
-    },
-    
-    // More agent data can be added here...
-  ];
-
-
 
   getAgents(): void {
-    const agencyNamee = this.agencyName; // or get it dynamically
-    this.service.getAgentsByAgency(agencyNamee).subscribe(
+    this.service.getAgentsByAgency(this.agencyName).subscribe(
       (agents: Agent[]) => {
         console.log('Full agent objects:', agents);
-        agents.forEach(agent => {
-          console.log(agent); // 👈 Prints the entire Agent object
-        });
+        this.agennts = agents; // Assign the response to the array
       },
       error => {
         console.error('Error fetching agents:', error);
       }
     );
   }
-
-
-
-
-
 
 
 
@@ -96,14 +69,14 @@ export class AgencyagentslistComponent {
 
   updateAgent() {
     console.log("Updating agent:", this.selectedAgent);
-    const index = this.agencies.findIndex(agent => agent.emaill === this.selectedAgent.emaill);
+    const index = this.agennts.findIndex(agent => agent.email === this.selectedAgent.emaill);
     if (index !== -1) {
-      this.agencies[index] = { ...this.selectedAgent };
+      this.agennts[index] = { ...this.selectedAgent };
     }
     this.closeModal();
   }
 
   deleteAgent(agent: any) {
-    this.agencies = this.agencies.filter(a => a.emaill !== agent.emaill);
+    this.agennts = this.agennts.filter(a => a.email !== agent.emaill);
   }
 }
