@@ -10,11 +10,12 @@ import { RealEStateService } from '@/app/services/real-estate.service'
 import { SearchService } from '@/app/services/search-service'
 import { Subscription } from 'rxjs'
 import { FormsModule } from '@angular/forms'
+import { CommonModule } from '@angular/common'
 
 @Component({
   selector: 'app-list',
   standalone: true,
-  imports: [PageTitleComponent, NgbPaginationModule, NgbDropdownModule, FormsModule],
+  imports: [PageTitleComponent, NgbPaginationModule, NgbDropdownModule, FormsModule,CommonModule],
   templateUrl: './list.component.html',
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
@@ -22,7 +23,8 @@ export class ListComponent implements OnInit {
   customerList = customerData
   customers: Customer[] = [];
   searchTerm: string = '';
-  filteredCustomers:Customer[]=[];
+  countOfCustomers!: number;
+  filteredCustomers: Customer[] = [];
   private searchSub!: Subscription;
 
   onSearchChange(term: string) {
@@ -32,6 +34,7 @@ export class ListComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAllCustomers();
+    this.customersCount();
 
     this.searchSub = this.searchService.searchTerm$.subscribe(term => {
       console.log('Filtering for:', term);
@@ -51,16 +54,30 @@ export class ListComponent implements OnInit {
     })
   }
 
-   private filterCustomers(term: string): Customer[] {
-        const lowerTerm = term.toLowerCase();
-        return this.customers.filter(customer =>
-          (customer.customerName || '').toLowerCase().includes(lowerTerm) ||
-          (customer.address || '').toLowerCase().includes(lowerTerm) ||
-          (customer.email || '').toLowerCase().includes(lowerTerm)
-        );
-      }
-    
-      ngOnDestroy(): void {
-        this.searchSub.unsubscribe();
-      }
+  private filterCustomers(term: string): Customer[] {
+    const lowerTerm = term.toLowerCase();
+    return this.customers.filter(customer =>
+      (customer.customerName || '').toLowerCase().includes(lowerTerm) ||
+      (customer.address || '').toLowerCase().includes(lowerTerm) ||
+      (customer.email || '').toLowerCase().includes(lowerTerm)
+    );
+  }
+
+  ngOnDestroy(): void {
+    this.searchSub.unsubscribe();
+  }
+
+  private customersCount() {
+    this.service.countOfCustomers().subscribe((data) => {
+      this.countOfCustomers = data;
+    })
+  }
+
+  customer!: Customer;
+  showModal = false;
+
+  openDetailsModal(customer: Customer): void {
+    this.customer = customer;
+    this.showModal = true;
+  }
 }

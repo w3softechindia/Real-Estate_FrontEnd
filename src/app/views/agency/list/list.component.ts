@@ -5,6 +5,7 @@ import { AgencyComponent } from "../../../dashboards/agency/agency.component";
 import { AgencyDataComponent } from "./agency-data/agency-data.component";
 import { SearchService } from '@/app/services/search-service';
 import { FormsModule } from '@angular/forms';
+import { RealEStateService } from '@/app/services/real-estate.service';
 
 @Component({
   selector: 'app-list',
@@ -16,7 +17,18 @@ import { FormsModule } from '@angular/forms';
 export class ListComponent {
 
   searchTerm: string = '';
-  constructor(private searchService:SearchService){}
+  countOfAgencies!:number;
+  constructor(private searchService:SearchService, private service:RealEStateService){}
+
+  ngOnInit(){
+    this.agencies();
+  }
+
+  private agencies(){
+    this.service.countOfAgencies().subscribe((data)=>{
+      this.countOfAgencies=data;
+    })
+  }
 
   onSearchChange(term: string) {
     console.log('Search term:', term);

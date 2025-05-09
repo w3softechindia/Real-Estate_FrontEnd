@@ -39,4 +39,45 @@ export class RealEStateService {
   getAllVentures():Observable<any[]>{
     return this.http.get<any[]>(`${this.baseUrl}/getAllVentures`)
   }
+
+  countOfAgents():Observable<any>{
+    return this.http.get(`${this.baseUrl}/countOfAgents`)
+  }
+
+  countOfAgencies():Observable<any>{
+    return this.http.get(`${this.baseUrl}/countOfAgencies`)
+  }
+
+  countOfVentures():Observable<any>{
+    return this.http.get(`${this.baseUrl}/countOfVentures`)
+  }
+
+  countOfCustomers():Observable<any>{
+    return this.http.get(`${this.baseUrl}/countOfCustomers`)
+  }
+
+  getVentureById(ventureId:number):Observable<any>{
+    const params={ventureId:ventureId.toString()};
+    return this.http.get(`${this.baseUrl}/getVenture`,{params});
+  }
+
+  updateVenture(ventureId: number, venture: Venture): Observable<any> {
+    const params = { ventureId: ventureId.toString() };
+    return this.http.put(`${this.baseUrl}/updateVenture`, venture, { params });
+  }  
+
+  deleteVenture(id:number):Observable<string>{
+    const params={id:id.toString()};
+    return this.http.delete(`${this.baseUrl}/deleteVenture`, {params, responseType: 'text' });
+  }
+
+  updateAgency(email:string,agency:Agency):Observable<any>{
+    const params={email};
+    return this.http.put(`${this.baseUrl}/updateAgency`,agency, {params});
+  }
+
+  deleteAgency(email:string):Observable<string>{
+    const params={email};
+    return this.http.delete(`${this.baseUrl}/deleteAgency`,{params, responseType: 'text' });
+  }
 }
