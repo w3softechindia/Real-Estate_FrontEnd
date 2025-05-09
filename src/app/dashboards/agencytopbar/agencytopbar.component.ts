@@ -9,9 +9,27 @@ import { Component } from '@angular/core';
   styleUrl: './agencytopbar.component.scss'
 })
 export class AgencytopbarComponent {
-logout() {
-throw new Error('Method not implemented.');
-}
+    email: string | undefined;
+
+
+    constructor(private auth:AuthService){
+
+    }
+
+
+    ngOnInit(): void {
+      this.getUserEmail();
+    }
+  
+    getUserEmail(): void {
+      this.email = this.auth.getEmail(); // Assign the returned string value to this.email
+      console.log(this.email);
+    }
+
+    logout() {
+      this.auth.userLogout();
+    }
+
 
   
 }

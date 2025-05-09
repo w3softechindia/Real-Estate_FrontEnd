@@ -1,7 +1,8 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Agency, Venture } from '../modals/user.model';
+import { Agency, Agent, Lead, Venture } from '../modals/user.model';
 import { Observable } from 'rxjs';
+
 
 @Injectable({
   providedIn: 'root'
@@ -79,5 +80,26 @@ export class RealEStateService {
   deleteAgency(email:string):Observable<string>{
     const params={email};
     return this.http.delete(`${this.baseUrl}/deleteAgency`,{params, responseType: 'text' });
+  }
+
+  // -------------------------------------------------------------------------------
+  // Agency Operations
+  addAgent(email: string, agent: Agent): Observable<any> {
+    return this.http.post(`${this.baseUrl}/addAgent?email=${email}`, agent);
+  }
+
+
+  getAgentsByAgency(agencyName: string): Observable<Agent[]> {
+    const params = new HttpParams().set('agencyName', agencyName);
+    return this.http.get<Agent[]>(`${this.baseUrl}/getAgentsByAgency`, { params });
+  }
+  
+  //Agent Operations
+  registerLead(lead:Lead):Observable<any>{
+return this.http.post(`${this.baseUrl}/addLead`,lead)
+  }
+
+  getAllLeads():Observable<any>{
+    return this.http.get(`${this.baseUrl}/getAllLeads`)
   }
 }

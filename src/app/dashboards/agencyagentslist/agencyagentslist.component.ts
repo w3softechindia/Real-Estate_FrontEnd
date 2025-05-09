@@ -3,6 +3,9 @@ import { AgencyssidebarComponent } from "../agencyssidebar/agencyssidebar.compon
 import { AgencytopbarComponent } from "../agencytopbar/agencytopbar.component";
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { AuthService } from '@/app/authorization/auth.service';
+import { RealEStateService } from '@/app/services/real-estate.service';
+import { Agent } from '@/app/modals/user.model';
 
 @Component({
   selector: 'app-agencyagentslist',
@@ -12,101 +15,68 @@ import { FormsModule } from '@angular/forms';
   styleUrls: ['./agencyagentslist.component.scss']
 })
 export class AgencyagentslistComponent {
-  viewMode: 'table' | 'grid' = 'table'; // Default view
-  showModal: boolean = false;  // Modal visibility flag
-  selectedAgent: any = {};  // Selected agent data for updating
 
-  agencies = [
-    {
-      agentName: 'John Doe',
-      address: '123 Street',
-      city: 'New York',
-      state: 'NY',
-      pincode: 12345,
-      registrationDate: new Date()
-    },
-    {
-      agentName: 'Jane Smith',
-      address: '456 Avenue',
-      city: 'Los Angeles',
-      state: 'CA',
-      pincode: 67890,
-      registrationDate: new Date()
-    },
-    {
-      agentName: 'John Doe',
-      address: '123 Street',
-      city: 'New York',
-      state: 'NY',
-      pincode: 12345,
-      registrationDate: new Date()
-    },
-    {
-      agentName: 'John Doe',
-      address: '123 Street',
-      city: 'New York',
-      state: 'NY',
-      pincode: 12345,
-      registrationDate: new Date()
-    },
-    {
-      agentName: 'John Doe',
-      address: '123 Street',
-      city: 'New York',
-      state: 'NY',
-      pincode: 12345,
-      registrationDate: new Date()
-    },
-    {
-      agentName: 'John Doe',
-      address: '123 Street',
-      city: 'New York',
-      state: 'NY',
-      pincode: 12345,
-      registrationDate: new Date()
-    },
-    {
-      agentName: 'John Doe',
-      address: '123 Street',
-      city: 'New York',
-      state: 'NY',
-      pincode: 12345,
-      registrationDate: new Date()
-    },
-    // More agent data can be added here...
-  ];
+  viewMode: 'table' | 'grid' = 'table';
+  showModal: boolean = false;
+  selectedAgent: any = {};
 
-  // Toggle between table and grid views
+   agencyName: string = '';
+
+   agennts: Agent[] = []; 
+
+   constructor(
+     private auth: AuthService,
+     private service: RealEStateService
+   ) {}
+ 
+   ngOnInit(): void {
+     this.agencyName = this.auth.getAgencyName();
+     console.log('Agency Name:', this.agencyName);
+     this.getAgents();
+   }
+   
+
+
+
+  getAgents(): void {
+    this.service.getAgentsByAgency(this.agencyName).subscribe(
+      (agents: Agent[]) => {
+        console.log('Full agent objects:', agents);
+        this.agennts = agents; // Assign the response to the array
+      },
+      error => {
+        console.error('Error fetching agents:', error);
+      }
+    );
+  }
+
+
+
   toggleViewMode() {
     this.viewMode = this.viewMode === 'table' ? 'grid' : 'table';
   }
 
-  // Open modal and set the selected agent
   openUpdateModal(agent: any) {
-    console.log("Opening modal with agent data:", agent);  // Debugging log
-    this.selectedAgent = { ...agent };  // Populate selectedAgent with the agent details
-    this.showModal = true;  // Make modal visible
+    console.log("Opening modal with agent data:", agent);
+    this.selectedAgent = { ...agent };
+    this.showModal = true;
   }
 
-  // Close modal
   closeModal() {
     this.showModal = false;
-    console.log("Modal closed");  // Debugging log
+    console.log("Modal closed");
   }
 
-  // Handle the update functionality
   updateAgent() {
-    console.log("Updating agent:", this.selectedAgent);  // Debugging log
-    // Perform the update logic here (e.g., update the agent in the list)
-    const index = this.agencies.findIndex(agent => agent.pincode === this.selectedAgent.pincode);
+    console.log("Updating agent:", this.selectedAgent);
+    const index = this.agennts.findIndex(agent => agent.email === this.selectedAgent.emaill);
     if (index !== -1) {
-      this.agencies[index] = { ...this.selectedAgent };  // Update the agent in the list
+      this.agennts[index] = { ...this.selectedAgent };
     }
-    this.closeModal();  // Close the modal after update
+    this.closeModal();
   }
 
-  // Delete an agent
   deleteAgent(agent: any) {
-    this.agencies = this.agencies.filter(a => a.pincode !== agent.pincode);
+    this.agennts = this.agennts.filter(a => a.email !== agent.emaill);
   }
 }
