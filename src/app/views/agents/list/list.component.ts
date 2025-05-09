@@ -4,6 +4,7 @@ import { AgentDataComponent } from './components/agent-data/agent-data.component
 import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap'
 import { SearchService } from '@/app/services/search-service';
 import { FormsModule } from '@angular/forms';
+import { RealEStateService } from '@/app/services/real-estate.service';
 
 @Component({
   selector: 'app-list',
@@ -15,7 +16,18 @@ import { FormsModule } from '@angular/forms';
 export class ListComponent {
 
    searchTerm: string = '';
-    constructor(private searchService:SearchService){}
+   countOfAgents!:number;
+    constructor(private searchService:SearchService, private service:RealEStateService){}
+
+    ngOnInit(){
+      this.agents();
+    }
+
+    private agents(){
+      this.service.countOfAgents().subscribe((data)=>{
+        this.countOfAgents=data;
+      })
+    }
   
     onSearchChange(term: string) {
       console.log('Search term:', term);

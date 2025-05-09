@@ -66,12 +66,12 @@ export const MENU_ITEMS: MenuItemType[] = [
     icon: 'ri-community-line',
     collapsed: true,
     children: [
-      {
-        key: 'property-grid',
-        label: 'Venture Grid',
-        url: '/property/grid',
-        parentKey: 'property',
-      },
+      // {
+      //   key: 'property-grid',
+      //   label: 'Venture Grid',
+      //   url: '/property/grid',
+      //   parentKey: 'property',
+      // },
       {
         key: 'property-list',
         label: 'Venture List',
