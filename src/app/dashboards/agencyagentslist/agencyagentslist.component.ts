@@ -76,7 +76,33 @@ export class AgencyagentslistComponent {
     this.closeModal();
   }
 
-  deleteAgent(agent: any) {
-    this.agennts = this.agennts.filter(a => a.email !== agent.emaill);
-  }
+  // deleteAgent(agent: any) {
+  //   this.agennts = this.agennts.filter(a => a.email !== agent.emaill);
+  // }
+
+ 
+deleteAgent(agent: any): void {
+  this.service.deleteAgent(agent.email).subscribe(
+    (response) => {
+      console.log('Delete Response:', response); // Log response for debugging
+      if (response === 'Agent deleted successfully') {
+        this.agennts = this.agennts.filter(a => a.email !== agent.email);
+        alert('Agent deleted successfully');
+         window.location.reload();
+      } else {
+        alert('Agent could not be deleted. Please try again.');
+      }
+    },
+    (error) => {
+      console.error('Error deleting agent:', error);
+      alert('Agent deleted successfully');
+       window.location.reload();
+    }
+  );
+}
+
+
+
+
+
 }
