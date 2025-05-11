@@ -40,7 +40,7 @@ export class AddComponent implements OnInit{
       twitterUrl: ['', Validators.required],
       email: ['', Validators.required],
       password: ['', Validators.required],
-      phoneNumber: ['', [Validators.required, Validators.pattern(/^\d{10}$/)]]
+      phno: ['', [Validators.required, Validators.pattern(/^\d{10}$/)]]
     });
   }
 

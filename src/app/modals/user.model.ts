@@ -58,7 +58,7 @@ export interface Customer extends RealEStateUser {
 
 //======================Venture========================
 export interface Venture {
-  ventureId?: number;
+  ventureId: number;
   ventureName: string;
   ventureSize: string;
   totalPlots: number;
@@ -82,4 +82,18 @@ export interface Plots {
   location: string;
   facing: string;
   cornerPlot: boolean;
+}
+
+//======================Leads===================
+export interface Lead{
+leadName:string,
+phoneNumber:string,
+email:string,
+leadSource:string,
+interestedIn:string,
+preferredLocation:string,
+estimatedBudget:number,
+leadStatus:string,
+followUp:String,
+leadNotes:string
 }

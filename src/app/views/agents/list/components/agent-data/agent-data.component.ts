@@ -21,7 +21,7 @@ export class AgentDataComponent implements OnInit {
   filteredAgents: Agent[] = [];
   private searchSub!: Subscription;
 
-  constructor(private service: RealEStateService,private searchService: SearchService) { }
+  constructor(private service: RealEStateService, private searchService: SearchService) { }
 
   ngOnInit(): void {
     this.getAllAgents();
@@ -41,16 +41,24 @@ export class AgentDataComponent implements OnInit {
     })
   }
 
-   private filterAgents(term: string): Agent[] {
-      const lowerTerm = term.toLowerCase();
-      return this.agents.filter(agent =>
-        (agent.agentName || '').toLowerCase().includes(lowerTerm) ||
-        (agent.address || '').toLowerCase().includes(lowerTerm) ||
-        (agent.email || '').toLowerCase().includes(lowerTerm)
-      );
-    }
-  
-    ngOnDestroy(): void {
-      this.searchSub.unsubscribe();
-    }
+  private filterAgents(term: string): Agent[] {
+    const lowerTerm = term.toLowerCase();
+    return this.agents.filter(agent =>
+      (agent.agentName || '').toLowerCase().includes(lowerTerm) ||
+      (agent.address || '').toLowerCase().includes(lowerTerm) ||
+      (agent.email || '').toLowerCase().includes(lowerTerm)
+    );
+  }
+
+  ngOnDestroy(): void {
+    this.searchSub.unsubscribe();
+  }
+
+  agent!:Agent;
+  showModal = false;
+
+  openDetailsModal(agent: Agent): void {
+    this.agent = agent;
+    this.showModal = true;
+  }
 }
