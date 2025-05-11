@@ -94,6 +94,12 @@ export class RealEStateService {
     return this.http.get<Agent[]>(`${this.baseUrl}/getAgentsByAgency`, { params });
   }
   
+deleteAgent(email: string): Observable<string> {
+  return this.http.delete<string>(`${this.baseUrl}/deleteAgent?email=${email}`);
+}
+
+
+  // ------------------------------------------------------------------------
   //Agent Operations
   registerLead(lead:Lead):Observable<any>{
 return this.http.post(`${this.baseUrl}/addLead`,lead)
