@@ -16,7 +16,7 @@ import { Subscription } from 'rxjs'
 @Component({
   selector: 'property-data',
   standalone: true,
-  imports: [CommonModule, NgbPaginationModule, NgbDropdownModule, FormsModule,ReactiveFormsModule],
+  imports: [CommonModule, NgbPaginationModule, NgbDropdownModule, FormsModule, ReactiveFormsModule],
   templateUrl: './property-data.component.html',
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
@@ -25,9 +25,9 @@ export class PropertyDataComponent {
   ventures: Venture[] = [];
   filteredVentures: Venture[] = [];
   private searchSub!: Subscription;
-  updateVenture!:FormGroup;
+  updateVenture!: FormGroup;
 
-  constructor(private service: RealEStateService, private searchService: SearchService, private router:Router, private fb:FormBuilder) { }
+  constructor(private service: RealEStateService, private searchService: SearchService, private router: Router, private fb: FormBuilder) { }
 
   ngOnInit() {
     this.getAllVentures();
@@ -38,23 +38,25 @@ export class PropertyDataComponent {
       console.log('Filtered:', this.filteredVentures);
     });
 
-    this.updateVenture=this.fb.group({
-          ventureName: ['', Validators.required],
-          ventureSize: ['', Validators.required],
-          address: ['', Validators.required],
-          city: ['', Validators.required],
-          state: ['', Validators.required],
-          phno: [null, [Validators.required, Validators.pattern('^[0-9]{10}$')]],
-          pincode: [null, [Validators.required, Validators.pattern('^[0-9]{6}$')]],
-        });
+    this.updateVenture = this.fb.group({
+      ventureName: ['', Validators.required],
+      ventureSize: ['', Validators.required],
+      address: ['', Validators.required],
+      city: ['', Validators.required],
+      state: ['', Validators.required],
+      phno: [null, [Validators.required, Validators.pattern('^[0-9]{10}$')]],
+      pincode: [null, [Validators.required, Validators.pattern('^[0-9]{6}$')]],
+    });
   }
 
   private getAllVentures() {
     this.service.getAllVentures().subscribe((data: any[]) => {
       this.ventures = data;
+      this.page = 1; // reset to first page
       this.filteredVentures = this.filterVentures(this.searchService.getSearchTerm());
-    })
+    });
   }
+
 
   private filterVentures(term: string): Venture[] {
     const lowerTerm = term.toLowerCase();
@@ -66,15 +68,15 @@ export class PropertyDataComponent {
     );
   }
 
-  updateVentureDetails(id:number){
-    const venture=this.updateVenture.getRawValue();
-      this.service.updateVenture(id,venture).subscribe((data)=>{
-        alert("Details updated..!!");
-      })
+  updateVentureDetails(id: number) {
+    const venture = this.updateVenture.getRawValue();
+    this.service.updateVenture(id, venture).subscribe((data) => {
+      alert("Details updated..!!");
+    })
   }
 
-  deleteVenture(id:number){
-    this.service.deleteVenture(id).subscribe((data)=>{
+  deleteVenture(id: number) {
+    this.service.deleteVenture(id).subscribe((data) => {
       console.log(data);
       alert('venture deleted..!!!')
     })
@@ -82,8 +84,8 @@ export class PropertyDataComponent {
 
   venture!: Venture;
   showModal = false;
-  updateModal=false;
-  deleteModal=false;
+  updateModal = false;
+  deleteModal = false;
 
   openDetailsModal(venture: Venture): void {
     this.venture = venture;
@@ -104,5 +106,17 @@ export class PropertyDataComponent {
   goToPlots(ventureId: number): void {
     this.showModal = false; // optional: close modal before navigation
     this.router.navigate(['/plots', ventureId]);
+  }
+
+  page = 1;
+  pageSize = 7; // or any number of items per page you prefer
+
+  get paginatedVentures(): Venture[] {
+    const start = (this.page - 1) * this.pageSize;
+    return this.filteredVentures.slice(start, start + this.pageSize);
+  }
+
+  onPageChange() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 }

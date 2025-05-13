@@ -1,14 +1,17 @@
 import { Venture } from '@/app/modals/user.model';
 import { RealEStateService } from '@/app/services/real-estate.service';
+import { CommonModule } from '@angular/common';
 import { Component, CUSTOM_ELEMENTS_SCHEMA, OnInit } from '@angular/core'
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { SelectFormInputDirective } from '@core/directive/select-form-input.directive'
 import * as XLSX from 'xlsx';
 
+declare var bootstrap: any;
+
 @Component({
   selector: 'add-information',
   standalone: true,
-  imports: [SelectFormInputDirective, FormsModule, ReactiveFormsModule],
+  imports: [SelectFormInputDirective, FormsModule, ReactiveFormsModule, CommonModule],
   templateUrl: './add-information.component.html',
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
@@ -20,6 +23,7 @@ export class AddInformationComponent implements OnInit {
   venture!: Venture;
   soldPlots: number = 0;;
   registerVenture!: FormGroup;
+  excelFile: File | null = null;
 
   constructor(private service: RealEStateService, private fb: FormBuilder) { }
 
@@ -36,12 +40,15 @@ export class AddInformationComponent implements OnInit {
       state: ['', Validators.required],
       phno: [null, [Validators.required, Validators.pattern('^[0-9]{10}$')]],
       pincode: [null, [Validators.required, Validators.pattern('^[0-9]{6}$')]],
-      plots: [[]]
+      plots: [[]],
+      // excelUpload:['',Validators.required]
     });
   }
 
   onFileChange(event: any): void {
     const target: DataTransfer = <DataTransfer>(event.target);
+    const file = event.target.files[0];
+    this.excelFile = file ? file : null;
     if (target.files.length !== 1) {
       alert('Please upload one Excel file.');
       return;
@@ -68,7 +75,8 @@ export class AddInformationComponent implements OnInit {
 
       // Check if the column names match the expected column names
       if (!this.validateColumnNames(headerRow, expectedColumns)) {
-        alert('The column names in the uploaded Excel file do not match the expected column names. Please reupload the file with the correct column names.');
+        this.showColumnMismatchModal();
+        this.resetFileInput();
         return;
       }
 
@@ -129,9 +137,24 @@ export class AddInformationComponent implements OnInit {
     return true;
   }
 
+  showColumnMismatchModal() {
+    const modalElement = document.getElementById('columnMismatchModal');
+    if (modalElement) {
+      const modal = new bootstrap.Modal(modalElement);
+      modal.show();
+    }
+  }
+
+  resetFileInput() {
+    const fileInput = document.getElementById('excelUpload') as HTMLInputElement;
+    if (fileInput) {
+      fileInput.value = ''; // Clear the selected file
+    }
+  }
 
   addVenture() {
-    const formData = this.registerVenture.getRawValue();
+    if(this.registerVenture.valid){
+      const formData = this.registerVenture.getRawValue();
 
     console.log('Venture object:', formData); // Log the venture object
 
@@ -140,5 +163,9 @@ export class AddInformationComponent implements OnInit {
       this.registerVenture.reset();
       // window.location.reload();
     });
+    }else{
+      alert('Please fill all required inputs')
+    }
+    
   }
 }

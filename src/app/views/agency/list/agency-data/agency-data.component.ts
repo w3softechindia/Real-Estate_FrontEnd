@@ -24,13 +24,13 @@ export class AgencyDataComponent implements OnInit {
   agency: Agency[] = [];
   filteredAgencies: Agency[] = [];
   private searchSub!: Subscription;
-  updateAgency!:FormGroup;
+  updateAgency!: FormGroup;
 
   constructor(
     private service: RealEStateService,
     private searchService: SearchService,
-    private router:Router,
-    private fb:FormBuilder
+    private router: Router,
+    private fb: FormBuilder
   ) { }
 
   ngOnInit(): void {
@@ -42,7 +42,7 @@ export class AgencyDataComponent implements OnInit {
       console.log('Filtered:', this.filteredAgencies);
     });
 
-    this.updateAgency=this.fb.group({
+    this.updateAgency = this.fb.group({
       agencyName: ['', Validators.required],
       agencyAddress: ['', Validators.required],
       agencyPinCode: ['', Validators.required],
@@ -59,6 +59,7 @@ export class AgencyDataComponent implements OnInit {
   private getAllAgencies() {
     this.service.getAllAgencies().subscribe((data: Agency[]) => {
       this.agency = data;
+      this.page = 1;
       this.filteredAgencies = this.filterAgencies(this.searchService.getSearchTerm());
       console.log('Agencies:', data);
     });
@@ -78,29 +79,29 @@ export class AgencyDataComponent implements OnInit {
     this.searchSub.unsubscribe();
   }
 
-  updateAgencyDetails(email:string){
-    if(this.updateAgency.valid){
-      const agency=this.updateAgency.value;
+  updateAgencyDetails(email: string) {
+    if (this.updateAgency.valid) {
+      const agency = this.updateAgency.value;
       console.log(agency)
-      this.service.updateAgency(email,agency).subscribe((data)=>{
+      this.service.updateAgency(email, agency).subscribe((data) => {
         alert("Updated Successfully..!!");
-        window.location.reload(); 
-      },(error)=>{
+        window.location.reload();
+      }, (error) => {
         console.log(error);
       })
-    }else{
+    } else {
       console.warn(this.updateAgency.errors)
     }
   }
 
-  deleteAgency(email:string){
-    this.service.deleteAgency(email).subscribe((data)=>{
+  deleteAgency(email: string) {
+    this.service.deleteAgency(email).subscribe((data) => {
       console.info(data);
       window.location.reload();
     })
   }
 
-  agencies!:Agency;
+  agencies!: Agency;
   showModal = false;
   updateModal = false;
   deleteModal = false;
@@ -125,5 +126,17 @@ export class AgencyDataComponent implements OnInit {
   goToPlots(ventureId: number): void {
     this.showModal = false; // optional: close modal before navigation
     this.router.navigate(['/plots', ventureId]);
+  }
+
+  page = 1;
+  pageSize = 7; // or any number of items per page you prefer
+
+  get paginatedAgencies(): Agency[] {
+    const start = (this.page - 1) * this.pageSize;
+    return this.filteredAgencies.slice(start, start + this.pageSize);
+  }
+
+  onPageChange() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 }

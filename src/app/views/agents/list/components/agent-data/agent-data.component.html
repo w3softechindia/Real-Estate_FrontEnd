@@ -16,7 +16,7 @@
         </tr>
       </thead>
       <tbody>
-        @for (item of filteredAgents; track $index) {
+        @for (item of paginatedAgents; track $index) {
           <tr>
             <td>
               <div class="d-flex align-items-center gap-2">
@@ -84,14 +84,11 @@
 </div>
 <div class="card-footer">
   <nav aria-label="Page navigation example">
-    <ngb-pagination
-      [collectionSize]="30"
-      [page]="1"
-      class="pagination justify-content-end mb-0"
-    >
-      <ng-template ngbPaginationPrevious>Previous</ng-template>
-      <ng-template ngbPaginationNext>Next</ng-template>
-    </ngb-pagination>
+    <ngb-pagination [(page)]="page" [pageSize]="pageSize" [collectionSize]="filteredAgents.length" [maxSize]="5"
+        [boundaryLinks]="true" class="pagination justify-content-end mb-0">
+        <ng-template ngbPaginationPrevious>Previous</ng-template>
+        <ng-template ngbPaginationNext>Next</ng-template>
+      </ngb-pagination>
   </nav>
 </div>
 
