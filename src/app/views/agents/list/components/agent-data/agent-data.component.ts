@@ -63,7 +63,6 @@ export class AgentDataComponent implements OnInit {
     this.showModal = true;
   }
 
-
   page = 1;
   pageSize = 7; // or any number of items per page you prefer
 
