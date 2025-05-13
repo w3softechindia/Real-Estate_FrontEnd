@@ -81,7 +81,6 @@ export class RealEStateService {
     const params={email};
     return this.http.delete(`${this.baseUrl}/deleteAgency`,{params, responseType: 'text' });
   }
-
   // -------------------------------------------------------------------------------
   // Agency Operations
   addAgent(email: string, agent: Agent): Observable<any> {
@@ -93,7 +92,6 @@ export class RealEStateService {
     const params = new HttpParams().set('agencyName', agencyName);
     return this.http.get<Agent[]>(`${this.baseUrl}/getAgentsByAgency`, { params });
   }
-  
 deleteAgent(email: string): Observable<string> {
   return this.http.delete<string>(`${this.baseUrl}/deleteAgent?email=${email}`);
 }

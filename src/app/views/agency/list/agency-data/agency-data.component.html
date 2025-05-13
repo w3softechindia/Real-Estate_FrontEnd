@@ -13,7 +13,7 @@
         </tr>
       </thead>
       <tbody>
-        @for (item of filteredAgencies; track $index) {
+        @for (item of paginatedAgencies; track $index) {
         <tr>
           <td>
             <div class="d-flex align-items-center gap-2">
@@ -58,16 +58,16 @@
       </tbody>
     </table>
   </div>
+  <div class="card-footer">
+    <nav aria-label="Page navigation example">
+      <ngb-pagination [(page)]="page" [pageSize]="pageSize" [collectionSize]="filteredAgencies.length" [maxSize]="5"
+        [boundaryLinks]="true" class="pagination justify-content-end mb-0">
+        <ng-template ngbPaginationPrevious>Previous</ng-template>
+        <ng-template ngbPaginationNext>Next</ng-template>
+      </ngb-pagination>
+    </nav>
+  </div>
 </div>
-<div class="card-footer">
-  <nav aria-label="Page navigation example">
-    <ngb-pagination [collectionSize]="30" [page]="1" class="pagination justify-content-end mb-0">
-      <ng-template ngbPaginationPrevious>Previous</ng-template>
-      <ng-template ngbPaginationNext>Next</ng-template>
-    </ngb-pagination>
-  </nav>
-</div>
-
 
 <!--Details Modal -->
 <div class="modal fade show d-block" *ngIf="showModal" tabindex="-1" role="dialog" style="background: rgba(0,0,0,0.5)">
@@ -110,123 +110,124 @@
 
       <div class="modal-body">
         <form [formGroup]="updateAgency" (ngSubmit)="updateAgencyDetails(agencies.email)">
-        <div class="row">
-          <div class="col-lg-6">
-            <div class="mb-3">
-              <label for="agencyName" class="form-label">Agency Name</label>
-              <input type="text" id="agencyName" class="form-control" formControlName="agencyName" 
-                placeholder="Full Name" />
+          <div class="row">
+            <div class="col-lg-6">
+              <div class="mb-3">
+                <label for="agencyName" class="form-label">Agency Name</label>
+                <input type="text" id="agencyName" class="form-control" formControlName="agencyName"
+                  placeholder="Full Name" />
+              </div>
             </div>
-          </div>
-          <div class="col-lg-6">
-            <div class="mb-3">
-              <label for="email" class="form-label">Agency Email</label>
-              <input type="email" id="email" class="form-control" formControlName="email" placeholder="Enter Email"  />
+            <div class="col-lg-6">
+              <div class="mb-3">
+                <label for="email" class="form-label">Agency Email</label>
+                <input type="email" id="email" class="form-control" formControlName="email" placeholder="Enter Email" />
+              </div>
             </div>
-          </div>
-          <!-- <div class="col-lg-6">
+            <!-- <div class="col-lg-6">
             <div class="mb-3">
               <label for="password" class="form-label">Agency Password</label>
               <input type="password" id="password" class="form-control" formControlName="password" [value]="agencies.password"
                 placeholder="Enter Password" />
             </div>
           </div> -->
-          <div class="col-lg-6">
-            <div class="mb-3">
-              <label for="phoneNumber" class="form-label">Agency Number</label>
-              <input type="number" id="phoneNumber" class="form-control" formControlName="phoneNumber" placeholder="Enter Number"  />
-            </div>
-          </div>
-          <div class="col-lg-12">
-            <div class="mb-3">
-              <label for="agencyAddress" class="form-label">Agency Address</label>
-              <textarea class="form-control" id="agencyAddress" rows="3" placeholder="Enter address" 
-                formControlName="agencyAddress"></textarea>
-            </div>
-          </div>
-          <div class="col-lg-4">
-            <div class="mb-3">
-              <label for="agencyPinCode" class="form-label">PinCode</label>
-              <input type="number" id="agencyPinCode" class="form-control" placeholder="pincode" 
-                formControlName="agencyPinCode" />
-            </div>
-          </div>
-          <div class="col-lg-4">
-            <div class="mb-3">
-              <label for="city" class="form-label">City</label>
-              <input type="text" id="city" class="form-control" formControlName="city" placeholder="Enter City"  />
-            </div>
-          </div>
-          <div class="col-lg-4">
-            <div class="mb-3">
-              <label for="state" class="form-label">State</label>
-              <select selectFormInput class="form-control" id="state" placeholder="Select State" name="state" 
-                formControlName="state">
-                <option value="">Choose a State</option>
-                <optgroup label="India">
-                  <option value="Andhra Pradesh">Andhra Pradesh</option>
-                  <option value="Arunachal Pradesh">Arunachal Pradesh</option>
-                  <option value="Assam">Assam</option>
-                  <option value="Bihar">Bihar</option>
-                  <option value="Chhattisgarh">Chhattisgarh</option>
-                  <option value="Goa">Goa</option>
-                  <option value="Gujarat">Gujarat</option>
-                  <option value="Haryana">Haryana</option>
-                  <option value="Himachal Pradesh">Himachal Pradesh</option>
-                  <option value="Jharkhand">Jharkhand</option>
-                  <option value="Karnataka">Karnataka</option>
-                  <option value="Kerala">Kerala</option>
-                  <option value="Madhya Pradesh">Madhya Pradesh</option>
-                  <option value="Maharashtra">Maharashtra</option>
-                  <option value="Manipur">Manipur</option>
-                  <option value="Meghalaya">Meghalaya</option>
-                  <option value="Mizoram">Mizoram</option>
-                  <option value="Nagaland">Nagaland</option>
-                  <option value="Odisha">Odisha</option>
-                  <option value="Punjab">Punjab</option>
-                  <option value="Rajasthan">Rajasthan</option>
-                  <option value="Sikkim">Sikkim</option>
-                  <option value="Tamil Nadu">Tamil Nadu</option>
-                  <option value="Telangana">Telangana</option>
-                  <option value="Tripura">Tripura</option>
-                  <option value="Uttar Pradesh">Uttar Pradesh</option>
-                  <option value="Uttarakhand">Uttarakhand</option>
-                  <option value="West Bengal">West Bengal</option>
-                </optgroup>
-              </select>
-            </div>
-          </div>
-          <div class="col-lg-4">
-            <div class="mb-3">
-              <label for="fbUrl" class="form-label">Facebook URL</label>
-              <input type="url" id="fbUrl" class="form-control" placeholder="Enter URL" formControlName="fbUrl"  />
-            </div>
-          </div>
-          <div class="col-lg-4">
-            <div class="mb-3">
-              <label for="instagramUrl" class="form-label">Instagram URL</label>
-              <input type="url" id="instagramUrl" class="form-control" placeholder="Enter URL" 
-                formControlName="instagramUrl" />
-            </div>
-          </div>
-          <div class="col-lg-4">
-            <div class="mb-3">
-              <label for="twitterUrl" class="form-label">Twitter URL</label>
-              <input type="url" id="twitterUrl" class="form-control" placeholder="Enter URL" 
-                formControlName="twitterUrl" />
-            </div>
-          </div>
-          <div class="mb-3 rounded">
-            <div class="row justify-content-center g-2">
-              <div class="col-lg-2">
-                <button type="submit" class="btn btn-outline-primary w-100">Update Agency</button>
-              </div>
-              <div class="col-lg-2">
-                <button type="button" class="btn btn-danger w-100" (click)="updateModal = false">Cancel</button>
+            <div class="col-lg-6">
+              <div class="mb-3">
+                <label for="phoneNumber" class="form-label">Agency Number</label>
+                <input type="number" id="phoneNumber" class="form-control" formControlName="phoneNumber"
+                  placeholder="Enter Number" />
               </div>
             </div>
+            <div class="col-lg-12">
+              <div class="mb-3">
+                <label for="agencyAddress" class="form-label">Agency Address</label>
+                <textarea class="form-control" id="agencyAddress" rows="3" placeholder="Enter address"
+                  formControlName="agencyAddress"></textarea>
+              </div>
+            </div>
+            <div class="col-lg-4">
+              <div class="mb-3">
+                <label for="agencyPinCode" class="form-label">PinCode</label>
+                <input type="number" id="agencyPinCode" class="form-control" placeholder="pincode"
+                  formControlName="agencyPinCode" />
+              </div>
+            </div>
+            <div class="col-lg-4">
+              <div class="mb-3">
+                <label for="city" class="form-label">City</label>
+                <input type="text" id="city" class="form-control" formControlName="city" placeholder="Enter City" />
+              </div>
+            </div>
+            <div class="col-lg-4">
+              <div class="mb-3">
+                <label for="state" class="form-label">State</label>
+                <select selectFormInput class="form-control" id="state" placeholder="Select State" name="state"
+                  formControlName="state">
+                  <option value="">Choose a State</option>
+                  <optgroup label="India">
+                    <option value="Andhra Pradesh">Andhra Pradesh</option>
+                    <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+                    <option value="Assam">Assam</option>
+                    <option value="Bihar">Bihar</option>
+                    <option value="Chhattisgarh">Chhattisgarh</option>
+                    <option value="Goa">Goa</option>
+                    <option value="Gujarat">Gujarat</option>
+                    <option value="Haryana">Haryana</option>
+                    <option value="Himachal Pradesh">Himachal Pradesh</option>
+                    <option value="Jharkhand">Jharkhand</option>
+                    <option value="Karnataka">Karnataka</option>
+                    <option value="Kerala">Kerala</option>
+                    <option value="Madhya Pradesh">Madhya Pradesh</option>
+                    <option value="Maharashtra">Maharashtra</option>
+                    <option value="Manipur">Manipur</option>
+                    <option value="Meghalaya">Meghalaya</option>
+                    <option value="Mizoram">Mizoram</option>
+                    <option value="Nagaland">Nagaland</option>
+                    <option value="Odisha">Odisha</option>
+                    <option value="Punjab">Punjab</option>
+                    <option value="Rajasthan">Rajasthan</option>
+                    <option value="Sikkim">Sikkim</option>
+                    <option value="Tamil Nadu">Tamil Nadu</option>
+                    <option value="Telangana">Telangana</option>
+                    <option value="Tripura">Tripura</option>
+                    <option value="Uttar Pradesh">Uttar Pradesh</option>
+                    <option value="Uttarakhand">Uttarakhand</option>
+                    <option value="West Bengal">West Bengal</option>
+                  </optgroup>
+                </select>
+              </div>
+            </div>
+            <div class="col-lg-4">
+              <div class="mb-3">
+                <label for="fbUrl" class="form-label">Facebook URL</label>
+                <input type="url" id="fbUrl" class="form-control" placeholder="Enter URL" formControlName="fbUrl" />
+              </div>
+            </div>
+            <div class="col-lg-4">
+              <div class="mb-3">
+                <label for="instagramUrl" class="form-label">Instagram URL</label>
+                <input type="url" id="instagramUrl" class="form-control" placeholder="Enter URL"
+                  formControlName="instagramUrl" />
+              </div>
+            </div>
+            <div class="col-lg-4">
+              <div class="mb-3">
+                <label for="twitterUrl" class="form-label">Twitter URL</label>
+                <input type="url" id="twitterUrl" class="form-control" placeholder="Enter URL"
+                  formControlName="twitterUrl" />
+              </div>
+            </div>
+            <div class="mb-3 rounded">
+              <div class="row justify-content-center g-2">
+                <div class="col-lg-2">
+                  <button type="submit" class="btn btn-outline-primary w-100">Update Agency</button>
+                </div>
+                <div class="col-lg-2">
+                  <button type="button" class="btn btn-danger w-100" (click)="updateModal = false">Cancel</button>
+                </div>
+              </div>
+            </div>
           </div>
-        </div>
         </form>
       </div>
     </div>
