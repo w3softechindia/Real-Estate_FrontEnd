@@ -42,7 +42,7 @@
         </tr>
       </thead>
       <tbody>
-        @for (venture of filteredVentures; track $index) {
+        @for (venture of paginatedVentures; track $index) {
         <tr>
           <td>
             <div class="d-flex align-items-center gap-2">
@@ -94,7 +94,8 @@
 
   <div class="card-footer">
     <nav aria-label="Page navigation example">
-      <ngb-pagination [collectionSize]="30" [page]="1" class="pagination justify-content-end mb-0">
+      <ngb-pagination [(page)]="page" [pageSize]="pageSize" [collectionSize]="filteredVentures.length" [maxSize]="5"
+        [boundaryLinks]="true" class="pagination justify-content-end mb-0">
         <ng-template ngbPaginationPrevious>Previous</ng-template>
         <ng-template ngbPaginationNext>Next</ng-template>
       </ngb-pagination>
@@ -147,7 +148,7 @@
               <div class="mb-3">
                 <label for="ventureName" class="form-label">Venture Name</label>
                 <input type="text" id="ventureName" class="form-control" placeholder="Name"
-                  formControlName="ventureName"/>
+                  formControlName="ventureName" />
               </div>
             </div>
             <div class="col-lg-4">
@@ -186,7 +187,7 @@
             <div class="col-lg-4">
               <label for="state" class="form-label">State</label>
               <select selectFormInput class="form-control" id="state" placeholder="Select State" name="state"
-                formControlName="state" >
+                formControlName="state">
                 <option value="">Choose a State</option>
                 <optgroup label="India">
                   <option value="Andhra Pradesh">Andhra Pradesh</option>
@@ -264,12 +265,3 @@
   </div>
 </div>
 
-
-<!-- @for (plot of venture.plots; track $index) {
-          <p><strong>Plot Number:</strong> {{ plot.plotNumber }}</p>
-          <p><strong>Plot Size:</strong> {{ plot.plotSize }}</p>
-          <p><strong>Facing:</strong> {{ plot.facing }}</p>
-          <p><strong>Price:</strong> {{ plot.price }}</p>
-          <p><strong>Corner Plot:</strong> {{ plot.cornerPlot }}</p>
-          <p><strong>Landmark:</strong> {{ plot.location }}</p>
-        } -->
