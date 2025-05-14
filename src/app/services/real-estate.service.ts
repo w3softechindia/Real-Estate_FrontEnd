@@ -1,4 +1,4 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Agency, Agent, Lead, Venture } from '../modals/user.model';
 import { Observable } from 'rxjs';
@@ -95,6 +95,16 @@ export class RealEStateService {
 deleteAgent(email: string): Observable<string> {
   return this.http.delete<string>(`${this.baseUrl}/deleteAgent?email=${email}`);
 }
+
+ updateAgent(email: string, agentData: any): Observable<any> {
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    });
+
+    return this.http.put<any>(`${this.baseUrl}/updateAgent?email=${email}`, agentData, { headers });
+  }
 
 
   // ------------------------------------------------------------------------
