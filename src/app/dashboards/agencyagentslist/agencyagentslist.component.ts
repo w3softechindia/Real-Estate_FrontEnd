@@ -67,18 +67,44 @@ export class AgencyagentslistComponent {
     console.log("Modal closed");
   }
 
-  updateAgent() {
-    console.log("Updating agent:", this.selectedAgent);
-    const index = this.agennts.findIndex(agent => agent.email === this.selectedAgent.emaill);
-    if (index !== -1) {
-      this.agennts[index] = { ...this.selectedAgent };
-    }
-    this.closeModal();
-  }
-
-  // deleteAgent(agent: any) {
-  //   this.agennts = this.agennts.filter(a => a.email !== agent.emaill);
+  // updateAgent() {
+  //   console.log("Updating agent:", this.selectedAgent);
+  //   const index = this.agennts.findIndex(agent => agent.email === this.selectedAgent.emaill);
+  //   if (index !== -1) {
+  //     this.agennts[index] = { ...this.selectedAgent };
+  //   }
+  //   this.closeModal();
   // }
+
+ updateAgent(): void {
+  console.log("Updating agent:", this.selectedAgent);
+
+  this.service.updateAgent(this.selectedAgent.email, {
+    agentName: this.selectedAgent.agentName,
+    address: this.selectedAgent.address,
+    pincode: this.selectedAgent.pincode,
+    city: this.selectedAgent.city,
+    state: this.selectedAgent.state
+  }).subscribe(
+    (response) => {
+      console.log('Update Response:', response);
+      const index = this.agennts.findIndex(agent => agent.email === this.selectedAgent.email);
+      if (index !== -1) {
+        this.agennts[index] = response;
+      }
+      alert('Agent updated successfully');
+      this.closeModal();
+    },
+    (error) => {
+      console.error('Error updating agent:', error);
+      alert('Failed to update agent. Please try again.');
+    }
+  );
+}
+
+
+
+ 
 
  
 deleteAgent(agent: any): void {
