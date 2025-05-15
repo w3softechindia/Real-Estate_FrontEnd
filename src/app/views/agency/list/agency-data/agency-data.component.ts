@@ -96,7 +96,7 @@ export class AgencyDataComponent implements OnInit {
 
   deleteAgency(email: string) {
     this.service.deleteAgency(email).subscribe((data) => {
-      console.info(data);
+      alert('Agency Deleted..!!')
       window.location.reload();
     })
   }

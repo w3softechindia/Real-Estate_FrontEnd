@@ -1,9 +1,10 @@
 import { Venture } from '@/app/modals/user.model';
 import { RealEStateService } from '@/app/services/real-estate.service';
 import { CommonModule } from '@angular/common';
-import { Component, CUSTOM_ELEMENTS_SCHEMA, OnInit } from '@angular/core'
+import { Component, CUSTOM_ELEMENTS_SCHEMA, OnInit, ViewChild } from '@angular/core'
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { SelectFormInputDirective } from '@core/directive/select-form-input.directive'
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import * as XLSX from 'xlsx';
 
 declare var bootstrap: any;
@@ -24,8 +25,13 @@ export class AddInformationComponent implements OnInit {
   soldPlots: number = 0;;
   registerVenture!: FormGroup;
   excelFile: File | null = null;
+  modalTitle = '';
+  modalMessage = '';
+  modalType: 'success' | 'danger' = 'success';
 
-  constructor(private service: RealEStateService, private fb: FormBuilder) { }
+  @ViewChild('successAlertModal') successAlertModal: any;
+
+  constructor(private service: RealEStateService, private fb: FormBuilder, private modalService: NgbModal) { }
 
   ngOnInit(): void {
     this.registerVenture = this.fb.group({
@@ -153,19 +159,38 @@ export class AddInformationComponent implements OnInit {
   }
 
   addVenture() {
-    if(this.registerVenture.valid){
+    if (this.registerVenture.valid) {
       const formData = this.registerVenture.getRawValue();
 
-    console.log('Venture object:', formData); // Log the venture object
+      console.log('Venture object:', formData); // Log the venture object
 
-    this.service.registerVenture(formData).subscribe((data: any) => {
-      alert('Venture registered..!!');
-      this.registerVenture.reset();
-      // window.location.reload();
-    });
-    }else{
-      alert('Please fill all required inputs')
+      this.service.registerVenture(formData).subscribe((data: any) => {
+        this.showModal('Venture', 'Venture Details Registered Succesfully', 'success')
+        // window.location.reload();
+      });
+    } else {
+      this.showModal('Venture', 'Please fill out Required inputs', 'danger')
     }
-    
+
+  }
+
+  showModal(title: string, message: string, type: 'success' | 'danger' = 'success') {
+    this.modalTitle = title;
+    this.modalMessage = message;
+    this.modalType = type;
+
+    this.modalService.open(this.successAlertModal, {
+      backdrop: 'static',
+      centered: true
+    });
+  }
+
+  onModalOk(modal: any) {
+    modal.close();
+    this.registerVenture.reset();
+  }
+
+  resetForm() {
+    this.registerVenture.reset();
   }
 }
