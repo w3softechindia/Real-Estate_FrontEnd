@@ -1,4 +1,4 @@
-<app-agencytopbar></app-agencytopbar>
+<!-- <app-agencytopbar></app-agencytopbar>
 
 <div class="page-layout">
   <app-agencyssidebar></app-agencyssidebar>
@@ -12,7 +12,7 @@
       </div>
     </div>
 
-    <!-- Table View -->
+   
     <div *ngIf="viewMode === 'table'" class="table-view">
       <table>
         <thead>
@@ -48,7 +48,7 @@
       </table>
     </div>
 
-    <!-- Grid View -->
+   
     <div *ngIf="viewMode === 'grid'" class="grid-view">
       <div class="property-card" *ngFor="let property of properties">
         <h3>{{ property.name }}</h3>
@@ -64,7 +64,7 @@
   </div>
 </div>
 
-<!-- Property Detail Modal -->
+
 <div class="modal" *ngIf="selectedProperty" (click)="closeModal()">
   <div class="modal-content" (click)="$event.stopPropagation()">
     <h3>{{ selectedProperty.name }}</h3>
@@ -76,4 +76,91 @@
     <p><strong>Posted:</strong> {{ selectedProperty.postedDate | date: 'MMM d, y' }}</p>
     <button (click)="closeModal()">Close</button>
   </div>
+</div> -->
+
+<app-agencytopbar></app-agencytopbar>
+
+<div class="page-layout">
+  <app-agencyssidebar></app-agencyssidebar>
+
+  <div class="main-content">
+    <div class="list-header">
+      <h2>Venture List</h2>
+      <div class="view-toggle">
+        <button (click)="viewMode = 'table'" [class.active]="viewMode === 'table'">Table View</button>
+        <button (click)="viewMode = 'grid'" [class.active]="viewMode === 'grid'">Grid View</button>
+      </div>
+    </div>
+
+    <!-- Table View -->
+    <div *ngIf="viewMode === 'table'" class="table-view">
+      <table>
+        <thead>
+          <tr>
+            <th>Venture Name</th>
+            <th>Size</th>
+            <th>Total Plots</th>
+            <th>Available</th>
+            <th>Booked</th>
+            <th>Sold</th>
+            <th>Address</th>
+            <th>City</th>
+            <th>State</th>
+            <th>Phone</th>
+            <th>Pincode</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let venture of ventures">
+            <td>{{ venture.ventureName }}</td>
+            <td>{{ venture.ventureSize }}</td>
+            <td>{{ venture.totalPlots }}</td>
+            <td>{{ venture.availablePlots }}</td>
+            <td>{{ venture.bookedPlots }}</td>
+            <td>{{ venture.soldPlots }}</td>
+            <td>{{ venture.address }}</td>
+            <td>{{ venture.city }}</td>
+            <td>{{ venture.state }}</td>
+            <td>{{ venture.phno }}</td>
+            <td>{{ venture.pincode }}</td>
+            <td>
+              <button (click)="viewDetails(venture)" class="btn btn-outline-success">View</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Grid View -->
+    <div *ngIf="viewMode === 'grid'" class="grid-view">
+      <div class="property-card" *ngFor="let venture of ventures">
+        <h3>{{ venture.ventureName }}</h3>
+        <p><strong>Size:</strong> {{ venture.ventureSize }}</p>
+        <p><strong>Total Plots:</strong> {{ venture.totalPlots }}</p>
+        <p><strong>Available:</strong> {{ venture.availablePlots }}</p>
+        <p><strong>Booked:</strong> {{ venture.bookedPlots }}</p>
+        <p><strong>Sold:</strong> {{ venture.soldPlots }}</p>
+        <p><strong>Address:</strong> {{ venture.address }}, {{ venture.city }}, {{ venture.state }} - {{ venture.pincode }}</p>
+        <p><strong>Phone:</strong> {{ venture.phno }}</p>
+        <button  (click)="viewDetails(venture)" class="btn btn-outline-success">View</button>
+      </div>
+    </div>
+  </div>
 </div>
+
+<!-- Venture Detail Modal -->
+<div class="modal" *ngIf="selectedVenture" (click)="closeModal()">
+  <div class="modal-content" (click)="$event.stopPropagation()">
+    <h3>{{ selectedVenture.ventureName }}</h3>
+    <p><strong>Size:</strong> {{ selectedVenture.ventureSize }}</p>
+    <p><strong>Total Plots:</strong> {{ selectedVenture.totalPlots }}</p>
+    <p><strong>Available:</strong> {{ selectedVenture.availablePlots }}</p>
+    <p><strong>Booked:</strong> {{ selectedVenture.bookedPlots }}</p>
+    <p><strong>Sold:</strong> {{ selectedVenture.soldPlots }}</p>
+    <p><strong>Address:</strong> {{ selectedVenture.address }}, {{ selectedVenture.city }}, {{ selectedVenture.state }} - {{ selectedVenture.pincode }}</p>
+    <p><strong>Phone:</strong> {{ selectedVenture.phno }}</p>
+    <button (click)="closeModal()">Close</button>
+  </div>
+</div>
+

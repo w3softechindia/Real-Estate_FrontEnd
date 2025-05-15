@@ -87,6 +87,10 @@ app-agencyssidebar {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 20px;
+    
+  max-height: 600px;       // or use `height: 100vh` as needed
+  overflow-y: auto;
+  padding-right: 10px;     // for space beside scrollbar
 
     .property-card {
       background: white;
@@ -184,3 +188,6 @@ app-agencyssidebar {
     }
   }
 }
+
+
+
