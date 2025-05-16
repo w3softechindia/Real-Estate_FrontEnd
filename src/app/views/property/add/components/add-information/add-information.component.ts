@@ -183,6 +183,10 @@ export class AddInformationComponent implements OnInit {
       backdrop: 'static',
       centered: true
     });
+    }else{
+      alert('Please fill all required inputs')
+    }
+    
   }
 
   onModalOk(modal: any) {

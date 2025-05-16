@@ -37,7 +37,7 @@ export class PropertyDataComponent {
       this.filteredVentures = this.filterVentures(term);
       console.log('Filtered:', this.filteredVentures);
     });
-
+    
     this.updateVenture = this.fb.group({
       ventureName: ['', Validators.required],
       ventureSize: ['', Validators.required],

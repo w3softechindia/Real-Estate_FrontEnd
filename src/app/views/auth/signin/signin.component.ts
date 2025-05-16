@@ -44,6 +44,13 @@ export class SigninComponent implements OnInit {
 
   @ViewChild('loginModal') loginModal: any;
 
+  modalTitle = '';
+  modalMessage = '';
+  redirectRoute!:string;
+  modalInstance!: Modal;
+
+  @ViewChild('loginModal') loginModal: any;
+
   user = {
     email: '',
     password: ''
