@@ -54,10 +54,10 @@
                         </div>
                         <div class="col-lg-6">
                             <div class="mb-3">
-                                <label for="phno" class="form-label">Agency Number <span class="text-danger">*</span></label>
-                                <input type="number" id="phno" class="form-control" formControlName="phno"
+                                <label for="phoneNumber" class="form-label">Agency Number <span class="text-danger">*</span></label>
+                                <input type="number" id="phoneNumber" class="form-control" formControlName="phoneNumber"
                                     placeholder="Enter Number" required />
-                                 <div *ngIf="registerAgency.get('phno')?.touched && registerAgency.get('phno')?.invalid"
+                                 <div *ngIf="registerAgency.get('phoneNumber')?.touched && registerAgency.get('phoneNumber')?.invalid"
                                     class="text-danger mt-1">
                                     Agency Phone Number is required.
                                 </div>

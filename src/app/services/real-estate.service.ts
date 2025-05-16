@@ -17,8 +17,8 @@ export class RealEStateService {
     return this.http.post(`${this.baseUrl}/login`, user);
   }
 
-  registerAgency(agency:Agency):Observable<any>{
-    return this.http.post(`${this.baseUrl}/addAgency`,agency)
+  registerAgency(agency:Agency):Observable<Agency>{
+    return this.http.post<Agency>(`${this.baseUrl}/addAgency`,agency)
   }
 
   getAllAgencies():Observable<any[]>{
@@ -62,8 +62,8 @@ export class RealEStateService {
     return this.http.get(`${this.baseUrl}/getVenture`,{params});
   }
 
-  updateVenture(ventureId: number, venture: Venture): Observable<any> {
-    const params = { ventureId: ventureId.toString() };
+  updateVenture(id: number, venture: Venture): Observable<any> {
+    const params = { id: id.toString() };
     return this.http.put(`${this.baseUrl}/updateVenture`, venture, { params });
   }  
 

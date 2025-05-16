@@ -162,7 +162,7 @@
             <label for="excelUpload" class="form-label">
               Upload Plot Details (Excel)
             </label>
-            <input type="file" id="excelUpload" (change)="onFileChange($event)" class="form-control" required
+            <input type="file" id="excelUpload" #fileInput (change)="onFileChange($event)" class="form-control" required
               accept=".xlsx, .xls" name="excelUpload" />
             <small class="form-text text-muted">
               Please upload an Excel file (.xls or .xlsx) with the following column headers:<br />
@@ -214,7 +214,8 @@
 <ng-template #successAlertModal let-modal class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-content" [ngClass]="modalType === 'success' ? 'modal-filled bg-success' : 'modal-filled bg-info'">
     <div class="modal-body text-center">
-     <i [ngClass]="'bx ' + (modalType === 'success' ? 'bx-check-double' : 'bx-info-circle')" class="display-6 mt-0 text-white"></i>
+      <i [ngClass]="'bx ' + (modalType === 'success' ? 'bx-check-double' : 'bx-info-circle')"
+        class="display-6 mt-0 text-white"></i>
       <h2 class="mt-3 text-white">{{ modalTitle }}</h2>
       <h5 class="mt-3 text-white">{{ modalMessage }}</h5>
       <button type="button" class="btn btn-light mt-3" (click)="onModalOk(modal)">Continue</button>

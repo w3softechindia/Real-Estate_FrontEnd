@@ -37,7 +37,7 @@ export class PropertyDataComponent {
       this.filteredVentures = this.filterVentures(term);
       console.log('Filtered:', this.filteredVentures);
     });
-    
+
     this.updateVenture = this.fb.group({
       ventureName: ['', Validators.required],
       ventureSize: ['', Validators.required],
@@ -75,7 +75,12 @@ export class PropertyDataComponent {
       console.log(venture);
       this.service.updateVenture(id, venture).subscribe((data) => {
         alert("Details updated..!!");
-        window.location.reload();
+        const index = this.ventures.findIndex(v => v.ventureId === id);
+        if (index !== -1) {
+          this.ventures[index] = { ...this.ventures[index], ...venture };
+        }
+        this.filteredVentures = this.filterVentures(this.searchService.getSearchTerm());
+        this.updateModal=false;
       })
     } else {
       alert('Please fill all required inputs')
@@ -86,7 +91,9 @@ export class PropertyDataComponent {
     this.service.deleteVenture(id).subscribe((data) => {
       console.log(data);
       alert('venture deleted..!!!')
-      window.location.reload();
+      this.ventures = this.ventures.filter(venture => venture.ventureId !== id);
+      this.filteredVentures = this.filterVentures(this.searchService.getSearchTerm());
+      this.deleteModal = false;
     })
   }
 
