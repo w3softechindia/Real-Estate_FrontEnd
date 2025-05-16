@@ -140,54 +140,77 @@
         <h3 class="modal-title">Update {{ venture.ventureName }}</h3>
         <button type="button" class="btn-close" (click)="updateModal = false"></button>
       </div>
-
       <div class="modal-body">
         <form [formGroup]="updateVenture" (ngSubmit)="updateVentureDetails(venture.ventureId)">
           <div class="row">
             <div class="col-lg-4">
               <div class="mb-3">
-                <label for="ventureName" class="form-label">Venture Name</label>
+                <label for="ventureName" class="form-label">Venture Name <span class="text-danger">*</span></label>
                 <input type="text" id="ventureName" class="form-control" placeholder="Name"
-                  formControlName="ventureName" />
+                  formControlName="ventureName" name="ventureName" required />
+                <div *ngIf="updateVenture.get('ventureName')?.touched && updateVenture.get('ventureName')?.invalid"
+                  class="text-danger mt-1">
+                  Venture Name is required.
+                </div>
               </div>
             </div>
             <div class="col-lg-4">
               <div class="mb-3">
-                <label for="ventureName" class="form-label">Venture Size</label>
+                <label for="ventureName" class="form-label">Venture Size <span class="text-danger">*</span></label>
                 <input type="number" id="ventureSize" class="form-control" placeholder="Enter Size in acres"
-                  name="ventureSize" formControlName="ventureSize" />
+                  name="ventureSize" formControlName="ventureSize" required />
+                <div *ngIf="updateVenture.get('ventureSize')?.touched && updateVenture.get('ventureSize')?.invalid"
+                  class="text-danger mt-1">
+                  Venture Size is required.
+                </div>
               </div>
             </div>
             <div class="col-lg-4">
               <div class="mb-3">
-                <label for="phno" class="form-label">Contact Number</label>
+                <label for="phno" class="form-label">Contact Number <span class="text-danger">*</span></label>
                 <input type="number" id="phno" class="form-control" placeholder="Phone Number" name="phno"
-                  formControlName="phno" />
+                  formControlName="phno" required />
+                <div *ngIf="updateVenture.get('phno')?.touched && updateVenture.get('phno')?.invalid"
+                  class="text-danger mt-1">
+                  Phone Number is required.
+                </div>
               </div>
             </div>
             <div class="col-lg-12">
               <div class="mb-3">
-                <label for="address" class="form-label">Venture Address</label>
+                <label for="address" class="form-label">Venture Address <span class="text-danger">*</span></label>
                 <textarea class="form-control" id="address" rows="3" placeholder="Enter address" name="address"
-                  formControlName="address"></textarea>
+                  formControlName="address" required></textarea>
+                <div *ngIf="updateVenture.get('address')?.touched && updateVenture.get('address')?.invalid"
+                  class="text-danger mt-1">
+                  Venture Address is required.
+                </div>
               </div>
             </div>
             <div class="col-lg-4">
               <div class="mb-3">
-                <label for="pincode" class="form-label">PinCode</label>
+                <label for="pincode" class="form-label">PinCode <span class="text-danger">*</span></label>
                 <input type="number" id="pincode" class="form-control" placeholder="Enter Pincode" name="pincode"
-                  formControlName="pincode" />
+                  formControlName="pincode" required />
+                <div *ngIf="updateVenture.get('pincode')?.touched && updateVenture.get('pincode')?.invalid"
+                  class="text-danger mt-1">
+                  Venture Pincode is required.
+                </div>
               </div>
             </div>
             <div class="col-lg-4">
-              <label for="city" class="form-label">City</label>
+              <label for="city" class="form-label">City <span class="text-danger">*</span></label>
               <input type="text" id="city" class="form-control" placeholder="Enter City" name="city"
-                formControlName="city" />
+                formControlName="city" required />
+              <div *ngIf="updateVenture.get('city')?.touched && updateVenture.get('city')?.invalid"
+                class="text-danger mt-1">
+                City is required.
+              </div>
             </div>
             <div class="col-lg-4">
-              <label for="state" class="form-label">State</label>
+              <label for="state" class="form-label">State <span class="text-danger">*</span></label>
               <select selectFormInput class="form-control" id="state" placeholder="Select State" name="state"
-                formControlName="state">
+                formControlName="state" required>
                 <option value="">Choose a State</option>
                 <optgroup label="India">
                   <option value="Andhra Pradesh">Andhra Pradesh</option>
@@ -227,6 +250,10 @@
                   <option value="Puducherry">Puducherry</option>
                 </optgroup>
               </select>
+              <div *ngIf="updateVenture.get('state')?.touched && updateVenture.get('state')?.invalid"
+                class="text-danger mt-1">
+                State is required.
+              </div>
             </div>
             <div class="mb-3 rounded">
               <div class="row justify-content-center g-2">
@@ -264,4 +291,3 @@
     </div>
   </div>
 </div>
-

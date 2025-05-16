@@ -14,7 +14,7 @@ import {
 import { Router, RouterModule } from '@angular/router'
 import { LogoBoxComponent } from '@component/logo-box.component'
 import { AuthenticationService } from '@core/services/auth.service'
-import { NgbModal, NgbModule } from '@ng-bootstrap/ng-bootstrap'
+import { NgbModal, NgbModalModule, NgbModule } from '@ng-bootstrap/ng-bootstrap'
 import { Store } from '@ngrx/store'
 import { login } from '@store/authentication/authentication.actions'
 import Modal from 'bootstrap/js/dist/modal'
@@ -28,7 +28,8 @@ declare var bootstrap: any;
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    NgbModule
+    NgbModule,
+    NgbModalModule
   ],
   templateUrl: './signin.component.html',
   styles: ``,
@@ -36,6 +37,12 @@ declare var bootstrap: any;
 export class SigninComponent implements OnInit {
   signinForm!: FormGroup
   submitted: boolean = false
+  modalTitle = '';
+  modalMessage = '';
+  redirectRoute!: string;
+  modalType: 'success' | 'danger' = 'success';
+
+  @ViewChild('loginModal') loginModal: any;
 
   modalTitle = '';
   modalMessage = '';
@@ -54,7 +61,7 @@ export class SigninComponent implements OnInit {
     private router: Router,
     private authService: AuthService,
     private service: RealEStateService,
-    private modalService:NgbModal
+    private modalService: NgbModal
   ) { }
 
   ngOnInit(): void {
@@ -93,47 +100,38 @@ export class SigninComponent implements OnInit {
 
         switch (role) {
           case 'Admin':
-            this.showModal('Login Successful', 'Admin have logged in successfully!','/adminDashboard');
+            this.showModal('Login Successful', 'Admin have logged in successfully!', '/adminDashboard','success');
             this.router.navigate([]);
             break;
           case 'Agency':
-             this.showModal('Login Successful', 'Agency have logged in successfully!','/agencyDashboard');
+            this.showModal('Login Successful', 'Agency have logged in successfully!', '/agencyDashboard','success');
             this.router.navigate([]);
             break;
           case 'Agent':
-             this.showModal('Login Successful', 'Agent have logged in successfully!','/agentDashboard');
+            this.showModal('Login Successful', 'Agent have logged in successfully!', '/agentDashboard','success');
             this.router.navigate([]);
             break;
         }
-      },error=>{
-          this.showModal('Login Failed', 'Invalid email or password. Please try again.','/sign-in');
+      }, error => {
+        this.showModal('Login Failed', 'Invalid email or password. Please try again.', '/sign-in','danger');
       })
     }
   }
 
-  showModal(title: string, message: string, route: string) {
-  this.modalTitle = title;
-  this.modalMessage = message;
-  this.redirectRoute = route;
+  showModal(title: string, message: string, route: string = '', type: 'success' | 'danger' = 'success') {
+    this.modalTitle = title;
+    this.modalMessage = message;
+    this.redirectRoute = route;
+    this.modalType = type;
 
-  const modalEl = document.getElementById('loginModal');
-   if (modalEl !== null) {
-    this.modalInstance = new Modal(modalEl);
-    this.modalInstance.show();
-
-    setTimeout(() => {
-      this.modalInstance.hide();
-      if (this.redirectRoute) {
-        this.router.navigate([this.redirectRoute]);
-      }
-    }, 2000);
-  } else {
-    console.error('Modal element not found.');
+    this.modalService.open(this.loginModal, {
+      backdrop: 'static',
+      centered: true
+    });
   }
-}
 
-  onModalOk() {
-    this.modalInstance.hide();
+  onModalOk(modal: any) {
+    modal.close();
     if (this.redirectRoute) {
       this.router.navigate([this.redirectRoute]);
     }

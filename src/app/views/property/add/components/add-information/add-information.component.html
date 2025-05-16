@@ -160,12 +160,10 @@
         <div class="col-lg-12 mt-4">
           <div class="mb-3">
             <label for="excelUpload" class="form-label">
-              Upload Plot Details (Excel) 
+              Upload Plot Details (Excel)
             </label>
-
-            <input type="file" id="excelUpload" (change)="onFileChange($event)"
-              class="form-control" required accept=".xlsx, .xls" name="excelUpload" />
-
+            <input type="file" id="excelUpload" (change)="onFileChange($event)" class="form-control" required
+              accept=".xlsx, .xls" name="excelUpload" />
             <small class="form-text text-muted">
               Please upload an Excel file (.xls or .xlsx) with the following column headers:<br />
               <strong>
@@ -174,7 +172,6 @@
               ⚠️ These column names must exactly match the above format (case-sensitive).
             </small>
           </div>
-
         </div>
         <div class="mb-3 rounded">
           <div class="row justify-content-end g-2">
@@ -182,7 +179,7 @@
               <button type="submit" class="btn btn-outline-primary w-100">Add Venture</button>
             </div>
             <div class="col-lg-2">
-              <button type="button" class="btn btn-danger w-100">Cancel</button>
+              <button type="button" class="btn btn-danger w-100" (click)="resetForm()">Cancel</button>
             </div>
           </div>
         </div>
@@ -213,3 +210,14 @@
     </div>
   </div>
 </div>
+
+<ng-template #successAlertModal let-modal class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-content" [ngClass]="modalType === 'success' ? 'modal-filled bg-success' : 'modal-filled bg-info'">
+    <div class="modal-body text-center">
+     <i [ngClass]="'bx ' + (modalType === 'success' ? 'bx-check-double' : 'bx-info-circle')" class="display-6 mt-0 text-white"></i>
+      <h2 class="mt-3 text-white">{{ modalTitle }}</h2>
+      <h5 class="mt-3 text-white">{{ modalMessage }}</h5>
+      <button type="button" class="btn btn-light mt-3" (click)="onModalOk(modal)">Continue</button>
+    </div>
+  </div>
+</ng-template>

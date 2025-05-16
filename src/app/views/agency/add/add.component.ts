@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { PageTitleComponent } from "../../../components/page-title.component";
 import { FileUploaderComponent } from "../../../components/file-uploader/file-uploader.component";
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
@@ -6,6 +6,7 @@ import { Agency } from '@/app/modals/user.model';
 import { RealEStateService } from '@/app/services/real-estate.service';
 import { BrowserModule, SafeHtml } from '@angular/platform-browser';
 import { CommonModule, NgClass } from '@angular/common';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-add',
@@ -14,7 +15,7 @@ import { CommonModule, NgClass } from '@angular/common';
   templateUrl: './add.component.html',
   styleUrl: './add.component.scss'
 })
-export class AddComponent implements OnInit{
+export class AddComponent implements OnInit {
   registerAgency!: FormGroup
   popupMessage: string | null = null;
   textcolor!: string;
@@ -24,10 +25,15 @@ export class AddComponent implements OnInit{
   tickIcon!: SafeHtml;
   errorIcon!: SafeHtml;
   isSuccess!: boolean;
+  modalTitle = '';
+  modalMessage = '';
+  modalType: 'success' | 'danger' = 'success';
 
-  constructor(private service: RealEStateService, private fb: FormBuilder) {
+  @ViewChild('successAlertModal') successAlertModal: any;
+
+  constructor(private service: RealEStateService, private fb: FormBuilder,private modalService: NgbModal) {
   }
-  
+
   ngOnInit(): void {
     this.registerAgency = this.fb.group({
       agencyName: ['', Validators.required],
@@ -45,42 +51,39 @@ export class AddComponent implements OnInit{
   }
 
   addAgency() {
-    console.log("is formvalid",this.registerAgency.valid);
+    console.log("is formvalid", this.registerAgency.valid);
     if (this.registerAgency.valid) {
       const agency = this.registerAgency.value;
       console.log(agency);
 
       this.service.registerAgency(agency).subscribe((data: any) => {
         console.log('Agency Added Succesfully..!!');
-        // this.showSuccess("Agency Registered successfully, Thanks!");
-        this.registerAgency.reset();
-      },(error)=>{
+        this.showModal('Agency','Registered Succesfully','success')
+      }, (error) => {
         console.log(error);
       })
-    }else {
-      console.log(this.registerAgency.errors);
-      // this.showError("Please fill the Register Form with correct values");
+    } else {
+      this.showModal('Agency','Please fill the Register Form with correct values','danger')
     }
   }
 
-  showError(message: string) {
-    this.popupType = 'error';
-    this.popupIcon = this.errorIcon;
-    this.popupTitle = 'Error';
-    this.popupMessage = message;
-    this.textcolor = 'red';
-    this.isSuccess = false;
+  showModal(title: string, message: string, type: 'success' | 'danger' = 'success') {
+    this.modalTitle = title;
+    this.modalMessage = message;
+    this.modalType = type;
+
+    this.modalService.open(this.successAlertModal, {
+      backdrop: 'static',
+      centered: true
+    });
   }
 
-  showSuccess(message: string) {
-    this.popupType = 'success';
-    this.popupIcon = this.tickIcon;
-    this.popupTitle = 'Success';
-    this.popupMessage = message;
-    this.textcolor = '#1bbf72';
-    this.isSuccess = true;
+  onModalOk(modal: any) {
+    modal.close();
+    this.registerAgency.reset();
   }
-  closePopup() {
-    this.popupMessage = null;
+
+  resetForm(){
+    this.registerAgency.reset();
   }
 }
