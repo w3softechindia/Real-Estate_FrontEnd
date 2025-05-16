@@ -46,17 +46,17 @@ export class AddComponent implements OnInit {
       twitterUrl: ['', Validators.required],
       email: ['', Validators.required],
       password: ['', Validators.required],
-      phno: ['', [Validators.required, Validators.pattern(/^\d{10}$/)]]
+      phoneNumber: ['', [Validators.required, Validators.pattern(/^\d{10}$/)]]
     });
   }
 
-  addAgency() {
+  addAgency() :void{
     console.log("is formvalid", this.registerAgency.valid);
     if (this.registerAgency.valid) {
       const agency = this.registerAgency.value;
       console.log(agency);
 
-      this.service.registerAgency(agency).subscribe((data: any) => {
+      this.service.registerAgency(agency).subscribe((data: Agency) => {
         console.log('Agency Added Succesfully..!!');
         this.showModal('Agency','Registered Succesfully','success')
       }, (error) => {

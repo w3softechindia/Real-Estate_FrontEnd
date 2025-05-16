@@ -1,7 +1,7 @@
 import { Venture } from '@/app/modals/user.model';
 import { RealEStateService } from '@/app/services/real-estate.service';
 import { CommonModule } from '@angular/common';
-import { Component, CUSTOM_ELEMENTS_SCHEMA, OnInit, ViewChild } from '@angular/core'
+import { Component, CUSTOM_ELEMENTS_SCHEMA, ElementRef, OnInit, ViewChild } from '@angular/core'
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { SelectFormInputDirective } from '@core/directive/select-form-input.directive'
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -30,6 +30,7 @@ export class AddInformationComponent implements OnInit {
   modalType: 'success' | 'danger' = 'success';
 
   @ViewChild('successAlertModal') successAlertModal: any;
+  @ViewChild('fileInput') fileInput!: ElementRef;
 
   constructor(private service: RealEStateService, private fb: FormBuilder, private modalService: NgbModal) { }
 
@@ -163,10 +164,10 @@ export class AddInformationComponent implements OnInit {
       const formData = this.registerVenture.getRawValue();
 
       console.log('Venture object:', formData); // Log the venture object
-
       this.service.registerVenture(formData).subscribe((data: any) => {
         this.showModal('Venture', 'Venture Details Registered Succesfully', 'success')
-        // window.location.reload();
+       this.registerVenture.reset();
+       this.fileInput.nativeElement.value = '';
       });
     } else {
       this.showModal('Venture', 'Please fill out Required inputs', 'danger')
@@ -183,10 +184,14 @@ export class AddInformationComponent implements OnInit {
       backdrop: 'static',
       centered: true
     });
-    }else{
-      alert('Please fill all required inputs')
-    }
-    
+  }
+
+  onModalOk(modal: any) {
+    modal.close();
+  }
+
+  resetForm() {
+    this.registerVenture.reset();
   }
 
   onModalOk(modal: any) {

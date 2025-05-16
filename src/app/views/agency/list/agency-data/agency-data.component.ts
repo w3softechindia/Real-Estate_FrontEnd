@@ -85,7 +85,12 @@ export class AgencyDataComponent implements OnInit {
       console.log(agency)
       this.service.updateAgency(email, agency).subscribe((data) => {
         alert("Updated Successfully..!!");
-        window.location.reload();
+        const agen= this.agency.findIndex(v=> v.email=== email);
+        if(agen!== -1){
+          this.agency[agen]={ ...this.agency[agen], ...agency}
+        }
+         this.filteredAgencies = this.filterAgencies(this.searchService.getSearchTerm());
+        this.updateModal=false;
       }, (error) => {
         console.log(error);
       })
@@ -95,11 +100,13 @@ export class AgencyDataComponent implements OnInit {
   }
 
   deleteAgency(email: string) {
-    this.service.deleteAgency(email).subscribe((data) => {
-      alert('Agency Deleted..!!')
-      window.location.reload();
-    })
-  }
+  this.service.deleteAgency(email).subscribe((data) => {
+    alert('Agency Deleted..!!');
+    this.agency = this.agency.filter(agency => agency.email !== email);
+    this.filteredAgencies = this.filterAgencies(this.searchService.getSearchTerm());
+    this.deleteModal=false;
+  });
+}
 
   agencies!: Agency;
   showModal = false;
