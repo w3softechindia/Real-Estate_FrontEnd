@@ -164,7 +164,6 @@ export class AddInformationComponent implements OnInit {
       const formData = this.registerVenture.getRawValue();
 
       console.log('Venture object:', formData); // Log the venture object
-
       this.service.registerVenture(formData).subscribe((data: any) => {
         this.showModal('Venture', 'Venture Details Registered Succesfully', 'success')
        this.registerVenture.reset();
@@ -189,6 +188,15 @@ export class AddInformationComponent implements OnInit {
 
   onModalOk(modal: any) {
     modal.close();
+  }
+
+  resetForm() {
+    this.registerVenture.reset();
+  }
+
+  onModalOk(modal: any) {
+    modal.close();
+    this.registerVenture.reset();
   }
 
   resetForm() {

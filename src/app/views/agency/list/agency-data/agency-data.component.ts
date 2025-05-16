@@ -108,7 +108,6 @@ export class AgencyDataComponent implements OnInit {
   });
 }
 
-
   agencies!: Agency;
   showModal = false;
   updateModal = false;
