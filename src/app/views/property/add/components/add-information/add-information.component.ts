@@ -193,13 +193,4 @@ export class AddInformationComponent implements OnInit {
   resetForm() {
     this.registerVenture.reset();
   }
-
-  onModalOk(modal: any) {
-    modal.close();
-    this.registerVenture.reset();
-  }
-
-  resetForm() {
-    this.registerVenture.reset();
-  }
 }
