@@ -1,7 +1,7 @@
 import { AuthService } from '@/app/authorization/auth.service'
 import { RealEStateService } from '@/app/services/real-estate.service'
 import { CommonModule } from '@angular/common'
-import { Component, inject, OnInit } from '@angular/core'
+import { Component, inject, OnInit, ViewChild } from '@angular/core'
 import {
   FormBuilder,
   FormGroup,
@@ -14,9 +14,12 @@ import {
 import { Router, RouterModule } from '@angular/router'
 import { LogoBoxComponent } from '@component/logo-box.component'
 import { AuthenticationService } from '@core/services/auth.service'
+import { NgbModal, NgbModalModule, NgbModule } from '@ng-bootstrap/ng-bootstrap'
 import { Store } from '@ngrx/store'
 import { login } from '@store/authentication/authentication.actions'
+import Modal from 'bootstrap/js/dist/modal'
 
+declare var bootstrap: any;
 @Component({
   selector: 'app-signin',
   standalone: true,
@@ -24,14 +27,22 @@ import { login } from '@store/authentication/authentication.actions'
     RouterModule,
     CommonModule,
     FormsModule,
-    ReactiveFormsModule
-],
+    ReactiveFormsModule,
+    NgbModule,
+    NgbModalModule
+  ],
   templateUrl: './signin.component.html',
   styles: ``,
 })
-export class SigninComponent implements OnInit{
+export class SigninComponent implements OnInit {
   signinForm!: FormGroup
   submitted: boolean = false
+  modalTitle = '';
+  modalMessage = '';
+  redirectRoute!: string;
+  modalType: 'success' | 'danger' = 'success';
+
+  @ViewChild('loginModal') loginModal: any;
 
   user = {
     email: '',
@@ -42,7 +53,8 @@ export class SigninComponent implements OnInit{
     private fb: UntypedFormBuilder,
     private router: Router,
     private authService: AuthService,
-    private service:RealEStateService
+    private service: RealEStateService,
+    private modalService: NgbModal
   ) { }
 
   ngOnInit(): void {
@@ -52,7 +64,7 @@ export class SigninComponent implements OnInit{
     });
   }
 
-  
+
 
   get form() {
     return this.signinForm.controls
@@ -66,13 +78,13 @@ export class SigninComponent implements OnInit{
         password: this.form['password'].value,
       };
 
-      this.service.login(user).subscribe((data:any)=>{
+      this.service.login(user).subscribe((data: any) => {
         console.log(data)
         const jwtToken = data.jwtToken;
         const user = data.estateUser;
         const role = user.roles[0].roleName;
         const userId = user.id;
-        const userEmail= user.email;
+        const userEmail = user.email;
 
         this.authService.setToken(jwtToken);
         this.authService.setEmail(userEmail);
@@ -81,21 +93,40 @@ export class SigninComponent implements OnInit{
 
         switch (role) {
           case 'Admin':
-            alert('Welcome Admin');
-            this.router.navigate(['/adminDashboard']);
+            this.showModal('Login Successful', 'Admin have logged in successfully!', '/adminDashboard','success');
+            this.router.navigate([]);
             break;
           case 'Agency':
-            alert('Welcome Agency');
-            this.router.navigate(['/agencyDashboard']);
+            this.showModal('Login Successful', 'Agency have logged in successfully!', '/agencyDashboard','success');
+            this.router.navigate([]);
             break;
           case 'Agent':
-            alert('Welcome Agent');
-            this.router.navigate(['/agentDashboard']);
+            this.showModal('Login Successful', 'Agent have logged in successfully!', '/agentDashboard','success');
+            this.router.navigate([]);
             break;
-          default:
-            alert('Invalid Role');
         }
+      }, error => {
+        this.showModal('Login Failed', 'Invalid email or password. Please try again.', '/sign-in','danger');
       })
+    }
+  }
+
+  showModal(title: string, message: string, route: string = '', type: 'success' | 'danger' = 'success') {
+    this.modalTitle = title;
+    this.modalMessage = message;
+    this.redirectRoute = route;
+    this.modalType = type;
+
+    this.modalService.open(this.loginModal, {
+      backdrop: 'static',
+      centered: true
+    });
+  }
+
+  onModalOk(modal: any) {
+    modal.close();
+    if (this.redirectRoute) {
+      this.router.navigate([this.redirectRoute]);
     }
   }
 

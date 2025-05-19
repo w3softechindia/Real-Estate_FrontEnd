@@ -21,7 +21,7 @@ export class AgentDataComponent implements OnInit {
   filteredAgents: Agent[] = [];
   private searchSub!: Subscription;
 
-  constructor(private service: RealEStateService,private searchService: SearchService) { }
+  constructor(private service: RealEStateService, private searchService: SearchService) { }
 
   ngOnInit(): void {
     this.getAllAgents();
@@ -36,21 +36,42 @@ export class AgentDataComponent implements OnInit {
   private getAllAgents() {
     this.service.getAllAgents().subscribe((data: any[]) => {
       this.agents = data;
+      this.page=1;
       console.log('Agents :', data);
       this.filteredAgents = this.filterAgents(this.searchService.getSearchTerm());
     })
   }
 
-   private filterAgents(term: string): Agent[] {
-      const lowerTerm = term.toLowerCase();
-      return this.agents.filter(agent =>
-        (agent.agentName || '').toLowerCase().includes(lowerTerm) ||
-        (agent.address || '').toLowerCase().includes(lowerTerm) ||
-        (agent.email || '').toLowerCase().includes(lowerTerm)
-      );
-    }
-  
-    ngOnDestroy(): void {
-      this.searchSub.unsubscribe();
-    }
+  private filterAgents(term: string): Agent[] {
+    const lowerTerm = term.toLowerCase();
+    return this.agents.filter(agent =>
+      (agent.agentName || '').toLowerCase().includes(lowerTerm) ||
+      (agent.address || '').toLowerCase().includes(lowerTerm) ||
+      (agent.email || '').toLowerCase().includes(lowerTerm)
+    );
+  }
+
+  ngOnDestroy(): void {
+    this.searchSub.unsubscribe();
+  }
+
+  agent!: Agent;
+  showModal = false;
+
+  openDetailsModal(agent: Agent): void {
+    this.agent = agent;
+    this.showModal = true;
+  }
+
+  page = 1;
+  pageSize = 7; // or any number of items per page you prefer
+
+  get paginatedAgents(): Agent[] {
+    const start = (this.page - 1) * this.pageSize;
+    return this.filteredAgents.slice(start, start + this.pageSize);
+  }
+
+  onPageChange() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
 }

@@ -67,16 +67,68 @@ export class AgencyagentslistComponent {
     console.log("Modal closed");
   }
 
-  updateAgent() {
-    console.log("Updating agent:", this.selectedAgent);
-    const index = this.agennts.findIndex(agent => agent.email === this.selectedAgent.emaill);
-    if (index !== -1) {
-      this.agennts[index] = { ...this.selectedAgent };
-    }
-    this.closeModal();
-  }
+  // updateAgent() {
+  //   console.log("Updating agent:", this.selectedAgent);
+  //   const index = this.agennts.findIndex(agent => agent.email === this.selectedAgent.emaill);
+  //   if (index !== -1) {
+  //     this.agennts[index] = { ...this.selectedAgent };
+  //   }
+  //   this.closeModal();
+  // }
 
-  deleteAgent(agent: any) {
-    this.agennts = this.agennts.filter(a => a.email !== agent.emaill);
-  }
+ updateAgent(): void {
+  console.log("Updating agent:", this.selectedAgent);
+
+  this.service.updateAgent(this.selectedAgent.email, {
+    agentName: this.selectedAgent.agentName,
+    address: this.selectedAgent.address,
+    pincode: this.selectedAgent.pincode,
+    city: this.selectedAgent.city,
+    state: this.selectedAgent.state
+  }).subscribe(
+    (response) => {
+      console.log('Update Response:', response);
+      const index = this.agennts.findIndex(agent => agent.email === this.selectedAgent.email);
+      if (index !== -1) {
+        this.agennts[index] = response;
+      }
+      alert('Agent updated successfully');
+      this.closeModal();
+    },
+    (error) => {
+      console.error('Error updating agent:', error);
+      alert('Failed to update agent. Please try again.');
+    }
+  );
+}
+
+
+
+ 
+
+ 
+deleteAgent(agent: any): void {
+  this.service.deleteAgent(agent.email).subscribe(
+    (response) => {
+      console.log('Delete Response:', response); // Log response for debugging
+      if (response === 'Agent deleted successfully') {
+        this.agennts = this.agennts.filter(a => a.email !== agent.email);
+        alert('Agent deleted successfully');
+         window.location.reload();
+      } else {
+        alert('Agent could not be deleted. Please try again.');
+      }
+    },
+    (error) => {
+      console.error('Error deleting agent:', error);
+      alert('Agent deleted successfully');
+       window.location.reload();
+    }
+  );
+}
+
+
+
+
+
 }

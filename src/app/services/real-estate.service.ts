@@ -1,4 +1,4 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Agency, Agent, Lead, Venture, Visit } from '../modals/user.model';
 import { Observable } from 'rxjs';
@@ -17,8 +17,8 @@ export class RealEStateService {
     return this.http.post(`${this.baseUrl}/login`, user);
   }
 
-  registerAgency(agency:Agency):Observable<any>{
-    return this.http.post(`${this.baseUrl}/addAgency`,agency)
+  registerAgency(agency:Agency):Observable<Agency>{
+    return this.http.post<Agency>(`${this.baseUrl}/addAgency`,agency)
   }
 
   getAllAgencies():Observable<any[]>{
@@ -41,15 +41,48 @@ export class RealEStateService {
     return this.http.get<any[]>(`${this.baseUrl}/getAllVentures`)
   }
 
+  countOfAgents():Observable<any>{
+    return this.http.get(`${this.baseUrl}/countOfAgents`)
+  }
 
+  countOfAgencies():Observable<any>{
+    return this.http.get(`${this.baseUrl}/countOfAgencies`)
+  }
 
+  countOfVentures():Observable<any>{
+    return this.http.get(`${this.baseUrl}/countOfVentures`)
+  }
 
+  countOfCustomers():Observable<any>{
+    return this.http.get(`${this.baseUrl}/countOfCustomers`)
+  }
+
+  getVentureById(ventureId:number):Observable<any>{
+    const params={ventureId:ventureId.toString()};
+    return this.http.get(`${this.baseUrl}/getVenture`,{params});
+  }
+
+  updateVenture(id: number, venture: Venture): Observable<any> {
+    const params = { id: id.toString() };
+    return this.http.put(`${this.baseUrl}/updateVenture`, venture, { params });
+  }  
+
+  deleteVenture(id:number):Observable<string>{
+    const params={id:id.toString()};
+    return this.http.delete(`${this.baseUrl}/deleteVenture`, {params, responseType: 'text' });
+  }
+
+  updateAgency(email:string,agency:Agency):Observable<any>{
+    const params={email};
+    return this.http.put(`${this.baseUrl}/updateAgency`,agency, {params});
+  }
+
+  deleteAgency(email:string):Observable<string>{
+    const params={email};
+    return this.http.delete(`${this.baseUrl}/deleteAgency`,{params, responseType: 'text' });
+  }
   // -------------------------------------------------------------------------------
   // Agency Operations
-
-
- 
-
   addAgent(email: string, agent: Agent): Observable<any> {
     return this.http.post(`${this.baseUrl}/addAgent?email=${email}`, agent);
   }
@@ -59,14 +92,22 @@ export class RealEStateService {
     const params = new HttpParams().set('agencyName', agencyName);
     return this.http.get<Agent[]>(`${this.baseUrl}/getAgentsByAgency`, { params });
   }
-  
+deleteAgent(email: string): Observable<string> {
+  return this.http.delete<string>(`${this.baseUrl}/deleteAgent?email=${email}`);
+}
+
+ updateAgent(email: string, agentData: any): Observable<any> {
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    });
+
+    return this.http.put<any>(`${this.baseUrl}/updateAgent?email=${email}`, agentData, { headers });
+  }
 
 
-
-
-
-
-
+  // ------------------------------------------------------------------------
   //Agent Operations
   registerLead(lead:Lead):Observable<any>{
 return this.http.post(`${this.baseUrl}/addLead`,lead)
@@ -91,4 +132,5 @@ return this.http.post(`${this.baseUrl}/addVisit`,visit)
   getAllVisits():Observable<any>{
     return this.http.get(`${this.baseUrl}/getAllVisits`)
   }
+
 }

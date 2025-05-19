@@ -21,7 +21,7 @@
               </div>
               <div class="col-lg-4">
                 <h5 class="text-dark fw-medium mb-0">
-                  501 <span class="text-muted"> Customers</span>
+                  {{this.countOfCustomers}} <span class="text-muted"> Customers</span>
                 </h5>
               </div>
             </div>
@@ -137,7 +137,7 @@
                   <!-- <td>{{ item.registrationDate }}</td> -->
                   <td>
                     <div class="d-flex gap-2">
-                      <a href="javascript:void(0);" class="btn btn-light btn-sm"
+                      <a href="javascript:void(0);" class="btn btn-light btn-sm" (click)="openDetailsModal(item)"
                         ><iconify-icon
                           icon="solar:eye-broken"
                           class="align-middle fs-18"
@@ -178,6 +178,31 @@
             <ng-template ngbPaginationNext>Next</ng-template>
           </ngb-pagination>
         </nav>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--Details Modal -->
+<div class="modal fade show d-block" *ngIf="showModal" tabindex="-1" role="dialog" style="background: rgba(0,0,0,0.5)">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title modal-title-centered ">Details : {{ customer.customerName }}</h3>
+        <button type="button" class="btn-close" (click)="showModal = false"></button>
+      </div>
+      <div class="modal-body">
+        <p><strong>Customer Name:</strong> {{ customer.customerName }}</p>
+        <p><strong>Email:</strong> {{ customer.email }}</p>
+        <p><strong>Contact Number:</strong> {{ customer.phoneNumber }}</p>
+        <p><strong>Address:</strong> {{ customer.address }}</p>
+        <p><strong>City:</strong> {{ customer.city }}</p>
+        <p><strong>State:</strong> {{ customer.state }}</p>
+        <p><strong>Pincode:</strong> {{ customer.pincode }}</p>
+        <p><strong>Registration Date:</strong> {{ customer.registrationDate }}</p>
+        <p><strong>Agent Name:</strong> {{ customer.agent.agentName }}</p>
+        <p><strong>Agency Name:</strong> {{ customer.agent.agency.agencyName }}</p>
+        <!-- Add other details as needed -->
       </div>
     </div>
   </div>

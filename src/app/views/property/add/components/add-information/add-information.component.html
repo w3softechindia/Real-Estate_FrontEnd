@@ -7,21 +7,35 @@
       <div class="row">
         <div class="col-lg-4">
           <div class="mb-3">
-            <label for="ventureName" class="form-label">Venture Name</label>
-            <input type="text" id="ventureName" class="form-control" placeholder="Name" formControlName="ventureName" name="ventureName" />
+            <label for="ventureName" class="form-label">Venture Name <span class="text-danger">*</span></label>
+            <input type="text" id="ventureName" class="form-control" placeholder="Name" formControlName="ventureName"
+              name="ventureName" required />
+            <div *ngIf="registerVenture.get('ventureName')?.touched && registerVenture.get('ventureName')?.invalid"
+              class="text-danger mt-1">
+              Venture Name is required.
+            </div>
           </div>
         </div>
         <div class="col-lg-4">
           <div class="mb-3">
-            <label for="ventureName" class="form-label">Venture Size</label>
+            <label for="ventureName" class="form-label">Venture Size <span class="text-danger">*</span></label>
             <input type="number" id="ventureSize" class="form-control" placeholder="Enter Size in acres"
-              name="ventureSize" formControlName="ventureSize" />
+              name="ventureSize" formControlName="ventureSize" required />
+            <div *ngIf="registerVenture.get('ventureSize')?.touched && registerVenture.get('ventureSize')?.invalid"
+              class="text-danger mt-1">
+              Venture Size is required.
+            </div>
           </div>
         </div>
         <div class="col-lg-4">
           <div class="mb-3">
-            <label for="phno" class="form-label">Contact Number</label>
-            <input type="number" id="phno" class="form-control" placeholder="Phone Number" name="phno" formControlName="phno"  />
+            <label for="phno" class="form-label">Contact Number <span class="text-danger">*</span></label>
+            <input type="number" id="phno" class="form-control" placeholder="Phone Number" name="phno"
+              formControlName="phno" required />
+            <div *ngIf="registerVenture.get('phno')?.touched && registerVenture.get('phno')?.invalid"
+              class="text-danger mt-1">
+              Phone Number is required.
+            </div>
           </div>
         </div>
         <div class="col-lg-3">
@@ -31,7 +45,7 @@
               ><i class="ri-money-dollar-circle-line"></i
             ></span> -->
             <input type="number" id="totalPlots" class="form-control" name="totalPlots" [value]="totalPlots"
-              placeholder="0" formControlName="totalPlots" readonly  />
+              placeholder="0" formControlName="totalPlots" readonly />
           </div>
         </div>
         <div class="col-lg-3">
@@ -41,7 +55,7 @@
               ><i class="ri-money-dollar-circle-line"></i
             ></span> -->
             <input type="number" id="availablePlots" class="form-control" name="availablePlots" [value]="availablePlots"
-              placeholder="0" readonly formControlName="availablePlots"  />
+              placeholder="0" readonly formControlName="availablePlots" />
           </div>
         </div>
         <div class="col-lg-3">
@@ -51,7 +65,7 @@
               ><i class="ri-money-dollar-circle-line"></i
             ></span> -->
             <input type="number" id="bookedPlots" class="form-control" name="bookedPlots" [value]="bookedPlots"
-              placeholder="0" readonly formControlName="bookedPlots"  />
+              placeholder="0" readonly formControlName="bookedPlots" />
           </div>
         </div>
         <div class="col-lg-3">
@@ -61,29 +75,44 @@
               ><i class="ri-money-dollar-circle-line"></i
             ></span> -->
             <input type="number" id="soldPlots" class="form-control" name="soldPlots" [value]="soldPlots"
-              placeholder="0" readonly formControlName="soldPlots"  />
+              placeholder="0" readonly formControlName="soldPlots" />
           </div>
         </div>
         <div class="col-lg-12">
-            <div class="mb-3">
-              <label for="address" class="form-label">Venture Address</label>
-              <textarea class="form-control" id="address" rows="3" placeholder="Enter address"
-                name="address" formControlName="address"></textarea>
-            </div>
-        </div>
-        <div class="col-lg-4">
           <div class="mb-3">
-            <label for="pincode" class="form-label">PinCode</label>
-            <input type="number" id="pincode" class="form-control" placeholder="Enter Pincode" name="pincode" formControlName="pincode" />
+            <label for="address" class="form-label">Venture Address <span class="text-danger">*</span></label>
+            <textarea class="form-control" id="address" rows="3" placeholder="Enter address" name="address"
+              formControlName="address" required></textarea>
+            <div *ngIf="registerVenture.get('address')?.touched && registerVenture.get('address')?.invalid"
+              class="text-danger mt-1">
+              Venture Address is required.
+            </div>
           </div>
         </div>
         <div class="col-lg-4">
-          <label for="city" class="form-label">City</label>
-          <input type="text" id="city" class="form-control" placeholder="Enter City" name="city" formControlName="city" />
+          <div class="mb-3">
+            <label for="pincode" class="form-label">PinCode <span class="text-danger">*</span></label>
+            <input type="number" id="pincode" class="form-control" placeholder="Enter Pincode" name="pincode"
+              formControlName="pincode" required />
+            <div *ngIf="registerVenture.get('pincode')?.touched && registerVenture.get('pincode')?.invalid"
+              class="text-danger mt-1">
+              Venture Pincode is required.
+            </div>
+          </div>
         </div>
         <div class="col-lg-4">
-          <label for="state" class="form-label">State</label>
-          <select selectFormInput class="form-control" id="state" placeholder="Select State" name="state" formControlName="state">
+          <label for="city" class="form-label">City <span class="text-danger">*</span></label>
+          <input type="text" id="city" class="form-control" placeholder="Enter City" name="city" formControlName="city"
+            required />
+          <div *ngIf="registerVenture.get('city')?.touched && registerVenture.get('city')?.invalid"
+            class="text-danger mt-1">
+            City is required.
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <label for="state" class="form-label">State <span class="text-danger">*</span></label>
+          <select selectFormInput class="form-control" id="state" placeholder="Select State" name="state"
+            formControlName="state" required>
             <option value="">Choose a State</option>
             <optgroup label="India">
               <option value="Andhra Pradesh">Andhra Pradesh</option>
@@ -123,12 +152,18 @@
               <option value="Puducherry">Puducherry</option>
             </optgroup>
           </select>
+          <div *ngIf="registerVenture.get('state')?.touched && registerVenture.get('state')?.invalid"
+            class="text-danger mt-1">
+            State is required.
+          </div>
         </div>
         <div class="col-lg-12 mt-4">
           <div class="mb-3">
-            <label for="excelUpload" class="form-label">Upload Plot Details (Excel)</label>
-            <input type="file" id="excelUpload" (change)="onFileChange($event)" accept=".xlsx, .xls"
-              class="form-control" />
+            <label for="excelUpload" class="form-label">
+              Upload Plot Details (Excel)
+            </label>
+            <input type="file" id="excelUpload" #fileInput (change)="onFileChange($event)" class="form-control" required
+              accept=".xlsx, .xls" name="excelUpload" />
             <small class="form-text text-muted">
               Please upload an Excel file (.xls or .xlsx) with the following column headers:<br />
               <strong>
@@ -144,11 +179,46 @@
               <button type="submit" class="btn btn-outline-primary w-100">Add Venture</button>
             </div>
             <div class="col-lg-2">
-              <button type="button" class="btn btn-danger w-100">Cancel</button>
-            </div>            
+              <button type="button" class="btn btn-danger w-100" (click)="resetForm()">Cancel</button>
+            </div>
           </div>
         </div>
       </div>
     </form>
   </div>
 </div>
+
+<!-- Column Name Mismatch Modal -->
+<div class="modal fade" id="columnMismatchModal" tabindex="-1" aria-labelledby="columnMismatchModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header bg-warning text-dark">
+        <h5 class="modal-title" id="columnMismatchModalLabel">Invalid Column Names</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        The column names in the uploaded Excel file do not match the expected format.
+        <br />
+        Please re-upload the file with correct column headers.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #successAlertModal let-modal class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-content" [ngClass]="modalType === 'success' ? 'modal-filled bg-success' : 'modal-filled bg-info'">
+    <div class="modal-body text-center">
+      <i [ngClass]="'bx ' + (modalType === 'success' ? 'bx-check-double' : 'bx-info-circle')"
+        class="display-6 mt-0 text-white"></i>
+      <h2 class="mt-3 text-white">{{ modalTitle }}</h2>
+      <h5 class="mt-3 text-white">{{ modalMessage }}</h5>
+      <button type="button" class="btn btn-light mt-3" (click)="onModalOk(modal)">Continue</button>
+    </div>
+  </div>
+</ng-template>

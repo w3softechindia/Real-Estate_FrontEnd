@@ -58,7 +58,7 @@ export interface Customer extends RealEStateUser {
 
 //======================Venture========================
 export interface Venture {
-  ventureId?: number;
+  ventureId: number;
   ventureName: string;
   ventureSize: string;
   totalPlots: number;

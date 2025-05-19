@@ -16,7 +16,7 @@
         </tr>
       </thead>
       <tbody>
-        @for (item of filteredAgents; track $index) {
+        @for (item of paginatedAgents; track $index) {
           <tr>
             <td>
               <div class="d-flex align-items-center gap-2">
@@ -54,7 +54,7 @@
             </td>
             <td>
               <div class="d-flex gap-2">
-                <a href="javascript:void(0);" class="btn btn-light btn-sm"
+                <a href="javascript:void(0);" class="btn btn-light btn-sm" (click)="openDetailsModal(item)"
                   ><iconify-icon
                     icon="solar:eye-broken"
                     class="align-middle fs-18"
@@ -84,13 +84,36 @@
 </div>
 <div class="card-footer">
   <nav aria-label="Page navigation example">
-    <ngb-pagination
-      [collectionSize]="30"
-      [page]="1"
-      class="pagination justify-content-end mb-0"
-    >
-      <ng-template ngbPaginationPrevious>Previous</ng-template>
-      <ng-template ngbPaginationNext>Next</ng-template>
-    </ngb-pagination>
+    <ngb-pagination [(page)]="page" [pageSize]="pageSize" [collectionSize]="filteredAgents.length" [maxSize]="5"
+        [boundaryLinks]="true" class="pagination justify-content-end mb-0">
+        <ng-template ngbPaginationPrevious>Previous</ng-template>
+        <ng-template ngbPaginationNext>Next</ng-template>
+      </ngb-pagination>
   </nav>
+</div>
+
+
+<!--Details Modal -->
+<div class="modal fade show d-block" *ngIf="showModal" tabindex="-1" role="dialog" style="background: rgba(0,0,0,0.5)">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title modal-title-centered ">Details : {{ agent.agentName }}</h3>
+        <button type="button" class="btn-close" (click)="showModal = false"></button>
+      </div>
+      <div class="modal-body">
+        <p><strong>Agenct Name:</strong> {{ agent.agentName }}</p>
+        <p><strong>Email:</strong> {{ agent.email }}</p>
+        <p><strong>Contact Number:</strong> {{ agent.phoneNumber }}</p>
+        <p><strong>Address:</strong> {{ agent.address }}</p>
+        <p><strong>City:</strong> {{ agent.city }}</p>
+        <p><strong>State:</strong> {{ agent.state }}</p>
+        <p><strong>Pincode:</strong> {{ agent.pincode }}</p>
+        <p><strong>Registration Date:</strong> {{ agent.registrationDate }}</p>
+        <p><strong>Agency Name:</strong> {{ agent.agency.agencyName }}</p>
+        <p><strong>Agenct Status:</strong> {{ agent.status }}</p>
+        <!-- Add other details as needed -->
+      </div>
+    </div>
+  </div>
 </div>
