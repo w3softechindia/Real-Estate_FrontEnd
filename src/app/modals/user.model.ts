@@ -97,3 +97,14 @@ leadStatus:string,
 followUp:String,
 leadNotes:string
 }
+
+
+export interface Visit{
+  leadName:string,
+  propertyType:string,
+  visitDate:string,
+  visitTime:string,
+  notes:string,
+  customerFeedback:string,
+  nextStep:string
+}
