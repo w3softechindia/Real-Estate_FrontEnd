@@ -46,13 +46,15 @@ onActionClick(index: number) {
 
 }
 
-submitStatus(index: number) {
-  if (this.selectedStatus) {
-    //this.visits[index].status = this.selectedStatus;
-    this.selectedVisitIndex = null;
-    this.selectedStatus = '';
+
+
+  submitStatus(index: number): void {
+    const visit = this.visits[index];
+    this.service.updateStatus(visit.visitId, this.selectedStatus).subscribe(updated => {
+      this.visits[index].status = updated.status;
+      this.selectedVisitIndex = null;
+    });
   }
-}
 
 closePropertyModal() {
   this.selectedVisitIndex = null;

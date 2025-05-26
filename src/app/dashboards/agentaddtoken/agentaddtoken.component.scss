@@ -1,0 +1,67 @@
+.main-layout {
+    position: absolute;
+    top: 70px;
+    left: 250px;
+    right: 0;
+    bottom: 0;
+    background: #f7f9fb;
+    padding: 20px;
+  height: 50vh;
+  }
+  
+  .page-layout {
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+    max-width: 1200px;
+    margin: auto;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    
+  }
+.table-view{
+  max-height: 400px;
+  overflow-y:scroll;
+}
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 12px;
+    overflow: auto;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+    
+
+    th, td {
+      padding: 20px;
+      text-align: left;
+      border-bottom: 1px solid #eee;
+      font-size: 15px;
+    }
+
+    th {
+      background: #e9f0f7;
+      font-weight: 600;
+      color: #333;
+      font-size: 14px;
+    }
+       
+  }
+
+  .header{
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    font-size: 16px;
+    font-weight: bold;
+  }
+ 
+
+ 
+ 
+  
+ 
+
+  
+  

@@ -100,11 +100,17 @@ leadNotes:string
 
 
 export interface Visit{
+  visitId:number,
   leadName:string,
   propertyType:string,
   visitDate:string,
   visitTime:string,
   notes:string,
   customerFeedback:string,
-  nextStep:string
+  nextStep:string,
+  status:string,
+  amount:number,
+  transactionMode:string,
+  agencyStatus:string,
+  tokenId:string
 }
