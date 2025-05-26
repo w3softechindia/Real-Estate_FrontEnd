@@ -78,7 +78,8 @@
                     <td>
                       <button (click)="onActionClick(i)" class="action">Action</button>
                     </td>
-                    <!-- <td>{{ visit.status }}</td> -->
+                     <td>{{ visit.status || 'Pending' }}</td>
+
                   </tr>
                   <tr *ngIf="selectedVisitIndex === i">
         
@@ -88,15 +89,15 @@
                       
                           <div class="status-selection">
                             <label>
-                              <input type="radio" name="status" value="Reject" [(ngModel)]="selectedStatus" />
+                              <input type="radio" name="status-{{i}}" value="Reject" [(ngModel)]="selectedStatus" />
                               Reject
                             </label>
                             <label>
-                              <input type="radio" name="status" value="Hold" [(ngModel)]="selectedStatus" />
+                              <input type="radio" name="status-{{i}}" value="Hold" [(ngModel)]="selectedStatus" />
                               Hold
                             </label>
                             <label>
-                              <input type="radio" name="status" value="Token" [(ngModel)]="selectedStatus" />
+                              <input type="radio" name="status-{{i}}" value="Token" [(ngModel)]="selectedStatus" />
                               Token
                             </label>
                           </div>

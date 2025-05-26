@@ -30,6 +30,7 @@ import { AgentaddleadsComponent } from './dashboards/agentaddleads/agentaddleads
 import { AgentaddvisitsComponent } from './dashboards/agentaddvisits/agentaddvisits.component'
 import { AgentleadslistComponent } from './dashboards/agentleadslist/agentleadslist.component'
 import { AgentvisitlistComponent } from './dashboards/agentvisitlist/agentvisitlist.component'
+import { AgentaddtokenComponent } from './dashboards/agentaddtoken/agentaddtoken.component'
 
 export const routes: Routes = [
   {
@@ -81,6 +82,7 @@ export const routes: Routes = [
 {path:'agentaddvisit',component:AgentaddvisitsComponent},
 {path:'agentleadlist',component:AgentleadslistComponent},
 {path:'agentvisitlist',component:AgentvisitlistComponent},
+{path:'agentaddtoken',component:AgentaddtokenComponent},
 
   {
     path: 'agentDashboard',

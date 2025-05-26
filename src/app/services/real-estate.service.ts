@@ -129,8 +129,12 @@ return this.http.delete(`${this.baseUrl}/deleteLead?email=${lead.email}`,{respon
 return this.http.post(`${this.baseUrl}/addVisit`,visit)
   }
  
-  getAllVisits():Observable<any>{
-    return this.http.get(`${this.baseUrl}/getAllVisits`)
+  getAllVisits():Observable<Visit[]>{
+    return this.http.get<Visit[]>(`${this.baseUrl}/getAllVisits`)
+  }
+
+  updateStatus(visitId:number,status:string):Observable<any>{
+    return this.http.put(`${this.baseUrl}/updateVisitStatus?visitId=${visitId}&status=${status}`,{})
   }
 
 }

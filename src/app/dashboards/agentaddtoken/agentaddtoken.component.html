@@ -1,0 +1,48 @@
+
+<app-agenttopbar></app-agenttopbar>
+<app-agentdashboard></app-agentdashboard>
+
+<div class="main-layout">
+    <div class="page-layout">
+      <div class="container">
+        <div class="header">
+
+           <div class="table-view">
+            <table>
+              <thead>
+                <tr>
+                  <th>TokenId</th>
+                  <th>Lead Name</th>
+                  <th>Property</th>
+                  <th>Date</th>
+                  <th>Time</th>
+                  <th>Feedback</th>
+                  <th>Amount</th>
+                  <th>Transaction Mode</th>
+                  <th>Status</th>
+                  
+                </tr>
+              </thead>
+              <tbody>
+                <ng-container *ngFor="let visit of visits; let i = index">
+                  <tr>
+                    <td>{{visit.tokenId}}</td>
+                    <td>{{ visit.leadName }}</td>
+                    <td>{{ visit.propertyType }}</td>
+                    <td>{{ visit.visitDate }}</td>
+                    <td>{{ visit.visitTime }}</td>
+                    <td>{{visit.customerFeedback}}</td>
+                    <td>{{visit.amount}}</td>
+                    <td>{{ visit.transactionMode}}</td>
+                     <td>{{ visit.agencyStatus}}</td>
+                    </tr>
+                </ng-container>
+              </tbody>
+            </table>
+          </div>
+
+          
+</div>
+</div>
+</div>
+

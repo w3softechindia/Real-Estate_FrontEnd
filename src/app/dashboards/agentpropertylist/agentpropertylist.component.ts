@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { AgenttopbarComponent } from '../agenttopbar/agenttopbar.component';
 import { AgentdashboardComponent } from '../agentdashboardsidebar/agentdashboard.component';
 import { CommonModule } from '@angular/common';
+import { Venture } from '@/app/modals/user.model';
+import { RealEStateService } from '@/app/services/real-estate.service';
 
 @Component({
   selector: 'app-agentpropertylist',
@@ -11,33 +13,34 @@ import { CommonModule } from '@angular/common';
   styleUrl: './agentpropertylist.component.scss'
 })
 export class AgentpropertylistComponent {
-  properties = [
-    {
-      name: 'Sunshine Apartments',
-      location: '5th Avenue',
-      city: 'New York',
-      state: 'NY',
-      pincode: '10001',
-      price: 250000,
-      area: 1200,
-      type: 'Residential',
-      status: 'Available',
-      postedDate: new Date('2025-04-01')
-    },
+  ventures: Venture[] = [];
+  selectedVenture: Venture | null = null;
 
-    
-  ];
+  constructor(private service: RealEStateService) {}
 
-  selectedProperty: any = null;
-
-  // Toggle the detailed view of the property
-  toggleView(index: number): void {
-    this.selectedProperty = this.selectedProperty === this.properties[index] ? null : this.properties[index];
+  ngOnInit(): void {
+    this.getAllVentures();
   }
 
-closePropertyModal() {
-  this.selectedProperty = null;
-}
+  getAllVentures() {
+    this.service.getAllVentures().subscribe({
+      next: (data: Venture[]) => {
+        this.ventures = data;
+      },
+      error: (err) => {
+        console.error('Failed to load ventures', err);
+      }
+    });
+  }
+
+
+ viewDetails(venture: Venture) {
+    this.selectedVenture = venture;
+  }
+
+  closeModal() {
+    this.selectedVenture = null;
+  }
 
 
 }
