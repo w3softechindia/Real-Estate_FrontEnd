@@ -3,11 +3,12 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "node server.js",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "format": "prettier --write src/**/*.{ts,html}"
+    "format": "prettier --write src/**/*.{ts,html}",
+    "heroku-postbuild": "ng build"
   },
   "private": true,
   "dependencies": {
@@ -37,6 +38,7 @@
     "bootstrap": "^5.3.3",
     "choices.js": "^11.0.2",
     "dayjs": "^1.11.13",
+    "express": "^5.1.0",
     "flatpickr": "^4.6.13",
     "gumshoejs": "^5.1.2",
     "iconify-icon": "^2.1.0",
