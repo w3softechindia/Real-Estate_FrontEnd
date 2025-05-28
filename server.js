@@ -1,11 +1,18 @@
-let express = require('express');
+const express = require('express');
+const path = require('path');
 
-let app = express();
+const app = express();
 
-app.use(express.static(__dirname+'/dist/lahomes'));
+// Serve static Angular files
+app.use(express.static(path.join(__dirname, 'dist/lahomes')));
 
-app.get('/*',(req,resp)=>{
-    resp.sendFile(__dirname+'/dist/lahomes/index.html');
+// Wildcard route should return index.html for SPA routing
+app.get('/*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'dist/lahomes', 'index.html'));
 });
 
-app.listen(process.env.PORT || 4200);
+// Use Heroku port or 4200 locally
+const PORT = process.env.PORT || 4200;
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});
