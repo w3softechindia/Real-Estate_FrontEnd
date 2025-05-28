@@ -1106,7 +1106,7 @@ export const CUSTOM_MENUU: MenuItemType[] = [
       {
         key: 'analytics',
         label: 'Add Token',
-        url: '/dashboards/analytics',
+        url: '/agentaddtoken',
         parentKey: 'dashboards',
       },
       {
@@ -1166,7 +1166,7 @@ export const CUSTOM_MENUU: MenuItemType[] = [
     key: 'reviews',
     label: 'Reviews',
     icon: 'ri-chat-quote-line',
-    url: '/reviews',
+    url: '/agentaddtoken',
   },
   // {
   //   key: 'messages',

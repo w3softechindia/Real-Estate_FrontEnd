@@ -70,15 +70,16 @@
               <tbody>
                 <ng-container *ngFor="let visit of visits; let i = index">
                   <tr>
-                    <td>{{ visit.name }}</td>
-                    <td>{{ visit.property }}</td>
-                    <td>{{ visit.date }}</td>
-                    <td>{{ visit.time }}</td>
-                    <td>{{ visit.feedback }}</td>
+                    <td>{{ visit.leadName }}</td>
+                    <td>{{ visit.propertyType }}</td>
+                    <td>{{ visit.visitDate }}</td>
+                    <td>{{ visit.visitTime }}</td>
+                    <td>{{ visit.customerFeedback }}</td>
                     <td>
                       <button (click)="onActionClick(i)" class="action">Action</button>
                     </td>
-                    <td>{{ visit.status }}</td>
+                     <td>{{ visit.status || 'Pending' }}</td>
+
                   </tr>
                   <tr *ngIf="selectedVisitIndex === i">
         
@@ -88,15 +89,15 @@
                       
                           <div class="status-selection">
                             <label>
-                              <input type="radio" name="status" value="Reject" [(ngModel)]="selectedStatus" />
+                              <input type="radio" name="status-{{i}}" value="Reject" [(ngModel)]="selectedStatus" />
                               Reject
                             </label>
                             <label>
-                              <input type="radio" name="status" value="Hold" [(ngModel)]="selectedStatus" />
+                              <input type="radio" name="status-{{i}}" value="Hold" [(ngModel)]="selectedStatus" />
                               Hold
                             </label>
                             <label>
-                              <input type="radio" name="status" value="Token" [(ngModel)]="selectedStatus" />
+                              <input type="radio" name="status-{{i}}" value="Token" [(ngModel)]="selectedStatus" />
                               Token
                             </label>
                           </div>

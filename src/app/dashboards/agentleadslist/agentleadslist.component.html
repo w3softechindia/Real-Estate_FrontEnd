@@ -59,6 +59,7 @@
               <thead>
                 <tr>
                   <th>lead Name</th>
+                  <th>Email</th>
                   <th>Location</th>
                   <th>Budget</th>
                   <th>Property</th>
@@ -71,6 +72,7 @@
               <tbody>
                 <tr *ngFor="let lead of leads; let i=index">
                   <td>{{ lead.leadName }}</td>
+                  <td>{{lead.email}}</td>
                   <td>{{ lead.preferredLocation }}</td>
                   <td>{{ lead.estimatedBudget}}</td>
                   <td>{{ lead.interestedIn }}</td>
@@ -95,25 +97,71 @@
     <h2>Edit Lead Details</h2>
 
     <!-- Bind data to form inputs using ngModel -->
-    <label for="agentName">Lead Name:</label>
-    <input id="agentName" [(ngModel)]="selectedLead.leadName" placeholder="Enter lead name">
+     <form [formGroup]="leadForm">
+      <div class="row">
+      <div class="col-lg-6">
+        <div class="mb-3">
+    <label for="leadName">Lead Name:</label>
+    <input id="leadName" formControlName="leadName" placeholder="Enter lead name">
+    </div>
+    </div>
 
-    <label for="address">Location:</label>
-    <input id="address" [(ngModel)]="selectedLead.preferredLocation" placeholder="Enter address">
+    <div class="col-lg-6">
+      <div class="mb-3">
+    <label for="preferredLocation">Location:</label>
+    <input id="preferredLocation" formControlName="preferredLocation" placeholder="Enter address">
+    </div>
+    </div>
 
-    <label for="city">PhoneNumber:</label>
-    <input id="city" [(ngModel)]="selectedLead.phoneNumber" placeholder="Enter city">
+    <div class="col-lg-6">
+      <div class="mb-3">
+    <label for="phoneNumber">PhoneNumber:</label>
+    <input id="phoneNumber" formControlName="phoneNumber" placeholder="Enter city">
+    </div>
+    </div>
 
-    <label for="state">Source:</label>
-    <input id="state" [(ngModel)]="selectedLead.leadSource" placeholder="Enter state">
+    <div class="col-lg-6">
+      <div class="mb-3">
+    <label for="email">Email:</label>
+    <input id="email" formControlName="email" placeholder="Enter emai;">
+    </div>
+    </div>
 
-    <label for="pincode">Status:</label>
-    <input id="pincode" [(ngModel)]="selectedLead.leadStatus" placeholder="Enter pincode">
+    <div class="col-lg-6">
+      <div class="mb-3">
+    <label for="leadSource">Source:</label>
+    <input id="leadSource" formControlName="leadSource" placeholder="Enter state">
+    </div>
+    </div>
+
+    <div class="col-lg-6">
+      <div class="mb-3">
+    <label for="leadStatus">Status:</label>
+    <input id="leadStatus" formControlName="leadStatus" placeholder="Enter Status">
+    </div>
+</div>
+
+ <div class="col-lg-6">
+      <div class="mb-3">
+    <label for="estimatedBudget">Budget:</label>
+    <input id="estimatedBudget" formControlName="estimatedBudget" placeholder="Enter budget">
+    </div>
+    </div>
+
+     <div class="col-lg-6">
+      <div class="mb-3">
+    <label for="interestedIn">Property:</label>
+    <input id="interestedIn" formControlName="interestedIn" placeholder="Enter state">
+    </div>
+    </div>
 
     <div class="modal-actions">
-      <!-- <button class="update-btn" (click)="updateLead()">Update</button> -->
+       <button class="update-btn" (click)="updateLead()">Update</button> 
       <button class="cancel-btn" (click)="closeModal()">Cancel</button>
     </div>
+    </div>
+     </form>
+    
   </div>
 </div>
 

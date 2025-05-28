@@ -55,55 +55,48 @@
                     <thead>
                         <tr>
                             <th>Property Name</th>
+                            <th>Area</th>
+                            <th>Total Plots</th>
+                            <th>Available</th>
                             <th>Location</th>
                             <th>City</th>
                             <th>State</th>
+                            <th>Phone</th>
                             <th>Pincode</th>
-                            <th>Price</th>
-                            <th>Area (Sq Ft)</th>
-                            <th>Type</th>
-                            <th>Status</th>
-                            <th>Posted Date</th>
+                            <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let property of properties; let i=index">
-                            <td>{{ property.name }}</td>
-                            <td>{{ property.location }}</td>
-                            <td>{{ property.city }}</td>
-                            <td>{{ property.state }}</td>
-                            <td>{{ property.pincode }}</td>
-                            <td>{{ property.price | currency }}</td>
-                            <td>{{ property.area }} sq ft</td>
-                            <td>{{ property.type }}</td>
-                            <td>{{ property.status }}</td>
-                            <td>{{ property.postedDate | date: 'MMM d, y' }}</td>
-                            <td><button (click)="toggleView(i)" class="view-btn"><i class="fa fa-eye"></i></button></td>
+                        <tr *ngFor="let venture of ventures; let i=index">
+                                       <td>{{ venture.ventureName }}</td>
+                                        <td>{{ venture.ventureSize }}</td>
+                                        <td>{{ venture.totalPlots }}</td>
+                                        <td>{{ venture.availablePlots }}</td>
+                                         <td>{{ venture.address }}</td>
+                                         <td>{{ venture.city }}</td>
+                                        <td>{{ venture.state }}</td>
+                                         <td>{{ venture.phno }}</td>
+                                         <td>{{ venture.pincode }}</td>
+                                         <td>
+              <button (click)="viewDetails(venture)" class="btn btn-outline-success">View</button>
+            </td>
                         </tr>
                     </tbody>
                 </table>
             </div>
 
-            <div class="modal-overlay" *ngIf="selectedProperty">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h3>Property Details</h3>
-                        <button class="close-btn" (click)="closePropertyModal()">X</button>
-                    </div>
-                    <div class="modal-body">
-                        <p><strong>Name:</strong> {{ selectedProperty.name }}</p>
-                        <p><strong>Location:</strong> {{ selectedProperty.location }}</p>
-                        <p><strong>City:</strong> {{ selectedProperty.city }}</p>
-                        <p><strong>State:</strong> {{ selectedProperty.state }}</p>
-                        <p><strong>Pincode:</strong> {{ selectedProperty.pincode }}</p>
-                        <p><strong>Price:</strong> {{ selectedProperty.price | currency }}</p>
-                        <p><strong>Area:</strong> {{ selectedProperty.area }} sq ft</p>
-                        <p><strong>Type:</strong> {{ selectedProperty.type }}</p>
-                        <p><strong>Status:</strong> {{ selectedProperty.status }}</p>
-                        <p><strong>Posted Date:</strong> {{ selectedProperty.postedDate | date: 'MMM d, y' }}</p>
-                    </div>
-                </div>
-            </div>
+            <!-- Venture Detail Modal -->
+<div class="modal" *ngIf="selectedVenture" (click)="closeModal()">
+  <div class="modal-content" (click)="$event.stopPropagation()">
+    <h3>{{ selectedVenture.ventureName }}</h3>
+    <p><strong>Area:</strong> {{ selectedVenture.ventureSize }}</p>
+    <p><strong>Total Plots:</strong> {{ selectedVenture.totalPlots }}</p>
+    <p><strong>Available:</strong> {{ selectedVenture.availablePlots }}</p>
+    <p><strong>Location:</strong> {{ selectedVenture.address }}, {{ selectedVenture.city }}, {{ selectedVenture.state }} - {{ selectedVenture.pincode }}</p>
+    <p><strong>Phone:</strong> {{ selectedVenture.phno }}</p>
+    <button (click)="closeModal()">Close</button>
+  </div>
+</div>
         </div>
     </div>
 </div>

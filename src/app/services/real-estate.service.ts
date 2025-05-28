@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Agency, Agent, Lead, Venture } from '../modals/user.model';
+import { Agency, Agent, Lead, Venture, Visit } from '../modals/user.model';
 import { Observable } from 'rxjs';
 
 
@@ -118,4 +118,25 @@ return this.http.post(`${this.baseUrl}/addLead`,lead)
   getAllLeads():Observable<any>{
     return this.http.get(`${this.baseUrl}/getAllLeads`)
   }
+
+  updateLead(lead:Lead):Observable<any>{
+    return this.http.put(`${this.baseUrl}/updateLead?email=${lead.email}`,lead)
+  }
+
+  deleteLead(lead:Lead):Observable<any>{
+return this.http.delete(`${this.baseUrl}/deleteLead?email=${lead.email}`,{responseType:'text'})
+  }
+
+  addVisit(visit:Visit):Observable<any>{
+return this.http.post(`${this.baseUrl}/addVisit`,visit)
+  }
+ 
+  getAllVisits():Observable<Visit[]>{
+    return this.http.get<Visit[]>(`${this.baseUrl}/getAllVisits`)
+  }
+
+  updateStatus(visitId:number,status:string):Observable<any>{
+    return this.http.put(`${this.baseUrl}/updateVisitStatus?visitId=${visitId}&status=${status}`,{})
+  }
+
 }
