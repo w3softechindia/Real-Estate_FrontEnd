@@ -1,13 +1,11 @@
-
 const express = require('express');
 const path = require('path');
-
 const app = express();
 
-// Serve Angular static files
-app.use(express.static(path.join(__dirname, 'dist/lahomes')));
+app.use(express.static(path.join(__dirname, 'dist/lahomes'), {
+  index: 'index.html'
+}));
 
-// Correct wildcard route pattern
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'dist/lahomes/index.html'));
 });
