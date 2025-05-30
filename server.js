@@ -1,18 +1,12 @@
 
-const express = require('express');
-const path = require('path');
+let express = require('express');
 
-const app = express();
+let app = express();
 
-// Serve Angular static files
-app.use(express.static(path.join(__dirname, 'dist/lahomes')));
+app.use(express.static(__dirname+'/dist/lahomes'));
 
-// Correct wildcard route pattern
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'dist/lahomes/index.html'));
+app.get('/*',(req,resp)=>{
+    resp.sendFile(__dirname+'/dist/lahomes/index.html');
 });
 
-const PORT = process.env.PORT || 4200;
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
+app.listen(process.env.PORT || 4200);
