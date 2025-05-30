@@ -1,16 +1,13 @@
-const express = require('express');
-const path = require('path');
-const app = express();
 
-app.use(express.static(path.join(__dirname, 'dist/lahomes'), {
-  index: 'index.html'
-}));
 
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'dist/lahomes/index.html'));
+let express = require('express');
+
+let app = express();
+
+app.use(express.static(__dirname+'/dist/lahomes'));
+
+app.get('/*',(req,resp)=>{
+    resp.sendFile(__dirname+'/dist/lahomes/index.html');
 });
 
-const PORT = process.env.PORT || 4200;
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
+app.listen(process.env.PORT || 4200);
