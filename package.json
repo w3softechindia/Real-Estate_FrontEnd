@@ -8,7 +8,7 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "format": "prettier --write src/**/*.{ts,html}",
-    "heroku-postbuild": "ng build"
+    "heroku-postbuild": "ng build --configuration=production"
   },
   "private": true,
   "dependencies": {
