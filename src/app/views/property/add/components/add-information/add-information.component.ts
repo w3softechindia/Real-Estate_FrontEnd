@@ -28,6 +28,8 @@ export class AddInformationComponent implements OnInit {
   modalTitle = '';
   modalMessage = '';
   modalType: 'success' | 'danger' = 'success';
+  excelUploaded: boolean = false;
+
 
   @ViewChild('successAlertModal') successAlertModal: any;
   @ViewChild('fileInput') fileInput!: ElementRef;
@@ -124,6 +126,7 @@ export class AddInformationComponent implements OnInit {
         soldPlots: this.soldPlots,
         plots: this.venture.plots
       });
+      this.excelUploaded = true;
 
       console.log('Uploaded plots:', this.venture.plots);
     };
@@ -161,13 +164,20 @@ export class AddInformationComponent implements OnInit {
 
   addVenture() {
     if (this.registerVenture.valid) {
+      const plots = this.registerVenture.get('plots')?.value;
+
+      if ((!this.excelUploaded || !plots || plots.length === 0)) {
+        // alert('Please upload an Excel file or add plots before submitting.');
+        this.showModal('Venture', 'Please upload an Excel file or add plots before submitting.', 'danger')
+        return;
+      }
       const formData = this.registerVenture.getRawValue();
 
       console.log('Venture object:', formData); // Log the venture object
       this.service.registerVenture(formData).subscribe((data: any) => {
         this.showModal('Venture', 'Venture Details Registered Succesfully', 'success')
-       this.registerVenture.reset();
-       this.fileInput.nativeElement.value = '';
+        this.registerVenture.reset();
+        this.fileInput.nativeElement.value = '';
       });
     } else {
       this.showModal('Venture', 'Please fill out Required inputs', 'danger')
