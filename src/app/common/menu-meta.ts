@@ -87,7 +87,7 @@ export const MENU_ITEMS: MenuItemType[] = [
       {
         key: 'add-property',
         label: 'Add Venture',
-        // url: '/property/add',
+        url: '/property/add',
         parentKey: 'property',
       },
     ],
@@ -137,7 +137,7 @@ export const MENU_ITEMS: MenuItemType[] = [
       {
         key: 'add-agency',
         label: 'Add Agency',
-        // url: '/agency/add-agency',
+        url: '/agency/add-agency',
         parentKey: 'agency',
       },
     ],
@@ -151,7 +151,7 @@ export const MENU_ITEMS: MenuItemType[] = [
       {
         key: 'list-view',
         label: 'List View',
-        // url: '/agents/list',
+        url: '/agents/list',
         parentKey: 'agents',
       }
     ],
