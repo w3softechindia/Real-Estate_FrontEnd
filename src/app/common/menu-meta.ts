@@ -962,12 +962,32 @@ export const CUSTOM_MENU: MenuItemType[] = [
       // },
     ],
   },
+
+
+  
   {
     key: 'orders',
     label: 'Posts',
     icon: 'ri-home-office-line',
-    url: '/agencyposts',
+     collapsed: true,
+     children: [
+       {
+        key: 'customer-details',
+        label: 'Announcement',
+        url: '/agencyposts',
+        parentKey: 'orders',
+      },
+      {
+        key: 'add-customer',
+        label: 'List',
+        url: '/agencypostlist',
+        parentKey: 'orders',
+      },
+     ]
   },
+  
+
+  
   {
     key: 'transactions',
     label: 'Settings',

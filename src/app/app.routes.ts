@@ -34,6 +34,7 @@ import { AgentaddtokenComponent } from './dashboards/agentaddtoken/agentaddtoken
 import { AgencypostsComponent } from './dashboards/agencyposts/agencyposts.component'
 import { AgencyprofilesettingsComponent } from './dashboards/agencyprofilesettings/agencyprofilesettings.component'
 import { AgencycontractagreementComponent } from './dashboards/agencycontractagreement/agencycontractagreement.component'
+import { AgencypostlistComponent } from './dashboards/agencypostlist/agencypostlist.component'
 
 export const routes: Routes = [
   {
@@ -80,6 +81,7 @@ export const routes: Routes = [
   {path:'agencyposts', component:AgencypostsComponent},
   {path:'agencyprofile', component:AgencyprofilesettingsComponent},
   {path:'agencycontract', component:AgencycontractagreementComponent},
+  {path:'agencypostlist', component:AgencypostlistComponent},
 
 //Agent Routingss.........
 {path:'agentanalytics',component:AgentanalyticsComponent},
