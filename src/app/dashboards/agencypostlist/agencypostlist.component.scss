@@ -1,0 +1,221 @@
+.announcement-list-container {
+  margin-left: 240px;
+  padding: 40px;
+  padding-top: 100px; // space for fixed topbar
+  background: #f4f6f9;
+  max-height: calc(100vh - 60px);
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+
+  // 🔍 Filter Bar
+  .filter-bar {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 30px;
+
+    input {
+      padding: 8px 12px;
+      font-size: 14px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      background-color: #fff;
+      width: 200px;
+
+      &::placeholder {
+        color: #888;
+      }
+    }
+
+    input[type='date'] {
+      width: 180px;
+    }
+  }
+
+  // 📨 No Data Text
+  .no-data {
+    text-align: center;
+    color: #777;
+    font-style: italic;
+    margin-top: 60px;
+  }
+
+  // 📋 Announcement Card
+  .announcement-card {
+    background: #ffffff;
+    padding: 24px 28px;
+    border-radius: 14px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.06);
+    transition: transform 0.2s;
+
+    &:hover {
+      transform: translateY(-2px);
+    }
+
+    // 📌 Header with title & priority
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      h3 {
+        margin: 0;
+        font-size: 20px;
+        color: #333;
+      }
+
+      .priority {
+        padding: 6px 12px;
+        border-radius: 20px;
+        font-size: 12px;
+        font-weight: 600;
+        text-transform: uppercase;
+        color: white;
+
+        &.low {
+          background-color: #6c757d;
+        }
+
+        &.medium {
+          background-color: #007bff;
+        }
+
+        &.high {
+          background-color: #ffc107;
+          color: #333;
+        }
+
+        &.urgent {
+          background-color: #dc3545;
+        }
+      }
+    }
+
+    // 💬 Message
+    .message {
+      margin-top: 12px;
+      color: #555;
+      font-size: 15px;
+    }
+
+    // 🧾 Details section
+    .details {
+      margin-top: 16px;
+      font-size: 14px;
+      color: #444;
+
+      p {
+        margin: 4px 0;
+      }
+    }
+
+    // 📎 Attachment
+    .attachment {
+      margin-top: 10px;
+
+      a {
+        text-decoration: none;
+        color: #007bff;
+        font-weight: 600;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+
+    // 🛠️ Action buttons
+    .actions {
+      margin-top: 12px;
+      display: flex;
+      gap: 10px;
+
+      button {
+        padding: 6px 14px;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 13px;
+        font-weight: 600;
+      }
+
+      .edit-btn {
+        background-color: #17a2b8;
+        color: white;
+      }
+
+      .delete-btn {
+        background-color: #dc3545;
+        color: white;
+      }
+    }
+
+    // ✏️ Edit Form
+    .edit-form {
+      margin-top: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+
+      label {
+        font-size: 14px;
+        color: #333;
+        display: flex;
+        flex-direction: column;
+
+        input,
+        textarea,
+        select {
+          padding: 6px 10px;
+          border: 1px solid #ccc;
+          border-radius: 6px;
+          font-size: 14px;
+        }
+
+        textarea {
+          resize: vertical;
+        }
+      }
+
+      .form-actions {
+        display: flex;
+        gap: 10px;
+        margin-top: 10px;
+
+        .save-btn {
+          background-color: #28a745;
+          color: white;
+        }
+
+        .cancel-btn {
+          background-color: #6c757d;
+          color: white;
+        }
+
+        button {
+          padding: 6px 14px;
+          border: none;
+          border-radius: 6px;
+          cursor: pointer;
+          font-size: 13px;
+          font-weight: 600;
+        }
+      }
+    }
+  }
+
+  // 🖱️ Scrollbar styles
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+    border-radius: 4px;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background-color: #aaa;
+  }
+}

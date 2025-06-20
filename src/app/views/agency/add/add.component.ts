@@ -41,9 +41,9 @@ export class AddComponent implements OnInit {
       agencyPinCode: ['', Validators.required],
       city: ['', Validators.required],
       state: ['', Validators.required],
-      fbUrl: ['', Validators.required],
-      instagramUrl: ['', Validators.required],
-      twitterUrl: ['', Validators.required],
+      fbUrl: [''],
+      instagramUrl: [''],
+      twitterUrl: [''],
       email: ['', Validators.required],
       password: ['', Validators.required],
       phoneNumber: ['', [Validators.required, Validators.pattern(/^\d{10}$/)]]

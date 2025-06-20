@@ -80,7 +80,7 @@ export class PropertyDataComponent {
           this.ventures[index] = { ...this.ventures[index], ...venture };
         }
         this.filteredVentures = this.filterVentures(this.searchService.getSearchTerm());
-        this.updateModal=false;
+        this.updateModal = false;
       })
     } else {
       alert('Please fill all required inputs')
@@ -119,19 +119,27 @@ export class PropertyDataComponent {
   }
 
   goToPlots(ventureId: number): void {
-    this.showModal = false; // optional: close modal before navigation
+    this.showModal = false;
     this.router.navigate(['/plots', ventureId]);
   }
 
   page = 1;
-  pageSize = 7; // or any number of items per page you prefer
+  pageSize = 7;
 
   get paginatedVentures(): Venture[] {
     const start = (this.page - 1) * this.pageSize;
-    return this.filteredVentures.slice(start, start + this.pageSize);
+    const paginated = this.filteredVentures.slice(start, start + this.pageSize);
+    console.log(`Page ${this.page}, showing items ${start} to ${start + this.pageSize}`, paginated);
+    return paginated;
   }
+
 
   onPageChange() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
+
+  trackByIndex(index: number, item: any): number {
+    return index;
+  }
+
 }

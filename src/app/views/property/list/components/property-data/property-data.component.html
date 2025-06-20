@@ -42,8 +42,7 @@
         </tr>
       </thead>
       <tbody>
-        @for (venture of paginatedVentures; track $index) {
-        <tr>
+       <tr *ngFor="let venture of paginatedVentures; let i = index; trackBy: trackByIndex">
           <td>
             <div class="d-flex align-items-center gap-2">
               <!-- <div>
@@ -87,7 +86,6 @@
             </div>
           </td>
         </tr>
-        }
       </tbody>
     </table>
   </div>
@@ -95,9 +93,7 @@
   <div class="card-footer">
     <nav aria-label="Page navigation example">
       <ngb-pagination [(page)]="page" [pageSize]="pageSize" [collectionSize]="filteredVentures.length" [maxSize]="5"
-        [boundaryLinks]="true" class="pagination justify-content-end mb-0">
-        <ng-template ngbPaginationPrevious>Previous</ng-template>
-        <ng-template ngbPaginationNext>Next</ng-template>
+        [boundaryLinks]="true" (pageChange)="onPageChange()" class="pagination justify-content-end mb-0">
       </ngb-pagination>
     </nav>
   </div>

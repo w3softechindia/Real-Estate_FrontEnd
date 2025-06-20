@@ -1,0 +1,73 @@
+<app-agencytopbar></app-agencytopbar>
+<app-agencyssidebar></app-agencyssidebar>
+
+<div class="announcement-list-container">
+
+  <!-- 🔍 Filter Bar -->
+  <div class="filter-bar">
+    <input
+      type="text"
+      placeholder="Search by title"
+      [(ngModel)]="filter.title"
+      name="title"
+    />
+    <input
+      type="date"
+      [(ngModel)]="filter.startDate"
+      name="startDate"
+    />
+  </div>
+
+  <!-- 📭 No Data -->
+  <div *ngIf="filteredAnnouncements().length === 0" class="no-data">
+    No announcements available.
+  </div>
+
+  <!-- 📋 Announcement Cards -->
+  <div class="announcement-card" *ngFor="let post of filteredAnnouncements()">
+    <div class="header">
+      <h3>{{ post.title }}</h3>
+      <span class="priority" [ngClass]="post.priority.toLowerCase()">{{ post.priority }}</span>
+    </div>
+
+    <p class="message">{{ post.message }}</p>
+
+    <div class="details">
+      <p><strong>Department:</strong> {{ post.department }}</p>
+      <p><strong>Audience:</strong> {{ post.audience }}</p>
+      <p><strong>Posted By:</strong> {{ post.postedBy }}</p>
+      <p><strong>Active From:</strong> {{ post.startDate }} to {{ post.endDate || 'Ongoing' }}</p>
+    </div>
+
+    <div class="attachment" *ngIf="post.attachment">
+      <a [href]="post.attachment" target="_blank">View Attachment</a>
+    </div>
+
+    <div class="actions">
+      <button class="edit-btn" (click)="onEdit(post)">Edit</button>
+      <button class="delete-btn" (click)="onDelete(post.id)">Delete</button>
+    </div>
+
+    <!-- ✏️ Edit Form -->
+    <div class="edit-form" *ngIf="editPost?.id === post.id">
+      <label>Title: <input [(ngModel)]="editPost.title" /></label>
+      <label>Message: <textarea [(ngModel)]="editPost.message"></textarea></label>
+      <label>Department: <input [(ngModel)]="editPost.department" /></label>
+      <label>Audience: <input [(ngModel)]="editPost.audience" /></label>
+      <label>Priority:
+        <select [(ngModel)]="editPost.priority">
+          <option value="Low">Low</option>
+          <option value="Medium">Medium</option>
+          <option value="High">High</option>
+          <option value="Urgent">Urgent</option>
+        </select>
+      </label>
+      <label>Start Date: <input type="date" [(ngModel)]="editPost.startDate" /></label>
+      <label>End Date: <input type="date" [(ngModel)]="editPost.endDate" /></label>
+      <div class="form-actions">
+        <button class="save-btn" (click)="onSave()">Save</button>
+        <button class="cancel-btn" (click)="onCancelEdit()">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>

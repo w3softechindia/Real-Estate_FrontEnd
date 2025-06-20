@@ -87,7 +87,7 @@ export const MENU_ITEMS: MenuItemType[] = [
       {
         key: 'add-property',
         label: 'Add Venture',
-        // url: '/property/add',
+        url: '/property/add',
         parentKey: 'property',
       },
     ],
@@ -137,7 +137,7 @@ export const MENU_ITEMS: MenuItemType[] = [
       {
         key: 'add-agency',
         label: 'Add Agency',
-        // url: '/agency/add-agency',
+        url: '/agency/add-agency',
         parentKey: 'agency',
       },
     ],
@@ -151,7 +151,7 @@ export const MENU_ITEMS: MenuItemType[] = [
       {
         key: 'list-view',
         label: 'List View',
-        // url: '/agents/list',
+        url: '/agents/list',
         parentKey: 'agents',
       }
     ],
@@ -962,36 +962,56 @@ export const CUSTOM_MENU: MenuItemType[] = [
       // },
     ],
   },
+
+
+  
   {
     key: 'orders',
-    label: 'Orders',
+    label: 'Posts',
     icon: 'ri-home-office-line',
-    url: '/orders',
+     collapsed: true,
+     children: [
+       {
+        key: 'customer-details',
+        label: 'Announcement',
+        url: '/agencyposts',
+        parentKey: 'orders',
+      },
+      {
+        key: 'add-customer',
+        label: 'List',
+        url: '/agencypostlist',
+        parentKey: 'orders',
+      },
+     ]
   },
+  
+
+  
   {
     key: 'transactions',
-    label: 'Transactions',
+    label: 'Settings',
     icon: 'ri-arrow-left-right-line',
-    url: '/transactions',
+    url: '/agencyprofile',
   },
-  {
-    key: 'reviews',
-    label: 'Reviews',
-    icon: 'ri-chat-quote-line',
-    url: '/reviews',
-  },
+  // {
+  //   key: 'reviews',
+  //   label: 'Reviews',
+  //   icon: 'ri-chat-quote-line',
+  //   url: '/reviews',
+  // },
   {
     key: 'messages',
-    label: 'Messages',
+    label: 'Contract&Aggrement',
     icon: 'ri-discuss-line',
-    url: '/messages',
+    url: '/agencycontract',
   },
-  {
-    key: 'inbox',
-    label: 'Inbox',
-    icon: 'ri-inbox-line',
-    url: '/inbox',
-  },
+  // {
+  //   key: 'inbox',
+  //   label: 'Inbox',
+  //   icon: 'ri-inbox-line',
+  //   url: '/inbox',
+  // },
  
 
 ];
