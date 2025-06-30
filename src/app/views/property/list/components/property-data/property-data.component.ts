@@ -32,12 +32,6 @@ export class PropertyDataComponent {
   ngOnInit() {
     this.getAllVentures();
 
-    this.searchSub = this.searchService.searchTerm$.subscribe(term => {
-      console.log('Filtering for:', term);
-      this.filteredVentures = this.filterVentures(term);
-      console.log('Filtered:', this.filteredVentures);
-    });
-
     this.updateVenture = this.fb.group({
       ventureName: ['', Validators.required],
       ventureSize: ['', Validators.required],
@@ -54,6 +48,12 @@ export class PropertyDataComponent {
       this.ventures = data;
       this.page = 1; // reset to first page
       this.filteredVentures = this.filterVentures(this.searchService.getSearchTerm());
+
+       this.searchSub = this.searchService.searchTerm$.subscribe(term => {
+      console.log('Filtering for:', term);
+      this.filteredVentures = this.filterVentures(term);
+      console.log('Filtered:', this.filteredVentures);
+    });
     });
   }
 
