@@ -75,7 +75,7 @@ export class AgencyaddagentComponent {
       },
       error: (err) => {
         console.error('Agent registration failed:', err);
-        alert('Failed to register agent!');
+        alert('Agent Resgisterd Already');
       }
     });
   }
