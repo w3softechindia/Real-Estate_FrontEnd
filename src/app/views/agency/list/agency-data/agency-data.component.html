@@ -13,19 +13,13 @@
         </tr>
       </thead>
       <tbody>
-        @for (item of paginatedAgencies; track $index) {
-        <tr>
+        <tr *ngFor="let item of filteredAgencies; let i = index">
           <td>
             <div class="d-flex align-items-center gap-2">
-              <!-- <div>
-                  <img
-                    [src]="item.image"
-                    alt=""
-                    class="avatar-sm rounded-circle"
-                  />
-                </div> -->
               <div>
-                <a href="javascript:void(0);" class="text-dark fw-medium fs-15">{{ item.agencyName }}</a>
+                <a href="javascript:void(0);" class="text-dark fw-medium fs-15">
+                  {{ item.agencyName }}
+                </a>
               </div>
             </div>
           </td>
@@ -35,27 +29,27 @@
           <td>{{ item.registrationDate }}</td>
           <td>
             <span class="badge py-1 px-2 fs-13" [ngClass]="
-                  item.status == 'Active'
-                    ? 'bg-success-subtle text-success'
-                    : 'bg-danger-subtle text-danger'
-                ">{{ item.status }}</span>
+            item.status == 'Active'
+              ? 'bg-success-subtle text-success'
+              : 'bg-danger-subtle text-danger'
+          ">{{ item.status }}</span>
           </td>
           <td>
             <div class="d-flex gap-2">
               <a href="javascript:void(0);" class="btn btn-light btn-sm" (click)="openDetailsModal(item)">
                 <iconify-icon icon="solar:eye-broken" class="align-middle fs-18"></iconify-icon>
               </a>
-              <a href="javascript:void(0);" class="btn btn-soft-primary btn-sm"
-                (click)="openUpdateModal(item)"><iconify-icon icon="solar:pen-2-broken"
-                  class="align-middle fs-18"></iconify-icon></a>
-              <a href="javascript:void(0);" class="btn btn-soft-danger btn-sm"
-                (click)="openDeleteModal(item)"><iconify-icon icon="solar:trash-bin-minimalistic-2-broken"
-                  class="align-middle fs-18"></iconify-icon></a>
+              <a href="javascript:void(0);" class="btn btn-soft-primary btn-sm" (click)="openUpdateModal(item)">
+                <iconify-icon icon="solar:pen-2-broken" class="align-middle fs-18"></iconify-icon>
+              </a>
+              <a href="javascript:void(0);" class="btn btn-soft-danger btn-sm" (click)="openDeleteModal(item)">
+                <iconify-icon icon="solar:trash-bin-minimalistic-2-broken" class="align-middle fs-18"></iconify-icon>
+              </a>
             </div>
           </td>
         </tr>
-        }
       </tbody>
+
     </table>
   </div>
   <div class="card-footer">
@@ -136,8 +130,8 @@
             <div class="col-lg-4">
               <div class="mb-3">
                 <label for="phoneNumber" class="form-label">Agency Number <span class="text-danger">*</span></label>
-                <input type="number" id="phoneNumber" class="form-control" formControlName="phoneNumber" placeholder="Enter Number"
-                  required />
+                <input type="number" id="phoneNumber" class="form-control" formControlName="phoneNumber"
+                  placeholder="Enter Number" required />
                 <div *ngIf="updateAgency.get('phoneNumber')?.touched && updateAgency.get('phoneNumber')?.invalid"
                   class="text-danger mt-1">
                   Agency Phone Number is required.
