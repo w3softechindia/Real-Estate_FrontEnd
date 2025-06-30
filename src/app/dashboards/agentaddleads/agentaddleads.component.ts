@@ -21,13 +21,13 @@ export class AgentaddleadsComponent {
 
   ngOnInit():void{
     this.leadForm=this.fb.group({
-      leadName:['',Validators.required],
-      phoneNumber:['',Validators.required],
-      email:['',Validators.required],
+      leadName:['',[Validators.required,Validators.pattern(/^[A-Za-z]+$/)]],
+      phoneNumber:['',[Validators.required,Validators.pattern(/^[0-9]{10}$/)]],
+      email:['',[Validators.required,Validators.email]],
       leadSource:['',Validators.required],
       interestedIn:['',Validators.required],
-      preferredLocation:['',Validators.required],
-      estimatedBudget:[0,Validators.required],
+      preferredLocation:['',[Validators.required,Validators.pattern(/^[A-Za-z]+$/)]],
+      estimatedBudget:[0,[Validators.required,Validators.pattern(/^[0-9]+$/)]],
       leadStatus:['',Validators.required],
       followUp:['',Validators.required],
       leadNotes:['',Validators.required]
@@ -51,4 +51,10 @@ export class AgentaddleadsComponent {
     this.leadForm.markAllAsTouched();
   }
   }
+
+   // convenience getter
+  get f() { return this.leadForm.controls; }
 }
+
+ 
+

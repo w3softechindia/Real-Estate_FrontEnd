@@ -8,18 +8,36 @@
             <form   class="lead-form" [formGroup]="leadForm" (ngSubmit)="addLead()" >
       <div class="form-group">
                     <label for="leadName">Lead Name</label>
-                    <input type="text" id="leadName"  formControlName="leadName" placeholder="Ravi Kumar" required>
+                    <input type="text" id="leadName"  formControlName="leadName" placeholder="Ravi Kumar">
+                     <div class="error" *ngIf="f['leadName'].touched && f['leadName'].invalid">
+      <small *ngIf="f['leadName'].errors?.['required']">Lead Name is required.</small>
+      <small *ngIf="f['leadName'].errors?.['pattern']">
+        Only alphabetic characters are allowed.
+      </small>
+    </div>
                 </div>
             
                 <div class="form-group">
                     <label for="phoneNumber">Phone Number</label>
-                    <input type="tel" id="phoneNumber"   formControlName="phoneNumber" placeholder="7894561230" pattern="[0-9]{10}" required>
-                </div>
+                    <input type="tel" id="phoneNumber"   formControlName="phoneNumber" placeholder="7894561230">
+            <div class="error" *ngIf="f['phoneNumber'].touched && f['phoneNumber'].invalid || f['phoneNumber'].dirty">
+      <small *ngIf="f['phoneNumber'].errors?.['required']">phoneNumber is required.</small>
+      <small *ngIf="f['phoneNumber'].errors?.['pattern']">
+        Enter a valid 10‑digit phone number.
+      </small>
+    </div>
+    </div>
             
                 <div class="form-group">
                     <label for="email">Email</label>
                     <input type="email" id="email" formControlName="email" placeholder="ravi@example.com">
-                </div>
+                        <div class="error" *ngIf="f['email'].touched && f['email'].invalid">
+      <small *ngIf="f['email'].errors?.['required']">Email is required.</small>
+      <small *ngIf="f['email'].errors?.['email']">
+        Enter a valid email address.
+      </small>
+    </div>
+    </div>
             
                 <!-- Lead Details -->
                 <div class="form-group">
@@ -33,7 +51,10 @@
                         <option value="Walk-in">Walk-in</option>
                         <option value="Cold Call">Cold Call</option>
                     </select>
-                </div>
+                    <div class="error" *ngIf="f['leadSource'].touched && f['leadSource'].invalid">
+      <small *ngIf="f['leadSource'].errors?.['required']">Lead source is required.</small>
+    </div>
+</div>
             
                 <div class="form-group">
                     <label for="interestedIn">Interested In</label>
@@ -44,17 +65,32 @@
                         <option value="Plot">Plot</option>
                         <option value="Commercial Property">Commercial Property</option>
                     </select>
-                </div>
+                    <div class="error" *ngIf="f['interestedIn'].touched && f['interestedIn'].invalid">
+      <small *ngIf="f['interestedIn'].errors?.['required']">Property Prefernce is required.</small>
+    </div>
+    </div>
             
                 <div class="form-group">
                     <label for="preferredLocation">Preferred Location</label>
                     <input type="text" id="preferredLocation" formControlName="preferredLocation" placeholder="Kondapur, Hyderabad">
-                </div>
+                    <div class="error" *ngIf="f['preferredLocation'].touched && f['preferredLocation'].invalid">
+      <small *ngIf="f['preferredLocation'].errors?.['required']">preferred Location is required.</small>
+      <small *ngIf="f['preferredLocation'].errors?.['pattern']">
+        Only alphabetic characters are allowed.
+      </small>
+      </div>
+    </div>
             
                 <div class="form-group">
                     <label for="budget">Estimated Budget (₹)</label>
                     <input type="number" id="budget" formControlName="estimatedBudget" placeholder="6000000">
-                </div>
+                    <div class="error" *ngIf="f['estimatedBudget'].touched && f['estimatedBudget'].invalid || f['phoneNumber'].dirty">
+      <small *ngIf="f['estimatedBudget'].errors?.['required']">Budget is required.</small>
+      <small *ngIf="f['estimatedBudget'].errors?.['pattern']">
+        Enter a valid Budget.
+      </small>
+    </div>
+    </div>
             
               
             
@@ -69,12 +105,18 @@
                         <option value="Converted">Converted</option>
                         <option value="Closed">Closed</option>
                     </select>
-                </div>
+                    <div class="error" *ngIf="f['leadStatus'].touched && f['leadSource'].invalid">
+      <small *ngIf="f['leadStatus'].errors?.['required']">Status is required.</small>
+    </div>
+</div>
             
-                <div class="form-group">
+                    <div class="form-group">
                     <label for="followUpDate">Next Follow-Up Date</label>
                     <input type="date" id="followUpDate" formControlName="followUp">
-                </div>
+                    <div class="error" *ngIf="f['followUp'].touched && f['followUp'].invalid">
+                    <small *ngIf="f['followUp'].errors?.['required']">followUpDate is required.</small>
+                    </div>
+                    </div>
             
                 <div class="form-group">
                     <label for="notes">Lead Notes</label>
