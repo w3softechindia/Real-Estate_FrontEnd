@@ -8,7 +8,7 @@ import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
 import { Router } from '@angular/router'
 import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap'
 import { agentData } from '@views/agents/data'
-import { Subscription } from 'rxjs'
+import { debounceTime, Subscription, tap } from 'rxjs'
 
 @Component({
   selector: 'agency-data',
@@ -36,12 +36,6 @@ export class AgencyDataComponent implements OnInit {
   ngOnInit(): void {
     this.getAllAgencies();
 
-    this.searchSub = this.searchService.searchTerm$.subscribe(term => {
-      console.log('Filtering for:', term);
-      this.filteredAgencies = this.filterAgencies(term);
-      console.log('Filtered:', this.filteredAgencies);
-    });
-
     this.updateAgency = this.fb.group({
       agencyName: ['', Validators.required],
       agencyAddress: ['', Validators.required],
@@ -56,22 +50,27 @@ export class AgencyDataComponent implements OnInit {
     });
   }
 
-  private getAllAgencies() {
+
+  private getAllAgencies(){
     this.service.getAllAgencies().subscribe((data: Agency[]) => {
       this.agency = data;
-      this.page = 1;
       this.filteredAgencies = this.filterAgencies(this.searchService.getSearchTerm());
-      console.log('Agencies:', data);
+
+      this.searchSub = this.searchService.searchTerm$.subscribe(term => {
+        console.log('Filtering for:', term);
+        this.filteredAgencies = this.filterAgencies(term);
+        console.log('Filtered result:', this.filteredAgencies);
+      });
     });
   }
+
 
   private filterAgencies(term: string): Agency[] {
     const lowerTerm = term.toLowerCase();
     return this.agency.filter(agency =>
       (agency.agencyName || '').toLowerCase().includes(lowerTerm) ||
       (agency.agencyAddress || '').toLowerCase().includes(lowerTerm) ||
-      (agency.email || '').toLowerCase().includes(lowerTerm) ||
-      (agency.phoneNumber || '')
+      (agency.email || '').toLowerCase().includes(lowerTerm)
     );
   }
 
@@ -85,12 +84,12 @@ export class AgencyDataComponent implements OnInit {
       console.log(agency)
       this.service.updateAgency(email, agency).subscribe((data) => {
         alert("Updated Successfully..!!");
-        const agen= this.agency.findIndex(v=> v.email=== email);
-        if(agen!== -1){
-          this.agency[agen]={ ...this.agency[agen], ...agency}
+        const agen = this.agency.findIndex(v => v.email === email);
+        if (agen !== -1) {
+          this.agency[agen] = { ...this.agency[agen], ...agency }
         }
-         this.filteredAgencies = this.filterAgencies(this.searchService.getSearchTerm());
-        this.updateModal=false;
+        this.filteredAgencies = this.filterAgencies(this.searchService.getSearchTerm());
+        this.updateModal = false;
       }, (error) => {
         console.log(error);
       })
@@ -100,13 +99,13 @@ export class AgencyDataComponent implements OnInit {
   }
 
   deleteAgency(email: string) {
-  this.service.deleteAgency(email).subscribe((data) => {
-    alert('Agency Deleted..!!');
-    this.agency = this.agency.filter(agency => agency.email !== email);
-    this.filteredAgencies = this.filterAgencies(this.searchService.getSearchTerm());
-    this.deleteModal=false;
-  });
-}
+    this.service.deleteAgency(email).subscribe((data) => {
+      alert('Agency Deleted..!!');
+      this.agency = this.agency.filter(agency => agency.email !== email);
+      this.filteredAgencies = this.filterAgencies(this.searchService.getSearchTerm());
+      this.deleteModal = false;
+    });
+  }
 
   agencies!: Agency;
   showModal = false;

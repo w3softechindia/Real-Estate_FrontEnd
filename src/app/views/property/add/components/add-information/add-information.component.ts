@@ -29,6 +29,7 @@ export class AddInformationComponent implements OnInit {
   modalMessage = '';
   modalType: 'success' | 'danger' = 'success';
   excelUploaded: boolean = false;
+  selectedFile!:File;
 
 
   @ViewChild('successAlertModal') successAlertModal: any;
@@ -57,6 +58,7 @@ export class AddInformationComponent implements OnInit {
   onFileChange(event: any): void {
     const target: DataTransfer = <DataTransfer>(event.target);
     const file = event.target.files[0];
+    this.selectedFile=event.target.files[0];
     this.excelFile = file ? file : null;
     if (target.files.length !== 1) {
       alert('Please upload one Excel file.');
@@ -174,7 +176,7 @@ export class AddInformationComponent implements OnInit {
       const formData = this.registerVenture.getRawValue();
 
       console.log('Venture object:', formData); // Log the venture object
-      this.service.registerVenture(formData).subscribe((data: any) => {
+      this.service.registerVenture(formData,this.selectedFile).subscribe((data: any) => {
         this.showModal('Venture', 'Venture Details Registered Succesfully', 'success')
         this.registerVenture.reset();
         this.fileInput.nativeElement.value = '';
