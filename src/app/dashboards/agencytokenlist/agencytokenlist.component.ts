@@ -24,6 +24,7 @@ export class AgencytokenlistComponent {
       agentName: 'John Doe',
       customerName: 'Emily Clark',
       date: new Date('2025-04-01'),
+      timeframe:'2025-04-01',
       details: 'Booking token for property Sunshine Apartments',
       status: 'pending'
     },
@@ -32,6 +33,7 @@ export class AgencytokenlistComponent {
       agentName: 'Michael Smith',
       customerName: 'David Johnson',
       date: new Date('2025-04-15'),
+       timeframe:'2025-04-01',
       details: 'Booking token for property Green Villa',
       status: 'pending'
     },
@@ -40,6 +42,7 @@ export class AgencytokenlistComponent {
       agentName: 'Alice Brown',
       customerName: 'Chris Evans',
       date: new Date('2025-04-20'),
+       timeframe:'2025-04-01',
       details: 'Booking token for property Ocean Breeze',
       status: 'pending'
     }
