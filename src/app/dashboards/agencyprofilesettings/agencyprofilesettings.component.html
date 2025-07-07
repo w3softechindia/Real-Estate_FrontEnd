@@ -3,8 +3,9 @@
 
 <div class="update-container">
   <div class="update-card">
-    <h2>Update Agency Contact Details</h2>
-    <form (ngSubmit)="updateAgency()" #updateForm="ngForm">
+    <h2 class="title">Update Your Contact Details</h2>
+
+    <form (ngSubmit)="updateAgency()" #updateForm="ngForm" novalidate>
       <div class="form-grid">
         <div class="form-group">
           <label for="phoneNumber">Phone Number</label>
@@ -14,6 +15,7 @@
             name="phoneNumber"
             [(ngModel)]="agency.phoneNumber"
             required
+            placeholder="Enter phone number"
           />
         </div>
 
@@ -25,6 +27,7 @@
             name="address"
             [(ngModel)]="agency.address"
             required
+            placeholder="Enter address"
           />
         </div>
 
@@ -36,6 +39,7 @@
             name="city"
             [(ngModel)]="agency.city"
             required
+            placeholder="Enter city"
           />
         </div>
 
@@ -47,6 +51,7 @@
             name="state"
             [(ngModel)]="agency.state"
             required
+            placeholder="Enter state"
           />
         </div>
 
@@ -58,6 +63,7 @@
             name="pincode"
             [(ngModel)]="agency.pincode"
             required
+            placeholder="Enter pincode"
           />
         </div>
       </div>
