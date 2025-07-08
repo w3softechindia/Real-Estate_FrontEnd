@@ -11,17 +11,15 @@
             <table>
               <thead>
                 <tr>
-                  <th>TokenId</th>
+                  <th>Token Id</th>
                   <th>Lead Name</th>
                   <th>Property</th>
                   <th>Date</th>
-                  <th>Time</th>
-                  <th>Feedback</th>
                   <th>Amount</th>
                   <th>Transaction Mode</th>
                   <th>Status</th>
-                  
-                </tr>
+                  <th>DeadLine</th>
+                  </tr>
               </thead>
               <tbody>
                 <ng-container *ngFor="let visit of visits; let i = index">
@@ -30,19 +28,54 @@
                     <td>{{ visit.leadName }}</td>
                     <td>{{ visit.propertyType }}</td>
                     <td>{{ visit.visitDate }}</td>
-                    <td>{{ visit.visitTime }}</td>
-                    <td>{{visit.customerFeedback}}</td>
-                    <td>{{visit.amount}}</td>
-                    <td>{{ visit.transactionMode}}</td>
+                    <td>
+                      <!-- <input type="number" [(ngModel)]="visit.amount" placeholder="Enter Amount"/> -->
+                    </td>
+                    <td>
+                      <!-- <select [(ngModel)]="visit.transactionMode">
+                      <option *ngFor="let transaction of transactions " [value]="transaction">{{transaction}}</option>
+                    </select> -->
+                  </td>
                      <td>{{ visit.agencyStatus}}</td>
+                     <td>{{visit.deadline}}</td>
+                     <td>
+                      <button type="button" (click)="openSendModal(visit)">Send</button>
+                     </td>
                     </tr>
                 </ng-container>
               </tbody>
             </table>
           </div>
+</div>
+</div>
+</div>
 
-          
+<!-- Send Token Modal -->
+<div *ngIf="showModal" class="modal">
+  <div class="modal-content">
+    <h2>Send Token Details</h2>
+    <form [formGroup]="tokenForm" (ngSubmit)="sendToken()">
+      <div class="form-group">
+        <label for="amount">Amount</label>
+        <input id="amount" type="number" formControlName="amount" />
+      </div>
+      <div class="form-group">
+        <label for="transactionMode">Transaction Mode</label>
+        <select id="transactionMode" formControlName="transactionMode">
+          <option value="" disabled>Select Mode</option>
+          <option *ngFor="let t of transactions" [value]="t">{{ t }}</option>
+        </select>
+      </div>
+       <div class="form-group">
+        <label for="deadline">DeadLine</label>
+        <input id="deadline" type="date" formControlName="deadline" />
+      </div>
+      <div class="modal-actions">
+        <button class="send-btn" [disabled]="tokenForm.invalid">Send</button>
+        <button class="cancel-btn" (click)="closeModal()">Cancel</button>
+      </div>
+    </form>
+  </div>
 </div>
-</div>
-</div>
+
 

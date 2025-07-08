@@ -113,7 +113,8 @@ export interface Visit{
   amount:number,
   transactionMode:string,
   agencyStatus:string,
-  tokenId:string
+  tokenId:string,
+  deadline:number
 }
 
 // plots-details.dto.ts
@@ -125,3 +126,4 @@ export interface PlotsDetailsDto {
   countOfSoldPlots: number;
   countOfUnAssignedPlots: number;
 }
+

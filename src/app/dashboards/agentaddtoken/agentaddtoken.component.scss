@@ -6,7 +6,7 @@
     bottom: 0;
     background: #f7f9fb;
     padding: 20px;
-  height: 50vh;
+    height: 50vh;
   }
   
   .page-layout {
@@ -57,9 +57,78 @@
     font-weight: bold;
   }
  
+button{
+      background-color:#007bff;
+      font-size: 14px;
+      border: none;
+      color: #ffffff;
+      cursor: pointer;
+      border-radius: 8px;
+      padding: 10px;
+}
+ 
+input,select{
+     padding: 10px 12px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        font-size: 14px;
+        transition: border 0.2s;
+  
+        &:focus {
+          border-color: #007bff;
+          outline: none;
+        }
+}
+ 
+  .modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
- 
- 
+    .form-group{
+      padding: 10px;
+    }
+  }
+  
+    .modal-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    width: 400px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+
+.modal-actions {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .modal-content .form-group input,
+.modal-content .form-group select {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+   .send-btn, .cancel-btn {
+    padding: 10px 15px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .send-btn:hover, .cancel-btn:hover {
+    background-color: #45a049;
+  }
   
  
 
