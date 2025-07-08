@@ -32,6 +32,7 @@
             <th>Agent Name</th>
             <th>Customer Name</th>
             <th>Date</th>
+            <th>Time Frame</th>
             <th>View</th>
             <th>Actions</th>
           </tr>
@@ -42,6 +43,7 @@
             <td>{{ token.agentName }}</td>
             <td>{{ token.customerName }}</td>
             <td>{{ token.date | date: 'MMM d, y' }}</td>
+            <td>{{token.timeframe}}</td>
             <td>
               <button class="view-btn" (click)="viewToken(token)">View</button>
             </td>
