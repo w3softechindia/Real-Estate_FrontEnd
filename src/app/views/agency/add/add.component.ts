@@ -31,7 +31,7 @@ export class AddComponent implements OnInit {
 
   @ViewChild('successAlertModal') successAlertModal: any;
 
-  constructor(private service: RealEStateService, private fb: FormBuilder,private modalService: NgbModal) {
+  constructor(private service: RealEStateService, private fb: FormBuilder, private modalService: NgbModal) {
   }
 
   ngOnInit(): void {
@@ -50,7 +50,7 @@ export class AddComponent implements OnInit {
     });
   }
 
-  addAgency() :void{
+  addAgency(): void {
     console.log("is formvalid", this.registerAgency.valid);
     if (this.registerAgency.valid) {
       const agency = this.registerAgency.value;
@@ -58,12 +58,14 @@ export class AddComponent implements OnInit {
 
       this.service.registerAgency(agency).subscribe((data: Agency) => {
         console.log('Agency Added Succesfully..!!');
-        this.showModal('Agency','Registered Succesfully','success')
-      }, (error) => {
-        console.log(error);
+        this.showModal('Agency', 'Registered Succesfully', 'success')
+        this.registerAgency.reset();
+      }, (err) => {
+        const error = err.error.message;
+        this.showModal('Agency', error, 'danger');
       })
     } else {
-      this.showModal('Agency','Please fill the Register Form with correct values','danger')
+      this.showModal('Agency', 'Please fill the Register Form with correct values', 'danger')
     }
   }
 
@@ -80,10 +82,12 @@ export class AddComponent implements OnInit {
 
   onModalOk(modal: any) {
     modal.close();
-    this.registerAgency.reset();
+    if (modal.type === 'success') {
+      this.registerAgency.reset();
+    }
   }
 
-  resetForm(){
+  resetForm() {
     this.registerAgency.reset();
   }
 }
