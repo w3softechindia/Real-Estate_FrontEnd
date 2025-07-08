@@ -45,7 +45,7 @@
               <span
                 class="badge py-1 px-2 fs-13"
                 [ngClass]="
-                  item.status == 'Active'
+                  item.status == 'ACTIVE'
                     ? 'bg-success-subtle text-success'
                     : 'bg-danger-subtle text-danger'
                 "
@@ -86,8 +86,8 @@
   <nav aria-label="Page navigation example">
     <ngb-pagination [(page)]="page" [pageSize]="pageSize" [collectionSize]="filteredAgents.length" [maxSize]="5"
         [boundaryLinks]="true" class="pagination justify-content-end mb-0">
-        <ng-template ngbPaginationPrevious>Previous</ng-template>
-        <ng-template ngbPaginationNext>Next</ng-template>
+        <!-- <ng-template ngbPaginationPrevious>Previous</ng-template>
+        <ng-template ngbPaginationNext>Next</ng-template> -->
       </ngb-pagination>
   </nav>
 </div>

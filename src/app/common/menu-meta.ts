@@ -128,17 +128,17 @@ export const MENU_ITEMS: MenuItemType[] = [
       //   url: '/agents/grid',
       //   parentKey: 'agents',
       // },
-      // {
-      //   key: 'agent-details',
-      //   label: 'Agency Details',
-      //   url: '/agents/details',
-      //   parentKey: 'agents',
-      // },
       {
         key: 'add-agency',
         label: 'Add Agency',
         url: '/agency/add-agency',
         parentKey: 'agency',
+      },
+      {
+         key: 'assign-venture',
+         label: 'Assign Venture',
+         url: '/agency/assign-venture',
+         parentKey: 'agency',
       },
     ],
   },
@@ -189,34 +189,44 @@ export const MENU_ITEMS: MenuItemType[] = [
     ],
   },
   {
-    key: 'orders',
+    key: 'pages',
+    // key:'orders',
     label: 'Orders',
     icon: 'ri-home-office-line',
     // url: '/orders',
+    url:'/pages/coming-soon'
   },
   {
-    key: 'transactions',
+    key: 'pages',
+    // key:'transactions',
     label: 'Transactions',
     icon: 'ri-arrow-left-right-line',
     // url: '/transactions',
+    url:'/pages/coming-soon'
   },
   {
-    key: 'reviews',
+    // key: 'reviews',
+    key: 'pages',
     label: 'Reviews',
     icon: 'ri-chat-quote-line',
     // url: '/reviews',
+     url:'/pages/coming-soon'
   },
   {
-    key: 'messages',
+    // key: 'messages',
+    key: 'pages',
     label: 'Messages',
     icon: 'ri-discuss-line',
     // url: '/messages',
+     url:'/pages/coming-soon'
   },
   {
-    key: 'inbox',
+    // key: 'inbox',
+    key: 'pages',
     label: 'Inbox',
     icon: 'ri-inbox-line',
     // url: '/inbox',
+     url:'/pages/coming-soon'
   },
   {
     key: 'post',

@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Agency, Agent, Lead, Venture, Visit } from '../modals/user.model';
+import { Agency, Agent, Lead, Plots, PlotsDetailsDto, Venture, Visit } from '../modals/user.model';
 import { Observable } from 'rxjs';
 
 
@@ -11,9 +11,9 @@ export class RealEStateService {
 
   constructor(private http: HttpClient) { }
 
-  // private baseUrl='http://localhost:8080'
+  private baseUrl = 'http://localhost:8080'
 
-  private baseUrl = "https://realestate-java-684bdd5bd699.herokuapp.com"
+  // private baseUrl = "https://realestate-java-684bdd5bd699.herokuapp.com"
 
   login(user: any) {
     return this.http.post(`${this.baseUrl}/login`, user);
@@ -35,7 +35,7 @@ export class RealEStateService {
     return this.http.get<any[]>(`${this.baseUrl}/getAllAgents`)
   }
 
-  registerVenture(venture: any,file:File): Observable<any> {
+  registerVenture(venture: any, file: File): Observable<any> {
     const formData = new FormData();
     formData.append('jsonVenture', JSON.stringify(venture));
     formData.append('file', file);
@@ -86,6 +86,27 @@ export class RealEStateService {
     const params = { email };
     return this.http.delete(`${this.baseUrl}/deleteAgency`, { params, responseType: 'text' });
   }
+
+  assignVentureWithPlots(agencyId: number, ventureId: number, startPlotNumber: number, endPlotNumber: number): Observable<any> {
+    const params = new HttpParams()
+      .set('agencyId', agencyId)
+      .set('ventureId', ventureId)
+      .set('stPlotNum', startPlotNumber)
+      .set('edPlotNum', endPlotNumber);
+
+    return this.http.post<any>(`${this.baseUrl}/assignVenturesWithPlots`, null, { params });
+  }
+
+  getPlotsDetailsByVentureId(ventureId: number): Observable<PlotsDetailsDto> {
+     const params = new HttpParams().set('ventureId', ventureId);
+    return this.http.get<PlotsDetailsDto>(`${this.baseUrl}/countPlotsByVentureId`,{params});
+  }
+
+  getUnAssignedPlots(ventureId:number): Observable<Plots[]>{
+    const params=new HttpParams().set('ventureId',ventureId);
+    return this.http.get<Plots[]>(`${this.baseUrl}/getUnAssignedPlots`,{params});
+  }
+
   // -------------------------------------------------------------------------------
   // Agency Operations
   addAgent(email: string, agent: Agent): Observable<any> {
