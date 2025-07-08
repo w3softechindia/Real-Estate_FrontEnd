@@ -4,16 +4,16 @@
       <thead class="bg-light-subtle">
         <tr>
           <th>Agency Name</th>
-          <th>Address</th>
+          <th>Status</th>
           <th>Email</th>
           <th>Contact</th>
           <th>Date</th>
-          <th>Status</th>
+          <th>Address</th>
           <th>Action</th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let item of filteredAgencies; let i = index">
+        <tr *ngFor="let item of paginatedAgencies; let i = index; trackBy: trackByIndex">
           <td>
             <div class="d-flex align-items-center gap-2">
               <div>
@@ -23,17 +23,17 @@
               </div>
             </div>
           </td>
-          <td>{{ item.agencyAddress }}</td>
-          <td>{{ item.email }}</td>
-          <td>{{ item.phoneNumber }}</td>
-          <td>{{ item.registrationDate }}</td>
           <td>
             <span class="badge py-1 px-2 fs-13" [ngClass]="
-            item.status == 'Active'
+            item.status == 'ACTIVE'
               ? 'bg-success-subtle text-success'
               : 'bg-danger-subtle text-danger'
           ">{{ item.status }}</span>
           </td>
+          <td>{{ item.email }}</td>
+          <td>{{ item.phoneNumber }}</td>
+          <td>{{ item.registrationDate }}</td>
+          <td>{{ item.agencyAddress }}</td>
           <td>
             <div class="d-flex gap-2">
               <a href="javascript:void(0);" class="btn btn-light btn-sm" (click)="openDetailsModal(item)">
@@ -105,7 +105,7 @@
       <div class="modal-body">
         <form [formGroup]="updateAgency" (ngSubmit)="updateAgencyDetails(agencies.email)">
           <div class="row">
-            <div class="col-lg-4">
+            <div class="col-lg-3">
               <div class="mb-3">
                 <label for="agencyName" class="form-label">Agency Name <span class="text-danger">*</span></label>
                 <input type="text" id="agencyName" class="form-control" formControlName="agencyName"
@@ -116,7 +116,7 @@
                 </div>
               </div>
             </div>
-            <div class="col-lg-4">
+            <div class="col-lg-3">
               <div class="mb-3">
                 <label for="email" class="form-label">Agency Email <span class="text-danger">*</span></label>
                 <input type="email" id="email" class="form-control" formControlName="email" placeholder="Enter Email"
@@ -127,7 +127,7 @@
                 </div>
               </div>
             </div>
-            <div class="col-lg-4">
+            <div class="col-lg-3">
               <div class="mb-3">
                 <label for="phoneNumber" class="form-label">Agency Number <span class="text-danger">*</span></label>
                 <input type="number" id="phoneNumber" class="form-control" formControlName="phoneNumber"
@@ -135,6 +135,20 @@
                 <div *ngIf="updateAgency.get('phoneNumber')?.touched && updateAgency.get('phoneNumber')?.invalid"
                   class="text-danger mt-1">
                   Agency Phone Number is required.
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-3">
+              <div class="mb-3">
+                <label for="status" class="form-label">Agency Status <span class="text-danger">*</span></label>
+                <select id="status" class="form-control" name="status" formControlName="status" required>
+                  <option value="">-- Select Status --</option>
+                  <option value="ACTIVE">ACTIVE</option>
+                  <option value="INACTIVE">INACTIVE</option>
+                </select>
+                <div *ngIf="updateAgency.get('status')?.touched && updateAgency.get('status')?.invalid"
+                  class="text-danger mt-1">
+                  Agency Status Number is required.
                 </div>
               </div>
             </div>

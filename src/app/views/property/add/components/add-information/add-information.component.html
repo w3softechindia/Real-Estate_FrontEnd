@@ -18,7 +18,7 @@
         </div>
         <div class="col-lg-4">
           <div class="mb-3">
-            <label for="ventureName" class="form-label">Venture Size <span class="text-danger">*</span></label>
+            <label for="ventureName" class="form-label">Venture Size (Acres) <span class="text-danger">*</span></label>
             <input type="number" id="ventureSize" class="form-control" placeholder="Enter Size in acres"
               name="ventureSize" formControlName="ventureSize" required />
             <div *ngIf="registerVenture.get('ventureSize')?.touched && registerVenture.get('ventureSize')?.invalid"

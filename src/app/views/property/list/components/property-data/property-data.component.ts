@@ -35,6 +35,7 @@ export class PropertyDataComponent {
     this.updateVenture = this.fb.group({
       ventureName: ['', Validators.required],
       ventureSize: ['', Validators.required],
+      ventureStatus:['', Validators.required],
       address: ['', Validators.required],
       city: ['', Validators.required],
       state: ['', Validators.required],
@@ -46,6 +47,7 @@ export class PropertyDataComponent {
   private getAllVentures() {
     this.service.getAllVentures().subscribe((data: any[]) => {
       this.ventures = data;
+      console.log(data);
       this.page = 1; // reset to first page
       this.filteredVentures = this.filterVentures(this.searchService.getSearchTerm());
 
@@ -124,12 +126,12 @@ export class PropertyDataComponent {
   }
 
   page = 1;
-  pageSize = 7;
+  pageSize = 10;
 
   get paginatedVentures(): Venture[] {
     const start = (this.page - 1) * this.pageSize;
     const paginated = this.filteredVentures.slice(start, start + this.pageSize);
-    console.log(`Page ${this.page}, showing items ${start} to ${start + this.pageSize}`, paginated);
+    // console.log(`Page ${this.page}, showing items ${start} to ${start + this.pageSize}`, paginated);
     return paginated;
   }
 

@@ -1,0 +1,103 @@
+<app-page-title title="Real Estate" subTitle="Assign Ventures" />
+
+<div class="row">
+    <form [formGroup]="assignVentureForm" (ngSubmit)="assignVenture()">
+        <div class="col-xl-9 col-lg-8">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">Agency Venture Information</h4>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="mb-3">
+                                <label for="agencyName" class="form-label">Agency Name <span
+                                        class="text-danger">*</span></label>
+                                <select id="agencyName" class="form-control" formControlName="agencyId" required>
+                                    <option *ngFor="let agency of activeAgencies" [value]="agency.id">{{
+                                        agency.agencyName }}</option>
+                                </select>
+
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Venture Name <span
+                                        class="text-danger">*</span></label>
+                                <select id="ventureName" class="form-control" formControlName="ventureId" required>
+                                    <option *ngFor="let venture of activeVentures" [value]="venture.ventureId">{{
+                                        venture.ventureName }}</option>
+                                </select>
+
+
+                            </div>
+                        </div>
+                        <div class="col-lg-3">
+                            <div class="mb-3">
+                                <label class="form-label">Available Plots</label>
+                                <input type="number" class="form-control" [value]="totalPlotsCount" readonly />
+                            </div>
+                        </div>
+                        <div class="col-lg-3">
+                            <div class="mb-3">
+                                <label class="form-label">Assigned Plots</label>
+                                <input type="number" class="form-control" [value]="assignedPlotsCount" readonly />
+                            </div>
+                        </div>
+                        <div class="col-lg-3">
+                            <div class="mb-3">
+                                <label class="form-label">UnAssigned Plots</label>
+                                <input type="number" class="form-control" [value]="unassignedPlotsCount" readonly />
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="mb-3">
+                                <label for="phoneNumber" class="form-label">Plot Starting Number <span
+                                        class="text-danger">*</span></label>
+                                <select class="form-control" formControlName="startPlotNumber" required>
+                                    <option *ngFor="let plot of availablePlots" [value]="plot.plotNumber">{{
+                                        plot.plotNumber }}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="mb-3">
+                                <label for="agencyAddress" class="form-label">Plot Ending Number <span
+                                        class="text-danger">*</span></label>
+                                <select class="form-control" formControlName="endPlotNumber" required>
+                                    <option *ngFor="let plot of availablePlots" [value]="plot.plotNumber">{{
+                                        plot.plotNumber }}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="mb-3 rounded">
+                            <div class="row justify-content-center g-2">
+                                <div class="col-lg-2">
+                                    <button type="submit" class="btn btn-outline-primary w-100">
+                                        Assign
+                                    </button>
+                                </div>
+                                <div class="col-lg-2">
+                                    <button type="button" class="btn btn-danger w-100" (click)="resetForm()">
+                                        Cancel
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<ng-template #successAlertModal let-modal class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-content" [ngClass]="modalType === 'success' ? 'modal-filled bg-success' : 'modal-filled bg-info'">
+    <div class="modal-body text-center">
+     <i [ngClass]="'bx ' + (modalType === 'success' ? 'bx-check-double' : 'bx-info-circle')" class="display-6 mt-0 text-white"></i>
+      <h2 class="mt-3 text-white">{{ modalTitle }}</h2>
+      <h5 class="mt-3 text-white">{{ modalMessage }}</h5>
+      <button type="button" class="btn btn-light mt-3" (click)="onModalOk(modal)">Continue</button>
+    </div>
+  </div>
+</ng-template>

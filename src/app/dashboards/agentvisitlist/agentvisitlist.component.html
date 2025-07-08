@@ -61,7 +61,7 @@
                   <th>Lead Name</th>
                   <th>Property</th>
                   <th>Date</th>
-                  <th>Time</th>
+                  <!-- <th>Time</th> -->
                   <th>Feedback</th>
                   <th>Action</th>
                   <th>Status</th>
@@ -73,7 +73,7 @@
                     <td>{{ visit.leadName }}</td>
                     <td>{{ visit.propertyType }}</td>
                     <td>{{ visit.visitDate }}</td>
-                    <td>{{ visit.visitTime }}</td>
+                    <!-- <td>{{ visit.visitTime }}</td> -->
                     <td>{{ visit.customerFeedback }}</td>
                     <td>
                       <button (click)="onActionClick(i)" class="action">Action</button>
@@ -89,7 +89,7 @@
                       
                           <div class="status-selection">
                             <label>
-                              <input type="radio" name="status-{{i}}" value="Reject" [(ngModel)]="selectedStatus" />
+                              <input type="radio" name="status-{{i}}" value="Not Interested" [(ngModel)]="selectedStatus" />
                               Reject
                             </label>
                             <label>

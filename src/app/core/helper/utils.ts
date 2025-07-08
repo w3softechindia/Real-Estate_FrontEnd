@@ -57,7 +57,7 @@ export const addOrSubtractMinutesFromDate: AddOrSubtractFromDate = (
     return new Date(new Date().setMinutes(startingDate.getMinutes() - minutes))
 }
 
-const eventDate = new Date('Jan 17, 2026 12:00:01')
+const eventDate = new Date('Aug 17, 2025 12:00:01')
 
 export const calculateTimeToEvent = () => {
   const currentDate = new Date()
