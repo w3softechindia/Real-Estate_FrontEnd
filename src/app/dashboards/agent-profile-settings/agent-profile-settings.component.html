@@ -1,0 +1,36 @@
+<app-agenttopbar></app-agenttopbar>
+<app-agentdashboard></app-agentdashboard>
+<div class="main-layout">
+    <div class="page-layout">
+      <div class="container">
+        <div class="form-container">
+            <h2>Update Details</h2>
+            <form   class="profile-form" [formGroup]="profileForm"  >
+               <div class="form-group">
+                    <label for="phoneNumber">PhoneNumber</label>
+                    <input type="number" id="phoneNumber"  formControlName="phoneNumber" placeholder="7894561230">
+                </div>
+                <div class="form-group">
+                    <label for="address">Address</label>
+                    <input type="text" id="address"  formControlName="address" placeholder="Ravi Kumar">
+                </div>
+                <div class="form-group">
+                    <label for="city">City</label>
+                    <input type="text" id="city"  formControlName="city" placeholder="Hyderabad">
+                </div>
+                <div class="form-group">
+                    <label for="state">State</label>
+                    <input type="text" id="state"  formControlName="state" placeholder="Telangana">
+                </div>
+                <div class="form-group">
+                    <label for="pincode">PinCode</label>
+                    <input type="number" id="pincode"  formControlName="pincode" placeholder="500062">
+                </div>
+                <div class="button">
+                    <button type="submit">Update Details</button>
+                </div>
+            </form>
+        </div>
+      </div>
+    </div>
+</div>
