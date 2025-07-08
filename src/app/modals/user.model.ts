@@ -112,5 +112,6 @@ export interface Visit{
   amount:number,
   transactionMode:string,
   agencyStatus:string,
-  tokenId:string
+  tokenId:string,
+  deadline:number
 }
