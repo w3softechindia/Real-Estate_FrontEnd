@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Agency, Agent, Lead, Plots, PlotsDetailsDto, Venture, Visit } from '../modals/user.model';
+import { Agency, Agent, Lead, Plots, PlotsDetailsDto, Post, Venture, Visit } from '../modals/user.model';
 import { Observable } from 'rxjs';
 
 
@@ -131,6 +131,27 @@ export class RealEStateService {
 
     return this.http.put<any>(`${this.baseUrl}/updateAgent?email=${email}`, agentData, { headers });
   }
+
+
+  addPost(email: string, post: Post, attachment: File | null): Observable<Post> {
+  return this.http.post<Post>(`${this.baseUrl}/addPost?email=${email}`, post);
+}
+
+getAllPostsByAgency(email: string): Observable<Post[]> {
+  return this.http.get<Post[]>(`${this.baseUrl}/getAllPosts?email=${email}`);
+}
+
+updatePost(postId: number, updatedPost: any): Observable<any> {
+  return this.http.put(`${this.baseUrl}/updatePost/${postId}`, updatedPost);
+}
+
+
+deletePost(postId: number): Observable<any> {
+  return this.http.delete(`${this.baseUrl}/deletePost/${postId}`, { responseType: 'text' });
+}
+
+
+
 
 
   // ------------------------------------------------------------------------

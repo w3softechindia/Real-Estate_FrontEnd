@@ -127,3 +127,23 @@ export interface PlotsDetailsDto {
   countOfUnAssignedPlots: number;
 }
 
+
+// =======================Post ===============================
+
+export interface Post {
+  id?: number;
+  type: string;
+  title: string;
+  message: string;
+  audience: string;
+  priority: string;
+  startDate: string;
+  endDate?: string;
+  department?: string;
+  postedBy: string;
+  attachmentPath?: string;
+  agency?: Agency; // Optional: include if backend returns agency info with post
+}
+
+
+

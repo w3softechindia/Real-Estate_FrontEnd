@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { AgencyssidebarComponent } from "../agencyssidebar/agencyssidebar.component";
 import { AgencytopbarComponent } from "../agencytopbar/agencytopbar.component";
 import { FormsModule } from '@angular/forms';
+import { RealEStateService } from '@/app/services/real-estate.service';
+import { AuthService } from '@/app/authorization/auth.service';
 
 @Component({
   selector: 'app-agencyprofilesettings',
@@ -11,6 +13,20 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './agencyprofilesettings.component.scss'
 })
 export class AgencyprofilesettingsComponent {
+  agencyEmail: string | undefined;
+
+
+
+  constructor(private service:RealEStateService,
+
+    private auth:AuthService
+    
+  ){}
+
+
+getagencyemail(){
+ this.agencyEmail=this.auth.getEmail();
+}
 
    agency = {
     phoneNumber: '123878680',
