@@ -152,6 +152,11 @@ deletePost(postId: number): Observable<any> {
 
 
 
+ getAgencyByEmail(email: string): Observable<Agency> {
+    const params = new HttpParams().set('email', email);
+    return this.http.get<Agency>(`${this.baseUrl}/getAgency`, { params });
+  }
+
 
 
   // ------------------------------------------------------------------------
