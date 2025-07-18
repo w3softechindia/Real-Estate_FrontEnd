@@ -32,6 +32,7 @@
           </th> -->
           <th>Venture Name</th>
           <th>Size in Acres</th>
+          <th>Venture Status</th>
           <th>Total Plots</th>
           <th>Available Plots</th>
           <th>Sold Plots</th>
@@ -42,7 +43,7 @@
         </tr>
       </thead>
       <tbody>
-       <tr *ngFor="let venture of paginatedVentures; let i = index; trackBy: trackByIndex">
+        <tr *ngFor="let venture of paginatedVentures; let i = index; trackBy: trackByIndex">
           <td>
             <div class="d-flex align-items-center gap-2">
               <!-- <div>
@@ -58,6 +59,12 @@
             </div>
           </td>
           <td>{{ venture.ventureSize }} acres</td>
+          <td>
+            <button class="btn btn-sm" [ngClass]="venture.ventureStatus === 'ACTIVE' ? 'btn-success' : 'btn-danger'">
+              {{ venture.ventureStatus }}
+            </button>
+          </td>
+
           <td>
             <button class="btn btn-secondary btn-md">{{ venture.totalPlots }}</button>
           </td>
@@ -139,7 +146,7 @@
       <div class="modal-body">
         <form [formGroup]="updateVenture" (ngSubmit)="updateVentureDetails(venture.ventureId)">
           <div class="row">
-            <div class="col-lg-4">
+            <div class="col-lg-3">
               <div class="mb-3">
                 <label for="ventureName" class="form-label">Venture Name <span class="text-danger">*</span></label>
                 <input type="text" id="ventureName" class="form-control" placeholder="Name"
@@ -150,7 +157,7 @@
                 </div>
               </div>
             </div>
-            <div class="col-lg-4">
+            <div class="col-lg-3">
               <div class="mb-3">
                 <label for="ventureName" class="form-label">Venture Size <span class="text-danger">*</span></label>
                 <input type="number" id="ventureSize" class="form-control" placeholder="Enter Size in acres"
@@ -161,7 +168,7 @@
                 </div>
               </div>
             </div>
-            <div class="col-lg-4">
+            <div class="col-lg-3">
               <div class="mb-3">
                 <label for="phno" class="form-label">Contact Number <span class="text-danger">*</span></label>
                 <input type="number" id="phno" class="form-control" placeholder="Phone Number" name="phno"
@@ -169,6 +176,21 @@
                 <div *ngIf="updateVenture.get('phno')?.touched && updateVenture.get('phno')?.invalid"
                   class="text-danger mt-1">
                   Phone Number is required.
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-3">
+              <div class="mb-3">
+                <label for="ventureStatus" class="form-label">Venture Status <span class="text-danger">*</span></label>
+                <select id="ventureStatus" class="form-control" name="ventureStatus" formControlName="ventureStatus"
+                  required>
+                  <option value="">-- Select Status --</option>
+                  <option value="ACTIVE">ACTIVE</option>
+                  <option value="INACTIVE">INACTIVE</option>
+                </select>
+                <div *ngIf="updateVenture.get('ventureStatus')?.touched && updateVenture.get('ventureStatus')?.invalid"
+                  class="text-danger mt-1">
+                  Venture Status is required.
                 </div>
               </div>
             </div>

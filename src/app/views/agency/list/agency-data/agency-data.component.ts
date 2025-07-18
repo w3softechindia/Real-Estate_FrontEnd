@@ -40,6 +40,7 @@ export class AgencyDataComponent implements OnInit {
       agencyName: ['', Validators.required],
       agencyAddress: ['', Validators.required],
       agencyPinCode: ['', Validators.required],
+      status:['', Validators.required],
       city: ['', Validators.required],
       state: ['', Validators.required],
       fbUrl: ['', Validators.required],
@@ -94,6 +95,7 @@ export class AgencyDataComponent implements OnInit {
         console.log(error);
       })
     } else {
+      alert("Please fill out all fields..!!")
       console.warn(this.updateAgency.errors)
     }
   }
@@ -135,7 +137,7 @@ export class AgencyDataComponent implements OnInit {
   }
 
   page = 1;
-  pageSize = 7; // or any number of items per page you prefer
+  pageSize = 10; // or any number of items per page you prefer
 
   get paginatedAgencies(): Agency[] {
     const start = (this.page - 1) * this.pageSize;
@@ -144,5 +146,9 @@ export class AgencyDataComponent implements OnInit {
 
   onPageChange() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  trackByIndex(index: number, item: any): number {
+    return index;
   }
 }

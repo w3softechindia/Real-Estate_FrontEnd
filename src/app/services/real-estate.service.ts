@@ -1,6 +1,9 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+
 import { Agency, Agent, AgentUpdateRequest, Lead, Token, Venture, Visit } from '../modals/user.model';
+
+import { Agency, Agent, Lead, Plots, PlotsDetailsDto, Post, Venture, Visit } from '../modals/user.model'
 import { Observable } from 'rxjs';
 import { AuthService } from '../authorization/auth.service';
 import { token } from 'flatpickr/dist/utils/formatting';
@@ -39,7 +42,7 @@ export class RealEStateService {
     return this.http.get<any[]>(`${this.baseUrl}/getAllAgents`)
   }
 
-  registerVenture(venture: any,file:File): Observable<any> {
+  registerVenture(venture: any, file: File): Observable<any> {
     const formData = new FormData();
     formData.append('jsonVenture', JSON.stringify(venture));
     formData.append('file', file);
@@ -90,6 +93,27 @@ export class RealEStateService {
     const params = { email };
     return this.http.delete(`${this.baseUrl}/deleteAgency`, { params, responseType: 'text' });
   }
+
+  assignVentureWithPlots(agencyId: number, ventureId: number, startPlotNumber: number, endPlotNumber: number): Observable<any> {
+    const params = new HttpParams()
+      .set('agencyId', agencyId)
+      .set('ventureId', ventureId)
+      .set('stPlotNum', startPlotNumber)
+      .set('edPlotNum', endPlotNumber);
+
+    return this.http.post<any>(`${this.baseUrl}/assignVenturesWithPlots`, null, { params });
+  }
+
+  getPlotsDetailsByVentureId(ventureId: number): Observable<PlotsDetailsDto> {
+     const params = new HttpParams().set('ventureId', ventureId);
+    return this.http.get<PlotsDetailsDto>(`${this.baseUrl}/countPlotsByVentureId`,{params});
+  }
+
+  getUnAssignedPlots(ventureId:number): Observable<Plots[]>{
+    const params=new HttpParams().set('ventureId',ventureId);
+    return this.http.get<Plots[]>(`${this.baseUrl}/getUnAssignedPlots`,{params});
+  }
+
   // -------------------------------------------------------------------------------
   // Agency Operations
   addAgent(email: string, agent: Agent): Observable<any> {
@@ -114,6 +138,32 @@ export class RealEStateService {
 
     return this.http.put<any>(`${this.baseUrl}/updateAgent?email=${email}`, agentData, { headers });
   }
+
+
+  addPost(email: string, post: Post, attachment: File | null): Observable<Post> {
+  return this.http.post<Post>(`${this.baseUrl}/addPost?email=${email}`, post);
+}
+
+getAllPostsByAgency(email: string): Observable<Post[]> {
+  return this.http.get<Post[]>(`${this.baseUrl}/getAllPosts?email=${email}`);
+}
+
+updatePost(postId: number, updatedPost: any): Observable<any> {
+  return this.http.put(`${this.baseUrl}/updatePost/${postId}`, updatedPost);
+}
+
+
+deletePost(postId: number): Observable<any> {
+  return this.http.delete(`${this.baseUrl}/deletePost/${postId}`, { responseType: 'text' });
+}
+
+
+
+ getAgencyByEmail(email: string): Observable<Agency> {
+    const params = new HttpParams().set('email', email);
+    return this.http.get<Agency>(`${this.baseUrl}/getAgency`, { params });
+  }
+
 
 
   // ------------------------------------------------------------------------

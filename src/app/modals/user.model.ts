@@ -61,6 +61,7 @@ export interface Venture {
   ventureId: number;
   ventureName: string;
   ventureSize: string;
+  ventureStatus:string;
   totalPlots: number;
   availablePlots: number;
   bookedPlots: number;
@@ -75,7 +76,7 @@ export interface Venture {
 
 //=======================Plots============================
 export interface Plots {
-  plotNumber: string;
+  plotNumber: number;
   plotSize: number;
   price: number;
   status: 'AVAILABLE' | 'BOOKED' | 'SOLD'; // Enum-like
@@ -135,3 +136,36 @@ export interface Token{
   lead:Lead,
   visits:Visit[];
 }
+
+
+// plots-details.dto.ts
+export interface PlotsDetailsDto {
+  countOfPlots: number;
+  countOfAvailablePlots: number;
+  countOfAssignedPlots: number;
+  countOfBookedPlots: number;
+  countOfSoldPlots: number;
+  countOfUnAssignedPlots: number;
+}
+
+
+// =======================Post ===============================
+
+export interface Post {
+  id?: number;
+  type: string;
+  title: string;
+  message: string;
+  audience: string;
+  priority: string;
+  startDate: string;
+  endDate?: string;
+  department?: string;
+  postedBy: string;
+  attachmentPath?: string;
+  agency?: Agency; // Optional: include if backend returns agency info with post
+}
+
+
+
+
