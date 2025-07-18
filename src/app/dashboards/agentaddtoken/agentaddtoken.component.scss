@@ -26,6 +26,7 @@
 }
   table {
     width: 100%;
+    table-layout: fixed;
     border-collapse: collapse;
     background: white;
     border-radius: 12px;
@@ -34,17 +35,19 @@
     
 
     th, td {
-      padding: 20px;
+      width: 25%;
+      padding: 8px 12px;
       text-align: left;
       border-bottom: 1px solid #eee;
       font-size: 15px;
     }
 
     th {
+      padding: 20px;
       background: #e9f0f7;
       font-weight: 600;
       color: #333;
-      font-size: 14px;
+      font-size: 16px;
     }
        
   }
@@ -57,7 +60,7 @@
     font-weight: bold;
   }
  
-button{
+.send-btnn{
       background-color:#007bff;
       font-size: 14px;
       border: none;
@@ -118,19 +121,32 @@ input,select{
   border: 1px solid #ccc;
   border-radius: 4px;
 }
-   .send-btn, .cancel-btn {
+   .send-btn{
     padding: 10px 15px;
     background-color: #4CAF50;
     color: white;
     border: none;
+    border-radius: 8px;
     cursor: pointer;
+    margin-left: 140px;
+    font-size: 16px;
   }
   
   .send-btn:hover, .cancel-btn:hover {
     background-color: #45a049;
   }
+
+  .close-btn{
+     position: absolute;
+      top: 10px;
+      right: 10px;
+      background: transparent;
+      border: none;
+      font-size: 20px;
+      cursor: pointer;
+      color: red;
+  }
   
- 
 
   
   

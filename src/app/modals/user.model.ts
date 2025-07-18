@@ -86,6 +86,7 @@ export interface Plots {
 
 //======================Leads===================
 export interface Lead{
+leadId:number,
 leadName:string,
 phoneNumber:string,
 email:string,
@@ -95,13 +96,15 @@ preferredLocation:string,
 estimatedBudget:number,
 leadStatus:string,
 followUp:String,
-leadNotes:string
+leadNotes:string,
+agent:Agent,
+visits:Visit[],
+token:Token[]
 }
 
 
 export interface Visit{
   visitId:number,
-  leadName:string,
   propertyType:string,
   visitDate:string,
   visitTime:string,
@@ -109,9 +112,26 @@ export interface Visit{
   customerFeedback:string,
   nextStep:string,
   status:string,
-  amount:number,
-  transactionMode:string,
-  agencyStatus:string,
-  tokenId:string,
-  deadline:number
+  reason:string,
+  lead:Lead,
+  leadName:string
+}
+
+export interface AgentUpdateRequest {
+  email: string,
+  phoneNumber: string,
+  address: string,
+  city: string,
+  state: string,
+  pincode: string,
+}
+
+export interface Token{
+  tokenid:number,
+	amount:number,
+	transactionMode:string,
+	agencyStatus:string,
+	tokenDeadLine:Date,
+  lead:Lead,
+  visits:Visit[];
 }

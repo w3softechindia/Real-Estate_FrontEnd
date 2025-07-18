@@ -1,7 +1,9 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Agency, Agent, Lead, Venture, Visit } from '../modals/user.model';
+import { Agency, Agent, AgentUpdateRequest, Lead, Token, Venture, Visit } from '../modals/user.model';
 import { Observable } from 'rxjs';
+import { AuthService } from '../authorization/auth.service';
+import { token } from 'flatpickr/dist/utils/formatting';
 
 
 @Injectable({
@@ -9,7 +11,7 @@ import { Observable } from 'rxjs';
 })
 export class RealEStateService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,private authService:AuthService) { }
 
   // private baseUrl='http://localhost:8080'
 
@@ -18,6 +20,8 @@ export class RealEStateService {
   login(user: any) {
     return this.http.post(`${this.baseUrl}/login`, user);
   }
+
+  
 
   registerAgency(agency: Agency): Observable<Agency> {
     return this.http.post<Agency>(`${this.baseUrl}/addAgency`, agency)
@@ -114,8 +118,10 @@ export class RealEStateService {
 
   // ------------------------------------------------------------------------
   //Agent Operations
-  registerLead(lead: Lead): Observable<any> {
-    return this.http.post(`${this.baseUrl}/addLead`, lead)
+  
+  registerLead(lead: Lead, agentEmail: string): Observable<Lead> {
+    const params = new HttpParams().set('agentEmail', agentEmail);
+    return this.http.post<Lead>(`${this.baseUrl}/addLead`, lead,{ params });
   }
 
   getAllLeads(): Observable<any> {
@@ -130,16 +136,55 @@ export class RealEStateService {
     return this.http.delete(`${this.baseUrl}/deleteLead?email=${lead.email}`, { responseType: 'text' })
   }
 
-  addVisit(visit: Visit): Observable<any> {
-    return this.http.post(`${this.baseUrl}/addVisit`, visit)
+  addVisit(visitData:any,leadId:number): Observable<any> {
+    return this.http.post(`${this.baseUrl}/addVisit?leadId=${leadId}`, visitData);
   }
+
 
   getAllVisits(): Observable<Visit[]> {
     return this.http.get<Visit[]>(`${this.baseUrl}/getAllVisits`)
   }
 
-  updateStatus(visitId: number, status: string): Observable<any> {
-    return this.http.put(`${this.baseUrl}/updateVisitStatus?visitId=${visitId}&status=${status}`, {})
+  getAgentByEmail(email:string):Observable<any>{
+    const params=new HttpParams().set('email',email);
+return this.http.get<any>(`${this.baseUrl}/getUserByEmail`,{params})
   }
+
+updateAgentProfile(updatedAgent: AgentUpdateRequest): Observable<Agent> {
+ 
+  return this.http.put<Agent>(
+    `${this.baseUrl}/updateAgentProfile?email=${updatedAgent.email}`,
+    updatedAgent
+  );
+}
+
+
+
+updateStatus(
+  visitId: number,
+  payload: { status: string; reason?: string }
+): Observable<Visit> {
+  let params = new HttpParams()
+    .set('visitId', visitId.toString())
+    .set('status', payload.status);
+
+    params = params.set('reason', payload.reason??'');
+  
+
+  return this.http.put<Visit>(
+    `${this.baseUrl}/updateVisitStatus`,
+    {},         // empty body
+    { params }
+  );
+}
+
+
+makePayment(leadId:number,token:Token):Observable<any>{
+return this.http.post<any>(`${this.baseUrl}/payment?leadId=${leadId}`,token);
+}
+
+getAllTokens():Observable<any>{
+  return this.http.get<any>(`${this.baseUrl}/getAllTokens`);
+}
 
 }

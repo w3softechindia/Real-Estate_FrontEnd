@@ -1,4 +1,3 @@
-
 <app-agenttopbar></app-agenttopbar>
 <app-agentdashboard></app-agentdashboard>
 
@@ -11,35 +10,20 @@
             <table>
               <thead>
                 <tr>
-                  <th>Token Id</th>
                   <th>Lead Name</th>
                   <th>Property</th>
                   <th>Date</th>
-                  <th>Amount</th>
-                  <th>Transaction Mode</th>
-                  <th>Status</th>
-                  <th>DeadLine</th>
+                  <th>Action</th>
                   </tr>
               </thead>
               <tbody>
                 <ng-container *ngFor="let visit of visits; let i = index">
                   <tr>
-                    <td>{{visit.tokenId}}</td>
-                    <td>{{ visit.leadName }}</td>
-                    <td>{{ visit.propertyType }}</td>
-                    <td>{{ visit.visitDate }}</td>
-                    <td>
-                      <!-- <input type="number" [(ngModel)]="visit.amount" placeholder="Enter Amount"/> -->
-                    </td>
-                    <td>
-                      <!-- <select [(ngModel)]="visit.transactionMode">
-                      <option *ngFor="let transaction of transactions " [value]="transaction">{{transaction}}</option>
-                    </select> -->
-                  </td>
-                     <td>{{ visit.agencyStatus}}</td>
-                     <td>{{visit.deadline}}</td>
+                    <td>{{visit.lead.leadName }}</td>
+                    <td>{{visit.propertyType }}</td>
+                    <td>{{visit.visitDate }}</td>
                      <td>
-                      <button type="button" (click)="openSendModal(visit)">Send</button>
+                      <button type="button" (click)="openSendModal(visit)" class="send-btnn">Send</button>
                      </td>
                     </tr>
                 </ng-container>
@@ -53,6 +37,7 @@
 <!-- Send Token Modal -->
 <div *ngIf="showModal" class="modal">
   <div class="modal-content">
+    <button class="close-btn" (click)="closePropertyModal()">X</button>
     <h2>Send Token Details</h2>
     <form [formGroup]="tokenForm" (ngSubmit)="sendToken()">
       <div class="form-group">
@@ -71,8 +56,7 @@
         <input id="deadline" type="date" formControlName="deadline" />
       </div>
       <div class="modal-actions">
-        <button class="send-btn" [disabled]="tokenForm.invalid">Send</button>
-        <button class="cancel-btn" (click)="closeModal()">Cancel</button>
+        <button class="send-btn" [disabled]="tokenForm.invalid">Confirm</button>
       </div>
     </form>
   </div>

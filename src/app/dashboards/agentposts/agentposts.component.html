@@ -48,7 +48,13 @@
                <td>{{ post.title }}</td>
                <td>{{ post.message }}</td>
                <td>{{ post.department }}</td>
-               <td>{{ post.audience }}</td>
+                <td
+      [ngClass]="{
+        'highlight-audience': post.audience.toLowerCase().includes('agent')
+      }"
+    >
+      {{ post.audience }}
+    </td>
                <td>{{ post.postedBy }}</td>
                <td>{{ post.activeFrom }}</td>
                </tr>
