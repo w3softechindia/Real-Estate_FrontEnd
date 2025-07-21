@@ -1121,10 +1121,11 @@ export const CUSTOM_MENUU: MenuItemType[] = [
       },
       {
         key: 'add-agent',
-        label: 'visit List',
+        label: 'Visit List',
         url: '/agentvisitlist',
         parentKey: 'agents',
       },
+      
     ],
   },
   {
@@ -1139,6 +1140,12 @@ export const CUSTOM_MENUU: MenuItemType[] = [
         url: '/agentaddtoken',
         parentKey: 'dashboards',
       },
+        {
+        key: 'analytics',
+        label: 'Token List',
+        url: '/agenttokenlist',
+        parentKey: 'dashboards',
+      }, 
       {
         key: 'agent',
         label: 'Feature Process',
@@ -1152,6 +1159,18 @@ export const CUSTOM_MENUU: MenuItemType[] = [
       //   parentKey: 'dashboards',
       // },
     ],
+  },
+  {
+        key: 'agents',
+        label: 'Profile',
+        url: '/agentprofile',
+        parentKey: 'dashboards',
+  },
+    {
+        key: 'agents',
+        label: 'Posts',
+        url: '/agentposts',
+        parentKey: 'dashboards',
   },
   // {
   //   key: 'customers',

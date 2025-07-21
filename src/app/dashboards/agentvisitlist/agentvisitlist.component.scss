@@ -70,33 +70,45 @@
        
   }
 
-  .header{
-    display: flex;
-    gap: 10px;
-    margin-bottom: 20px;
-    font-size: 16px;
-    font-weight: bold;
-  }
-  select{
-    border: 1px solid black;
+
+  .header {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 20px;
+
+  select {
+    padding: 10px 14px;
+    font-size: 15px;
+    border: 1px solid #ccc;
     border-radius: 8px;
+    outline: none;
+    width: 100%;
+    max-width: 300px;
+
+    &:focus {
+      border-color: #007bff;
+    }
   }
 
-  .form-group button{
-    width: 300px;
-    border: none;
-    background-color: #fff;
+  .form-group button {
+    padding: 10px 14px;
+    font-size: 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background: #fff;
+    cursor: pointer;
+
+    &:hover {
+      border-color: #007bff;
+    }
   }
 
   .form-group {
     display: flex;
     align-items: center;
-    gap: 10px; /* space between label and select */
   }
-  
-  .form-group label {
-    white-space: nowrap;
-  }
+}
+
   .outerContainer {
     position: fixed;
     top: 0;

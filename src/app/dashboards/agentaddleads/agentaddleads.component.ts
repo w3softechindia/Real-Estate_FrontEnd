@@ -5,6 +5,7 @@ import { Lead } from '@/app/modals/user.model';
 import { RealEStateService } from '@/app/services/real-estate.service';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { AuthService } from '@/app/authorization/auth.service';
 
 @Component({
   selector: 'app-agentaddleads',
@@ -17,7 +18,7 @@ import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
 export class AgentaddleadsComponent {
    leadForm!:FormGroup
 
-  constructor(private service:RealEStateService,private fb:FormBuilder){}
+  constructor(private service:RealEStateService,private fb:FormBuilder,private authService:AuthService){}
 
   ngOnInit():void{
     this.leadForm=this.fb.group({
@@ -35,21 +36,26 @@ export class AgentaddleadsComponent {
     
   };
 
-  addLead():void{
-  if(this.leadForm.valid){
-    this.service.registerLead(this.leadForm.value).subscribe({
-      next:(res)=>{
+  addLead(): void {
+    if (this.leadForm.invalid) {
+      this.leadForm.markAllAsTouched();
+      return;
+    }
+
+    const lead: Lead = this.leadForm.value;
+    // grab the email of the currently logged‑in agent
+    const agentEmail = this.authService.getEmail();
+
+    this.service.registerLead(lead, agentEmail).subscribe({
+      next: res => {
         alert('Lead added successfully');
         this.leadForm.reset();
       },
-      error:(err)=>{
+      error: err => {
         console.error('Error:', err);
-          alert('Failed to add lead');
+        alert('Failed to add lead');
       }
     });
-  }else{
-    this.leadForm.markAllAsTouched();
-  }
   }
 
    // convenience getter
