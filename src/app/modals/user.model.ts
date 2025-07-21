@@ -87,6 +87,7 @@ export interface Plots {
 
 //======================Leads===================
 export interface Lead{
+agentName: any;
 leadId:number,
 leadName:string,
 phoneNumber:string,
@@ -164,6 +165,22 @@ export interface Post {
   postedBy: string;
   attachmentPath?: string;
   agency?: Agency; // Optional: include if backend returns agency info with post
+}
+
+
+
+export interface TokennDto {
+   tokenid: number;
+  amount: number;
+  transactionMode: string;
+  agencyStatus: string;
+  tokenDeadLine: string;
+  lead: {
+    agentName: string;
+    leadName: string;
+    email?: string;
+    phone?: string;
+  };
 }
 
 
