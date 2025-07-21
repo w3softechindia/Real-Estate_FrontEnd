@@ -31,6 +31,7 @@ app-agencyssidebar {
   display: flex;
   gap: 16px;
   margin-bottom: 20px;
+  flex-wrap: wrap;
 
   input {
     padding: 10px 14px;
@@ -61,7 +62,8 @@ app-agencyssidebar {
     overflow: hidden;
     box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
 
-    th, td {
+    th,
+    td {
       padding: 15px;
       text-align: center;
       border-bottom: 1px solid #eee;
@@ -79,7 +81,9 @@ app-agencyssidebar {
       background: #f1f5f9;
     }
 
-    .view-btn, .accept-btn, .reject-btn {
+    .view-btn,
+    .accept-btn,
+    .reject-btn {
       padding: 8px 14px;
       border: none;
       border-radius: 6px;
