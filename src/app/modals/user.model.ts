@@ -138,7 +138,6 @@ export interface Token{
   visits:Visit[];
 }
 
-
 // plots-details.dto.ts
 export interface PlotsDetailsDto {
   countOfPlots: number;
@@ -148,7 +147,6 @@ export interface PlotsDetailsDto {
   countOfSoldPlots: number;
   countOfUnAssignedPlots: number;
 }
-
 
 // =======================Post ===============================
 
@@ -182,7 +180,3 @@ export interface TokennDto {
     phone?: string;
   };
 }
-
-
-
-

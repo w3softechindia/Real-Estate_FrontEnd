@@ -1,3 +1,4 @@
+
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http'
 import { Injectable } from '@angular/core'
 
@@ -48,10 +49,10 @@ export class RealEStateService {
   }
 
   registerVenture(venture: any, file: File): Observable<any> {
-    const formData = new FormData()
-    formData.append('jsonVenture', JSON.stringify(venture))
-    formData.append('file', file)
-    return this.http.post(`${this.baseUrl}/addVenture`, formData)
+    const formData = new FormData();
+    formData.append('jsonVenture', JSON.stringify(venture));
+    formData.append('file', file);
+    return this.http.post(`${this.baseUrl}/addVenture`, formData);
   }
 
   getAllVentures(): Observable<any[]> {
@@ -105,38 +106,38 @@ export class RealEStateService {
     })
   }
 
-  assignVentureWithPlots(
-    agencyId: number,
-    ventureId: number,
-    startPlotNumber: number,
-    endPlotNumber: number
-  ): Observable<any> {
+  assignVentureWithPlots(agencyId: number, ventureId: number, startPlotNumber: number, endPlotNumber: number): Observable<any> {
     const params = new HttpParams()
       .set('agencyId', agencyId)
       .set('ventureId', ventureId)
       .set('stPlotNum', startPlotNumber)
-      .set('edPlotNum', endPlotNumber)
-
-    return this.http.post<any>(
-      `${this.baseUrl}/assignVenturesWithPlots`,
-      null,
-      { params }
-    )
+      .set('edPlotNum', endPlotNumber);
+    return this.http.post<any>(`${this.baseUrl}/assignVenturesWithPlots`, null, { params });
   }
 
   getPlotsDetailsByVentureId(ventureId: number): Observable<PlotsDetailsDto> {
-    const params = new HttpParams().set('ventureId', ventureId)
-    return this.http.get<PlotsDetailsDto>(
-      `${this.baseUrl}/countPlotsByVentureId`,
-      { params }
-    )
+     const params = new HttpParams().set('ventureId', ventureId);
+    return this.http.get<PlotsDetailsDto>(`${this.baseUrl}/countPlotsByVentureId`,{params});
   }
 
-  getUnAssignedPlots(ventureId: number): Observable<Plots[]> {
-    const params = new HttpParams().set('ventureId', ventureId)
-    return this.http.get<Plots[]>(`${this.baseUrl}/getUnAssignedPlots`, {
-      params,
-    })
+  getUnAssignedPlots(ventureId:number): Observable<Plots[]>{
+    const params=new HttpParams().set('ventureId',ventureId);
+    return this.http.get<Plots[]>(`${this.baseUrl}/getUnAssignedPlots`,{params});
+  }
+
+  sendOtpToEmail(email:string):Observable<any>{
+    const params=new HttpParams().set('email',email);
+    return this.http.post(`${this.baseUrl}/sendEmailOTP`,{},{params});
+  }
+
+  verifyOTP(email:string,otp:number):Observable<any>{
+    const params=new HttpParams().set('email',email).set('otp',otp);
+    return this.http.post(`${this.baseUrl}/verifyOTP`,{},{params});
+  }
+
+  resetPassword(email:string,otp:number,newPassword:string):Observable<any>{
+    const params=new HttpParams().set('email',email).set('otp',otp).set('newPassword',newPassword);
+    return this.http.put(`${this.baseUrl}/resetPassword`,{},{params});
   }
 
   // -------------------------------------------------------------------------------
