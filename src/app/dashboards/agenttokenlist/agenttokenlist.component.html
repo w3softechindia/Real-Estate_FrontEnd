@@ -1,0 +1,48 @@
+<app-agenttopbar></app-agenttopbar>
+<app-agentdashboard></app-agentdashboard>
+
+<div class="main-layout">
+    <div class="page-layout">
+      <div class="container">
+        <div class="header">
+
+           <div class="table-view">
+            <table>
+              <thead>
+                <tr>
+                  <th>Lead Name</th>
+                  <th>Property</th>
+                  <th>Date</th>
+                  <th>Amount</th>
+                  <th>TransactionMode</th>
+                  <th>AgencyStatus</th>
+                  </tr>
+              </thead>
+              <tbody>
+                <ng-container *ngFor="let token of tokens; let i = index">
+                  <tr>
+                    <td>{{token.lead.leadName }}</td>
+                    <td>
+                   <li *ngFor="let visit of token.lead.visits">
+                        {{visit.propertyType}}
+                      </li>
+                    </td>
+
+                  <td>
+                      <li *ngFor="let visit of token.lead.visits">
+                        {{visit.visitDate}}
+                      </li>
+               </td>
+
+                  <td>{{token.amount}}</td>
+                  <td>{{token.transactionMode}}</td>
+                  <td>{{token.agencyStatus ? token.agencyStatus : 'Pending'}}</td>
+                </tr>
+
+                </ng-container>
+              </tbody>
+            </table>
+          </div>
+</div>
+</div>
+</div>

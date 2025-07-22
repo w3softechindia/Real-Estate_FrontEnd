@@ -87,6 +87,8 @@ export interface Plots {
 
 //======================Leads===================
 export interface Lead{
+agentName: any;
+leadId:number,
 leadName:string,
 phoneNumber:string,
 email:string,
@@ -96,13 +98,15 @@ preferredLocation:string,
 estimatedBudget:number,
 leadStatus:string,
 followUp:String,
-leadNotes:string
+leadNotes:string,
+agent:Agent,
+visits:Visit[],
+token:Token[]
 }
 
 
 export interface Visit{
   visitId:number,
-  leadName:string,
   propertyType:string,
   visitDate:string,
   visitTime:string,
@@ -110,11 +114,28 @@ export interface Visit{
   customerFeedback:string,
   nextStep:string,
   status:string,
-  amount:number,
-  transactionMode:string,
-  agencyStatus:string,
-  tokenId:string,
-  deadline:number
+  reason:string,
+  lead:Lead,
+  leadName:string
+}
+
+export interface AgentUpdateRequest {
+  email: string,
+  phoneNumber: string,
+  address: string,
+  city: string,
+  state: string,
+  pincode: string,
+}
+
+export interface Token{
+  tokenid:number,
+	amount:number,
+	transactionMode:string,
+	agencyStatus:string,
+	tokenDeadLine:Date,
+  lead:Lead,
+  visits:Visit[];
 }
 
 // plots-details.dto.ts
@@ -127,3 +148,35 @@ export interface PlotsDetailsDto {
   countOfUnAssignedPlots: number;
 }
 
+// =======================Post ===============================
+
+export interface Post {
+  id?: number;
+  type: string;
+  title: string;
+  message: string;
+  audience: string;
+  priority: string;
+  startDate: string;
+  endDate?: string;
+  department?: string;
+  postedBy: string;
+  attachmentPath?: string;
+  agency?: Agency; // Optional: include if backend returns agency info with post
+}
+
+
+
+export interface TokennDto {
+   tokenid: number;
+  amount: number;
+  transactionMode: string;
+  agencyStatus: string;
+  tokenDeadLine: string;
+  lead: {
+    agentName: string;
+    leadName: string;
+    email?: string;
+    phone?: string;
+  };
+}

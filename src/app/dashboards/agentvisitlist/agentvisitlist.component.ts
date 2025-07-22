@@ -17,9 +17,11 @@ import { RealEStateService } from '@/app/services/real-estate.service';
 export class AgentvisitlistComponent {
 
   selectedVisitIndex: number | null = null;
-  selectedStatus: string = '';
+  selectedStatus: 'Not Interested'|'Hold' | 'Token'  = null!;
 
   visits:Visit[]=[];
+  reason:string='';
+  holdDate:string='';
 
   constructor(private service:RealEStateService){}
 
@@ -42,25 +44,41 @@ this.getAllVisits();
 
 onActionClick(index: number) {
   this.selectedVisitIndex = index;
-  //this.selectedStatus = this.visits[index].status || '';
-
+  //this.selectedStatus = '';
+  this.reason='';
+  this.holdDate='';
 }
-
-
-
-  submitStatus(index: number): void {
-    const visit = this.visits[index];
-    this.service.updateStatus(visit.visitId, this.selectedStatus).subscribe(updated => {
-      this.visits[index].status = updated.status;
-      this.selectedVisitIndex = null;
-    });
-  }
 
 closePropertyModal() {
   this.selectedVisitIndex = null;
 }
-  
 
   
+submitStatus(index: number): void {
+  const visit = this.visits[index];
+  const payload: any = { status: this.selectedStatus };
+  if (this.selectedStatus === 'Not Interested') {
+    payload.reason = this.reason;
+  }
+  if (this.selectedStatus === 'Hold') {
+    payload.reason = this.holdDate;
+  }
+  if (this.selectedStatus === 'Token') {
+    payload.reason = '';
+  }
+
+  this.service.updateStatus(visit.visitId, payload)
+    .subscribe({
+      next: updated => {
+        visit.status = updated.status;
+        // whatever string the server returned in `reason`, show it:
+        visit.reason = updated.reason || '';
+        this.closePropertyModal();
+      },
+      error: err => console.error('Failed to update status:', err)
+    });
+
+}
+ 
 
 }

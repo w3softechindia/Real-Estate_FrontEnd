@@ -4,6 +4,8 @@ import { AgencytopbarComponent } from "../agencytopbar/agencytopbar.component";
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
+import { RealEStateService } from '@/app/services/real-estate.service';
+import { AuthService } from '@/app/authorization/auth.service';
 
 @Component({
   selector: 'app-agencypostlist',
@@ -13,39 +15,35 @@ import { CommonModule } from '@angular/common';
   styleUrl: './agencypostlist.component.scss'
 })
 export class AgencypostlistComponent {
- announcements = [
-    {
-      id: 1,
-      title: 'Team Meeting',
-      message: 'There is a team meeting at 3 PM.',
-      priority: 'High',
-      startDate: '2025-06-19',
-      endDate: '2025-06-20',
-      audience: 'Developers',
-      department: 'IT',
-      postedBy: 'HR',
-      attachment: ''
-    },
-    {
-      id: 2,
-      title: 'Holiday Notice',
-      message: 'Office will be closed on 21st June.',
-      priority: 'Medium',
-      startDate: '2025-06-21',
-      endDate: '',
-      audience: 'All',
-      department: 'Admin',
-      postedBy: 'Admin',
-      attachment: ''
-    }
-  ];
+  agencyEmail: string = '';
+  announcements: any[] = [];
+  editPost: any = null;
 
   filter = {
     title: '',
     startDate: ''
   };
 
-  editPost: any = null;
+  constructor(
+    private service: RealEStateService,
+    private auth: AuthService
+  ) {}
+
+  ngOnInit(): void {
+    this.agencyEmail = this.auth.getEmail();
+    this.loadPosts();
+  }
+
+  loadPosts(): void {
+    this.service.getAllPostsByAgency(this.agencyEmail).subscribe({
+      next: (res) => {
+        this.announcements = res;
+      },
+      error: (err) => {
+        console.error('Failed to load posts:', err);
+      }
+    });
+  }
 
   onEdit(post: any) {
     this.editPost = { ...post };
@@ -54,17 +52,49 @@ export class AgencypostlistComponent {
   onCancelEdit() {
     this.editPost = null;
   }
+onSave() {
+  const updatedPost = {
+    type: this.editPost.type,
+    title: this.editPost.title,
+    message: this.editPost.message,
+    audience: this.editPost.audience,
+    priority: this.editPost.priority,
+    startDate: this.editPost.startDate,
+    endDate: this.editPost.endDate,
+    department: this.editPost.department,
+    postedBy: this.editPost.postedBy
+  };
 
-  onSave() {
-    const index = this.announcements.findIndex(p => p.id === this.editPost.id);
-    if (index !== -1) {
-      this.announcements[index] = { ...this.editPost };
+  this.service.updatePost(this.editPost.id, updatedPost).subscribe({
+    next: () => {
+      const index = this.announcements.findIndex(p => p.id === this.editPost.id);
+      if (index !== -1) {
+        this.announcements[index] = { ...this.editPost };
+      }
+      this.editPost = null;
+      alert('✅ Post updated successfully');
+    },
+    error: (err) => {
+      console.error('Update failed:', err);
+      alert('Failed to update post');
     }
-    this.editPost = null;
-  }
+  });
+}
+
 
   onDelete(id: number) {
-    this.announcements = this.announcements.filter(p => p.id !== id);
+    if (!confirm('Are you sure you want to delete this post?')) return;
+
+    this.service.deletePost(id).subscribe({
+      next: () => {
+        this.announcements = this.announcements.filter(p => p.id !== id);
+        alert('Post deleted successfully');
+      },
+      error: (err) => {
+        console.error('Delete failed:', err);
+        alert('Failed to delete post');
+      }
+    });
   }
 
   filteredAnnouncements() {
