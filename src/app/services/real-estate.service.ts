@@ -11,9 +11,9 @@ export class RealEStateService {
 
   constructor(private http: HttpClient) { }
 
-  // private baseUrl='http://localhost:8080'
+  private baseUrl='http://localhost:8080'
 
-  private baseUrl = "https://realestate-java-684bdd5bd699.herokuapp.com"
+  // private baseUrl = "https://realestate-java-684bdd5bd699.herokuapp.com"
 
   login(user: any) {
     return this.http.post(`${this.baseUrl}/login`, user);
@@ -105,6 +105,21 @@ export class RealEStateService {
   getUnAssignedPlots(ventureId:number): Observable<Plots[]>{
     const params=new HttpParams().set('ventureId',ventureId);
     return this.http.get<Plots[]>(`${this.baseUrl}/getUnAssignedPlots`,{params});
+  }
+
+  sendOtpToEmail(email:string):Observable<any>{
+    const params=new HttpParams().set('email',email);
+    return this.http.post(`${this.baseUrl}/sendEmailOTP`,{},{params});
+  }
+
+  verifyOTP(email:string,otp:number):Observable<any>{
+    const params=new HttpParams().set('email',email).set('otp',otp);
+    return this.http.post(`${this.baseUrl}/verifyOTP`,{},{params});
+  }
+
+  resetPassword(email:string,otp:number,newPassword:string):Observable<any>{
+    const params=new HttpParams().set('email',email).set('otp',otp).set('newPassword',newPassword);
+    return this.http.put(`${this.baseUrl}/resetPassword`,{},{params});
   }
 
   // -------------------------------------------------------------------------------
