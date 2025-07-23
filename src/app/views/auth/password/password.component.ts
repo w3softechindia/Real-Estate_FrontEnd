@@ -16,6 +16,7 @@ import { NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap'
 export class PasswordComponent {
   otp!:number;
   email!:string;
+  password!:string;
   constructor(private service:RealEStateService){}
   @ViewChild('firstModal') firstModal!: TemplateRef<any>;
    @ViewChild('secondModal') secondModal!: TemplateRef<any>;
@@ -46,6 +47,14 @@ export class PasswordComponent {
       this.service.verifyOTP(this.email,this.otp).subscribe((data)=>{
         console.log(data);
          this.openModal(this.secondModal, { centered: true });
+      })
+    }
+
+    changePassword(){
+      this.service.resetPassword(this.email,this.otp,this.password).subscribe((data)=>{
+        console.log(data);
+        alert('Password Reset Succesfull..!!')
+        window.location.reload();
       })
     }
 }

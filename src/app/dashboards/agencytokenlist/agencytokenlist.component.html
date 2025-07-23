@@ -31,8 +31,8 @@
         <tbody>
           <tr *ngFor="let token of filteredTokens">
             <td>{{ token.amount | currency }}</td>
-            <td>{{ token.lead?.agentName }}</td>
-            <td>{{ token.lead?.leadName }}</td>
+            <td>{{ token.lead.agentName }}</td>
+            <td>{{ token.lead.leadName }}</td>
             <td>{{ token.tokenDeadLine | date: 'mediumDate' }}</td>
             <td>{{ token.agencyStatus || 'pending' }}</td>
             <td><button class="view-btn" (click)="viewToken(token)">View</button></td>
@@ -62,8 +62,8 @@
         </div>
         <div class="modal-body">
           <p><strong>Amount:</strong> {{ selectedToken.amount | currency }}</p>
-          <p><strong>Agent:</strong> {{ selectedToken.lead?.agentName }}</p>
-          <p><strong>Customer:</strong> {{ selectedToken.lead?.leadName }}</p>
+          <p><strong>Agent:</strong> {{ selectedToken.lead.agentName }}</p>
+          <p><strong>Customer:</strong> {{ selectedToken.lead.leadName }}</p>
           <p><strong>Deadline:</strong> {{ selectedToken.tokenDeadLine | date: 'fullDate' }}</p>
           <p><strong>Status:</strong> {{ selectedToken.agencyStatus || 'pending' }}</p>
         </div>
