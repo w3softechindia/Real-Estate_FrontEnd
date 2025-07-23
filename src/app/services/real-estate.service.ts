@@ -24,9 +24,9 @@ import { token } from 'flatpickr/dist/utils/formatting'
 export class RealEStateService {
   constructor(private http: HttpClient, private authService: AuthService) {}
 
-  // private baseUrl = 'http://localhost:8080'
+  private baseUrl = 'http://localhost:8080'
 
-  private baseUrl = "https://realestate-java-684bdd5bd699.herokuapp.com"
+  // private baseUrl = "https://realestate-java-684bdd5bd699.herokuapp.com"
 
   login(user: any) {
     return this.http.post(`${this.baseUrl}/login`, user)
@@ -125,9 +125,9 @@ export class RealEStateService {
     return this.http.get<Plots[]>(`${this.baseUrl}/getUnAssignedPlots`,{params});
   }
 
-  sendOtpToEmail(email:string):Observable<any>{
+  sendOtpToEmail(email:string){
     const params=new HttpParams().set('email',email);
-    return this.http.post(`${this.baseUrl}/sendEmailOTP`,{},{params});
+    return this.http.post(`${this.baseUrl}/sendEmailOTP`,{},{params,responseType: 'text' });
   }
 
   verifyOTP(email:string,otp:number):Observable<any>{
@@ -137,7 +137,7 @@ export class RealEStateService {
 
   resetPassword(email:string,otp:number,newPassword:string):Observable<any>{
     const params=new HttpParams().set('email',email).set('otp',otp).set('newPassword',newPassword);
-    return this.http.put(`${this.baseUrl}/resetPassword`,{},{params});
+    return this.http.put(`${this.baseUrl}/resetPassword`,{},{params, responseType:'text'});
   }
 
   // -------------------------------------------------------------------------------
