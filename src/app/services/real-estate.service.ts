@@ -1,22 +1,12 @@
 
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http'
-import { Injectable } from '@angular/core'
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Agency, Agent, Lead, Plots, PlotsDetailsDto, Post, Venture, Visit,AgentUpdateRequest,Token,TokennDto } from '../modals/user.model'
+import { Observable } from 'rxjs';
+import { AuthService } from '../authorization/auth.service';
+import { token } from 'flatpickr/dist/utils/formatting';
 
-import { AgentUpdateRequest, Token, TokennDto } from '../modals/user.model'
 
-import {
-  Agency,
-  Agent,
-  Lead,
-  Plots,
-  PlotsDetailsDto,
-  Post,
-  Venture,
-  Visit,
-} from '../modals/user.model'
-import { Observable } from 'rxjs'
-import { AuthService } from '../authorization/auth.service'
-import { token } from 'flatpickr/dist/utils/formatting'
 
 @Injectable({
   providedIn: 'root',
@@ -24,9 +14,10 @@ import { token } from 'flatpickr/dist/utils/formatting'
 export class RealEStateService {
   constructor(private http: HttpClient, private authService: AuthService) {}
 
-  private baseUrl = 'http://localhost:8080'
 
-  // private baseUrl = "https://realestate-java-684bdd5bd699.herokuapp.com"
+ // private baseUrl = 'http://localhost:8080'
+
+   private baseUrl = "https://realestate-java-684bdd5bd699.herokuapp.com"
 
   login(user: any) {
     return this.http.post(`${this.baseUrl}/login`, user)
@@ -180,19 +171,22 @@ export class RealEStateService {
     return this.http.post<Post>(`${this.baseUrl}/addPost?email=${email}`, post)
   }
 
-  getAllPostsByAgency(email: string): Observable<Post[]> {
-    return this.http.get<Post[]>(`${this.baseUrl}/getAllPosts?email=${email}`)
-  }
+
 
   updatePost(postId: number, updatedPost: any): Observable<any> {
     return this.http.put(`${this.baseUrl}/updatePost/${postId}`, updatedPost)
   }
+
+getAllPostsByAgency(email: string): Observable<Post[]> {
+  return this.http.get<Post[]>(`${this.baseUrl}/getAllPostsByAgency?email=${email}`);
+}
 
   deletePost(postId: number): Observable<any> {
     return this.http.delete(`${this.baseUrl}/deletePost/${postId}`, {
       responseType: 'text',
     })
   }
+
 
   getAgencyByEmail(email: string): Observable<Agency> {
     const params = new HttpParams().set('email', email)
@@ -289,4 +283,7 @@ updateTokenStatus(tokenId: number, agencystatus: string): Observable<any> {
     return this.http.get<any>(`${this.baseUrl}/getAllTokens`)
   }
 
+getAllPosts():Observable<any>{
+  return this.http.get<any>(`${this.baseUrl}/getAllPosts`);
+}
 }

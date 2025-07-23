@@ -134,6 +134,7 @@ export interface Token{
 	transactionMode:string,
 	agencyStatus:string,
 	tokenDeadLine:Date,
+  agentName:string,
   lead:Lead,
   visits:Visit[];
 }
