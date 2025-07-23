@@ -45,6 +45,11 @@ export class AuthService {
    public getEmail(): string {
     return sessionStorage.getItem('email') || ''; // Return empty string if no email is found
   }
+
+  public getName():string{
+return sessionStorage.getItem('name') || '';
+  }
+
   public setUserId(userId: number) {
     sessionStorage.setItem('userId', userId.toString());
   }
@@ -57,6 +62,7 @@ export class AuthService {
   public isLoggedIn() {
     return this.getRoles() && this.getToken();
   }
+  
   getAuthToken(): string {
     return sessionStorage.getItem('jwtToken') || '';
   }

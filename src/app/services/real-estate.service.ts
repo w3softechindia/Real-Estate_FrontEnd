@@ -1,9 +1,6 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-
-import { Agency, Agent, AgentUpdateRequest, Lead, Token, Venture, Visit } from '../modals/user.model';
-
-import { Agency, Agent, Lead, Plots, PlotsDetailsDto, Post, Venture, Visit } from '../modals/user.model'
+import { Agency, Agent, Lead, Plots, PlotsDetailsDto, Post, Venture, Visit,AgentUpdateRequest,Token } from '../modals/user.model'
 import { Observable } from 'rxjs';
 import { AuthService } from '../authorization/auth.service';
 import { token } from 'flatpickr/dist/utils/formatting';
@@ -16,9 +13,9 @@ export class RealEStateService {
 
   constructor(private http: HttpClient,private authService:AuthService) { }
 
-  // private baseUrl='http://localhost:8080'
+  private baseUrl='http://localhost:8080'
 
-  private baseUrl = "https://realestate-java-684bdd5bd699.herokuapp.com"
+  //private baseUrl = "https://realestate-java-684bdd5bd699.herokuapp.com"
 
   login(user: any) {
     return this.http.post(`${this.baseUrl}/login`, user);
@@ -145,7 +142,7 @@ export class RealEStateService {
 }
 
 getAllPostsByAgency(email: string): Observable<Post[]> {
-  return this.http.get<Post[]>(`${this.baseUrl}/getAllPosts?email=${email}`);
+  return this.http.get<Post[]>(`${this.baseUrl}/getAllPostsByAgency?email=${email}`);
 }
 
 updatePost(postId: number, updatedPost: any): Observable<any> {
@@ -237,4 +234,7 @@ getAllTokens():Observable<any>{
   return this.http.get<any>(`${this.baseUrl}/getAllTokens`);
 }
 
+getAllPosts():Observable<any>{
+  return this.http.get<any>(`${this.baseUrl}/getAllPosts`);
+}
 }
