@@ -10,17 +10,8 @@
 
     <!-- 🔍 Search Filter -->
     <div class="search-box">
-      <input
-        type="text"
-        [(ngModel)]="searchAgent"
-        placeholder="Search by agent name"
-      />
-
-      <input
-        type="date"
-        [(ngModel)]="searchDate"
-        placeholder="Filter by date"
-      />
+      <input type="text" [(ngModel)]="searchAgent" placeholder="Search by agent name" />
+      <input type="date" [(ngModel)]="searchDate" placeholder="Filter by date" />
     </div>
 
     <!-- 📋 Table View -->
@@ -28,45 +19,41 @@
       <table>
         <thead>
           <tr>
-            <th>Token Amount</th>
-            <th>Agent Name</th>
-            <th>Customer Name</th>
-            <th>Date</th>
-            <th>Time Frame</th>
+            <th>Amount</th>
+            <th>Agent</th>
+            <th>Customer</th>
+            <th>Deadline</th>
+            <th>Status</th>
             <th>View</th>
-            <th>Actions</th>
+            <th>Action</th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let token of filteredTokens">
             <td>{{ token.amount | currency }}</td>
-            <td>{{ token.agentName }}</td>
-            <td>{{ token.customerName }}</td>
-            <td>{{ token.date | date: 'MMM d, y' }}</td>
-            <td>{{token.timeframe}}</td>
+            <td>{{ token.lead.agentName }}</td>
+            <td>{{ token.lead.leadName }}</td>
+            <td>{{ token.tokenDeadLine | date: 'mediumDate' }}</td>
+            <td>{{ token.agencyStatus || 'pending' }}</td>
+            <td><button class="view-btn" (click)="viewToken(token)">View</button></td>
             <td>
-              <button class="view-btn" (click)="viewToken(token)">View</button>
-            </td>
-            <td>
-              <ng-container [ngSwitch]="token.status">
-                <ng-container *ngSwitchCase="'pending'">
-                  <button class="accept-btn" (click)="acceptToken(token)">Accept</button>
-                  <button class="reject-btn" (click)="rejectToken(token)">Reject</button>
-                </ng-container>
-                <ng-container *ngSwitchCase="'accepted'">
-                  <span class="status accepted">Accepted</span>
-                </ng-container>
-                <ng-container *ngSwitchCase="'rejected'">
-                  <span class="status rejected">Rejected</span>
-                </ng-container>
+              <ng-container *ngIf="token.agencyStatus === 'accepted'; else showActions">
+                <span class="status accepted">Accepted</span>
               </ng-container>
+              <ng-container *ngIf="token.agencyStatus === 'rejected'">
+                <span class="status rejected">Rejected</span>
+              </ng-container>
+              <ng-template #showActions>
+                <button class="accept-btn" (click)="updateStatus(token, 'accepted')">Accept</button>
+                <button class="reject-btn" (click)="updateStatus(token, 'rejected')">Reject</button>
+              </ng-template>
             </td>
           </tr>
         </tbody>
       </table>
     </div>
 
-    <!-- 🔎 Popup Modal -->
+    <!-- 🔍 Modal View -->
     <div class="modal-overlay" *ngIf="selectedToken">
       <div class="modal-content">
         <div class="modal-header">
@@ -74,11 +61,11 @@
           <button class="close-btn" (click)="closeModal()">X</button>
         </div>
         <div class="modal-body">
-          <p><strong>Token Amount:</strong> {{ selectedToken.amount | currency }}</p>
-          <p><strong>Agent Name:</strong> {{ selectedToken.agentName }}</p>
-          <p><strong>Customer Name:</strong> {{ selectedToken.customerName }}</p>
-          <p><strong>Date:</strong> {{ selectedToken.date | date: 'fullDate' }}</p>
-          <p><strong>Additional Info:</strong> {{ selectedToken.details }}</p>
+          <p><strong>Amount:</strong> {{ selectedToken.amount | currency }}</p>
+          <p><strong>Agent:</strong> {{ selectedToken.lead.agentName }}</p>
+          <p><strong>Customer:</strong> {{ selectedToken.lead.leadName }}</p>
+          <p><strong>Deadline:</strong> {{ selectedToken.tokenDeadLine | date: 'fullDate' }}</p>
+          <p><strong>Status:</strong> {{ selectedToken.agencyStatus || 'pending' }}</p>
         </div>
       </div>
     </div>
