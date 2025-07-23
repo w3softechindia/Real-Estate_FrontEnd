@@ -87,6 +87,7 @@ export interface Plots {
 
 //======================Leads===================
 export interface Lead{
+agentName: any;
 leadId:number,
 leadName:string,
 phoneNumber:string,
@@ -138,7 +139,6 @@ export interface Token{
   visits:Visit[];
 }
 
-
 // plots-details.dto.ts
 export interface PlotsDetailsDto {
   countOfPlots: number;
@@ -148,7 +148,6 @@ export interface PlotsDetailsDto {
   countOfSoldPlots: number;
   countOfUnAssignedPlots: number;
 }
-
 
 // =======================Post ===============================
 
@@ -169,4 +168,16 @@ export interface Post {
 
 
 
-
+export interface TokennDto {
+   tokenid: number;
+  amount: number;
+  transactionMode: string;
+  agencyStatus: string;
+  tokenDeadLine: string;
+  lead: {
+    agentName: string;
+    leadName: string;
+    email?: string;
+    phone?: string;
+  };
+}
