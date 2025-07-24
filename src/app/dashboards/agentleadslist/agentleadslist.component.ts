@@ -6,6 +6,7 @@ import { Lead } from '@/app/modals/user.model';
 import { RealEStateService } from '@/app/services/real-estate.service';
 import { subscribeOn } from 'rxjs';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { AuthService } from '@/app/authorization/auth.service';
 
 @Component({
   selector: 'app-agentleadslist',
@@ -21,18 +22,20 @@ export class AgentleadslistComponent {
 leads:Lead[]=[];
 showModal: boolean = false;
 selectedLead: any = {};
+agentEmail:string='';
 
 leadForm!:FormGroup;
 
-constructor(private service:RealEStateService,private fb:FormBuilder){}
+constructor(private service:RealEStateService,private fb:FormBuilder,private authService:AuthService){}
 
 ngOnInit():void{
+this.agentEmail=this.authService.getEmail();
 this.getAllLeads();
 this.initForm();
 }
 
 getAllLeads():void{
-this.service.getAllLeads().subscribe({
+this.service.getAllLeads(this.agentEmail).subscribe({
   next:(res)=>{
     this.leads=res;
   },error:(err)=>{

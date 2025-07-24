@@ -14,7 +14,7 @@ export class RealEStateService {
 
   private baseUrl = 'http://localhost:8080'
 
-  // private baseUrl = "https://realestate-java-684bdd5bd699.herokuapp.com"
+  //private baseUrl = "https://realestate-java-684bdd5bd699.herokuapp.com"
 
 
   login(user: any) {
@@ -216,8 +216,8 @@ updateTokenStatus(tokenId: number, agencystatus: string): Observable<any> {
     return this.http.post<Lead>(`${this.baseUrl}/addLead`, lead, { params })
   }
 
-  getAllLeads(): Observable<any> {
-    return this.http.get(`${this.baseUrl}/getAllLeads`)
+  getAllLeads(email:string): Observable<Lead[]> {
+    return this.http.get<Lead[]>(`${this.baseUrl}/getAllLeads?email=${email}`)
   }
 
   updateLead(lead: Lead): Observable<any> {

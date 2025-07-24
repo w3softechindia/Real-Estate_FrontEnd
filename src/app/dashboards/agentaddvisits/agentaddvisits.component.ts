@@ -5,6 +5,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { RealEStateService } from '@/app/services/real-estate.service';
 import { Lead } from '@/app/modals/user.model';
 import { CommonModule } from '@angular/common';
+import { AuthService } from '@/app/authorization/auth.service';
 
 @Component({
   selector: 'app-agentaddvisits',
@@ -16,10 +17,12 @@ import { CommonModule } from '@angular/common';
 export class AgentaddvisitsComponent {
   visitForm!:FormGroup
   leads:Lead[]=[];
+  agentEmail:string='';
 
-constructor(private service:RealEStateService,private fb:FormBuilder){}
+constructor(private service:RealEStateService,private fb:FormBuilder,private authService:AuthService){}
 
   ngOnInit():void{
+this.agentEmail=this.authService.getEmail();
 this.visitForm=this.fb.group({
 leadName:['',Validators.required],
 propertyType:['',Validators.required],
@@ -74,7 +77,7 @@ this.loadLeads();
 
 
   loadLeads(){
-    this.service.getAllLeads().subscribe(
+    this.service.getAllLeads(this.agentEmail).subscribe(
       (data:Lead[])=>{
         this.leads=data;
       },
