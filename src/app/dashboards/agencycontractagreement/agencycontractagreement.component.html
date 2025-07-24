@@ -1,2 +1,80 @@
 <app-agencytopbar></app-agencytopbar>
-<app-agencyssidebar></app-agencyssidebar>
+
+<div class="page-layout">
+  <app-agencyssidebar></app-agencyssidebar>
+
+  <div class="main-content">
+
+    <div class="card" *ngIf="step === 1">
+      <h2>📝 Contract / Agreement Step 1</h2>
+      <form>
+        <div class="form-grid">
+          <label>Contract Type
+            <select [(ngModel)]="contract.type" name="type" required>
+              <option value="Agreement">Agreement</option>
+              <option value="Contract">Contract</option>
+            </select>
+          </label>
+
+          <label>Agency Name
+            <input type="text" [(ngModel)]="contract.agencyName" name="agencyName" required />
+          </label>
+
+          <label>Second Party
+            <input type="text" [(ngModel)]="contract.partyB" name="partyB" required />
+          </label>
+
+          <label>Start Date
+            <input type="date" [(ngModel)]="contract.startDate" name="startDate" required />
+          </label>
+
+          <label>End Date
+            <input type="date" [(ngModel)]="contract.endDate" name="endDate" required />
+          </label>
+
+          <label>Status
+            <select [(ngModel)]="contract.status" name="status" required>
+              <option value="Draft">Draft</option>
+              <option value="Pending">Pending</option>
+              <option value="Approved">Approved</option>
+            </select>
+          </label>
+
+          <label>Contract Title
+            <input type="text" [(ngModel)]="contract.title" name="title" required />
+          </label>
+
+          <label>Body / Description
+            <textarea [(ngModel)]="contract.body" name="body" rows="6" required placeholder="Write contract terms..."></textarea>
+          </label>
+
+          <button type="button" class="next-btn" (click)="goToStep(2)">➡️ Next</button>
+        </div>
+      </form>
+    </div>
+
+    <div class="card preview-card" *ngIf="step === 2">
+      <h2>📄 Contract Preview</h2>
+      <div class="contract-preview" id="contractContent">
+        <h3>{{ contract.title }}</h3>
+        <p><strong>Type:</strong> {{ contract.type }}</p>
+        <p><strong>Agency:</strong> {{ contract.agencyName }}</p>
+        <p><strong>Second Party:</strong> {{ contract.partyB }}</p>
+        <p><strong>Start Date:</strong> {{ contract.startDate }}</p>
+        <p><strong>End Date:</strong> {{ contract.endDate }}</p>
+        <p><strong>Status:</strong> {{ contract.status }}</p>
+        <hr />
+        <p style="white-space: pre-line;">{{ contract.body }}</p>
+        <br />
+        <p><strong>Created By:</strong> {{ createdBy }}</p>
+        <p><strong>Date:</strong> {{ today | date: 'medium' }}</p>
+      </div>
+
+      <div class="buttons">
+        <button (click)="goToStep(1)">⬅️ Back</button>
+        <button (click)="downloadAsPDF()">📥 Download as PDF</button>
+      </div>
+    </div>
+
+  </div>
+</div>
