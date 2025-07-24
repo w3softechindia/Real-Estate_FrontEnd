@@ -34,7 +34,8 @@ private initForm(): void {
   this.tokenForm = this.fb.group({
     amount: ['', Validators.required],
     transactionMode: ['', Validators.required],
-    deadline:['',Validators.required]
+    deadline:['',Validators.required],
+    agentName:['',Validators.required]
   });
 }
   getAllVisits():void{
@@ -53,6 +54,7 @@ private initForm(): void {
 
   openSendModal(Visit: any) {
     this.initForm();
+    console.log(this.tokenForm.value) ;
   this.selectedToken = { ...Visit ,
     leadId:Visit.lead.leadId
   };
@@ -60,7 +62,8 @@ private initForm(): void {
   this.tokenForm.patchValue({
     amount: Visit.amount ?? '',
     transactionMode: Visit.transactionMode ?? '',
-    deadline:Visit.tokenDeadLine ??''
+    deadline:Visit.tokenDeadLine ??'',
+    agentName:Visit.agentName ?? ''
   });
 }
 
@@ -79,6 +82,7 @@ private initForm(): void {
     amount: formData.amount,
     transactionMode: formData.transactionMode,
     tokenDeadLine: formData.deadline,
+    agentName:formData.agentName,
     lead: this.selectedToken.lead
   };
 

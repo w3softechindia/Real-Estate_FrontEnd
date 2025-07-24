@@ -1,21 +1,12 @@
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http'
-import { Injectable } from '@angular/core'
 
-import { AgentUpdateRequest, Token, TokennDto } from '../modals/user.model'
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Agency, Agent, Lead, Plots, PlotsDetailsDto, Post, Venture, Visit,AgentUpdateRequest,Token,TokennDto } from '../modals/user.model'
+import { Observable } from 'rxjs';
+import { AuthService } from '../authorization/auth.service';
+import { token } from 'flatpickr/dist/utils/formatting';
 
-import {
-  Agency,
-  Agent,
-  Lead,
-  Plots,
-  PlotsDetailsDto,
-  Post,
-  Venture,
-  Visit,
-} from '../modals/user.model'
-import { Observable } from 'rxjs'
-import { AuthService } from '../authorization/auth.service'
-import { token } from 'flatpickr/dist/utils/formatting'
+
 
 @Injectable({
   providedIn: 'root',
@@ -23,9 +14,10 @@ import { token } from 'flatpickr/dist/utils/formatting'
 export class RealEStateService {
   constructor(private http: HttpClient, private authService: AuthService) {}
 
-  // private baseUrl = 'http://localhost:8080'
 
-  private baseUrl = "https://realestate-java-684bdd5bd699.herokuapp.com"
+ // private baseUrl = 'http://localhost:8080'
+
+   private baseUrl = "https://realestate-java-684bdd5bd699.herokuapp.com"
 
   login(user: any) {
     return this.http.post(`${this.baseUrl}/login`, user)
@@ -48,10 +40,10 @@ export class RealEStateService {
   }
 
   registerVenture(venture: any, file: File): Observable<any> {
-    const formData = new FormData()
-    formData.append('jsonVenture', JSON.stringify(venture))
-    formData.append('file', file)
-    return this.http.post(`${this.baseUrl}/addVenture`, formData)
+    const formData = new FormData();
+    formData.append('jsonVenture', JSON.stringify(venture));
+    formData.append('file', file);
+    return this.http.post(`${this.baseUrl}/addVenture`, formData);
   }
 
   getAllVentures(): Observable<any[]> {
@@ -105,38 +97,38 @@ export class RealEStateService {
     })
   }
 
-  assignVentureWithPlots(
-    agencyId: number,
-    ventureId: number,
-    startPlotNumber: number,
-    endPlotNumber: number
-  ): Observable<any> {
+  assignVentureWithPlots(agencyId: number, ventureId: number, startPlotNumber: number, endPlotNumber: number): Observable<any> {
     const params = new HttpParams()
       .set('agencyId', agencyId)
       .set('ventureId', ventureId)
       .set('stPlotNum', startPlotNumber)
-      .set('edPlotNum', endPlotNumber)
-
-    return this.http.post<any>(
-      `${this.baseUrl}/assignVenturesWithPlots`,
-      null,
-      { params }
-    )
+      .set('edPlotNum', endPlotNumber);
+    return this.http.post<any>(`${this.baseUrl}/assignVenturesWithPlots`, null, { params });
   }
 
   getPlotsDetailsByVentureId(ventureId: number): Observable<PlotsDetailsDto> {
-    const params = new HttpParams().set('ventureId', ventureId)
-    return this.http.get<PlotsDetailsDto>(
-      `${this.baseUrl}/countPlotsByVentureId`,
-      { params }
-    )
+     const params = new HttpParams().set('ventureId', ventureId);
+    return this.http.get<PlotsDetailsDto>(`${this.baseUrl}/countPlotsByVentureId`,{params});
   }
 
-  getUnAssignedPlots(ventureId: number): Observable<Plots[]> {
-    const params = new HttpParams().set('ventureId', ventureId)
-    return this.http.get<Plots[]>(`${this.baseUrl}/getUnAssignedPlots`, {
-      params,
-    })
+  getUnAssignedPlots(ventureId:number): Observable<Plots[]>{
+    const params=new HttpParams().set('ventureId',ventureId);
+    return this.http.get<Plots[]>(`${this.baseUrl}/getUnAssignedPlots`,{params});
+  }
+
+  sendOtpToEmail(email:string){
+    const params=new HttpParams().set('email',email);
+    return this.http.post(`${this.baseUrl}/sendEmailOTP`,{},{params,responseType: 'text' });
+  }
+
+  verifyOTP(email:string,otp:number):Observable<any>{
+    const params=new HttpParams().set('email',email).set('otp',otp);
+    return this.http.post(`${this.baseUrl}/verifyOTP`,{},{params});
+  }
+
+  resetPassword(email:string,otp:number,newPassword:string):Observable<any>{
+    const params=new HttpParams().set('email',email).set('otp',otp).set('newPassword',newPassword);
+    return this.http.put(`${this.baseUrl}/resetPassword`,{},{params, responseType:'text'});
   }
 
   // -------------------------------------------------------------------------------
@@ -179,19 +171,22 @@ export class RealEStateService {
     return this.http.post<Post>(`${this.baseUrl}/addPost?email=${email}`, post)
   }
 
-  getAllPostsByAgency(email: string): Observable<Post[]> {
-    return this.http.get<Post[]>(`${this.baseUrl}/getAllPosts?email=${email}`)
-  }
+
 
   updatePost(postId: number, updatedPost: any): Observable<any> {
     return this.http.put(`${this.baseUrl}/updatePost/${postId}`, updatedPost)
   }
+
+getAllPostsByAgency(email: string): Observable<Post[]> {
+  return this.http.get<Post[]>(`${this.baseUrl}/getAllPostsByAgency?email=${email}`);
+}
 
   deletePost(postId: number): Observable<any> {
     return this.http.delete(`${this.baseUrl}/deletePost/${postId}`, {
       responseType: 'text',
     })
   }
+
 
   getAgencyByEmail(email: string): Observable<Agency> {
     const params = new HttpParams().set('email', email)
@@ -288,4 +283,7 @@ updateTokenStatus(tokenId: number, agencystatus: string): Observable<any> {
     return this.http.get<any>(`${this.baseUrl}/getAllTokens`)
   }
 
+getAllPosts():Observable<any>{
+  return this.http.get<any>(`${this.baseUrl}/getAllPosts`);
+}
 }

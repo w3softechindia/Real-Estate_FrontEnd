@@ -134,10 +134,10 @@ export interface Token{
 	transactionMode:string,
 	agencyStatus:string,
 	tokenDeadLine:Date,
+  agentName:string,
   lead:Lead,
   visits:Visit[];
 }
-
 
 // plots-details.dto.ts
 export interface PlotsDetailsDto {
@@ -148,7 +148,6 @@ export interface PlotsDetailsDto {
   countOfSoldPlots: number;
   countOfUnAssignedPlots: number;
 }
-
 
 // =======================Post ===============================
 
@@ -182,7 +181,3 @@ export interface TokennDto {
     phone?: string;
   };
 }
-
-
-
-
