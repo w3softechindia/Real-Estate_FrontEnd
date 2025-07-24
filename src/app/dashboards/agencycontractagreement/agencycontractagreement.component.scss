@@ -1,0 +1,120 @@
+.page-layout {
+  display: flex;
+}
+
+app-agencyssidebar {
+  width: 250px;
+}
+
+.main-content {
+  flex: 1;
+  padding: 40px;
+  background: #f0f2f5;
+  min-height: 100vh;
+}
+
+.card {
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  max-width: 800px;
+  margin: auto;
+
+  h2 {
+    margin-bottom: 20px;
+    color: #333;
+  }
+
+  .form-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+
+    label {
+      display: flex;
+      flex-direction: column;
+      font-size: 15px;
+      font-weight: 500;
+
+      input, select, textarea {
+        margin-top: 6px;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        font-size: 14px;
+
+        &:focus {
+          border-color: #007bff;
+          outline: none;
+        }
+      }
+    }
+
+    .next-btn {
+      grid-column: 1 / -1;
+      padding: 12px 20px;
+      font-size: 15px;
+      background: #007bff;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      margin-top: 10px;
+      cursor: pointer;
+
+      &:hover {
+        background: #0056b3;
+      }
+    }
+  }
+}
+
+.preview-card {
+  .contract-preview {
+    background: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    line-height: 1.6;
+    font-size: 15px;
+    color: #333;
+  }
+
+  .buttons {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+
+    button {
+      padding: 10px 20px;
+      font-size: 14px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+
+      &:first-child {
+        background: #6c757d;
+        color: white;
+      }
+
+      &:last-child {
+        background: #28a745;
+        color: white;
+      }
+
+      &:hover {
+        opacity: 0.9;
+      }
+    }
+  }
+}
+
+@media print {
+  app-agencytopbar, app-agencyssidebar, .main-content > div:not(.preview-card) {
+    display: none !important;
+  }
+
+  .preview-card {
+    box-shadow: none;
+    padding: 0;
+  }
+}

@@ -964,12 +964,12 @@ export const CUSTOM_MENU: MenuItemType[] = [
         url: '/agencytokenlist',
         parentKey: 'customers',
       },
-      // {
-      //   key: 'add-customer',
-      //   label: 'Add Customer',
-      //   url: '/customers/add',
-      //   parentKey: 'customers',
-      // },
+      {
+        key: 'add-customer',
+        label: 'Sales',
+        url: '/agencysales',
+        parentKey: 'customers',
+      },
     ],
   },
 

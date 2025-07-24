@@ -1,0 +1,169 @@
+.page-layout {
+  display: flex;
+}
+
+app-agencyssidebar {
+  width: 250px;
+  flex-shrink: 0;
+}
+
+.main-content {
+  flex-grow: 1;
+  padding: 40px;
+  background: #f7f9fc;
+  min-height: calc(100vh - 80px);
+  padding-top: 80px;
+}
+
+.list-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+
+  h2 {
+    font-weight: 600;
+    color: #333;
+  }
+}
+
+.search-box {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 20px;
+
+  input {
+    padding: 10px 14px;
+    font-size: 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    outline: none;
+    width: 100%;
+    max-width: 300px;
+
+    &:focus {
+      border-color: #007bff;
+    }
+  }
+}
+
+.table-view {
+  overflow-x: auto;
+  margin-bottom: 20px;
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+
+    th,
+    td {
+      padding: 15px;
+      text-align: center;
+      border-bottom: 1px solid #eee;
+      font-size: 15px;
+    }
+
+    th {
+      background: #e9f0f7;
+      font-weight: 600;
+      font-size: 16px;
+      color: #333;
+    }
+
+    tr:hover {
+      background: #f1f5f9;
+    }
+
+    .view-btn {
+      padding: 8px 14px;
+      background: #007bff;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 14px;
+      cursor: pointer;
+
+      &:hover {
+        background: #0056b3;
+      }
+    }
+
+    .status-booked {
+      background-color: #e6f4ea;
+      color: #28a745;
+      font-weight: bold;
+      padding: 6px 12px;
+      border-radius: 6px;
+    }
+
+    .status-available {
+      background-color: #fff5e6;
+      color: #f0ad4e;
+      font-weight: bold;
+      padding: 6px 12px;
+      border-radius: 6px;
+    }
+  }
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  width: 400px;
+  max-height: 80vh;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+  position: relative;
+  overflow-y: auto;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  h3 {
+    margin: 0;
+    color: #007bff;
+  }
+
+  .close-btn {
+    background: transparent;
+    border: none;
+    font-size: 22px;
+    font-weight: bold;
+    color: #333;
+    cursor: pointer;
+  }
+}
+
+.modal-body {
+  margin-top: 20px;
+
+  p {
+    margin-bottom: 12px;
+    font-size: 15px;
+    color: #555;
+
+    strong {
+      color: #333;
+    }
+  }
+}
