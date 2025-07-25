@@ -174,6 +174,7 @@ export interface TokennDto {
   transactionMode: string;
   agencyStatus: string;
   tokenDeadLine: string;
+  agentName:string;
   lead: {
     agentName: string;
     leadName: string;

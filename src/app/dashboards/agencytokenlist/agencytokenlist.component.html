@@ -31,7 +31,7 @@
         <tbody>
           <tr *ngFor="let token of filteredTokens">
             <td>{{ token.amount | currency }}</td>
-            <td>{{ token.lead.agentName }}</td>
+            <td>{{ token.agentName }}</td>
             <td>{{ token.lead.leadName }}</td>
             <td>{{ token.tokenDeadLine | date: 'mediumDate' }}</td>
             <td>{{ token.agencyStatus || 'pending' }}</td>
