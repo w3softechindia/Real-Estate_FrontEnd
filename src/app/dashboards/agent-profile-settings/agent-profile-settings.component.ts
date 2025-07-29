@@ -6,11 +6,12 @@ import { AuthService } from '@/app/authorization/auth.service';
 import { RealEStateService } from '@/app/services/real-estate.service';
 import { Agent, AgentUpdateRequest } from '@/app/modals/user.model';
 import { response } from 'express';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-agent-profile-settings',
   standalone: true,
-  imports: [AgenttopbarComponent,AgentdashboardComponent,ReactiveFormsModule],
+  imports: [AgenttopbarComponent,AgentdashboardComponent,ReactiveFormsModule,CommonModule],
   templateUrl: './agent-profile-settings.component.html',
   styleUrl: './agent-profile-settings.component.scss'
 })
@@ -50,6 +51,10 @@ getDetails(){
 }
 
 updateProfile():void{
+    if (this.profileForm.invalid) {
+    this.profileForm.markAllAsTouched(); 
+    return;
+  }
   const updatedAgent:AgentUpdateRequest={
     email:this.agent.email,
     phoneNumber: this.profileForm.value.phoneNumber,
@@ -71,4 +76,6 @@ updateProfile():void{
   })
 }
 
+   // convenience getter
+  get f() { return this.profileForm.controls; }
 }

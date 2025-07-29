@@ -12,7 +12,7 @@
                 <tr>
                   <th>Lead Name</th>
                   <th>Property</th>
-                  <th>Date</th>
+                  <th>TokenDeadLine</th>
                   <th>Amount</th>
                   <th>TransactionMode</th>
                   <th>AgencyStatus</th>
@@ -28,12 +28,12 @@
                       </li>
                     </td>
 
-                  <td>
+                  <!-- <td>
                       <li *ngFor="let visit of token.lead.visits">
                         {{visit.visitDate}}
                       </li>
-               </td>
-
+               </td> -->
+                  <td>{{token.tokenDeadLine}}</td>
                   <td>{{token.amount}}</td>
                   <td>{{token.transactionMode}}</td>
                   <td>{{token.agencyStatus ? token.agencyStatus : 'Pending'}}</td>
