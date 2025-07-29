@@ -31,12 +31,13 @@
         <tbody>
           <tr *ngFor="let token of filteredTokens">
             <td>{{ token.amount | currency }}</td>
-            <td>{{ token.lead.agentName }}</td>
+            <td>{{ token.agentName }}</td>
             <td>{{ token.lead.leadName }}</td>
             <td>{{ token.tokenDeadLine | date: 'mediumDate' }}</td>
             <td>{{ token.agencyStatus || 'pending' }}</td>
             <td><button class="view-btn" (click)="viewToken(token)">View</button></td>
-            <td>
+
+            <!-- <td>
               <ng-container *ngIf="token.agencyStatus === 'accepted'; else showActions">
                 <span class="status accepted">Accepted</span>
               </ng-container>
@@ -47,7 +48,19 @@
                 <button class="accept-btn" (click)="updateStatus(token, 'accepted')">Accept</button>
                 <button class="reject-btn" (click)="updateStatus(token, 'rejected')">Reject</button>
               </ng-template>
-            </td>
+            </td> -->
+            <td>
+  <ng-container [ngSwitch]="token.agencyStatus">
+    <span *ngSwitchCase="'accepted'" class="status accepted">Accepted</span>
+    <span *ngSwitchCase="'rejected'" class="status rejected">Rejected</span>
+    <ng-container *ngSwitchDefault>
+      <button class="accept-btn" (click)="updateStatus(token, 'accepted')">Accept</button>
+      <button class="reject-btn" (click)="updateStatus(token, 'rejected')">Reject</button>
+    </ng-container>
+  </ng-container>
+</td>
+
+
           </tr>
         </tbody>
       </table>
