@@ -33,6 +33,7 @@ this.getAllVisits();
    this.service.getAllVisits().subscribe({
     next:(res)=>{
       this.visits=res;
+      console.log(res);
     },
     error:(err)=>{
       console.error('Failed to load Vists:',err);

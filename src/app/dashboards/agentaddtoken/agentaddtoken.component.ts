@@ -19,6 +19,8 @@ tokens:Token[]=[];
 showModal: boolean = false;
 selectedToken: any = {};
 tokenForm!: FormGroup;
+minDate!: string;
+
 
 transactions = ['Cash', 'UPI', 'Credit Card', 'Bank Transfer'];
 
@@ -26,8 +28,9 @@ transactions = ['Cash', 'UPI', 'Credit Card', 'Bank Transfer'];
 constructor(private service:RealEStateService,private fb:FormBuilder){}
 
   ngOnInit():void{
+    this.minDate = new Date().toISOString().split('T')[0];  // e.g. "2025-07-29"
     this.initForm();
-this.getAllVisits();
+    this.getAllVisits();
   }
 
 private initForm(): void {
@@ -59,6 +62,10 @@ private initForm(): void {
     leadId:Visit.lead.leadId
   };
   this.showModal = true;
+  // existing value, or today if it’s already past
+  const old = Visit.tokenDeadLine;
+  const today = this.minDate;
+  const initialDeadline = (old && old >= today) ? old : today;
   this.tokenForm.patchValue({
     amount: Visit.amount ?? '',
     transactionMode: Visit.transactionMode ?? '',
@@ -90,6 +97,7 @@ private initForm(): void {
   this.service.makePayment(leadId, tokenToSend).subscribe({
     next: (res) => {
       console.log('Token sent successfully', res);
+      alert('Token sent successfully');
       this.closePropertyModal();
     },
     error: (err) => console.error('Error sending token', err)
