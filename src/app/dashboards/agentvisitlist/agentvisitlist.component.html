@@ -83,23 +83,20 @@
                        <!-- Conditional fields -->
       <div *ngIf="selectedStatus === 'Not Interested'" class="extra-field">
         <label for="reason">Reason</label>
-        <input
-          id="reason"
-          type="text"
-          [(ngModel)]="reason"
-          placeholder="Enter reason"
-        />
-      </div>
+        <input id="reason" type="text" [(ngModel)]="reason" placeholder="Enter reason" />
+      <div class="error" *ngIf="selectedStatus === 'Not Interested' && reason.trim() === ''">
+  <small>Reason is required.</small>
+</div>
+</div>
 
       <div *ngIf="selectedStatus === 'Hold'" class="extra-field">
         <label for="holdDate">Select Hold Date</label>
-        <input
-          id="holdDate"
-          type="date"
-          [(ngModel)]="holdDate"
-        />
+        <input id="holdDate" type="date" [(ngModel)]="holdDate"/>
+       <div class="error" *ngIf="selectedStatus === 'Hold' && holdDate === ''">
+       <small>Hold Date is required.</small>
+       </div>
       </div>
-                          <button type="submit" (click)="submitStatus(i)" class="submit">Submit</button>
+                    <button type="submit" (click)="submitStatus(i)" class="submit">Submit</button>
                         </div>
                       </div>
                   </tr>
