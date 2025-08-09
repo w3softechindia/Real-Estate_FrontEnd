@@ -5,15 +5,17 @@
 
   <div class="main-content">
     <div class="list-header">
-      <h2>Sales Overview</h2>
+      <h2>Sales Overview (Token Paid Customers)</h2>
     </div>
 
+    <!-- Search -->
     <div class="search-box">
       <input type="text" [(ngModel)]="searchAgent" placeholder="Search by Agent" />
       <input type="text" [(ngModel)]="searchCustomer" placeholder="Search by Customer" />
       <input type="date" [(ngModel)]="searchDate" />
     </div>
 
+    <!-- Table -->
     <div class="table-view">
       <table>
         <thead>
@@ -21,7 +23,7 @@
             <th>Property</th>
             <th>Agent</th>
             <th>Customer</th>
-            <th>Amount</th>
+            <th>Token Amount</th>
             <th>Status</th>
             <th>Booking</th>
             <th>Actions</th>
@@ -36,20 +38,46 @@
             <td>
               <span [ngClass]="{
                 'status-booked': token.status === 'booked',
-                'status-available': token.status !== 'booked'
+                'status-sold': token.status === 'sold',
+                'status-rejected': token.status === 'rejected'
               }">
-                {{ token.status === 'booked' ? 'Booked ✅' : 'Available 🕒' }}
+                {{ token.status | titlecase }}
               </span>
             </td>
             <td>{{ token.bookingDate | date: 'mediumDate' }}</td>
             <td>
               <button class="view-btn" (click)="viewToken(token)">Details</button>
+              <button class="followup-btn" *ngIf="token.status === 'booked'" (click)="openFollowUp(token)">Follow Up</button>
             </td>
           </tr>
         </tbody>
       </table>
     </div>
 
+    <!-- Follow Up Modal -->
+    <div class="modal-overlay" *ngIf="followUpToken">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>Follow Up: {{ followUpToken.lead.leadName }}</h3>
+          <button class="close-btn" (click)="closeFollowUp()">X</button>
+        </div>
+        <div class="modal-body">
+          <p><strong>Property:</strong> {{ followUpToken.propertyName }}</p>
+          <p><strong>Token Amount Paid:</strong> {{ followUpToken.amount | currency }}</p>
+          <p><strong>Status:</strong> {{ followUpToken.status | titlecase }}</p>
+
+          <label>Remarks</label>
+          <textarea [(ngModel)]="followUpRemarks" placeholder="Enter remarks here"></textarea>
+
+          <div class="action-buttons">
+            <button class="mark-sold-btn" (click)="markAsSold()">Mark as Sold</button>
+            <button class="reject-btn" (click)="cancelToken()">Cancel Token</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Details Modal -->
     <div class="modal-overlay" *ngIf="selectedToken">
       <div class="modal-content">
         <div class="modal-header">
@@ -60,10 +88,10 @@
           <p><strong>Property:</strong> {{ selectedToken.propertyName }}</p>
           <p><strong>Agent:</strong> {{ selectedToken.lead.agentName }}</p>
           <p><strong>Customer:</strong> {{ selectedToken.lead.leadName }}</p>
-          <p><strong>Amount:</strong> {{ selectedToken.amount | currency }}</p>
+          <p><strong>Token Amount:</strong> {{ selectedToken.amount | currency }}</p>
           <p><strong>Booking Date:</strong> {{ selectedToken.bookingDate | date: 'fullDate' }}</p>
           <p><strong>Status:</strong> {{ selectedToken.status }}</p>
-          <p><strong>Next Steps:</strong> {{ selectedToken.futureScope || 'No further steps defined' }}</p>
+          <p><strong>Remarks:</strong> {{ selectedToken.futureScope || 'No remarks yet' }}</p>
         </div>
       </div>
     </div>

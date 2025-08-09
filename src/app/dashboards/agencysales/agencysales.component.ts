@@ -12,11 +12,13 @@ import { AgencytopbarComponent } from "../agencytopbar/agencytopbar.component";
   styleUrl: './agencysales.component.scss'
 })
 export class AgencysalesComponent {
-
-    searchAgent: string = '';
+  searchAgent: string = '';
   searchCustomer: string = '';
   searchDate: string = '';
   selectedToken: any = null;
+
+  followUpToken: any = null;
+  followUpRemarks: string = '';
 
   salesTokens = [
     {
@@ -25,15 +27,7 @@ export class AgencysalesComponent {
       amount: 1250000,
       status: 'booked',
       bookingDate: new Date('2025-07-15'),
-      futureScope: 'Agreement generation pending'
-    },
-    {
-      propertyName: 'Sunshine Residency',
-      lead: { agentName: 'Anita Sharma', leadName: 'Jane Smith' },
-      amount: 890000,
-      status: 'available',
-      bookingDate: new Date('2025-07-20'),
-      futureScope: 'Site visit scheduled'
+      futureScope: 'Agreement pending'
     },
     {
       propertyName: 'Lakeview Heights',
@@ -41,7 +35,15 @@ export class AgencysalesComponent {
       amount: 1450000,
       status: 'booked',
       bookingDate: new Date('2025-07-18'),
-      futureScope: 'Payment in progress'
+      futureScope: 'Full payment due'
+    },
+    {
+      propertyName: 'Sunshine Residency',
+      lead: { agentName: 'Anita Sharma', leadName: 'Jane Smith' },
+      amount: 890000,
+      status: 'sold',
+      bookingDate: new Date('2025-07-20'),
+      futureScope: 'Sale completed'
     }
   ];
 
@@ -62,4 +64,24 @@ export class AgencysalesComponent {
     this.selectedToken = null;
   }
 
+  openFollowUp(token: any) {
+    this.followUpToken = token;
+    this.followUpRemarks = '';
+  }
+
+  closeFollowUp() {
+    this.followUpToken = null;
+  }
+
+  markAsSold() {
+    this.followUpToken.status = 'sold';
+    this.followUpToken.futureScope = this.followUpRemarks || 'Property sold successfully';
+    this.closeFollowUp();
+  }
+
+  cancelToken() {
+    this.followUpToken.status = 'rejected';
+    this.followUpToken.futureScope = this.followUpRemarks || 'Token payment canceled';
+    this.closeFollowUp();
+  }
 }

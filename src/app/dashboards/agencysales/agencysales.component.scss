@@ -78,17 +78,31 @@ app-agencyssidebar {
       background: #f1f5f9;
     }
 
-    .view-btn {
+    .view-btn,
+    .followup-btn {
       padding: 8px 14px;
-      background: #007bff;
       color: white;
       border: none;
       border-radius: 6px;
       font-size: 14px;
       cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .view-btn {
+      background: #007bff;
 
       &:hover {
         background: #0056b3;
+      }
+    }
+
+    .followup-btn {
+      background: #28a745;
+      margin-left: 8px;
+
+      &:hover {
+        background: #1e7e34;
       }
     }
 
@@ -103,6 +117,22 @@ app-agencyssidebar {
     .status-available {
       background-color: #fff5e6;
       color: #f0ad4e;
+      font-weight: bold;
+      padding: 6px 12px;
+      border-radius: 6px;
+    }
+
+    .status-inprogress {
+      background-color: #e6f0ff;
+      color: #007bff;
+      font-weight: bold;
+      padding: 6px 12px;
+      border-radius: 6px;
+    }
+
+    .status-completed {
+      background-color: #d4edda;
+      color: #155724;
       font-weight: bold;
       padding: 6px 12px;
       border-radius: 6px;
@@ -164,6 +194,95 @@ app-agencyssidebar {
 
     strong {
       color: #333;
+    }
+  }
+
+  label {
+    display: block;
+    font-size: 14px;
+    font-weight: 500;
+    margin: 10px 0 6px;
+    color: #333;
+  }
+
+  select,
+  textarea {
+    width: 100%;
+    padding: 8px 12px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    margin-bottom: 12px;
+
+    &:focus {
+      border-color: #007bff;
+      outline: none;
+    }
+  }
+
+  textarea {
+    min-height: 80px;
+    resize: vertical;
+  }
+
+  .save-btn {
+    padding: 10px 16px;
+    background: #28a745;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+
+    &:hover {
+      background: #1e7e34;
+    }
+  }
+}
+.status-sold {
+  background-color: #d4edda;
+  color: #155724;
+  font-weight: bold;
+  padding: 6px 12px;
+  border-radius: 6px;
+}
+
+.status-rejected {
+  background-color: #f8d7da;
+  color: #721c24;
+  font-weight: bold;
+  padding: 6px 12px;
+  border-radius: 6px;
+}
+
+.action-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+
+  button {
+    flex: 1;
+    margin: 0 5px;
+    padding: 10px;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    color: white;
+    cursor: pointer;
+  }
+
+  .mark-sold-btn {
+    background: #28a745;
+    &:hover {
+      background: #218838;
+    }
+  }
+
+  .reject-btn {
+    background: #dc3545;
+    &:hover {
+      background: #c82333;
     }
   }
 }

@@ -39,6 +39,9 @@ import { AgentProfileSettingsComponent } from './dashboards/agent-profile-settin
 import { AgentpostsComponent } from './dashboards/agentposts/agentposts.component'
 import { AgenttokenlistComponent } from './dashboards/agenttokenlist/agenttokenlist.component'
 import { AgencysalesComponent } from './dashboards/agencysales/agencysales.component'
+import { AgencySoldListComponent } from './dashboards/agency-sold-list/agency-sold-list.component'
+import { AgencyagnetPerormanceComponent } from './dashboards/agencyagnet-perormance/agencyagnet-perormance.component'
+import { AgencyRevenueComponent } from './dashboards/agency-revenue/agency-revenue.component'
 
 export const routes: Routes = [
   {
@@ -87,6 +90,9 @@ export const routes: Routes = [
   {path:'agencycontract', component:AgencycontractagreementComponent},
   {path:'agencypostlist', component:AgencypostlistComponent},
   {path:'agencysales' , component:AgencysalesComponent},
+  {path:'agencysoldList' , component:AgencySoldListComponent},
+  {path:'agentsperormance' , component:AgencyagnetPerormanceComponent},
+  {path:'agencyrevenu', component:AgencyRevenueComponent},
 
 //Agent Routingss.........
 {path:'agentanalytics',component:AgentanalyticsComponent},
