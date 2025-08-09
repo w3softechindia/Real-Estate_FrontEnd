@@ -1,0 +1,58 @@
+<app-agencytopbar></app-agencytopbar>
+
+<div class="page-layout">
+  <app-agencyssidebar></app-agencyssidebar>
+
+  <div class="main-content">
+    <h2>Agent Performance Dashboard</h2>
+
+    <div class="search-box">
+      <input
+        type="text"
+        placeholder="Search by agent name..."
+        [(ngModel)]="searchText"
+      />
+    </div>
+
+    <div class="agent-cards-container">
+      <div
+        class="agent-card"
+        *ngFor="let agent of filteredAgents"
+        (click)="selectAgent(agent)"
+        [class.selected]="selectedAgent === agent"
+      >
+        <h3>{{ agent.name }}</h3>
+        <ul>
+          <li><strong>Leads Handled:</strong> {{ agent.leadsHandled }}</li>
+          <li><strong>Tokens Booked:</strong> {{ agent.tokensBooked }}</li>
+          <li><strong>Properties Sold:</strong> {{ agent.propertiesSold }}</li>
+          <!-- <li><strong>Revenue:</strong> {{ agent.revenueGenerated | currency }}</li> -->
+        </ul>
+      </div>
+    </div>
+
+    <!-- Grouped view (below cards) -->
+    <div class="grouped-details" *ngIf="selectedAgent">
+      <h3>Details for {{ selectedAgent.name }}</h3>
+      <p><strong>Leads Handled:</strong> {{ selectedAgent.leadsHandled }}</p>
+      <p><strong>Revenue Generated:</strong> {{ selectedAgent.revenueGenerated | currency }}</p>
+
+      <!-- Feedback form -->
+      <div class="feedback-section">
+        <label for="feedbackInput"><strong>Send Feedback to {{ selectedAgent.name }}:</strong></label>
+        <textarea
+          id="feedbackInput"
+          [(ngModel)]="feedbackText"
+          placeholder="Write your feedback here..."
+          rows="4"
+        ></textarea>
+        <button (click)="sendFeedback()" [disabled]="!feedbackText.trim()">Send Feedback</button>
+      </div>
+
+      <p *ngIf="feedbackSent" class="feedback-confirmation">Feedback sent successfully!</p>
+      <button class="close-icon-btn" (click)="closeDetails()" aria-label="Close details">&times;</button>
+
+
+    </div>
+  </div>
+</div>

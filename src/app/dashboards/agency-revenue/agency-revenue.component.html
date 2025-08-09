@@ -1,0 +1,113 @@
+<app-agencytopbar></app-agencytopbar>
+
+<div class="page-layout">
+  <app-agencyssidebar></app-agencyssidebar>
+
+  <main class="main-content">
+    <h2>Agency Revenue & Targets Dashboard</h2>
+
+    <div class="target-selector">
+      <label for="targetType">Select Target Type:</label>
+      <select id="targetType" [(ngModel)]="selectedTargetType">
+        <option value="" disabled>Select target type</option>
+        <option value="monthly">Monthly Target</option>
+        <option value="quarterly">Quarterly Target</option>
+      </select>
+
+      <label for="targetAmount">Enter Target Amount (applies to all agents):</label>
+      <input
+        type="number"
+        id="targetAmount"
+        [(ngModel)]="enteredTargetAmount"
+        placeholder="Enter target amount"
+        min="0"
+      />
+
+      <button (click)="applyTarget()" [disabled]="!selectedTargetType || !enteredTargetAmount || enteredTargetAmount <= 0">
+        Apply Target
+      </button>
+    </div>
+
+    <div class="summary-bar" *ngIf="appliedTargetType">
+      <div class="summary-item">
+        <div class="summary-label">Target Type:</div>
+        <div class="summary-value">{{ appliedTargetType | titlecase }}</div>
+      </div>
+
+      <div class="summary-item">
+        <div class="summary-label">Target Amount per Agent:</div>
+        <div class="summary-value">{{ enteredTargetAmount | currency }}</div>
+      </div>
+
+      <div class="summary-item">
+        <div class="summary-label">Total Revenue Generated (All Agents)</div>
+        <div class="summary-value">{{ totalRevenueGenerated | currency }}</div>
+      </div>
+    </div>
+
+    <div class="search-box">
+      <input
+        type="text"
+        placeholder="Search agents..."
+        [(ngModel)]="searchText"
+      />
+    </div>
+
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>Agent Name</th>
+            <th>Target Amount</th>
+            <th>Revenue Generated</th>
+            <th *ngIf="appliedTargetType">Achievement vs Target</th>
+            <th>Commission Earned</th>
+            <th>Review & Action</th> <!-- New column -->
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let agent of filteredAgents">
+            <td>{{ agent.name }}</td>
+            <td>{{ enteredTargetAmount | currency }}</td>
+            <td>{{ agent.revenueGenerated | currency }}</td>
+            <td *ngIf="appliedTargetType" class="target-achievement-cell">
+              <div class="progress-bar">
+                <div
+                  class="progress-fill"
+                  [style.width.%]="getAgentAchievementPercent(agent)"
+                  [attr.aria-label]="'Achievement ' + getAgentAchievementPercent(agent) + '%'"
+                  [class.highlight]="getAgentAchievementPercent(agent) >= 100"
+                ></div>
+              </div>
+              <div class="percent-text">{{ getAgentAchievementPercent(agent) }}%</div>
+            </td>
+            <td>{{ agent.commission | currency }}</td>
+            <td>
+              <button class="review-btn" (click)="openReview(agent)">Write Review</button>
+            </td>
+          </tr>
+          <tr *ngIf="filteredAgents.length === 0">
+            <td colspan="6" class="no-data">No agents found.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Review Modal Popup -->
+    <div class="modal-backdrop" *ngIf="showReviewModal">
+      <div class="modal" role="dialog" aria-modal="true" aria-labelledby="reviewTitle">
+        <h3 id="reviewTitle">Send Review for {{ selectedAgent?.name }}</h3>
+        <textarea
+          [(ngModel)]="reviewText"
+          placeholder="Write your review or comment here..."
+          rows="5"
+        ></textarea>
+        <div class="modal-actions">
+          <button (click)="sendReview()" [disabled]="!reviewText.trim()">Send Review</button>
+          <button class="cancel-btn" (click)="closeReview()">Cancel</button>
+        </div>
+        <p *ngIf="reviewSent" class="review-confirmation">Review sent successfully!</p>
+      </div>
+    </div>
+  </main>
+</div>

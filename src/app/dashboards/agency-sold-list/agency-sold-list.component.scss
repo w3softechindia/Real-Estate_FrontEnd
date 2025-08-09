@@ -1,0 +1,146 @@
+.page-layout {
+  display: flex;
+  min-height: 100vh;
+  background-color: #f9f9f9;
+}
+
+/* Sidebar fixed width, sticky on scroll */
+app-agencyssidebar {
+  flex: 0 0 240px;
+  height: 100vh;
+  position: sticky;
+  top: 0;
+  background-color: #2f3e4e; /* Adjust as per your sidebar style */
+  color: white;
+  overflow-y: auto;
+}
+
+/* Main content fills the remaining space */
+.main-content {
+  flex: 1 1 auto;
+  padding: 20px 30px;
+  overflow-x: auto;
+
+  h2 {
+    margin-bottom: 1rem;
+  }
+
+  .search-box {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+
+    input[type="text"],
+    input[type="date"] {
+      flex: 1;
+      padding: 0.5rem 0.75rem;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+
+      &:focus {
+        border-color: #007bff;
+        outline: none;
+      }
+    }
+  }
+
+  .table-wrapper {
+    overflow-x: auto;
+  }
+
+  .properties-table {
+    width: 100%;
+    min-width: 700px;
+    border-collapse: collapse;
+    background: white;
+    box-shadow: 0 2px 8px rgb(0 0 0 / 0.1);
+    border-radius: 6px;
+    overflow: hidden;
+
+    th, td {
+      padding: 0.75rem 1rem;
+      border-bottom: 1px solid #ddd;
+      text-align: left;
+      white-space: nowrap;
+    }
+
+    thead {
+      background-color: #f5f7fa;
+    }
+
+    tbody tr:hover {
+      background-color: #e6f2ff;
+    }
+
+    .no-data {
+      text-align: center;
+      font-style: italic;
+      color: #999;
+      padding: 1rem;
+    }
+
+    button {
+      padding: 0.3rem 0.7rem;
+      background-color: #007bff;
+      border: none;
+      color: white;
+      cursor: pointer;
+      border-radius: 4px;
+      font-size: 0.9rem;
+      transition: background-color 0.2s;
+
+      &:hover {
+        background-color: #0056b3;
+      }
+    }
+  }
+
+  /* Modal Styles */
+  .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+
+    .modal-content {
+      background: white;
+      border-radius: 6px;
+      width: 400px;
+      max-width: 90%;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+      overflow: hidden;
+
+      .modal-header {
+        background: #007bff;
+        color: white;
+        padding: 1rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .close-btn {
+          background: transparent;
+          border: none;
+          color: white;
+          font-size: 1.2rem;
+          cursor: pointer;
+        }
+      }
+
+      .modal-body {
+        padding: 1rem;
+
+        p {
+          margin: 0.5rem 0;
+        }
+      }
+    }
+  }
+}
