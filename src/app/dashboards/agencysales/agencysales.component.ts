@@ -9,41 +9,40 @@ import { AgencytopbarComponent } from "../agencytopbar/agencytopbar.component";
   standalone: true,
   imports: [CommonModule, FormsModule, AgencyssidebarComponent, AgencytopbarComponent],
   templateUrl: './agencysales.component.html',
-  styleUrl: './agencysales.component.scss'
+  styleUrls: ['./agencysales.component.scss']
 })
 export class AgencysalesComponent {
-  searchAgent: string = '';
-  searchCustomer: string = '';
-  searchDate: string = '';
-  selectedToken: any = null;
+  searchAgent = '';
+  searchCustomer = '';
+  searchDate = '';
 
+  selectedToken: any = null;
   followUpToken: any = null;
-  followUpRemarks: string = '';
+  followUpRemarks = '';
+
+  balanceToken: any = null;
+  balanceConfirmMessage = '';
 
   salesTokens = [
     {
       propertyName: 'Green Villas',
       lead: { agentName: 'Ravi Kumar', leadName: 'John Doe' },
-      amount: 1250000,
-      status: 'booked',
+      tokenAmount: 500000,
+      balanceAmount: 700000,
+      totalPrice: 1200000,
+      status: 'pending',
       bookingDate: new Date('2025-07-15'),
       futureScope: 'Agreement pending'
     },
     {
       propertyName: 'Lakeview Heights',
       lead: { agentName: 'Ajay Verma', leadName: 'Rahul Singh' },
-      amount: 1450000,
-      status: 'booked',
+      tokenAmount: 600000,
+      balanceAmount: 0,
+      totalPrice: 600000,
+      status: 'paid',
       bookingDate: new Date('2025-07-18'),
-      futureScope: 'Full payment due'
-    },
-    {
-      propertyName: 'Sunshine Residency',
-      lead: { agentName: 'Anita Sharma', leadName: 'Jane Smith' },
-      amount: 890000,
-      status: 'sold',
-      bookingDate: new Date('2025-07-20'),
-      futureScope: 'Sale completed'
+      futureScope: 'Full payment done'
     }
   ];
 
@@ -56,30 +55,71 @@ export class AgencysalesComponent {
     });
   }
 
+  // DETAILS modal
   viewToken(token: any) {
     this.selectedToken = token;
   }
-
   closeModal() {
     this.selectedToken = null;
   }
 
+  // FOLLOWUP modal
   openFollowUp(token: any) {
     this.followUpToken = token;
     this.followUpRemarks = '';
   }
-
   closeFollowUp() {
     this.followUpToken = null;
   }
 
+  // ACCEPT BALANCE modal
+  openAcceptBalance(token: any) {
+    this.balanceToken = token;
+    this.balanceConfirmMessage = '';
+  }
+  closeBalanceModal() {
+    this.balanceToken = null;
+    this.balanceConfirmMessage = '';
+  }
+
+  get isBackendBalanceMatch(): boolean {
+    if (!this.balanceToken) return false;
+    const calculatedBalance = this.balanceToken.totalPrice - this.balanceToken.tokenAmount;
+    return calculatedBalance === this.balanceToken.balanceAmount;
+  }
+
+  get isTotalCorrect(): boolean {
+    if (!this.balanceToken) return false;
+    return (this.balanceToken.tokenAmount + this.balanceToken.balanceAmount) === this.balanceToken.totalPrice;
+  }
+
+  canConfirmBalance(): boolean {
+    return this.isBackendBalanceMatch && this.isTotalCorrect;
+  }
+
+  acceptBalance() {
+    if (!this.canConfirmBalance()) {
+      alert('Amounts do not match. Please verify backend data.');
+      return;
+    }
+    this.balanceToken.balanceAmount = 0;
+    this.balanceToken.status = 'paid';
+    this.balanceToken.futureScope = 'Full payment received';
+    this.balanceConfirmMessage = 'Balance confirmed successfully.';
+    setTimeout(() => {
+      this.closeBalanceModal();
+    }, 1000);
+  }
+
   markAsSold() {
+    if (!this.followUpToken) return;
     this.followUpToken.status = 'sold';
     this.followUpToken.futureScope = this.followUpRemarks || 'Property sold successfully';
     this.closeFollowUp();
   }
 
   cancelToken() {
+    if (!this.followUpToken) return;
     this.followUpToken.status = 'rejected';
     this.followUpToken.futureScope = this.followUpRemarks || 'Token payment canceled';
     this.closeFollowUp();
