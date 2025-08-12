@@ -24,6 +24,8 @@
             <th>Agent</th>
             <th>Customer</th>
             <th>Token Amount</th>
+            <th>Balance Amount</th>
+            <th>Total Price</th>
             <th>Status</th>
             <th>Booking</th>
             <th>Actions</th>
@@ -34,24 +36,68 @@
             <td>{{ token.propertyName }}</td>
             <td>{{ token.lead.agentName }}</td>
             <td>{{ token.lead.leadName }}</td>
-            <td>{{ token.amount | currency }}</td>
+            <td>{{ token.tokenAmount | currency }}</td>
+            <td>{{ token.balanceAmount | currency }}</td>
+            <td>{{ token.totalPrice | currency }}</td>
             <td>
               <span [ngClass]="{
-                'status-booked': token.status === 'booked',
-                'status-sold': token.status === 'sold',
-                'status-rejected': token.status === 'rejected'
+                'status-paid': token.status === 'paid',
+                'status-pending': token.status === 'pending',
+                'status-rejected': token.status === 'rejected',
+                'status-sold': token.status === 'sold'
               }">
                 {{ token.status | titlecase }}
               </span>
             </td>
             <td>{{ token.bookingDate | date: 'mediumDate' }}</td>
             <td>
-              <button class="view-btn" (click)="viewToken(token)">Details</button>
-              <button class="followup-btn" *ngIf="token.status === 'booked'" (click)="openFollowUp(token)">Follow Up</button>
+              <button *ngIf="token.status === 'pending'" class="balance-btn" (click)="openAcceptBalance(token)">
+                Accept Balance
+              </button>
+              <ng-container *ngIf="token.status === 'paid'">
+                <button class="view-btn" (click)="viewToken(token)">Details</button>
+                <button class="followup-btn" (click)="openFollowUp(token)">Follow Up</button>
+              </ng-container>
             </td>
           </tr>
         </tbody>
       </table>
+    </div>
+
+    <!-- Accept Balance Modal -->
+    <div class="modal-overlay" *ngIf="balanceToken">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>Confirm Balance Payment</h3>
+          <button class="close-btn" (click)="closeBalanceModal()">✕</button>
+        </div>
+        <div class="modal-body">
+          <p><strong>Customer:</strong> {{ balanceToken.lead.leadName }}</p>
+          <p><strong>Property:</strong> {{ balanceToken.propertyName }}</p>
+          <p><strong>Total Price:</strong> {{ balanceToken.totalPrice | currency }}</p>
+          <p><strong>Token Paid:</strong> {{ balanceToken.tokenAmount | currency }}</p>
+          <p><strong>Balance Amount:</strong> {{ balanceToken.balanceAmount | currency }}</p>
+
+          <p [class.bad]="!isBackendBalanceMatch">
+            <strong>Backend Balance Check:</strong>
+            {{ isBackendBalanceMatch ? '✔ Matches calculation' : '✖ Does not match' }}
+          </p>
+
+          <p [class.bad]="!isTotalCorrect">
+            <strong>Total Price Check:</strong>
+            {{ isTotalCorrect ? '✔ token + balance = total' : '✖ Mismatch' }}
+          </p>
+
+          <div class="modal-actions">
+            <button class="save-btn" [disabled]="!canConfirmBalance()" (click)="acceptBalance()">
+              Confirm Payment
+            </button>
+            <button class="cancel-btn" (click)="closeBalanceModal()">Cancel</button>
+          </div>
+
+          <p *ngIf="balanceConfirmMessage" class="success">{{ balanceConfirmMessage }}</p>
+        </div>
+      </div>
     </div>
 
     <!-- Follow Up Modal -->
@@ -59,15 +105,15 @@
       <div class="modal-content">
         <div class="modal-header">
           <h3>Follow Up: {{ followUpToken.lead.leadName }}</h3>
-          <button class="close-btn" (click)="closeFollowUp()">X</button>
+          <button class="close-btn" (click)="closeFollowUp()">✕</button>
         </div>
         <div class="modal-body">
           <p><strong>Property:</strong> {{ followUpToken.propertyName }}</p>
-          <p><strong>Token Amount Paid:</strong> {{ followUpToken.amount | currency }}</p>
+          <p><strong>Total Price:</strong> {{ followUpToken.totalPrice | currency }}</p>
           <p><strong>Status:</strong> {{ followUpToken.status | titlecase }}</p>
 
-          <label>Remarks</label>
-          <textarea [(ngModel)]="followUpRemarks" placeholder="Enter remarks here"></textarea>
+          <!-- <label>Remarks</label>
+          <textarea [(ngModel)]="followUpRemarks" placeholder="Enter remarks here"></textarea> -->
 
           <div class="action-buttons">
             <button class="mark-sold-btn" (click)="markAsSold()">Mark as Sold</button>
@@ -82,15 +128,17 @@
       <div class="modal-content">
         <div class="modal-header">
           <h3>Sales Token Details</h3>
-          <button class="close-btn" (click)="closeModal()">X</button>
+          <button class="close-btn" (click)="closeModal()">✕</button>
         </div>
         <div class="modal-body">
           <p><strong>Property:</strong> {{ selectedToken.propertyName }}</p>
           <p><strong>Agent:</strong> {{ selectedToken.lead.agentName }}</p>
           <p><strong>Customer:</strong> {{ selectedToken.lead.leadName }}</p>
-          <p><strong>Token Amount:</strong> {{ selectedToken.amount | currency }}</p>
+          <p><strong>Total Price:</strong> {{ selectedToken.totalPrice | currency }}</p>
+          <p><strong>Token Amount:</strong> {{ selectedToken.tokenAmount | currency }}</p>
+          <p><strong>Balance Amount:</strong> {{ selectedToken.balanceAmount | currency }}</p>
           <p><strong>Booking Date:</strong> {{ selectedToken.bookingDate | date: 'fullDate' }}</p>
-          <p><strong>Status:</strong> {{ selectedToken.status }}</p>
+          <p><strong>Status:</strong> {{ selectedToken.status | titlecase }}</p>
           <p><strong>Remarks:</strong> {{ selectedToken.futureScope || 'No remarks yet' }}</p>
         </div>
       </div>

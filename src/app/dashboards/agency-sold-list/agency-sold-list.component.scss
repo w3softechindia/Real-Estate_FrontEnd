@@ -4,25 +4,29 @@
   background-color: #f9f9f9;
 }
 
-/* Sidebar fixed width, sticky on scroll */
 app-agencyssidebar {
   flex: 0 0 240px;
   height: 100vh;
   position: sticky;
   top: 0;
-  background-color: #2f3e4e; /* Adjust as per your sidebar style */
+  background-color: #2f3e4e;
   color: white;
   overflow-y: auto;
 }
 
-/* Main content fills the remaining space */
 .main-content {
-  flex: 1 1 auto;
+  flex: 1;
   padding: 20px 30px;
   overflow-x: auto;
 
-  h2 {
-    margin-bottom: 1rem;
+  /* HiFi label under top bar */
+  .page-label {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #004c97;
+    margin-top: 16px; /* pushes it below the top bar */
+    margin-bottom: 20px;
+    text-transform: uppercase;
   }
 
   .search-box {
@@ -37,10 +41,12 @@ app-agencyssidebar {
       font-size: 1rem;
       border: 1px solid #ccc;
       border-radius: 4px;
+      min-width: 180px;
 
       &:focus {
         border-color: #007bff;
         outline: none;
+        box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
       }
     }
   }
@@ -51,10 +57,10 @@ app-agencyssidebar {
 
   .properties-table {
     width: 100%;
-    min-width: 700px;
+    min-width: 900px;
     border-collapse: collapse;
     background: white;
-    box-shadow: 0 2px 8px rgb(0 0 0 / 0.1);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     border-radius: 6px;
     overflow: hidden;
 
@@ -62,15 +68,29 @@ app-agencyssidebar {
       padding: 0.75rem 1rem;
       border-bottom: 1px solid #ddd;
       text-align: left;
-      white-space: nowrap;
+      white-space: normal;
+      word-wrap: break-word;
+      max-width: 250px;
     }
 
-    thead {
-      background-color: #f5f7fa;
+    th {
+      background-color: #004c97;
+      color: white;
+      font-weight: 600;
     }
 
     tbody tr:hover {
-      background-color: #e6f2ff;
+      background-color: #f0f8ff;
+    }
+
+    td {
+      color: #333;
+      font-size: 0.95rem;
+    }
+
+    td:first-child {
+      font-weight: 600;
+      color: #007bff;
     }
 
     .no-data {
@@ -96,7 +116,6 @@ app-agencyssidebar {
     }
   }
 
-  /* Modal Styles */
   .modal-overlay {
     position: fixed;
     top: 0;
