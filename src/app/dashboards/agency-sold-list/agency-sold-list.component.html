@@ -1,0 +1,71 @@
+<app-agencytopbar></app-agencytopbar>
+
+<div class="page-layout">
+  <app-agencyssidebar></app-agencyssidebar>
+
+  <div class="main-content">
+    <!-- Small HiFi label -->
+    <div class="page-label">HiFi</div>
+
+    <h2>Sold Properties</h2>
+
+    <!-- Search Filters -->
+    <div class="search-box">
+      <input type="text" [(ngModel)]="searchAgent" placeholder="Search by Agent" />
+      <input type="text" [(ngModel)]="searchCustomer" placeholder="Search by Customer" />
+      <input type="date" [(ngModel)]="searchDate" />
+    </div>
+
+    <!-- Sold Properties Table -->
+    <div class="table-wrapper">
+      <table class="properties-table">
+        <thead>
+          <tr>
+            <th>Property</th>
+            <th>Agent</th>
+            <th>Customer</th>
+            <th>Amount</th>
+            <th>Sold Date</th>
+            <th>Remarks</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let property of filteredSoldProperties">
+            <td>{{ property.propertyName }}</td>
+            <td>{{ property.lead.agentName }}</td>
+            <td>{{ property.lead.leadName }}</td>
+            <td>{{ property.amount | currency }}</td>
+            <td>{{ property.bookingDate | date:'mediumDate' }}</td>
+            <td>{{ property.futureScope || 'No remarks' }}</td>
+            <td>
+              <button (click)="viewPropertyDetails(property)">View Details</button>
+            </td>
+          </tr>
+          <tr *ngIf="filteredSoldProperties.length === 0">
+            <td colspan="7" class="no-data">No sold properties found.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Details Modal -->
+    <div class="modal-overlay" *ngIf="selectedProperty">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>Property Details</h3>
+          <button class="close-btn" (click)="closeDetailsModal()">X</button>
+        </div>
+        <div class="modal-body">
+          <p><strong>Property:</strong> {{ selectedProperty.propertyName }}</p>
+          <p><strong>Agent:</strong> {{ selectedProperty.lead.agentName }}</p>
+          <p><strong>Customer:</strong> {{ selectedProperty.lead.leadName }}</p>
+          <p><strong>Amount:</strong> {{ selectedProperty.amount | currency }}</p>
+          <p><strong>Sold Date:</strong> {{ selectedProperty.bookingDate | date:'fullDate' }}</p>
+          <p><strong>Status:</strong> {{ selectedProperty.status | titlecase }}</p>
+          <p><strong>Remarks:</strong> {{ selectedProperty.futureScope || 'No remarks' }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
