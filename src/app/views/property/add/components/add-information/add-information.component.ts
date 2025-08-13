@@ -49,8 +49,9 @@ export class AddInformationComponent implements OnInit {
       city: ['', Validators.required],
       state: ['', Validators.required],
       phno: [null, [Validators.required, Validators.pattern('^[0-9]{10}$')]],
+      price: [null, [Validators.required, Validators.pattern('^[0-9]{6}$')]],
       pincode: [null, [Validators.required, Validators.pattern('^[0-9]{6}$')]],
-      plots: [[]],
+      //plots: [[]],
       // excelUpload:['',Validators.required]
     });
   }
@@ -168,11 +169,11 @@ export class AddInformationComponent implements OnInit {
     if (this.registerVenture.valid) {
       const plots = this.registerVenture.get('plots')?.value;
 
-      if ((!this.excelUploaded || !plots || plots.length === 0)) {
-        // alert('Please upload an Excel file or add plots before submitting.');
-        this.showModal('Venture', 'Please upload an Excel file or add plots before submitting.', 'danger')
-        return;
-      }
+      // if ((!this.excelUploaded || !plots || plots.length === 0)) {
+      //   // alert('Please upload an Excel file or add plots before submitting.');
+      //   this.showModal('Venture', 'Please upload an Excel file or add plots before submitting.', 'danger')
+      //   return;
+      // }
       const formData = this.registerVenture.getRawValue();
 
       console.log('Venture object:', formData); // Log the venture object

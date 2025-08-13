@@ -3,7 +3,7 @@ import { AgenttopbarComponent } from '../agenttopbar/agenttopbar.component';
 import { AgentdashboardComponent } from '../agentdashboardsidebar/agentdashboard.component';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RealEStateService } from '@/app/services/real-estate.service';
-import { Lead } from '@/app/modals/user.model';
+import { Lead, Venture } from '@/app/modals/user.model';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '@/app/authorization/auth.service';
 
@@ -17,6 +17,7 @@ import { AuthService } from '@/app/authorization/auth.service';
 export class AgentaddvisitsComponent {
   visitForm!:FormGroup
   leads:Lead[]=[];
+  ventures:Venture[]=[];
   agentEmail:string='';
 
 constructor(private service:RealEStateService,private fb:FormBuilder,private authService:AuthService){}
@@ -26,6 +27,7 @@ this.agentEmail=this.authService.getEmail();
 this.visitForm=this.fb.group({
 leadName:['',Validators.required],
 propertyType:['',Validators.required],
+propertyName:['',Validators.required],
 visitDate:['',Validators.required],
 visitTime:['',Validators.required],
 notes:['',Validators.required],
@@ -86,4 +88,7 @@ this.loadLeads();
       }
     );
   }
+
+   // convenience getter
+  get f() { return this.visitForm.controls; }
 }

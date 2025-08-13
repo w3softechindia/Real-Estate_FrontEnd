@@ -39,6 +39,9 @@ import { AgentProfileSettingsComponent } from './dashboards/agent-profile-settin
 import { AgentpostsComponent } from './dashboards/agentposts/agentposts.component'
 import { AgenttokenlistComponent } from './dashboards/agenttokenlist/agenttokenlist.component'
 import { AgencysalesComponent } from './dashboards/agencysales/agencysales.component'
+import { AgentfeatureprocessComponent } from './dashboards/agentfeatureprocess/agentfeatureprocess.component'
+import { AgentsalesComponent } from './dashboards/agentsales/agentsales.component'
+import { AgentreviewComponent } from './dashboards/agentreview/agentreview.component'
 
 export const routes: Routes = [
   {
@@ -99,6 +102,9 @@ export const routes: Routes = [
 {path:'agenttokenlist',component:AgenttokenlistComponent},
 {path:'agentprofile',component:AgentProfileSettingsComponent},
 {path:'agentposts',component:AgentpostsComponent},
+{path:'agentfeatureprocess',component:AgentfeatureprocessComponent},
+{path:'agentsales',component:AgentsalesComponent},
+{path:'agentreview',component:AgentreviewComponent},
   {
     path: 'agentDashboard',
     component: AgentmaindashboardComponent,
