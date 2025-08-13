@@ -862,18 +862,18 @@ export const CUSTOM_MENU: MenuItemType[] = [
         url: '/agencyanaylitcs',
         parentKey: 'dashboards',
       },
-      // {
-      //   key: 'agent',
-      //   label: 'Agent',
-      //   url: '/dashboards/agent',
-      //   parentKey: 'dashboards',
-      // },
-      // {
-      //   key: 'customer',
-      //   label: 'Customer',
-      //   url: '/dashboards/customer',
-      //   parentKey: 'dashboards',
-      // },
+      {
+        key: 'agent',
+        label: 'Sold List',
+        url: '/agencysoldList',
+        parentKey: 'dashboards',
+      },
+      {
+        key: 'customer',
+        label: 'Revenue',
+        url: '/agencyrevenu',
+        parentKey: 'dashboards',
+      },
     ],
   },
   {
@@ -926,12 +926,12 @@ export const CUSTOM_MENU: MenuItemType[] = [
       //   url: '/agents/grid',
       //   parentKey: 'agents',
       // },
-      // {
-      //   key: 'agent-details',
-      //   label: 'Agent Details',
-      //   url: '/agents/details',
-      //   parentKey: 'agents',
-      // },
+      {
+        key: 'agent-details',
+        label: 'Performance',
+        url: '/agentsperormance',
+        parentKey: 'agents',
+      },
       {
         key: 'add-agent',
         label: 'Add Agent',
