@@ -12,9 +12,9 @@ import { token } from 'flatpickr/dist/utils/formatting';
 export class RealEStateService {
   constructor(private http: HttpClient, private authService: AuthService) {}
 
-  // private baseUrl = 'http://localhost:8080'
+   private baseUrl = 'http://localhost:8080'
 
-  private baseUrl = "https://realestate-java-684bdd5bd699.herokuapp.com"
+  //private baseUrl = "https://realestate-java-684bdd5bd699.herokuapp.com"
 
 
   login(user: any) {
@@ -241,6 +241,11 @@ updateTokenStatus(tokenId: number, agencystatus: string): Observable<any> {
     return this.http.get<Visit[]>(`${this.baseUrl}/getAllVisits`)
   }
 
+  getVisitsByStatus(status:string):Observable<Visit[]>{
+    const params=new HttpParams().set('status',status)
+    return this.http.get<Visit[]>(`${this.baseUrl}/getVisitsByStatus`,{params})
+  }
+
   getAgentByEmail(email: string): Observable<any> {
     const params = new HttpParams().set('email', email)
     return this.http.get<any>(`${this.baseUrl}/getUserByEmail`, { params })
@@ -280,6 +285,16 @@ updateTokenStatus(tokenId: number, agencystatus: string): Observable<any> {
   getAllTokens(): Observable<any> {
     return this.http.get<any>(`${this.baseUrl}/getAllTokens`)
   }
+
+  getAllTokensByAgencyStatus(agencyStatus:string):Observable<Token[]>{
+const params=new HttpParams().set('agencyStatus',agencyStatus)
+return this.http.get<Token[]>(`${this.baseUrl}/getTokensByAgency`,{params})
+  }
+
+  //  getVisitsByStatus(status:string):Observable<Visit[]>{
+  //   const params=new HttpParams().set('status',status)
+  //   return this.http.get<Visit[]>(`${this.baseUrl}/getVisitsByStatus`,{params})
+  // }
 
 getAllPosts():Observable<any>{
   return this.http.get<any>(`${this.baseUrl}/getAllPosts`);

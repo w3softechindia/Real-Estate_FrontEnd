@@ -1,0 +1,85 @@
+
+<app-agenttopbar></app-agenttopbar>
+<app-agentdashboard></app-agentdashboard>
+
+<div class="main-layout">
+    <div class="page-layout">
+      <div class="container">
+
+        <!-- <div class="header"> -->
+         <!-- <div class="form-group">
+              <select id="property" name="property" required>
+                <option value="" disabled selected>Select Property</option>
+                <option value="Villa">Villa</option>
+                <option value="Apartment">Apartmnet</option>
+                <option value="Independent">Independent</option>
+              </select>
+            </div>
+  
+            <div class="form-group">
+              <select id="date" name="date">
+                <option value="" disabled selected>Select Date Range</option>
+                <option value="Today">Today</option>
+                <option value="This Week">This Week</option>
+                <option value="This Month">This Month</option>
+                <option value="Last 3 Months">Last 3 Months</option>
+              </select>
+            </div>
+            
+  
+            <div class="form-group">
+              <select id="state" name="state" required>
+                <option value="" disabled selected>Select State</option>
+                <option value="Telangana">Telangana</option>
+                <option value="Ap">Ap</option>
+                <option value="Orissa">Orissa</option>
+              </select>
+            </div>
+  
+            <div class="form-group">
+              <select id="city" name="city" required>
+                <option value="" disabled selected>Select City</option>
+                <option value="Hyderabad">Hyderabad</option>
+                <option value="Vizag">Vizag</option>
+                <option value="Nanakramguda">Nanakramguda</option>
+              </select>
+            </div>
+  
+            <div class="form-group">
+              <button><i class="fa-solid fa-magnifying-glass"></i></button>
+            </div> -->
+          <!-- </div> -->
+
+        <div class="table-view">
+            <table>
+              <thead>
+                <tr>
+                 <th>Lead Name</th>
+                  <th>PropertyType</th>
+                  <th>PropertyName</th>
+                  <th>Date</th>
+                  <th>Status</th>
+                  <th>HoldDate</th> 
+                </tr>
+              </thead>
+              <tbody>
+                  <ng-container *ngFor="let visit of visits; let i = index">
+                  <tr>
+                    <td>{{ visit.lead.leadName }}</td>
+                    <td>{{ visit.propertyType }}</td>
+                    <td>{{visit.propertyName}}</td>
+                    <td>{{ visit.visitDate }}</td>
+                    <td>{{ visit.status }}</td>
+                    <td>{{visit.reason}}</td>
+                  </tr>
+                  </ng-container>
+              </tbody>
+            </table>
+          </div>
+</div>
+</div>
+</div>
+
+
+
+

@@ -1,0 +1,73 @@
+<app-agenttopbar></app-agenttopbar>
+<app-agentdashboard></app-agentdashboard>
+
+<div class="main-layout">
+    <div class="page-layout">
+      <div class="container">
+        <div class="header">
+
+            <div class="form-group">
+              <select id="posted" name="posted" required>
+                <option value="" disabled selected>Select PostedBy</option>
+                <option value="kamal">Kamal</option>
+                <option value="w3">W3</option>
+                <option value="purna">Purna</option>
+              </select>
+            </div>
+  
+            <div class="form-group">
+              <select id="date" name="date">
+                <option value="" disabled selected>Select Date Range</option>
+                <option value="Today">Today</option>
+                <option value="This Week">This Week</option>
+                <option value="This Month">This Month</option>
+                <option value="Last 3 Months">Last 3 Months</option>
+              </select>
+            </div>
+        
+            <div class="form-group">
+              <button><i class="fa-solid fa-magnifying-glass"></i></button>
+            </div>
+  
+           </div>
+        <div class="table-view">
+            <table>
+              <thead>
+                <tr>
+                  <th>PostedBy</th>
+                  <th>Remarks</th>
+                  <th>Date</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let review of reviews; let i=index">
+                  <td>{{review.postedBy }}</td>
+                  <td>{{review.remarks}}</td>
+                 <td>{{review.date}}</td>
+                 <td><button type="submit" class="send-btnn" (click)="openSendModal(review)">Response</button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+</div>
+</div>
+</div>
+
+<div *ngIf="showModal" class="modal">
+  <div class="modal-content">
+    <button class="close-btn" (click)="closePropertyModal()">X</button>
+    <h2>Response</h2>
+    <form [formGroup]="reviewForm" (ngSubmit)="sendResponse()">
+      <div class="form-group">
+        <label for="res">Response</label>
+        <input id="res" type="text" formControlName="res" />
+      </div>
+    
+      <div class="modal-actions">
+        <button class="send-btn">Send</button>
+      </div>
+    </form>
+  </div>
+</div>
+

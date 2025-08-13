@@ -1049,6 +1049,12 @@ export const CUSTOM_MENUU: MenuItemType[] = [
         url: '/agentanalytics',
         parentKey: 'dashboards',
       },
+       {
+        key: 'analytics',
+        label: 'Review',
+        url: '/agentreview',
+        parentKey: 'dashboards',
+      },
       // {
       //   key: 'agent',
       //   label: 'Agent',
@@ -1149,9 +1155,16 @@ export const CUSTOM_MENUU: MenuItemType[] = [
       {
         key: 'agent',
         label: 'Feature Process',
-        url: '/dashboards/agent',
+        url: '/agentfeatureprocess',
         parentKey: 'dashboards',
       },
+      {
+        key: 'agent',
+        label: 'Sales',
+        url: '/agentsales',
+        parentKey: 'dashboards',
+      },
+
       // {
       //   key: 'customer',
       //   label: 'Customer',
