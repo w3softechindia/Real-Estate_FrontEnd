@@ -182,3 +182,9 @@ export interface TokennDto {
     phone?: string;
   };
 }
+
+
+export interface Review extends RealEStateUser{
+
+ reviewText: string;
+}
