@@ -21,11 +21,11 @@
         (click)="selectAgent(agent)"
         [class.selected]="selectedAgent === agent"
       >
-        <h3>{{ agent.name }}</h3>
+        <h3>{{ agent.agentName }}</h3>
         <ul>
-          <li><strong>Leads Handled:</strong> {{ agent.leadsHandled }}</li>
+          <li><strong>Leads Handled:</strong> {{ agent.phoneNumber }}</li>
           <!-- <li><strong>Tokens Booked:</strong> {{ agent.tokensBooked }}</li> -->
-          <li><strong>Properties Sold:</strong> {{ agent.propertiesSold }}</li>
+          <li><strong>Properties Sold:</strong> {{ agent.city }}</li>
           <!-- <li><strong>Revenue:</strong> {{ agent.revenueGenerated | currency }}</li> -->
         </ul>
       </div>
@@ -33,7 +33,7 @@
 
     <!-- Grouped view (below cards) -->
     <div class="grouped-details" *ngIf="selectedAgent">
-      <h3>Details for {{ selectedAgent.name }}</h3>
+      <h3>Details for {{ selectedAgent.agentName}}</h3>
       <p><strong>Leads Handled:</strong> {{ selectedAgent.leadsHandled }}</p>
       <p><strong>Revenue Generated:</strong> {{ selectedAgent.revenueGenerated | currency }}</p>
 
