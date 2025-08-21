@@ -44,7 +44,10 @@ private initForm(): void {
   getAllVisits():void{
    this.service.getAllVisits().subscribe({
     next:(res)=>{
+      
       this.visits=res.filter(v=>v.status==='Token');
+      console.log(this.visits)
+      
     },
     error:(err)=>{
       console.error('Failed to load Vists:',err);
@@ -94,7 +97,7 @@ private initForm(): void {
   };
 
   const leadId=this.selectedToken.lead.leadId;
-  this.service.makePayment(leadId, tokenToSend).subscribe({
+  this.service.addToken(leadId, tokenToSend).subscribe({
     next: (res) => {
       console.log('Token sent successfully', res);
       alert('Token sent successfully');

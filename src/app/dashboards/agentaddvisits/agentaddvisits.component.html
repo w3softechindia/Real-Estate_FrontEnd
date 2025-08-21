@@ -12,6 +12,9 @@
     <option value="" disabled selected>Select Lead Name</option>
     <option *ngFor="let lead of leads" [value]="lead.leadName">{{ lead.leadName }}</option>
   </select>
+      <div class="error" *ngIf="f['leadName'].touched && f['leadName'].invalid">
+      <small *ngIf="f['leadName'].errors?.['required']">LeadName is required.</small>
+      </div>
 </div>
 
 
@@ -23,16 +26,39 @@
       <option value="Apartment">Apartmnet</option>
       <option value="Independent">Independent</option>
     </select>
+      <div class="error" *ngIf="f['propertyType'].touched && f['propertyType'].invalid">
+      <small *ngIf="f['propertyType'].errors?.['required']">PropertyType is required.</small>
+     </div>
   </div>
+
+<div class="form-group">
+  <label for="ventureId">Property Name</label>
+  <select id="ventureId" formControlName="ventureId" required>
+    <option value="" disabled selected>Select Venture</option>
+    <option *ngFor="let venture of ventures" [value]="venture.ventureId">
+      {{ venture.ventureName }}
+    </option>
+  </select>
+  <div class="error" *ngIf="f['ventureId'].touched && f['ventureId'].invalid">
+    <small *ngIf="f['ventureId'].errors?.['required']">Venture is required.</small>
+  </div>
+</div>
+
 
   <div class="form-group">
     <label for="visitDate">Visit Date</label>
     <input type="date" id="visitDate" formControlName="visitDate" required />
+    <div class="error" *ngIf="f['visitDate'].touched && f['visitDate'].invalid">
+    <small *ngIf="f['visitDate'].errors?.['required']">VisitDate is required.</small>
+    </div>
   </div>
 
   <div class="form-group">
     <label for="visitTime">Visit Time</label>
     <input type="time" id="visitTime" formControlName="visitTime" required />
+    <div class="error" *ngIf="f['visitTime'].touched && f['visitTime'].invalid">
+    <small *ngIf="f['visitTime'].errors?.['required']">visitTime is required.</small>
+    </div>
   </div>
 
  

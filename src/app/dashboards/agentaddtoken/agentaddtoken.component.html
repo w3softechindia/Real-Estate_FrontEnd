@@ -12,6 +12,7 @@
                 <tr>
                   <th>Lead Name</th>
                   <th>Property</th>
+                  <th>PropertyName</th>
                   <th>Date</th>
                   <th>Action</th>
                   </tr>
@@ -21,6 +22,7 @@
                   <tr>
                     <td>{{visit.lead.leadName }}</td>
                     <td>{{visit.propertyType }}</td>
+                    <td>{{visit.venture?.ventureName}}</td>
                     <td>{{visit.visitDate }}</td>
                      <td>
                       <button type="button" (click)="openSendModal(visit)" class="send-btnn">Send</button>

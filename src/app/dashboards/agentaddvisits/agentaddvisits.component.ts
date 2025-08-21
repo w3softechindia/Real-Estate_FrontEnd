@@ -3,7 +3,7 @@ import { AgenttopbarComponent } from '../agenttopbar/agenttopbar.component';
 import { AgentdashboardComponent } from '../agentdashboardsidebar/agentdashboard.component';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RealEStateService } from '@/app/services/real-estate.service';
-import { Lead } from '@/app/modals/user.model';
+import { Lead, Venture } from '@/app/modals/user.model';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '@/app/authorization/auth.service';
 
@@ -17,6 +17,7 @@ import { AuthService } from '@/app/authorization/auth.service';
 export class AgentaddvisitsComponent {
   visitForm!:FormGroup
   leads:Lead[]=[];
+  ventures:Venture[]=[];
   agentEmail:string='';
 
 constructor(private service:RealEStateService,private fb:FormBuilder,private authService:AuthService){}
@@ -26,12 +27,14 @@ this.agentEmail=this.authService.getEmail();
 this.visitForm=this.fb.group({
 leadName:['',Validators.required],
 propertyType:['',Validators.required],
+ventureId: ['', Validators.required],   
 visitDate:['',Validators.required],
 visitTime:['',Validators.required],
 notes:['',Validators.required],
 customerFeedback:['',Validators.required]
 });
 this.loadLeads();
+this.loadVentures();
   }
 
   addVisit(): void {
@@ -48,6 +51,7 @@ this.loadLeads();
     }
 
     const leadId = selectedLead.leadId;
+    const ventureId= this.visitForm.value.ventureId;
 
     // Prepare the visit object (excluding leadName since it's part of leadId now)
     const visitData = {
@@ -55,25 +59,41 @@ this.loadLeads();
       visitDate: this.visitForm.value.visitDate,
       visitTime: this.visitForm.value.visitTime,
       notes: this.visitForm.value.notes,
-      customerFeedback: this.visitForm.value.customerFeedback
+      customerFeedback: this.visitForm.value.customerFeedback,  
     };
 
     // Call the service and pass leadId as request param
-    this.service.addVisit(visitData, leadId).subscribe({
-      next: (res) => {
-        alert('Visit Added Successfully');
-        this.visitForm.reset();
-      },
-      error: (err) => {
-        console.error('Error:', err);
-        alert('Failed to add visit');
-      }
-    });
+//     this.service.addVisit(visitData, leadId).subscribe({
+//       next: (res) => {
+//         alert('Visit Added Successfully');
+//         this.visitForm.reset();
+//       },
+//       error: (err) => {
+//         console.error('Error:', err);
+//         alert('Failed to add visit');
+//       }
+//     });
 
-  } else {
-    this.visitForm.markAllAsTouched();
+//   } else {
+//     this.visitForm.markAllAsTouched();
+//   }
+// }
+
+      this.service.addVisit(visitData, leadId, ventureId).subscribe({
+        next: () => {
+          alert('Visit Added Successfully');
+          this.visitForm.reset();
+        },
+        error: (err) => {
+          console.error('Error:', err);
+          alert('Failed to add visit');
+        }
+      });
+    } else {
+      this.visitForm.markAllAsTouched();
+    }
   }
-}
+
 
 
   loadLeads(){
@@ -86,4 +106,18 @@ this.loadLeads();
       }
     );
   }
+
+  loadVentures() {
+  this.service.getAllVentures().subscribe(
+    (data: Venture[]) => {
+      this.ventures = data;
+    },
+    error => {
+      console.error('Error fetching ventures', error);
+    }
+  );
+}
+
+   // convenience getter
+  get f() { return this.visitForm.controls; }
 }
