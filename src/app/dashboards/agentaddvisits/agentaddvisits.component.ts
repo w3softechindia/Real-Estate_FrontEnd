@@ -27,13 +27,14 @@ this.agentEmail=this.authService.getEmail();
 this.visitForm=this.fb.group({
 leadName:['',Validators.required],
 propertyType:['',Validators.required],
-propertyName:['',Validators.required],
+ventureId: ['', Validators.required],   
 visitDate:['',Validators.required],
 visitTime:['',Validators.required],
 notes:['',Validators.required],
 customerFeedback:['',Validators.required]
 });
 this.loadLeads();
+this.loadVentures();
   }
 
   addVisit(): void {
@@ -50,6 +51,7 @@ this.loadLeads();
     }
 
     const leadId = selectedLead.leadId;
+    const ventureId= this.visitForm.value.ventureId;
 
     // Prepare the visit object (excluding leadName since it's part of leadId now)
     const visitData = {
@@ -57,25 +59,41 @@ this.loadLeads();
       visitDate: this.visitForm.value.visitDate,
       visitTime: this.visitForm.value.visitTime,
       notes: this.visitForm.value.notes,
-      customerFeedback: this.visitForm.value.customerFeedback
+      customerFeedback: this.visitForm.value.customerFeedback,  
     };
 
     // Call the service and pass leadId as request param
-    this.service.addVisit(visitData, leadId).subscribe({
-      next: (res) => {
-        alert('Visit Added Successfully');
-        this.visitForm.reset();
-      },
-      error: (err) => {
-        console.error('Error:', err);
-        alert('Failed to add visit');
-      }
-    });
+//     this.service.addVisit(visitData, leadId).subscribe({
+//       next: (res) => {
+//         alert('Visit Added Successfully');
+//         this.visitForm.reset();
+//       },
+//       error: (err) => {
+//         console.error('Error:', err);
+//         alert('Failed to add visit');
+//       }
+//     });
 
-  } else {
-    this.visitForm.markAllAsTouched();
+//   } else {
+//     this.visitForm.markAllAsTouched();
+//   }
+// }
+
+      this.service.addVisit(visitData, leadId, ventureId).subscribe({
+        next: () => {
+          alert('Visit Added Successfully');
+          this.visitForm.reset();
+        },
+        error: (err) => {
+          console.error('Error:', err);
+          alert('Failed to add visit');
+        }
+      });
+    } else {
+      this.visitForm.markAllAsTouched();
+    }
   }
-}
+
 
 
   loadLeads(){
@@ -88,6 +106,17 @@ this.loadLeads();
       }
     );
   }
+
+  loadVentures() {
+  this.service.getAllVentures().subscribe(
+    (data: Venture[]) => {
+      this.ventures = data;
+    },
+    error => {
+      console.error('Error fetching ventures', error);
+    }
+  );
+}
 
    // convenience getter
   get f() { return this.visitForm.controls; }

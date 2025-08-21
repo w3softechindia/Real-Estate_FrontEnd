@@ -230,12 +230,20 @@ updateTokenStatus(tokenId: number, agencystatus: string): Observable<any> {
     })
   }
 
-  addVisit(visitData: any, leadId: number): Observable<any> {
-    return this.http.post(
-      `${this.baseUrl}/addVisit?leadId=${leadId}`,
-      visitData
-    )
-  }
+  // addVisit(visitData: any, leadId: number): Observable<any> {
+  //   return this.http.post(
+  //     `${this.baseUrl}/addVisit?leadId=${leadId}`,
+  //     visitData
+  //   )
+  // }
+
+  addVisit(visitData: any, leadId: number, ventureId: number) {
+  return this.http.post(
+    `${this.baseUrl}/addVisit?leadId=${leadId}&ventureId=${ventureId}`,
+    visitData
+  );
+}
+
 
   getAllVisits(): Observable<Visit[]> {
     return this.http.get<Visit[]>(`${this.baseUrl}/getAllVisits`)
@@ -275,7 +283,7 @@ updateTokenStatus(tokenId: number, agencystatus: string): Observable<any> {
     )
   }
 
-  makePayment(leadId: number, token: Token): Observable<any> {
+  addToken(leadId: number, token: Token): Observable<any> {
     return this.http.post<any>(
       `${this.baseUrl}/payment?leadId=${leadId}`,
       token
@@ -299,4 +307,15 @@ return this.http.get<Token[]>(`${this.baseUrl}/getTokensByAgency`,{params})
 getAllPosts():Observable<any>{
   return this.http.get<any>(`${this.baseUrl}/getAllPosts`);
 }
+
+updatePayment(tokenId: number, finalAmount: number, finalStatus: string): Observable<any> {
+  return this.http.put(`${this.baseUrl}/payment`, null, {
+    params: {
+      tokenId: tokenId,
+      finalAmount: finalAmount,
+      finalStatus: finalStatus
+    }
+  });
+}
+
 }

@@ -73,6 +73,7 @@ export interface Venture {
   price:number,
   pincode: number;
   plots: Plots[];
+  visit:Visit[];
 }
 
 //=======================Plots============================
@@ -119,7 +120,8 @@ export interface Visit{
   status:string,
   reason:string,
   lead:Lead,
-  leadName:string
+  leadName:string,
+  venture:Venture | null;
 }
 
 export interface AgentUpdateRequest {
@@ -140,7 +142,8 @@ export interface Token{
   agentName:string,
   finalStatus:string,
   lead:Lead,
-  visits:Visit[];
+  visits:Visit[],
+  venture:Venture | null;
 }
 
 // plots-details.dto.ts

@@ -31,16 +31,19 @@
      </div>
   </div>
 
-   <div class="form-group">
-    <label for="propertyName">propertyName</label>
-    <select id="propertyName" formControlName="propertyName" required>
-    <option value="" disabled selected>Select Lead Name</option>
-    <option *ngFor="let venture of ventures" [value]="venture.ventureName">{{venture.ventureName}}</option>
-    </select>
-      <div class="error" *ngIf="f['propertyName'].touched && f['propertyName'].invalid">
-      <small *ngIf="f['propertyName'].errors?.['required']">PropertyName is required.</small>
-     </div>
+<div class="form-group">
+  <label for="ventureId">Property Name</label>
+  <select id="ventureId" formControlName="ventureId" required>
+    <option value="" disabled selected>Select Venture</option>
+    <option *ngFor="let venture of ventures" [value]="venture.ventureId">
+      {{ venture.ventureName }}
+    </option>
+  </select>
+  <div class="error" *ngIf="f['ventureId'].touched && f['ventureId'].invalid">
+    <small *ngIf="f['ventureId'].errors?.['required']">Venture is required.</small>
   </div>
+</div>
+
 
   <div class="form-group">
     <label for="visitDate">Visit Date</label>

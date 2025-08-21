@@ -3,7 +3,7 @@ import { AgenttopbarComponent } from '../agenttopbar/agenttopbar.component';
 import { AgentdashboardComponent } from '../agentdashboardsidebar/agentdashboard.component';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Token } from '@/app/modals/user.model';
+import { Token, Venture, Visit } from '@/app/modals/user.model';
 import { RealEStateService } from '@/app/services/real-estate.service';
 
 @Component({
@@ -23,6 +23,8 @@ export class AgentsalesComponent {
   constructor(private fb:FormBuilder,private service:RealEStateService){}
 
 tokens:Token[]=[];
+ventures: Venture[] = []; 
+visits:Visit[]=[]; 
 
   ngOnInit(): void {
     // Mock dynamic data
@@ -35,6 +37,11 @@ tokens:Token[]=[];
       due: [{ value: '', disabled: true }],
       transactionMode: ['',]
     });
+
+     this.service.getAllVentures().subscribe((res: any) => {
+    this.ventures = res;
+    console.log("Loaded Ventures:", this.ventures);
+  });
   }
 
 getTokens(): void {
@@ -49,25 +56,25 @@ getTokens(): void {
   });
 }
 
-
 openSendModal(token: any) {
-    // Convert to numbers to compute difference
-    const totalNum = Number(token.total) || 0;
-    const amountNum = Number(token.amount) || 0;
-    const due = totalNum - amountNum;
-
-    // Patch values (disabled controls will display but not be editable)
-    // patchValue works for disabled controls too
-    this.paymentForm.patchValue({
-      amount: amountNum,
-      total: totalNum,
-      due: due >= 0 ? due : 0 // avoid negative due, adjust per your rule
-    });
-
-     // Store current token reference so we know which one to update later
+  this.showModal = true;
   this.selectedToken = token;
-    this.showModal = true;
-  }
+
+  const tokenAmount = Number(token.amount) || 0;
+  const totalAmount = token.venture ? Number(token.venture.price) : 0;
+  const dueAmount = totalAmount - tokenAmount;
+
+  this.paymentForm.patchValue({
+    amount: tokenAmount,
+    total: totalAmount,
+    due: dueAmount >= 0 ? dueAmount : 0
+  });
+
+  console.log("Venture Name:", token.venture?.ventureName);
+  console.log("Venture Price (Total):", totalAmount);
+  console.log("Form Values:", this.paymentForm.getRawValue());
+}
+
 
 
     closePropertyModal(){
@@ -75,13 +82,25 @@ openSendModal(token: any) {
     this.paymentForm.reset();
   }
 
-  sendPayment(){
-     alert('payment SuccessFull....');
+ sendPayment() {
+  const dueAmount = this.paymentForm.getRawValue().due; // balance amount
+  const tokenId = this.selectedToken.tokenid;
 
-      // ✅ Update agencyStatus to Pending and disable Payment button
-  this.selectedToken.agencyStatus = 'Pending';
-this.selectedToken.hidePayment = true;
-         this.showModal = false;
+  this.service.updatePayment(tokenId, dueAmount, 'Pending').subscribe({
+    next: (res) => {
+      alert('Payment Successful...');
 
-  }
+      // ✅ Update UI
+      this.selectedToken.finalStatus = 'Pending';
+      this.selectedToken.balanceAmount = dueAmount;
+      this.selectedToken.hidePayment = true;
+      this.showModal = false;
+    },
+    error: (err) => {
+      console.error('Payment update failed:', err);
+      alert('Payment Failed!');
+    }
+  });
+}
+
 }

@@ -14,6 +14,7 @@ import { RealEStateService } from '@/app/services/real-estate.service';
 })
 export class AgenttokenlistComponent {
 tokens:Token[]=[];
+visits:Visit[]=[];
 
 constructor(private service:RealEStateService){}
 
@@ -25,7 +26,7 @@ getTokens():void{
   this.service.getAllTokens().subscribe({
     next:(res)=>{
       this.tokens=res;
-      console.log(res);
+      console.log(this.tokens);
     },error:(err)=>{
       console.error('Failed to fetch tokens:', err);
     }
