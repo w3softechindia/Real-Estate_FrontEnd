@@ -37,7 +37,8 @@
               <thead>
                 <tr>
                   <th>Lead Name</th>
-                  <th>Property</th>
+                  <th>PropertyType</th>
+                  <th>PropertyName</th>
                   <th>Date</th>
                   <!-- <th>Time</th> -->
                   <th>Feedback</th>
@@ -51,6 +52,7 @@
                   <tr>
                     <td>{{ visit.lead.leadName }}</td>
                     <td>{{ visit.propertyType }}</td>
+                     <td>{{ visit.venture?.ventureName }}</td>
                     <td>{{ visit.visitDate }}</td>
                     <!-- <td>{{ visit.visitTime }}</td> -->
                     <td>{{ visit.customerFeedback }}</td>

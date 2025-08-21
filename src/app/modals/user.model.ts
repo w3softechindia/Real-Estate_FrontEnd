@@ -70,8 +70,10 @@ export interface Venture {
   city: string;
   state: string;
   phno: number;
+  price:number,
   pincode: number;
   plots: Plots[];
+  visit:Visit[];
 }
 
 //=======================Plots============================
@@ -101,13 +103,15 @@ followUp:String,
 leadNotes:string,
 agent:Agent,
 visits:Visit[],
-token:Token[]
+token:Token[],
+venture:Venture[]
 }
 
 
 export interface Visit{
   visitId:number,
   propertyType:string,
+  propertyName:string,
   visitDate:string,
   visitTime:string,
   notes:string,
@@ -116,7 +120,8 @@ export interface Visit{
   status:string,
   reason:string,
   lead:Lead,
-  leadName:string
+  leadName:string,
+  venture:Venture | null;
 }
 
 export interface AgentUpdateRequest {
@@ -135,8 +140,10 @@ export interface Token{
 	agencyStatus:string,
 	tokenDeadLine:Date,
   agentName:string,
+  finalStatus:string,
   lead:Lead,
-  visits:Visit[];
+  visits:Visit[],
+  venture:Venture | null;
 }
 
 // plots-details.dto.ts

@@ -38,6 +38,17 @@
             </div>
           </div>
         </div>
+        <div class="col-lg-4">
+          <div class="mb-3">
+            <label for="price" class="form-label">Price <span class="text-danger">*</span></label>
+            <input type="number" id="price" class="form-control" placeholder="Price" name="price"
+              formControlName="price" required />
+            <div *ngIf="registerVenture.get('price')?.touched && registerVenture.get('price')?.invalid"
+              class="text-danger mt-1">
+              Price is required.
+            </div>
+          </div>
+        </div>
         <div class="col-lg-3">
           <label for="totalPlots" class="form-label">Total Plots</label>
           <div class="input-group mb-3">

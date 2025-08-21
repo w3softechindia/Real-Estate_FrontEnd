@@ -11,7 +11,8 @@
               <thead>
                 <tr>
                   <th>Lead Name</th>
-                  <th>Property</th>
+                  <th>PropertyType</th>
+                  <th>PropertyName</th>
                   <th>TokenDeadLine</th>
                   <th>Amount</th>
                   <th>TransactionMode</th>
@@ -27,12 +28,9 @@
                         {{visit.propertyType}}
                       </li>
                     </td>
+                     
+                 <td>{{token.venture?.ventureName}}</td>
 
-                  <!-- <td>
-                      <li *ngFor="let visit of token.lead.visits">
-                        {{visit.visitDate}}
-                      </li>
-               </td> -->
                   <td>{{token.tokenDeadLine}}</td>
                   <td>{{token.amount}}</td>
                   <td>{{token.transactionMode}}</td>

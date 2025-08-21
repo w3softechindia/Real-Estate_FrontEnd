@@ -12,9 +12,9 @@ import { token } from 'flatpickr/dist/utils/formatting';
 export class RealEStateService {
   constructor(private http: HttpClient, private authService: AuthService) {}
 
-  // private baseUrl = 'http://localhost:8080'
+   private baseUrl = 'http://localhost:8080'
 
-  private baseUrl = "https://realestate-java-684bdd5bd699.herokuapp.com"
+  //private baseUrl = "https://realestate-java-684bdd5bd699.herokuapp.com"
 
 
   login(user: any) {
@@ -238,15 +238,28 @@ updateTokenStatus(tokenId: number, agencystatus: string): Observable<any> {
     })
   }
 
-  addVisit(visitData: any, leadId: number): Observable<any> {
-    return this.http.post(
-      `${this.baseUrl}/addVisit?leadId=${leadId}`,
-      visitData
-    )
-  }
+  // addVisit(visitData: any, leadId: number): Observable<any> {
+  //   return this.http.post(
+  //     `${this.baseUrl}/addVisit?leadId=${leadId}`,
+  //     visitData
+  //   )
+  // }
+
+  addVisit(visitData: any, leadId: number, ventureId: number) {
+  return this.http.post(
+    `${this.baseUrl}/addVisit?leadId=${leadId}&ventureId=${ventureId}`,
+    visitData
+  );
+}
+
 
   getAllVisits(): Observable<Visit[]> {
     return this.http.get<Visit[]>(`${this.baseUrl}/getAllVisits`)
+  }
+
+  getVisitsByStatus(status:string):Observable<Visit[]>{
+    const params=new HttpParams().set('status',status)
+    return this.http.get<Visit[]>(`${this.baseUrl}/getVisitsByStatus`,{params})
   }
 
   getAgentByEmail(email: string): Observable<any> {
@@ -278,7 +291,7 @@ updateTokenStatus(tokenId: number, agencystatus: string): Observable<any> {
     )
   }
 
-  makePayment(leadId: number, token: Token): Observable<any> {
+  addToken(leadId: number, token: Token): Observable<any> {
     return this.http.post<any>(
       `${this.baseUrl}/payment?leadId=${leadId}`,
       token
@@ -289,7 +302,28 @@ updateTokenStatus(tokenId: number, agencystatus: string): Observable<any> {
     return this.http.get<any>(`${this.baseUrl}/getAllTokens`)
   }
 
+  getAllTokensByAgencyStatus(agencyStatus:string):Observable<Token[]>{
+const params=new HttpParams().set('agencyStatus',agencyStatus)
+return this.http.get<Token[]>(`${this.baseUrl}/getTokensByAgency`,{params})
+  }
+
+  //  getVisitsByStatus(status:string):Observable<Visit[]>{
+  //   const params=new HttpParams().set('status',status)
+  //   return this.http.get<Visit[]>(`${this.baseUrl}/getVisitsByStatus`,{params})
+  // }
+
 getAllPosts():Observable<any>{
   return this.http.get<any>(`${this.baseUrl}/getAllPosts`);
 }
+
+updatePayment(tokenId: number, finalAmount: number, finalStatus: string): Observable<any> {
+  return this.http.put(`${this.baseUrl}/payment`, null, {
+    params: {
+      tokenId: tokenId,
+      finalAmount: finalAmount,
+      finalStatus: finalStatus
+    }
+  });
+}
+
 }

@@ -69,6 +69,7 @@
       }
     }
   
+
     .button {
       grid-column: span 2;
       display: flex;
@@ -85,7 +86,9 @@
         font-weight: 600;
         font-size: 16px;
         transition: background-color 0.3s;
-
+        width: 120px;
+        height: 8vh;
+  
         &:hover {
           background-color: #0056b3;
         }
@@ -93,5 +96,13 @@
     }
   }
   
-
+.error small {
+  color: #c00;
+  display: block;
+  margin-top: 4px;
+}
+button[disabled] {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
 

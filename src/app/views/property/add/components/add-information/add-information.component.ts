@@ -49,9 +49,10 @@ export class AddInformationComponent implements OnInit {
       city: ['', Validators.required],
       state: ['', Validators.required],
       phno: [null, [Validators.required, Validators.pattern('^[0-9]{10}$')]],
+      price: [null, [Validators.required]],
       pincode: [null, [Validators.required, Validators.pattern('^[0-9]{6}$')]],
-      plots: [[]],
-      // excelUpload:['',Validators.required]
+      plots: [[]]
+      //excelUpload:['',Validators.required]
     });
   }
 
@@ -165,6 +166,9 @@ export class AddInformationComponent implements OnInit {
   }
 
   addVenture() {
+     console.log('Form Status:', this.registerVenture.status); // VALID / INVALID / PENDING
+  console.log('Form Errors:', this.registerVenture.errors);
+  console.log('Controls:', this.registerVenture.controls);
     if (this.registerVenture.valid) {
       const plots = this.registerVenture.get('plots')?.value;
 
@@ -174,6 +178,8 @@ export class AddInformationComponent implements OnInit {
         return;
       }
       const formData = this.registerVenture.getRawValue();
+      console.log('Venture object:', formData);
+
 
       console.log('Venture object:', formData); // Log the venture object
       this.service.registerVenture(formData,this.selectedFile).subscribe((data: any) => {
