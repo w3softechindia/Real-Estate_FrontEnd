@@ -1,7 +1,7 @@
 
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Agency, Agent, Lead, Plots, PlotsDetailsDto, Post, Venture, Visit,AgentUpdateRequest,Token,TokennDto } from '../modals/user.model'
+import { Agency, Agent, Lead, Plots, PlotsDetailsDto, Post, Venture, Visit,AgentUpdateRequest,Token,TokennDto, Review } from '../modals/user.model'
 import { Observable } from 'rxjs';
 import { AuthService } from '../authorization/auth.service';
 import { token } from 'flatpickr/dist/utils/formatting';
@@ -206,6 +206,14 @@ updateTokenStatus(tokenId: number, agencystatus: string): Observable<any> {
   });
 }
 
+
+
+   postReview(agentEmail: string, review: Review): Observable<any> {
+    return this.http.post(
+      `${this.baseUrl}/send?agentEmail=${agentEmail}`,
+      review
+    );
+  }
 
 
   // ------------------------------------------------------------------------
