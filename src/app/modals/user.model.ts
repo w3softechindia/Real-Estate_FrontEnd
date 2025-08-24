@@ -144,6 +144,7 @@ export interface Token{
   lead:Lead,
   visits:Visit[],
   venture:Venture | null;
+  finalAmount:number
 }
 
 // plots-details.dto.ts
@@ -182,6 +183,9 @@ export interface TokennDto {
   agencyStatus: string;
   tokenDeadLine: string;
   agentName:string;
+  finalStatus:string;
+  finalAmount:number;
+   venture:Venture | null;
   lead: {
     agentName: string;
     leadName: string;

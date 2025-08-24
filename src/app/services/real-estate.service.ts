@@ -197,6 +197,8 @@ getAllPostsByAgency(email: string): Observable<Post[]> {
 }
 
 
+ 
+
 updateTokenStatus(tokenId: number, agencystatus: string): Observable<any> {
   return this.http.put<any>(`${this.baseUrl}/acceptToken`, null, {
     params: {
@@ -214,6 +216,17 @@ updateTokenStatus(tokenId: number, agencystatus: string): Observable<any> {
       review
     );
   }
+
+updateFinalStatus(tokenId: number, finalStatus: string): Observable<string> {
+  return this.http.put(
+    `${this.baseUrl}/finalStatus/${tokenId}?finalStatus=${finalStatus}`,
+    {},
+    { responseType: 'text' } // 👈 important
+  );
+}
+
+  
+
 
 
   // ------------------------------------------------------------------------
