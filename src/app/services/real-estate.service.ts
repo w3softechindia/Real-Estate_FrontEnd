@@ -208,11 +208,14 @@ updateTokenStatus(tokenId: number, agencystatus: string): Observable<any> {
 
 
 
-   postReview(agentEmail: string, review: Review): Observable<any> {
-    return this.http.post(
-      `${this.baseUrl}/send?agentEmail=${agentEmail}`,
-      review
-    );
+   postReview(agentEmail: string, agencyEmail:string, reviewText:string): Observable<any> {
+    return this.http.post<any>(`${this.baseUrl}/send`,{},{
+      params:{
+        agentEmail:agentEmail,
+        agencyEmail:agencyEmail,
+        reviewText:reviewText
+      }
+    })
   }
 
 
@@ -322,6 +325,19 @@ updatePayment(tokenId: number, finalAmount: number, finalStatus: string): Observ
       tokenId: tokenId,
       finalAmount: finalAmount,
       finalStatus: finalStatus
+    }
+  });
+}
+
+getReviews(agentEmail:string):Observable<Review[]>{
+return this.http.get<Review[]>(`${this.baseUrl}/agent/${agentEmail}`);
+}
+
+sendReviewResponse(reviewId:number,response:string):Observable<Review>{
+  return this.http.put<Review>(`${this.baseUrl}/reviewResponse`,{},{
+    params:{
+      reviewId:reviewId,
+      response:response
     }
   });
 }

@@ -42,9 +42,9 @@
               </thead>
               <tbody>
                 <tr *ngFor="let review of reviews; let i=index">
-                  <td>{{review.postedBy }}</td>
-                  <td>{{review.remarks}}</td>
-                 <td>{{review.date}}</td>
+                  <td>{{review.agency.agencyName }}</td>
+                  <td>{{review.reviewText}}</td>
+                 <td>{{review.createdAt}}</td>
                  <td><button type="submit" class="send-btnn" (click)="openSendModal(review)">Response</button></td>
                 </tr>
               </tbody>
@@ -54,20 +54,30 @@
 </div>
 </div>
 
+
+
 <div *ngIf="showModal" class="modal">
   <div class="modal-content">
     <button class="close-btn" (click)="closePropertyModal()">X</button>
     <h2>Response</h2>
-    <form [formGroup]="reviewForm" (ngSubmit)="sendResponse()">
+    <!-- Template-driven form -->
+    <form #reviewForm="ngForm" (ngSubmit)="sendResponse()">
       <div class="form-group">
         <label for="res">Response</label>
-        <input id="res" type="text" formControlName="res" />
+        <input 
+          id="res" 
+          type="text" 
+          name="res" 
+          [(ngModel)]="response" 
+          required
+        />
       </div>
     
       <div class="modal-actions">
-        <button class="send-btn">Send</button>
+        <button class="send-btn" type="submit">Send</button>
       </div>
     </form>
   </div>
 </div>
+
 

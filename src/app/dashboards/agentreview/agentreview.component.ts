@@ -1,65 +1,88 @@
-import { Component } from '@angular/core';
-import { AgenttopbarComponent } from '../agenttopbar/agenttopbar.component';
-import { AgentdashboardComponent } from '../agentdashboardsidebar/agentdashboard.component';
-import { CommonModule } from '@angular/common';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Component } from '@angular/core'
+import { AgenttopbarComponent } from '../agenttopbar/agenttopbar.component'
+import { AgentdashboardComponent } from '../agentdashboardsidebar/agentdashboard.component'
+import { CommonModule } from '@angular/common'
+import {
+  FormBuilder,
+  FormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms'
+import { RealEStateService } from '@/app/services/real-estate.service'
+import { AuthService } from '@/app/authorization/auth.service'
+import { Review } from '@/app/modals/user.model'
 
 @Component({
   selector: 'app-agentreview',
   standalone: true,
-  imports: [AgenttopbarComponent,AgentdashboardComponent,CommonModule,ReactiveFormsModule],
+  imports: [
+    AgenttopbarComponent,
+    AgentdashboardComponent,
+    CommonModule,
+    ReactiveFormsModule,
+    FormsModule
+  ],
   templateUrl: './agentreview.component.html',
-  styleUrl: './agentreview.component.scss'
+  styleUrl: './agentreview.component.scss',
 })
 export class AgentreviewComponent {
+  reviewForm!: FormGroup
+  showModal: boolean = false
+  reviews: any[] = []
+  review!: Review
+  agentEmail!: string
+  response!: string
+  reviewId!:number;
 
-  reviewForm!:FormGroup;
-  showModal: boolean = false;
-  reviews:any[]=[];
+  constructor(
+    private fb: FormBuilder,
+    private service: RealEStateService,
+    private auth: AuthService
+  ) {}
 
-  constructor(private fb:FormBuilder){}
-
-  ngOnInit():void{
-    this.reviews=[
-      {
-        postedBy:'w3Agency',
-        remarks:'Good',
-        date:'29-07-2025'
-    },
-    {
-      postedBy:'w4Agency',
-        remarks:'Good',
-        date:'31-07-2025'
-    },
-    {
-      postedBy:'KamalAgency',
-        remarks:'Need Improvement',
-        date:'01-08-2025'
-    },
-    {
-      postedBy:'Purna',
-        remarks:'worst..',
-        date:'05-08-2025'
-    },
-  ];
-      // ✅ Initialize the form
+  ngOnInit(): void {
+    // ✅ Initialize the form
     this.reviewForm = this.fb.group({
-      res: ['', Validators.required]
-    });
+      res: ['', Validators.required],
+    })
 
+    this.loadReviews()
   }
 
-  openSendModal(token: any) {
-    this.showModal = true;
+  // ✅ Fetch reviews from backend
+  loadReviews(): void {
+    this.agentEmail = this.auth.getEmail()
+    this.service.getReviews(this.agentEmail).subscribe({
+      next: (data) => {
+        console.log('reviews ' ,data);
+        // Transform API response into simpler table data
+        this.reviews=data;
+      },
+      error: (err) => console.error('Error loading reviews', err),
+    })
   }
 
-  sendResponse(){
-    alert('Remarks Posted....');
-     this.showModal = false;
+  openSendModal(review: Review) {
+    this.reviewId = review.id
+    console.log(review);
+    this.showModal = true
   }
 
-   closePropertyModal(){
-    this.showModal = false;
-    this.reviewForm.reset();
+  sendResponse() {
+    console.log('output :',this.reviewId, this.response);
+    this.service
+      .sendReviewResponse(this.reviewId, this.response)
+      .subscribe((data: any) => {
+        this.review = data
+        alert('Response Sent Succesfully.......')
+      })
+    this.showModal = false
+    this.response='';
+  }
+
+  closePropertyModal() {
+    this.showModal = false
+    this.response='';
   }
 }

@@ -34,12 +34,12 @@
     <!-- Grouped view (below cards) -->
     <div class="grouped-details" *ngIf="selectedAgent">
       <h3>Details for {{ selectedAgent.agentName}}</h3>
-      <p><strong>Leads Handled:</strong> {{ selectedAgent.leadsHandled }}</p>
-      <p><strong>Revenue Generated:</strong> {{ selectedAgent.revenueGenerated | currency }}</p>
+      <p><strong>Leads Handled:</strong> {{ selectedAgent.leadCounts }}</p>
+      <p><strong>Revenue Generated:</strong> {{ selectedAgent.totalRevenue | currency }}</p>
 
       <!-- Feedback form -->
       <div class="feedback-section">
-        <label for="feedbackInput"><strong>Send Feedback to {{ selectedAgent.name }}:</strong></label>
+        <label for="feedbackInput"><strong>Send Feedback to {{ selectedAgent.agentName }}:</strong></label>
         <textarea
           id="feedbackInput"
           [(ngModel)]="feedbackText"

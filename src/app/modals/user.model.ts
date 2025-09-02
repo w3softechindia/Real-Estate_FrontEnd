@@ -41,6 +41,10 @@ export interface Agent extends RealEStateUser {
   registrationDate: string;
   status: string;
   customers: Customer[];
+  leads:Lead[];
+  revenues:Revenue[];
+  totalRevenue:number;
+  leadCounts:number;
 }
 
 // ==================== CUSTOMER ====================
@@ -191,7 +195,23 @@ export interface TokennDto {
 }
 
 
-export interface Review extends RealEStateUser{
+export interface Review  {
 
+ id :number;
  reviewText: string;
+ agent:Agent;
+ agency:Agency;
+ createdAt:string;
+ rating:number;
+ response:string;
 }
+
+export interface Revenue{
+  revenueId:number;
+  revenue:number;
+  transactionDate:string;
+  agent:Agent;
+}
+
+
+
