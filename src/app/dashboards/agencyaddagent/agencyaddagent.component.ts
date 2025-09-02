@@ -16,39 +16,7 @@ import { FormsModule } from '@angular/forms';
 })
 export class AgencyaddagentComponent {
   emaill: string = '';
-  agent: Agent = {
-    id: 0,
-    email: '',
-    password: '',
-    phoneNumber: '',
-    agentName: '',
-    address: '',
-    pincode: 0,
-    city: '',
-    state: '',
-    agency: {
-      agencyName: this.emaill,
-      agencyAddress: '',
-      agencyPinCode: 0,
-      city: '',
-      state: '',
-      fbUrl: '',
-      instagramUrl: '',
-      twitterUrl: '',
-      registrationDate: '',
-      status: '',
-      agents: [],
-      id: 0,
-      email: '',
-      password: '',
-      phoneNumber: '',
-      roles: []
-    },
-    registrationDate: '',
-    status: 'active',
-    customers: [],
-    roles: [] // Set a default role for agent
-  };
+  agent!: Agent;
 
   constructor(
     private auth: AuthService,
