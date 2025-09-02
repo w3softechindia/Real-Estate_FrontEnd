@@ -186,6 +186,9 @@ export interface TokennDto {
   agencyStatus: string;
   tokenDeadLine: string;
   agentName:string;
+  finalStatus:string;
+  finalAmount:number;
+   venture:Venture | null;
   lead: {
     agentName: string;
     leadName: string;

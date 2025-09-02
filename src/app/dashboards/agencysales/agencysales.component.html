@@ -24,7 +24,7 @@
             <th>Agent</th>
             <th>Customer</th>
             <th>Token Amount</th>
-            <th>Balance Amount</th>
+            <!-- <th>Balance Amount</th> -->
             <th>Total Price</th>
             <th>Status</th>
             <th>Booking</th>
@@ -33,28 +33,28 @@
         </thead>
         <tbody>
           <tr *ngFor="let token of filteredSalesTokens">
-            <td>{{ token.propertyName }}</td>
-            <td>{{ token.lead.agentName }}</td>
+            <td>{{ token.tokenid }}</td>
+            <td>{{ token.agentName }}</td>
             <td>{{ token.lead.leadName }}</td>
-            <td>{{ token.tokenAmount | currency }}</td>
-            <td>{{ token.balanceAmount | currency }}</td>
-            <td>{{ token.totalPrice | currency }}</td>
+            <td>{{ token.amount| currency }}</td>
+            <!-- <td>{{ token.balanceAmount | currency }}</td> -->
+            <td>{{ token.finalAmount| currency }}</td>
             <td>
               <span [ngClass]="{
-                'status-paid': token.status === 'paid',
-                'status-pending': token.status === 'pending',
-                'status-rejected': token.status === 'rejected',
-                'status-sold': token.status === 'sold'
+                'status-paid': token.finalStatus === 'paid',
+                'status-pending': token.finalStatus === 'pending',
+                'status-rejected': token.finalStatus === 'rejected',
+                'status-sold': token.finalStatus === 'sold'
               }">
-                {{ token.status | titlecase }}
+                {{ token.finalStatus | titlecase }}
               </span>
             </td>
-            <td>{{ token.bookingDate | date: 'mediumDate' }}</td>
+            <td>{{ token.tokenDeadLine| date: 'mediumDate' }}</td>
             <td>
-              <button *ngIf="token.status === 'pending'" class="balance-btn" (click)="openAcceptBalance(token)">
+              <button *ngIf="token.finalStatus === 'pending'" class="balance-btn" (click)="openAcceptBalance(token)">
                 Accept Balance
               </button>
-              <ng-container *ngIf="token.status === 'paid'">
+              <ng-container *ngIf="token.finalStatus === 'paid'">
                 <button class="view-btn" (click)="viewToken(token)">Details</button>
                 <button class="followup-btn" (click)="openFollowUp(token)">Follow Up</button>
               </ng-container>
@@ -65,7 +65,7 @@
     </div>
 
     <!-- Accept Balance Modal -->
-    <div class="modal-overlay" *ngIf="balanceToken">
+    <!-- <div class="modal-overlay" *ngIf="balanceToken">
       <div class="modal-content">
         <div class="modal-header">
           <h3>Confirm Balance Payment</h3>
@@ -98,7 +98,49 @@
           <p *ngIf="balanceConfirmMessage" class="success">{{ balanceConfirmMessage }}</p>
         </div>
       </div>
+    </div> -->
+
+<!-- Accept Balance Modal -->
+<div class="modal-overlay" *ngIf="balanceToken">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h3>Confirm Balance Payment</h3>
+      <button class="close-btn" (click)="closeBalanceModal()">✕</button>
     </div>
+
+    <div class="modal-body">
+      <p><strong>Customer:</strong> {{ balanceToken.lead.leadName }}</p>
+      <p><strong>Agent:</strong> {{ balanceToken.agentName }}</p>
+      <p><strong>Total Price:</strong> {{ balanceToken.finalAmount | currency }}</p>
+      <p><strong>Token Paid:</strong> {{ balanceToken.amount | currency }}</p>
+      <p><strong>Balance Amount (calculated):</strong> {{ calculatedBalance | currency }}</p>
+
+      <p [class.bad]="!isBackendBalanceMatch">
+        <strong>Backend Balance Check:</strong>
+        {{ isBackendBalanceMatch ? '✔ Matches calculation' : '✖ Does not match' }}
+      </p>
+
+      <p [class.bad]="!isTotalCorrect">
+        <strong>Total Price Check:</strong>
+        {{ isTotalCorrect ? '✔ Token + Balance = Total' : '✖ Mismatch' }}
+      </p>
+
+      <div class="modal-actions">
+        <button class="save-btn" [disabled]="!canConfirmBalance()" (click)="acceptBalance()">
+          Confirm Payment
+        </button>
+        <button class="cancel-btn" (click)="closeBalanceModal()">Cancel</button>
+      </div>
+
+      <p *ngIf="balanceConfirmMessage" class="success">
+        {{ balanceConfirmMessage }}
+      </p>
+    </div>
+  </div>
+</div>
+
+
+
 
     <!-- Follow Up Modal -->
     <div class="modal-overlay" *ngIf="followUpToken">
