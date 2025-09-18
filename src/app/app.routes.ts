@@ -45,6 +45,8 @@ import { AgentreviewComponent } from './dashboards/agentreview/agentreview.compo
 import { AgencySoldListComponent } from './dashboards/agency-sold-list/agency-sold-list.component'
 import { AgencyagnetPerormanceComponent } from './dashboards/agencyagnet-perormance/agencyagnet-perormance.component'
 import { AgencyRevenueComponent } from './dashboards/agency-revenue/agency-revenue.component'
+import { AgentcommisionsComponent } from './dashboards/agentcommisions/agentcommisions.component'
+import { AdminpostsComponent } from '@views/adminposts/adminposts.component'
 
 
 export const routes: Routes = [
@@ -112,6 +114,7 @@ export const routes: Routes = [
 {path:'agentfeatureprocess',component:AgentfeatureprocessComponent},
 {path:'agentsales',component:AgentsalesComponent},
 {path:'agentreview',component:AgentreviewComponent},
+{path:'agentcommission',component:AgentcommisionsComponent},
   {
     path: 'agentDashboard',
     component: AgentmaindashboardComponent,
@@ -133,4 +136,6 @@ export const routes: Routes = [
     component: CustomerComponent,
     data: { title: 'Dashboard' },
   },
+
+  {path:'adminposts',component:AdminpostsComponent}
 ]

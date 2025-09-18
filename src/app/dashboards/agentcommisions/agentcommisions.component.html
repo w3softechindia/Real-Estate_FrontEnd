@@ -1,0 +1,70 @@
+<app-agenttopbar></app-agenttopbar>
+<app-agentdashboard></app-agentdashboard>
+
+<div class="main-layout">
+    <div class="page-layout">
+      <div class="container">
+        <div class="form-container">
+          <h2>Commission Details</h2>
+            <form   class="commission-form" [formGroup]="commissionForm" (ngSubmit)="Commission()" >
+                 <div class="form-group">
+                    <label for="propertyName">PropertyName</label>
+                    <select id="propertyName" formControlName="propertyName">
+                        <option value="" disabled selected>Select propertyName</option>
+                        <option value="Website">SaiDatta</option>
+                        <option value="Facebook">Lsb</option>
+                        <option value="Google Ads">Padmashali</option>
+                    </select>
+                    <div class="error" *ngIf="f['propertyName'].touched && f['propertyName'].invalid">
+      <small *ngIf="f['propertyName'].errors?.['required']">PropertyName is required.</small>
+    </div>
+</div>
+            
+               <div class="form-group">
+                    <label for="interestedIn">PropertyType</label>
+                    <select id="interestedIn" formControlName="interestedIn">
+                        <option value="" disabled selected>Select Type</option>
+                        <option value="Apartment">Apartment</option>
+                        <option value="Villa">Villa</option>
+                        <option value="Plot">Plot</option>
+                        <option value="Commercial Property">Commercial Property</option>
+                    </select>
+                    <div class="error" *ngIf="f['interestedIn'].touched && f['interestedIn'].invalid">
+      <small *ngIf="f['interestedIn'].errors?.['required']">Property Prefernce is required.</small>
+    </div>
+    </div>
+            
+                 <div class="form-group">
+                    <label for="Location">Location</label>
+                    <input type="text" id="Location" formControlName="Location" placeholder="Kondapur, Hyderabad">
+                    <div class="error" *ngIf="f['Location'].touched && f['Location'].invalid">
+      <small *ngIf="f['Location'].errors?.['required']">Location is required.</small>
+      <small *ngIf="f['Location'].errors?.['pattern']">
+        Only alphabetic characters are allowed.
+      </small>
+      </div>
+    </div>
+
+                <div class="form-group">
+                    <label for="commisionpercentage">Commission Percentage</label>
+                    <input type="number" id="commisionpercentage" formControlName="commisionpercentage" placeholder="10%">
+                    <div class="error" *ngIf="f['commisionpercentage'].touched && f['commisionpercentage'].invalid">
+      <small *ngIf="f['commisionpercentage'].errors?.['required']">commisionpercentage is required.</small>
+      <small *ngIf="f['commisionpercentage'].errors?.['pattern']">
+        Only alphabetic characters are allowed.
+      </small>
+      </div>
+    </div>
+            
+            
+            
+              <div class="button">
+                    <button type="submit">Calculate Commission</button>
+                </div>
+                
+            </form>
+        </div>
+        
+    </div>
+</div>
+</div>

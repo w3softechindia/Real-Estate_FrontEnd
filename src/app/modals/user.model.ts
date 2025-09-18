@@ -44,7 +44,9 @@ export interface Agent extends RealEStateUser {
   leads:Lead[];
   revenues:Revenue[];
   totalRevenue:number;
-  leadCounts:number;
+  leadsCount:number;
+
+
 }
 
 // ==================== CUSTOMER ====================
@@ -148,6 +150,7 @@ export interface Token{
   lead:Lead,
   visits:Visit[],
   venture:Venture | null;
+  finalAmount:number;
 }
 
 // plots-details.dto.ts
@@ -209,12 +212,15 @@ export interface Review  {
  response:string;
 }
 
+
+
 export interface Revenue{
   revenueId:number;
   revenue:number;
   transactionDate:string;
   agent:Agent;
 }
+
 
 
 

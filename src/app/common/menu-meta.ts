@@ -234,24 +234,26 @@ export const MENU_ITEMS: MenuItemType[] = [
     icon: 'ri-news-line',
     collapsed: true,
     children: [
-      {
-        key: 'post',
-        label: 'Post',
-        // url: '/post',
+      // {
+      //   key: 'post',
+      //   label: 'Post',
+      //    url: '/post',
+      //   parentKey: 'post',
+      // }
+  {
+        key: 'create-post',
+        label: 'Create Post',
+         url: '/adminposts',
         parentKey: 'post',
       },
+
       {
         key: 'post-details',
         label: 'Post Details',
-        // url: '/post/details',
+         url: '/post/details',
         parentKey: 'post',
       },
-      {
-        key: 'create-post',
-        label: 'Create Post',
-        // url: '/post/create',
-        parentKey: 'post',
-      },
+      
     ],
   },
   // {
@@ -1237,5 +1239,12 @@ export const CUSTOM_MENUU: MenuItemType[] = [
   //   url: '/messages',
   // },
 
+
+    {
+    key: 'reviews',
+    label: 'Commission',
+    icon: 'ri-chat-quote-line',
+    url: '/agentcommission',
+  },
 ];
 
