@@ -12,9 +12,9 @@ import { token } from 'flatpickr/dist/utils/formatting';
 export class RealEStateService {
   constructor(private http: HttpClient, private authService: AuthService) {}
 
-   private baseUrl = 'http://localhost:8080'
+   //private baseUrl = 'http://localhost:8080'
 
-  //private baseUrl = "https://realestate-java-684bdd5bd699.herokuapp.com"
+  private baseUrl = "https://realestate-java-684bdd5bd699.herokuapp.com"
 
 
   login(user: any) {
@@ -355,4 +355,4 @@ sendReviewResponse(reviewId:number,response:string):Observable<Review>{
   });
 }
 
-}
+

@@ -45,6 +45,8 @@ export interface Agent extends RealEStateUser {
   revenues:Revenue[];
   totalRevenue:number;
   leadsCount:number;
+
+
 }
 
 // ==================== CUSTOMER ====================
@@ -210,12 +212,15 @@ export interface Review  {
  response:string;
 }
 
+
+
 export interface Revenue{
   revenueId:number;
   revenue:number;
   transactionDate:string;
   agent:Agent;
 }
+
 
 
 
