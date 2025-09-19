@@ -14,7 +14,7 @@ export class RealEStateService {
 
    //private baseUrl = 'http://localhost:8080'
 
-  private baseUrl = "https://realestate-java-684bdd5bd699.herokuapp.com"
+   private baseUrl = "https://realestate-java-684bdd5bd699.herokuapp.com"
 
 
   login(user: any) {
@@ -354,5 +354,6 @@ sendReviewResponse(reviewId:number,response:string):Observable<Review>{
     }
   });
 }
+
 
 

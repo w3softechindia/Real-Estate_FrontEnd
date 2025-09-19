@@ -35,7 +35,9 @@
     <div class="grouped-details" *ngIf="selectedAgent">
       <h3>Details for {{ selectedAgent.agentName}}</h3>
 
-      <p><strong>Leads Handled:</strong> {{ selectedAgent.leadCounts }}</p>
+
+      <p><strong>Leads Handled:</strong> {{ selectedAgent.leadsCount }}</p>
+
 
       <p><strong>Revenue Generated:</strong> {{ selectedAgent.totalRevenue | currency }}</p>
 

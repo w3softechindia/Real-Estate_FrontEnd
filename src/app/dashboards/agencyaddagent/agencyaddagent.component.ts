@@ -16,7 +16,43 @@ import { FormsModule } from '@angular/forms';
 })
 export class AgencyaddagentComponent {
   emaill: string = '';
-  agent!: Agent;
+agent: Agent = {
+    id: 0,
+    agentName: '',
+    email: '',
+    password: '',
+    phoneNumber: '',
+    address: '',
+    pincode: 0,
+    city: '',
+    state: '',
+    agency: {
+      id: 0,
+      email: '',
+      password: '',
+      phoneNumber: '',
+      roles: [],
+      agencyName: '',
+      agencyAddress: '',
+      agencyPinCode: 0,
+      city: '',
+      state: '',
+      fbUrl: '',
+      instagramUrl: '',
+      twitterUrl: '',
+      registrationDate: '',
+      status: '',
+      agents: []
+    },
+    registrationDate: '',
+    status: '',
+    roles: [{ roleName: 'Agent' }], // default role
+    customers: [],
+    leads: [],
+    revenues: [],
+    totalRevenue: 0,
+    leadsCount: 0
+  };
 
   constructor(
     private auth: AuthService,
