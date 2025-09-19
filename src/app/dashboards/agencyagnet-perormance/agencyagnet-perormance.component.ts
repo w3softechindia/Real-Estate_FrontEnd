@@ -53,12 +53,14 @@ export class AgencyagnetPerormanceComponent implements OnInit {
     )
   }
 
+
   selectAgent(agent: Agent) {
-    this.selectedAgent = agent
-    this.agencyEmail=this.selectedAgent.email;
-    this.feedbackText = '' // reset feedback when selecting new agent
-    this.feedbackSent = false
-  }
+  this.selectedAgent = agent;
+  this.agentEmail = this.selectedAgent.email;   // ✅ Correct place for agent email
+  this.feedbackText = ''; // reset feedback when selecting new agent
+  this.feedbackSent = false;
+}
+
 
   closeDetails() {
     this.feedbackText = ''
@@ -71,26 +73,46 @@ export class AgencyagnetPerormanceComponent implements OnInit {
     )
   }
 
+  // sendFeedback() {
+  //   if (!this.selectedAgent || !this.feedbackText.trim()) {
+  //     return
+  //   }
+
+  //   const review = {
+  //     reviewText: this.feedbackText.trim(),
+  //   }
+
+  //   this.serve.postReview(this.agentEmail,this.agencyEmail,this.feedbackText).subscribe({
+  //     next: (res) => {
+  //       console.log('Feedback sent:', res)
+  //       this.feedbackSent = true
+  //       this.feedbackText = ''
+  //       setTimeout(() => (this.feedbackSent = false), 3000)
+  //     },
+  //     error: (err) => {
+  //       console.error('Error sending feedback:', err)
+  //       alert('Failed to send feedback.')
+  //     },
+  //   })
+  // }
+
   sendFeedback() {
-    if (!this.selectedAgent || !this.feedbackText.trim()) {
-      return
-    }
-
-    const review = {
-      reviewText: this.feedbackText.trim(),
-    }
-
-    this.serve.postReview(this.agentEmail,this.agencyEmail,this.feedbackText).subscribe({
-      next: (res) => {
-        console.log('Feedback sent:', res)
-        this.feedbackSent = true
-        this.feedbackText = ''
-        setTimeout(() => (this.feedbackSent = false), 3000)
-      },
-      error: (err) => {
-        console.error('Error sending feedback:', err)
-        alert('Failed to send feedback.')
-      },
-    })
+  if (!this.selectedAgent || !this.feedbackText.trim()) {
+    return;
   }
+
+  this.serve.postReview(this.agentEmail, this.agencyEmail, this.feedbackText).subscribe({
+    next: (res) => {
+      console.log('Feedback sent:', res);
+      this.feedbackSent = true;
+      this.feedbackText = '';
+      setTimeout(() => (this.feedbackSent = false), 3000);
+    },
+    error: (err) => {
+      console.error('Error sending feedback:', err);
+      alert('Failed to send feedback.');
+    },
+  });
+}
+
 }
