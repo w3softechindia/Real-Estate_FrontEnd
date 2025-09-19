@@ -355,6 +355,5 @@ sendReviewResponse(reviewId:number,response:string):Observable<Review>{
   });
 }
 
-}
 
 
