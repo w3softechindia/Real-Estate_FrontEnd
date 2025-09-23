@@ -151,6 +151,8 @@ export interface Token{
   visits:Visit[],
   venture:Venture | null;
   finalAmount:number;
+  hidePayment?: boolean; 
+  balanceAmount?: number; 
 }
 
 // plots-details.dto.ts
