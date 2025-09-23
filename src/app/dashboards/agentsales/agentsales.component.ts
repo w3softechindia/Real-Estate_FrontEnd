@@ -44,34 +44,19 @@ visits:Visit[]=[];
   });
   }
 
-// getTokens(): void {
-//   this.service.getAllTokensByAgencyStatus('accepted').subscribe({
-//     next: (res) => {
-//       this.tokens = res;
-//       console.log(res);
-//     },
-//     error: (err) => {
-//       console.error('Failed to fetch tokens:', err);
-//     }
-//   });
-// }
-
-getTokens(): void {
-  this.service.getAllTokensByAgencyStatus('accepted').subscribe({
-    next: (res: any) => {
-      // Map backend objects to include UI-only fields
-      this.tokens = res.map((t: Token) => ({
-        ...t,
-        hidePayment: false,
-        balanceAmount: t.balanceAmount ?? 0  // ensure the property exists
-      }));
-      console.log(this.tokens);
+ getTokens(): void {
+   this.service.getAllTokensByAgencyStatus('accepted').subscribe({
+    next: (res) => {
+      this.tokens = res;
+      console.log(res);
     },
     error: (err) => {
       console.error('Failed to fetch tokens:', err);
     }
   });
 }
+
+
 
 openSendModal(token: any) {
   this.showModal = true;
@@ -105,52 +90,21 @@ openSendModal(token: any) {
 
   
 
-//  sendPayment() {
-//   const dueAmount = this.paymentForm.getRawValue().due; // balance amount
-//   const tokenId = this.selectedToken.tokenid;
-
-//   this.service.updatePayment(tokenId, dueAmount, 'pending').subscribe({
-//     next: (res) => {
-//       alert('Payment Successful...');
-
-//       // ✅ Update UI
-//       this.selectedToken.finalStatus = 'pending';
-//       this.selectedToken.balanceAmount = dueAmount;
-//       this.selectedToken.hidePayment = true;
-//       this.showModal = false;
-
-
-//     },
-//     error: (err) => {
-//       console.error('Payment update failed:', err);
-//       alert('Payment Failed!');
-//     }
-//   });
-// }
-
-sendPayment() {
-  if (!this.selectedToken) return;
-
-  // Get the due amount from the form
-  const dueAmount = this.paymentForm.getRawValue().due ?? 0; 
+ sendPayment() {
+  const dueAmount = this.paymentForm.getRawValue().due; // balance amount
   const tokenId = this.selectedToken.tokenid;
 
   this.service.updatePayment(tokenId, dueAmount, 'pending').subscribe({
     next: (res) => {
-      alert('Payment Successful!');
+      alert('Payment Successful...');
 
-      // Find the token in the tokens array
-      const index = this.tokens.findIndex(t => t.tokenid === tokenId);
-      if (index !== -1) {
-        // Update UI-only properties
-        this.tokens[index].finalStatus = 'pending';
-        this.tokens[index].balanceAmount = dueAmount; // ensure it exists in Token interface
-        this.tokens[index].hidePayment = true;       // disable the button
-      }
-
-      // Close the modal and reset the form
+      // ✅ Update UI
+      this.selectedToken.finalStatus = 'pending';
+      this.selectedToken.balanceAmount = dueAmount;
+      this.selectedToken.hidePayment = true;
       this.showModal = false;
-      this.paymentForm.reset();
+
+
     },
     error: (err) => {
       console.error('Payment update failed:', err);
@@ -158,6 +112,8 @@ sendPayment() {
     }
   });
 }
+
+
 
 
 }
