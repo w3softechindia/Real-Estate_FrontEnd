@@ -150,9 +150,9 @@
           <button class="close-btn" (click)="closeFollowUp()">✕</button>
         </div>
         <div class="modal-body">
-          <p><strong>Property:</strong> {{ followUpToken.propertyName }}</p>
-          <p><strong>Total Price:</strong> {{ followUpToken.totalPrice | currency }}</p>
-          <p><strong>Status:</strong> {{ followUpToken.status | titlecase }}</p>
+          <p><strong>Property:</strong> {{ followUpToken.venture.ventureName }}</p>
+          <p><strong>Total Price:</strong> {{ followUpToken.venture.price | currency }}</p>
+          <p><strong>Status:</strong> {{ followUpToken.token.agencyStatus | titlecase }}</p>
 
           <!-- <label>Remarks</label>
           <textarea [(ngModel)]="followUpRemarks" placeholder="Enter remarks here"></textarea> -->
@@ -173,14 +173,14 @@
           <button class="close-btn" (click)="closeModal()">✕</button>
         </div>
         <div class="modal-body">
-          <p><strong>Property:</strong> {{ selectedToken.propertyName }}</p>
+          <p><strong>Property:</strong> {{ selectedToken.venture.ventureName }}</p>
           <p><strong>Agent:</strong> {{ selectedToken.lead.agentName }}</p>
           <p><strong>Customer:</strong> {{ selectedToken.lead.leadName }}</p>
-          <p><strong>Total Price:</strong> {{ selectedToken.totalPrice | currency }}</p>
-          <p><strong>Token Amount:</strong> {{ selectedToken.tokenAmount | currency }}</p>
+          <p><strong>Total Price:</strong> {{ selectedToken.venture.price | currency }}</p>
+          <p><strong>Token Amount:</strong> {{ selectedToken.token.amount| currency }}</p>
           <p><strong>Balance Amount:</strong> {{ selectedToken.balanceAmount | currency }}</p>
           <p><strong>Booking Date:</strong> {{ selectedToken.bookingDate | date: 'fullDate' }}</p>
-          <p><strong>Status:</strong> {{ selectedToken.status | titlecase }}</p>
+          <p><strong>Status:</strong> {{ selectedToken.token.agencyStatus | titlecase }}</p>
           <p><strong>Remarks:</strong> {{ selectedToken.futureScope || 'No remarks yet' }}</p>
         </div>
       </div>

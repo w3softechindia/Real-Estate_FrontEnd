@@ -44,8 +44,8 @@ visits:Visit[]=[];
   });
   }
 
-getTokens(): void {
-  this.service.getAllTokensByAgencyStatus('accepted').subscribe({
+ getTokens(): void {
+   this.service.getAllTokensByAgencyStatus('accepted').subscribe({
     next: (res) => {
       this.tokens = res;
       console.log(res);
@@ -55,6 +55,8 @@ getTokens(): void {
     }
   });
 }
+
+
 
 openSendModal(token: any) {
   this.showModal = true;
@@ -110,5 +112,8 @@ openSendModal(token: any) {
     }
   });
 }
+
+
+
 
 }
