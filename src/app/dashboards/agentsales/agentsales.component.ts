@@ -45,7 +45,7 @@ visits:Visit[]=[];
   }
 
 getTokens(): void {
-  this.service.getAllTokensByAgencyStatus('Accepted').subscribe({
+  this.service.getAllTokensByAgencyStatus('accepted').subscribe({
     next: (res) => {
       this.tokens = res;
       console.log(res);
@@ -59,6 +59,10 @@ getTokens(): void {
 openSendModal(token: any) {
   this.showModal = true;
   this.selectedToken = token;
+
+    console.log("Selected Token:", token);
+  console.log("Token Venture:", token.venture);
+  console.log("Token Venture Price:", token.venture?.price);
 
   const tokenAmount = Number(token.amount) || 0;
   const totalAmount = token.venture ? Number(token.venture.price) : 0;
@@ -82,19 +86,23 @@ openSendModal(token: any) {
     this.paymentForm.reset();
   }
 
+  
+
  sendPayment() {
   const dueAmount = this.paymentForm.getRawValue().due; // balance amount
   const tokenId = this.selectedToken.tokenid;
 
-  this.service.updatePayment(tokenId, dueAmount, 'Pending').subscribe({
+  this.service.updatePayment(tokenId, dueAmount, 'pending').subscribe({
     next: (res) => {
       alert('Payment Successful...');
 
       // ✅ Update UI
-      this.selectedToken.finalStatus = 'Pending';
+      this.selectedToken.finalStatus = 'pending';
       this.selectedToken.balanceAmount = dueAmount;
       this.selectedToken.hidePayment = true;
       this.showModal = false;
+
+
     },
     error: (err) => {
       console.error('Payment update failed:', err);

@@ -126,10 +126,10 @@ acceptBalance() {
     return;
   }
 
-  this.service.updateFinalStatus(this.balanceToken.tokenid, 'Paid').subscribe({
+  this.service.updateFinalStatus(this.balanceToken.tokenid, 'paid').subscribe({
     next: (res) => {
       console.log('Backend response:', res);
-      this.balanceToken.finalStatus = 'Paid';
+      this.balanceToken.finalStatus = 'paid';
       this.balanceConfirmMessage = 'Balance confirmed and marked as Paid ✅';
        window.location.reload(); // 👈 reloads entire page
       setTimeout(() => this.closeBalanceModal(), 1500);
@@ -146,10 +146,10 @@ acceptBalance() {
   markAsSold() {
   if (!this.followUpToken) return;
 
-  this.service.updateFinalStatus(this.followUpToken.tokenid, 'Sold').subscribe({
+  this.service.updateFinalStatus(this.followUpToken.tokenid, 'sold').subscribe({
     next: (res) => {
       console.log(res); // Backend response
-      this.followUpToken.finalStatus = 'Sold';
+      this.followUpToken.finalStatus = 'sold';
       this.followUpToken.futureScope = this.followUpRemarks || 'Property sold successfully';
       this.closeFollowUp();
     },
