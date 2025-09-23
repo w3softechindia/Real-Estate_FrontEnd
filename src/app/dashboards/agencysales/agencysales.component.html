@@ -41,20 +41,20 @@
             <td>{{ token.finalAmount| currency }}</td>
             <td>
               <span [ngClass]="{
-                'status-paid': token.finalStatus === 'Paid',
-                'status-pending': token.finalStatus === 'Pending',
-                'status-rejected': token.finalStatus === 'Rejected',
-                'status-sold': token.finalStatus === 'Sold'
+                'status-paid': token.finalStatus === 'paid',
+                'status-pending': token.finalStatus === 'pending',
+                'status-rejected': token.finalStatus === 'rejected',
+                'status-sold': token.finalStatus === 'sold'
               }">
                 {{ token.finalStatus | titlecase }}
               </span>
             </td>
             <td>{{ token.tokenDeadLine| date: 'mediumDate' }}</td>
             <td>
-              <button *ngIf="token.finalStatus === 'Pending'" class="balance-btn" (click)="openAcceptBalance(token)">
+              <button *ngIf="token.finalStatus === 'pending'" class="balance-btn" (click)="openAcceptBalance(token)">
                 Accept Balance
               </button>
-              <ng-container *ngIf="token.finalStatus === 'Paid'">
+              <ng-container *ngIf="token.finalStatus === 'paid'">
                 <button class="view-btn" (click)="viewToken(token)">Details</button>
                 <button class="followup-btn" (click)="openFollowUp(token)">Follow Up</button>
               </ng-container>
