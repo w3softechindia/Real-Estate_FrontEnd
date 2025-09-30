@@ -56,7 +56,7 @@
                   <td>{{token.tokenDeadLine}}</td>
                   <td>{{token.amount}}</td>
                   <td>{{token.transactionMode}}</td>
-                  <td><button type="submit" (click)="openSendModal(token)" class="send-btnn" [disabled]="token.hidePayment">Payment</button></td>
+                  <td><button type="button" (click)="openSendModal(token)" class="send-btnn" [disabled]="token.hidePayment">Payment</button></td>
                   <td>{{token.finalStatus}}</td>
               </tr>
                 </ng-container>

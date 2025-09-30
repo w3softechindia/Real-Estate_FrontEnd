@@ -1,8 +1,68 @@
-<app-page-title title="Real Estate" subTitle="Agent Overview" />
-
 <div class="announcement-container">
   <div class="announcement-card">
     <h2>New Announcement</h2>
+
+    <form class="post-form" [formGroup]="postForm" (ngSubmit)="submitForm()">
+      <div class="form-group">
+        <label for="title">Title</label>
+        <input type="text" id="title"  formControlName="title" class="form-control">
+      </div>
+
+    <div class="form-group">
+    <label for="postType">Post Type</label>
+    <select id="postType" formControlName="postType" required>
+      <option value="" disabled selected>Select Post Type</option>
+      <option value="announcement">Announcement</option>
+      <option value="notice">Notice</option>
+      <option value="offer">Offer</option>
+    </select>
+    </div>
+
+      <div class="form-group">
+        <label for="message">Message</label>
+        <input type="text" id="message"  formControlName="message" class="form-control">
+      </div>
+
+      <div class="form-group">
+    <label for="audience">Audience</label>
+    <select id="audience" formControlName="audience" required>
+      <option value="" disabled selected>Select Audience</option>
+      <option value="announcement">Agents</option>
+      <option value="notice">Agencies</option>
+      <option value="offer">Customer</option>
+    </select>
+    </div>
+
+    <div class="form-group">
+    <label for="priority">Priority</label>
+    <select id="priority" formControlName="priority" required>
+      <option value="" disabled selected>Priority</option>
+      <option value="announcement">High</option>
+      <option value="notice">Medium</option>
+      <option value="offer">Urgent</option>
+    </select>
+    </div>
+
+       <div class="form-group">
+        <label for="start">Start Date</label>
+        <input type="date" id="start"  formControlName="start" class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="end">End Date</label>
+        <input type="date" id="end"  formControlName="end" class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="department">Department</label>
+        <input type="text" id="department"  formControlName="department" class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="postedBy">PostedBy</label>
+        <input type="text" id="postedBy"  formControlName="postedBy" class="form-control">
+      </div>
+      <div class="form-group">
+        <button type="submit">Submit</button>
+      </div>
+    </form>
     </div>
     </div>
     

@@ -137,5 +137,5 @@ export const routes: Routes = [
     data: { title: 'Dashboard' },
   },
 
-  {path:'adminposts',component:AdminpostsComponent}
+  // {path:'adminposts',component:AdminpostsComponent}
 ]

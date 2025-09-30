@@ -12,7 +12,7 @@ import { token } from 'flatpickr/dist/utils/formatting';
 export class RealEStateService {
   constructor(private http: HttpClient, private authService: AuthService) {}
 
-  // private baseUrl = 'http://localhost:8080'
+   //private baseUrl = 'http://localhost:8080'
 
    private baseUrl = "https://realestate-java-684bdd5bd699.herokuapp.com"
 
@@ -129,6 +129,21 @@ export class RealEStateService {
     return this.http.put(`${this.baseUrl}/resetPassword`,{},{params, responseType:'text'});
   }
 
+  addposts(adminEmail:string,post:Post):Observable<any>
+{
+  const params = new HttpParams().set('adminEmail', adminEmail);
+  return this.http.post(`${this.baseUrl}/adminPosts`,post,{params});
+}
+
+getAdminPosts(email:string):Observable<Post[]>{
+  const params=new HttpParams().set('email',email);
+return this.http.get<Post[]>(`${this.baseUrl}/postsByAdmin`,{params});
+}
+
+deleteAdminPost(id:number):Observable<any>{
+  const params=new HttpParams().set('id',id.toString());
+  return this.http.delete(`${this.baseUrl}/deleteAdminPostById`,{params});
+}
   // -------------------------------------------------------------------------------
   // Agency Operations
   addAgent(email: string, agent: Agent): Observable<any> {

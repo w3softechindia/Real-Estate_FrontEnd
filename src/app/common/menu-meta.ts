@@ -234,23 +234,19 @@ export const MENU_ITEMS: MenuItemType[] = [
     icon: 'ri-news-line',
     collapsed: true,
     children: [
-      // {
-      //   key: 'post',
-      //   label: 'Post',
-      //    url: '/post',
-      //   parentKey: 'post',
-      // }
+
+     
   {
         key: 'create-post',
         label: 'Create Post',
-         url: '/adminposts',
+         url: '/post/adminposts',
         parentKey: 'post',
       },
 
       {
         key: 'post-details',
         label: 'Post Details',
-         url: '/post/details',
+         url: '/post/admingetpost',
         parentKey: 'post',
       },
       
