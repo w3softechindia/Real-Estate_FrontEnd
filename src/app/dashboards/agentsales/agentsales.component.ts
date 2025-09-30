@@ -44,11 +44,30 @@ visits:Visit[]=[];
   });
   }
 
- getTokens(): void {
-   this.service.getAllTokensByAgencyStatus('accepted').subscribe({
+
+//  getTokens(): void {
+//    this.service.getAllTokensByAgencyStatus('accepted').subscribe({
+//     next: (res) => {
+//       this.tokens = res;
+//       console.log(res);
+//     },
+//     error: (err) => {
+//       console.error('Failed to fetch tokens:', err);
+//     }
+//   });
+// }
+
+getTokens(): void {
+  this.service.getAllTokensByAgencyStatus('accepted').subscribe({
+
     next: (res) => {
-      this.tokens = res;
-      console.log(res);
+      // Add hidePayment property to every token
+      this.tokens = res.map((t: any) => ({
+        ...t,
+        hidePayment: t.hidePayment ?? false   // default false
+      }));
+      console.log('Tokens:', this.tokens);
+      console.log('response is : ',res);
     },
     error: (err) => {
       console.error('Failed to fetch tokens:', err);
@@ -90,21 +109,45 @@ openSendModal(token: any) {
 
   
 
- sendPayment() {
-  const dueAmount = this.paymentForm.getRawValue().due; // balance amount
+//  sendPayment() {
+//   const dueAmount = this.paymentForm.getRawValue().due; // balance amount
+//   const tokenId = this.selectedToken.tokenid;
+
+//   this.service.updatePayment(tokenId, dueAmount, 'pending').subscribe({
+//     next: (res) => {
+//       alert('Payment Successful...');
+
+//       // ✅ Update UI
+//       this.selectedToken.finalStatus = 'pending';
+//       this.selectedToken.balanceAmount = dueAmount;
+//       this.selectedToken.hidePayment = true;
+//       this.showModal = false;
+
+
+//     },
+//     error: (err) => {
+//       console.error('Payment update failed:', err);
+//       alert('Payment Failed!');
+//     }
+//   });
+// }
+
+sendPayment() {
+  const dueAmount = this.paymentForm.getRawValue().due;
   const tokenId = this.selectedToken.tokenid;
 
   this.service.updatePayment(tokenId, dueAmount, 'pending').subscribe({
     next: (res) => {
       alert('Payment Successful...');
 
-      // ✅ Update UI
-      this.selectedToken.finalStatus = 'pending';
-      this.selectedToken.balanceAmount = dueAmount;
-      this.selectedToken.hidePayment = true;
+      this.tokens = this.tokens.map(token =>
+        token.tokenid === tokenId
+          ? { ...token, finalStatus: 'pending', balanceAmount: dueAmount, hidePayment: true }
+          : token
+      );
+
+      console.log("Updated Tokens:", this.tokens);
       this.showModal = false;
-
-
     },
     error: (err) => {
       console.error('Payment update failed:', err);
@@ -112,8 +155,5 @@ openSendModal(token: any) {
     }
   });
 }
-
-
-
 
 }

@@ -1,0 +1,101 @@
+<div class="main-layout">
+    <div class="page-layout">
+      <div class="container">
+                <div class="header">
+
+          <div class="form-group">
+              <input type="text" id="title"  placeholder="title"/>
+            </div>
+
+            <div class="form-group">
+                <input type="text" id="posted"  placeholder="John"/>
+              </div>
+              
+  
+            <div class="form-group">
+              <input type="text" id="dept"  placeholder="IT"/>
+            </div>
+  
+            <div class="form-group">
+              <input type="date" id="date" />
+            </div>
+  
+            <div class="form-group">
+              <button><i class="fa-solid fa-magnifying-glass"></i></button>
+            </div>
+      </div>
+           <h2>Post Lists</h2>
+            <div class="table-view">
+            <table>
+              <thead>
+                <tr>
+                  <th>Title</th>
+                  <th>Message</th>
+                  <th>Department</th>
+                  <th>Audience</th>
+                  <th>PostedBy</th>
+                  <th>Active From</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+               <tr *ngFor="let post of posts">
+               <td>{{ post.title }}</td>
+               <td>{{ post.message }}</td>
+               <td>{{ post.department }}</td>
+               <td>{{post.audience}}</td>
+               <td>{{ post.postedBy }}</td>
+               <td>{{post.startDate}}</td>
+              <td>
+  <div class="button-group">
+    <button type="button" (click)="openEditModal(post)" class="edit">Edit</button>
+    <button type="button" (click)="deletePost(post)"  class="edit">Delete</button>
+  </div>
+</td>
+
+               </tr>
+              </tbody>
+             </table>
+            </div>
+        </div>
+      </div>
+    </div>
+
+
+   
+<!-- Edit Post Modal -->
+<div *ngIf="showModal" class="modal">
+  <div class="modal-content">
+    <button class="close-btn" (click)="closeEditModal()">X</button>
+    <h2>Edit Post</h2>
+    <form [formGroup]="editForm" (ngSubmit)="updatePost()">
+      <div class="form-group">
+        <label>Title</label>
+        <input type="text" formControlName="title" />
+      </div>
+      <div class="form-group">
+        <label>Message</label>
+        <input type="text" formControlName="message"/>
+      </div>
+      <div class="form-group">
+        <label>Department</label>
+        <input type="text" formControlName="department" />
+      </div>
+      <div class="form-group">
+        <label>Audience</label>
+        <input type="text" formControlName="audience" />
+      </div>
+      <div class="form-group">
+        <label>Posted By</label>
+        <input type="text" formControlName="postedBy" />
+      </div>
+      <div class="form-group">
+        <label>Active From</label>
+        <input type="date" formControlName="startDate" />
+      </div>
+      <div class="modal-actions">
+        <button type="submit" [disabled]="editForm.invalid">Save Changes</button>
+      </div>
+    </form>
+  </div>
+</div>

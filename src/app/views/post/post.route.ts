@@ -2,6 +2,8 @@ import type { Route } from '@angular/router'
 import { PostListComponent } from './post-list/post-list.component'
 import { DetailsComponent } from './details/details.component'
 import { CreateComponent } from './create/create.component'
+import { AdmingetpostsComponent } from '@views/admingetposts/admingetposts.component'
+import { AdminpostsComponent } from '@views/adminposts/adminposts.component'
 
 export const POST_ROUTES: Route[] = [
   { path: '', component: PostListComponent, data: { title: 'Blog Grid' } },
@@ -15,6 +17,21 @@ export const POST_ROUTES: Route[] = [
     component: CreateComponent,
     data: { title: 'Blog Create' },
   },
+
+
+  {
+    path: 'admingetpost',
+    component: AdmingetpostsComponent,
+    data: { title: 'Blog Create' },
+  },
+
+
+   {
+    path: 'adminposts',
+    component: AdminpostsComponent,
+    data: { title: 'Blog Create' },
+  },
+
 ]
 
 

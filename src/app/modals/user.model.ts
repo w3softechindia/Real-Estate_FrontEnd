@@ -180,6 +180,7 @@ export interface Post {
   postedBy: string;
   attachmentPath?: string;
   agency?: Agency; // Optional: include if backend returns agency info with post
+  admin?:Admin;
 }
 
 

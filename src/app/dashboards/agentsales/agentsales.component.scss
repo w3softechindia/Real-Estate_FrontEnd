@@ -63,6 +63,13 @@
     color: #fff;
 }
 
+.send-btnn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+
 .modal {
     position: fixed;
     top: 0;
