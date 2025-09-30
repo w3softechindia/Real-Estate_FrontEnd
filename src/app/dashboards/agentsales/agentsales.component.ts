@@ -44,6 +44,7 @@ visits:Visit[]=[];
   });
   }
 
+
 //  getTokens(): void {
 //    this.service.getAllTokensByAgencyStatus('accepted').subscribe({
 //     next: (res) => {
@@ -58,6 +59,7 @@ visits:Visit[]=[];
 
 getTokens(): void {
   this.service.getAllTokensByAgencyStatus('accepted').subscribe({
+
     next: (res) => {
       // Add hidePayment property to every token
       this.tokens = res.map((t: any) => ({
@@ -153,7 +155,5 @@ sendPayment() {
     }
   });
 }
-
-
 
 }
