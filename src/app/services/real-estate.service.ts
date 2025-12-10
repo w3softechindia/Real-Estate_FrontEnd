@@ -12,7 +12,9 @@ import { token } from 'flatpickr/dist/utils/formatting';
 export class RealEStateService {
   constructor(private http: HttpClient, private authService: AuthService) {}
 
+
    private baseUrl = 'http://localhost:8080'
+
 
    //private baseUrl = "https://realestate-java-684bdd5bd699.herokuapp.com"
 
@@ -145,9 +147,11 @@ deleteAdminPost(id:number):Observable<any>{
   return this.http.delete(`${this.baseUrl}/deleteAdminPostById`,{params});
 }
 
+
 addQuotation(quotationData: any): Observable<any> {
     return this.http.post(`${this.baseUrl}/addQuotation`, quotationData);
   }
+
   // -------------------------------------------------------------------------------
   // Agency Operations
   addAgent(email: string, agent: Agent): Observable<any> {
