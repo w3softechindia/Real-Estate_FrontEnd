@@ -168,12 +168,14 @@ export const MENU_ITEMS: MenuItemType[] = [
         url: '/customers/list',
         parentKey: 'customers',
       },
-      // {
-      //   key: 'grid-view',
-      //   label: 'Grid View',
-      //   url: '/customers/grid',
-      //   parentKey: 'customers',
-      // },
+      {
+        key: 'grid-view',
+        label: 'FeedBack Form',
+        url: '/customers/adminfeedback',
+        parentKey: 'customers',
+      }
+      ,
+
       // {
       //   key: 'customer-details',
       //   label: 'Customer Details',
@@ -214,19 +216,19 @@ export const MENU_ITEMS: MenuItemType[] = [
   },
   {
     // key: 'messages',
-    key: 'pages',
-    label: 'Messages',
+    key: 'suspension',
+    label: 'Suspension',
     icon: 'ri-discuss-line',
     // url: '/messages',
-     url:'/pages/coming-soon'
+     url:'/pages/suspension'
   },
   {
     // key: 'inbox',
     key: 'pages',
-    label: 'Inbox',
+    label: 'Quotation',
     icon: 'ri-inbox-line',
     // url: '/inbox',
-     url:'/pages/coming-soon'
+     url:'/pages/quotation'
   },
   {
     key: 'post',
@@ -252,6 +254,10 @@ export const MENU_ITEMS: MenuItemType[] = [
       
     ],
   },
+
+
+
+
   // {
   //   key: 'custom',
   //   label: 'CUSTOM',

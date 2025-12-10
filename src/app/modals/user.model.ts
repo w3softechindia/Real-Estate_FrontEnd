@@ -224,6 +224,20 @@ export interface Revenue{
   agent:Agent;
 }
 
+export interface Quotation{
+  quotationId:number;
+  propertyName:String;
+  basePrice:number;
+  gstPercentage:number;
+  gstAmount:number;
+  registrationCharges:number;
+  maintainanceCharges:number;
+  discountPercentage:number;
+  discountAmount:number;
+  finalPrice:number;
+  createdDate:String;
+  validityDate:String;
+  termsAndConditions:String;
+  createdBy:String;
 
-
-
+}

@@ -1,0 +1,114 @@
+<div class="quotation-container">
+   <div class="quotation-card" *ngIf="step === 1">
+    <h2>Quotation</h2>
+
+    <form class="quotation-form" [formGroup]="quotationForm" (ngSubmit)="goToStep(2)">
+
+      <div class="form-group">
+        <label for="propertyName">Property Name</label>
+        <select id="propertyName" formControlName="propertyName" required>
+    <option value="">Select Property Name</option>
+   <option *ngFor="let venture of ventures" [value]="venture.ventureId">
+      {{ venture.ventureName }}
+    </option>
+  </select>
+      </div>
+
+
+      <div class="form-group">
+        <label for="basePrice">Base Price</label>
+        <input type="number" id="basePrice" formControlName="basePrice" class="form-control">
+      </div>
+
+      <div class="form-group">
+        <label for="gstPercentage">GST (%)</label>
+        <input type="number" id="gstPercentage" formControlName="gstPercentage" class="form-control">
+      </div>
+
+      <div class="form-group">
+        <label for="gstAmount">GST Amount</label>
+        <input type="number" id="gstAmount" formControlName="gstAmount" class="form-control">
+      </div>
+
+      <div class="form-group">
+        <label for="registrationCharges">Registration Charges</label>
+        <input type="number" id="registrationCharges" formControlName="registrationCharges" class="form-control">
+      </div>
+
+      <div class="form-group">
+        <label for="maintenanceCharges">Maintenance Charges</label>
+        <input type="number" id="maintenanceCharges" formControlName="maintenanceCharges" class="form-control">
+      </div>
+
+      <div class="form-group">
+        <label for="discountPercentage">Discount (%)</label>
+        <input type="number" id="discountPercentage" formControlName="discountPercentage" class="form-control">
+      </div>
+
+      <div class="form-group">
+        <label for="discountAmount">Discount Amount</label>
+        <input type="number" id="discountAmount" formControlName="discountAmount" class="form-control">
+      </div>
+
+      <div class="form-group">
+        <label for="finalPrice">Final Price</label>
+        <input type="number" id="finalPrice" formControlName="finalPrice" class="form-control">
+      </div>
+
+      <div class="form-group">
+        <label for="validityDate">Validity Date</label>
+        <input type="date" id="validityDate" formControlName="validityDate" class="form-control">
+      </div>
+
+      <div class="form-group">
+        <label for="termsAndConditions">Terms & Conditions</label>
+        <textarea id="termsAndConditions" formControlName="termsAndConditions" class="form-control"></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="createdDate">Created Date</label>
+        <input type="date" id="createdDate" formControlName="createdDate" class="form-control">
+      </div>
+
+      <div class="form-group">
+        <label for="createdBy">Created By</label>
+        <input type="text" id="createdBy" formControlName="createdBy" class="form-control">
+      </div>
+
+      <div class="form-group">
+         <button type="submit" class="next-btn">➡️ Next</button>
+      </div>
+
+    </form>
+  </div>
+
+ <!-- STEP 2: Preview -->
+  <div class="quotation-card preview-card" *ngIf="step === 2">
+    <h2>📄 Quotation Preview</h2>
+
+    <div id="quotationContent" class="preview-content">
+      <p><strong>Property Name:</strong> {{ quotationForm.value.propertyName }}</p>
+      <p><strong>Base Price:</strong> ₹{{ quotationForm.value.basePrice }}</p>
+      <p><strong>GST (%):</strong> {{ quotationForm.value.gstPercentage }}%</p>
+      <p><strong>GST Amount:</strong> ₹{{ quotationForm.value.gstAmount }}</p>
+      <p><strong>Registration Charges:</strong> ₹{{ quotationForm.value.registrationCharges }}</p>
+      <p><strong>Maintenance Charges:</strong> ₹{{ quotationForm.value.maintenanceCharges }}</p>
+      <p><strong>Discount (%):</strong> {{ quotationForm.value.discountPercentage }}%</p>
+      <p><strong>Discount Amount:</strong> ₹{{ quotationForm.value.discountAmount }}</p>
+      <p><strong>Final Price:</strong> ₹{{ quotationForm.value.finalPrice }}</p>
+      <p><strong>Validity Date:</strong> {{ quotationForm.value.validityDate }}</p>
+      <p><strong>Terms & Conditions:</strong></p>
+      <p style="white-space: pre-line;">{{ quotationForm.value.termsAndConditions }}</p>
+      <hr />
+      <p><strong>Created By:</strong> {{ quotationForm.value.createdBy }}</p>
+      <p><strong>Created Date:</strong> {{ quotationForm.value.createdDate }}</p>
+    </div>
+
+    <div class="buttons">
+      <button (click)="goToStep(1)">⬅️ Back</button>
+      <button (click)="downloadAsPDF()">📥 Download as PDF</button>
+    </div>
+  </div>
+</div>
+
+
