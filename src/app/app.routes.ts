@@ -47,6 +47,7 @@ import { AgencyagnetPerormanceComponent } from './dashboards/agencyagnet-perorma
 import { AgencyRevenueComponent } from './dashboards/agency-revenue/agency-revenue.component'
 import { AgentcommisionsComponent } from './dashboards/agentcommisions/agentcommisions.component'
 import { AdminpostsComponent } from '@views/adminposts/adminposts.component'
+import { FeedbackComponent } from '@views/customers/feedback/feedback.component'
 
 
 export const routes: Routes = [
@@ -137,5 +138,5 @@ export const routes: Routes = [
     data: { title: 'Dashboard' },
   },
 
-  // {path:'adminposts',component:AdminpostsComponent}
+
 ]

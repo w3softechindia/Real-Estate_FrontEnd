@@ -12,9 +12,11 @@ import { token } from 'flatpickr/dist/utils/formatting';
 export class RealEStateService {
   constructor(private http: HttpClient, private authService: AuthService) {}
 
-   //private baseUrl = 'http://localhost:8080'
 
-   private baseUrl = "https://realestate-java-684bdd5bd699.herokuapp.com"
+   private baseUrl = 'http://localhost:8080'
+
+
+   //private baseUrl = "https://realestate-java-684bdd5bd699.herokuapp.com"
 
 
   login(user: any) {
@@ -144,6 +146,12 @@ deleteAdminPost(id:number):Observable<any>{
   const params=new HttpParams().set('id',id.toString());
   return this.http.delete(`${this.baseUrl}/deleteAdminPostById`,{params});
 }
+
+
+addQuotation(quotationData: any): Observable<any> {
+    return this.http.post(`${this.baseUrl}/addQuotation`, quotationData);
+  }
+
   // -------------------------------------------------------------------------------
   // Agency Operations
   addAgent(email: string, agent: Agent): Observable<any> {
@@ -259,6 +267,10 @@ updateFinalStatus(tokenId: number, finalStatus: string): Observable<string> {
     return this.http.get<Lead[]>(`${this.baseUrl}/getAllLeads?email=${email}`)
   }
 
+  findAllLeads():Observable<Lead[]>{
+return this.http.get<Lead[]>(`${this.baseUrl}/findAllLeads`)
+  }
+
   updateLead(lead: Lead): Observable<any> {
     return this.http.put(`${this.baseUrl}/updateLead?email=${lead.email}`, lead)
   }
@@ -369,6 +381,12 @@ sendReviewResponse(reviewId:number,response:string):Observable<Review>{
     }
   });
 }
+
+sendFeedbackLink(payload: { email: string; feedbackLink: string }) {
+  return this.http.post(`${this.baseUrl}/sendFeedbackLink`, payload, { responseType: 'text' });
+}
+
+
 
 }
 

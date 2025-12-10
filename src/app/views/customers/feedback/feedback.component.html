@@ -1,0 +1,28 @@
+<div class="announcement-container">
+<div class="card">
+  <h3>Send Feedback Link</h3>
+
+  <!-- Link field (readonly) -->
+  <div class="form-group">
+    <label>Feedback Link:</label>
+    <input type="text"
+           [value]="feedbackLink"
+           readonly />
+  </div>
+
+  <!-- Dropdown for users -->
+  <div class="form-group">
+    <label>Select User:</label>
+    <select [(ngModel)]="selectedUser">
+      <option value="">-- Select a user --</option>
+      <option *ngFor="let lead of leads" [value]="lead.email">{{ lead.email}}</option>
+    </select>
+  </div>
+
+  <!-- Send Button -->
+  <button (click)="sendLink()" [disabled]="!selectedUser">Send</button>
+
+ 
+</div>
+</div>
+

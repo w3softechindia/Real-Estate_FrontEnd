@@ -3,6 +3,7 @@ import { ListComponent } from './list/list.component'
 import { GridComponent } from './grid/grid.component'
 import { DetailsComponent } from './details/details.component'
 import { AddComponent } from './add/add.component'
+import { FeedbackComponent } from './feedback/feedback.component'
 
 export const CUSTOMER_ROUTES: Route[] = [
   { path: 'list', component: ListComponent, data: { title: 'Customer List' } },
@@ -13,4 +14,6 @@ export const CUSTOMER_ROUTES: Route[] = [
     data: { title: 'Customer Overview' },
   },
   { path: 'add', component: AddComponent, data: { title: 'Customers Add' } },
+{ path: 'adminfeedback', component: FeedbackComponent, data: { title: 'Customers Add' } },
+
 ]

@@ -6,6 +6,8 @@ import { FaqsComponent } from './faqs/faqs.component'
 import { TimelineComponent } from './timeline/timeline.component'
 import { PricingComponent } from './pricing/pricing.component'
 import { Alt404Component } from './alt404/alt404.component'
+import { SuspensionComponent } from './suspension/suspension.component'
+import { QuotationComponent } from './quotation/quotation.component'
 
 export const PAGES_ROUTES: Route[] = [
   {
@@ -41,6 +43,16 @@ export const PAGES_ROUTES: Route[] = [
   {
     path: '404-alt',
     component: Alt404Component,
+    data: { title: '404 Alt' },
+  },
+   {
+    path: 'suspension',
+    component: SuspensionComponent,
+    data: { title: '404 Alt' },
+  },
+  {
+    path: 'quotation',
+    component: QuotationComponent,
     data: { title: '404 Alt' },
   },
 ]
