@@ -13,10 +13,10 @@ export class RealEStateService {
   constructor(private http: HttpClient, private authService: AuthService) {}
 
 
-   private baseUrl = 'http://localhost:8080'
+  // private baseUrl = 'http://localhost:8080'
 
 
-   //private baseUrl = "https://claim360backend-6486cca191e0.herokuapp.com/"
+   private baseUrl = "https://claim360backend-6486cca191e0.herokuapp.com"
 
 
   login(user: any) {
