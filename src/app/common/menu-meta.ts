@@ -27,7 +27,7 @@ export type TabMenuItem = {
   name: string
   icon: string
 }
-
+// Start of the Admin SideBar
 export const MENU_ITEMS: MenuItemType[] = [
   {
     key: 'menu',
@@ -156,105 +156,106 @@ export const MENU_ITEMS: MenuItemType[] = [
       }
     ],
   },
-  {
-    key: 'customers',
-    label: 'Customers',
-    icon: 'ri-contacts-book-3-line',
-    collapsed: true,
-    children: [
-      {
-        key: 'list-view',
-        label: 'List View',
-        url: '/customers/list',
-        parentKey: 'customers',
-      },
-      {
-        key: 'grid-view',
-        label: 'FeedBack Form',
-        url: '/customers/adminfeedback',
-        parentKey: 'customers',
-      }
-      ,
+  // {
+  //   key: 'customers',
+  //   label: 'Customers',
+  //   icon: 'ri-contacts-book-3-line',
+  //   collapsed: true,
+  //   children: [
+  //     {
+  //       key: 'list-view',
+  //       label: 'List View',
+  //       url: '/customers/list',
+  //       parentKey: 'customers',
+  //     },
+  //     {
+  //       key: 'grid-view',
+  //       label: 'FeedBack Form',
+  //       url: '/customers/adminfeedback',
+  //       parentKey: 'customers',
+  //     }
+  //     ,
 
-      // {
-      //   key: 'customer-details',
-      //   label: 'Customer Details',
-      //   url: '/customers/details',
-      //   parentKey: 'customers',
-      // },
-      // {
-      //   key: 'add-customer',
-      //   label: 'Add Customer',
-      //   url: '/customers/add',
-      //   parentKey: 'customers',
-      // },
-    ],
-  },
-  {
-    key: 'pages',
-    // key:'orders',
-    label: 'Orders',
-    icon: 'ri-home-office-line',
-    // url: '/orders',
-    url:'/pages/coming-soon'
-  },
-  {
-    key: 'pages',
-    // key:'transactions',
-    label: 'Transactions',
-    icon: 'ri-arrow-left-right-line',
-    // url: '/transactions',
-    url:'/pages/coming-soon'
-  },
-  {
-    // key: 'reviews',
-    key: 'pages',
-    label: 'Reviews',
-    icon: 'ri-chat-quote-line',
-    // url: '/reviews',
-     url:'/pages/coming-soon'
-  },
-  {
-    // key: 'messages',
-    key: 'suspension',
-    label: 'Suspension',
-    icon: 'ri-discuss-line',
-    // url: '/messages',
-     url:'/pages/suspension'
-  },
-  {
-    // key: 'inbox',
-    key: 'pages',
-    label: 'Quotation',
-    icon: 'ri-inbox-line',
-    // url: '/inbox',
-     url:'/pages/quotation'
-  },
-  {
-    key: 'post',
-    label: 'Post',
-    icon: 'ri-news-line',
-    collapsed: true,
-    children: [
+  //     // {
+  //     //   key: 'customer-details',
+  //     //   label: 'Customer Details',
+  //     //   url: '/customers/details',
+  //     //   parentKey: 'customers',
+  //     // },
+  //     // {
+  //     //   key: 'add-customer',
+  //     //   label: 'Add Customer',
+  //     //   url: '/customers/add',
+  //     //   parentKey: 'customers',
+  //     // },
+  //   ],
+  // },
+  // {
+  //   key: 'pages',
+  //   // key:'orders',
+  //   label: 'Orders',
+  //   icon: 'ri-home-office-line',
+  //   // url: '/orders',
+  //   url:'/pages/coming-soon'
+  // },
+  // {
+  //   key: 'pages',
+  //   // key:'transactions',
+  //   label: 'Transactions',
+  //   icon: 'ri-arrow-left-right-line',
+  //   // url: '/transactions',
+  //   url:'/pages/coming-soon'
+  // },
+  // {
+  //   // key: 'reviews',
+  //   key: 'pages',
+  //   label: 'Reviews',
+  //   icon: 'ri-chat-quote-line',
+  //   // url: '/reviews',
+  //    url:'/pages/coming-soon'
+  // },
+  // {
+  //   // key: 'messages',
+  //   key: 'suspension',
+  //   label: 'Suspension',
+  //   icon: 'ri-discuss-line',
+  //   // url: '/messages',
+  //    url:'/pages/suspension'
+  // },
+  // {
+  //   // key: 'inbox',
+  //   key: 'pages',
+  //   label: 'Quotation',
+  //   icon: 'ri-inbox-line',
+  //   // url: '/inbox',
+  //    url:'/pages/quotation'
+  // },
+  // {
+  //   key: 'post',
+  //   label: 'Post',
+  //   icon: 'ri-news-line',
+  //   collapsed: true,
+  //   children: [
 
      
-  {
-        key: 'create-post',
-        label: 'Create Post',
-         url: '/post/adminposts',
-        parentKey: 'post',
-      },
+  // {
+  //       key: 'create-post',
+  //       label: 'Create Post',
+  //        url: '/post/adminposts',
+  //       parentKey: 'post',
+  //     },
 
-      {
-        key: 'post-details',
-        label: 'Post Details',
-         url: '/post/admingetpost',
-        parentKey: 'post',
-      },
+  //     {
+  //       key: 'post-details',
+  //       label: 'Post Details',
+  //        url: '/post/admingetpost',
+  //       parentKey: 'post',
+  //     },
       
-    ],
-  },
+  //   ],
+  // },
 
+  // End of the Admin SideBar
 
 
 
@@ -944,91 +945,91 @@ export const CUSTOM_MENU: MenuItemType[] = [
       },
     ],
   },
-  {
-    key: 'customers',
-    label: 'Bookings',
-    icon: 'ri-contacts-book-3-line',
-    collapsed: true,
-    children: [
-      // {
-      //   key: 'list-view',
-      //   label: 'List View',
-      //   url: '/customers/list',
-      //   parentKey: 'customers',
-      // },
-      // {
-      //   key: 'grid-view',
-      //   label: 'Grid View',
-      //   url: '/customers/grid',
-      //   parentKey: 'customers',
-      // },
-      {
-        key: 'customer-details',
-        label: 'Token List',
-        url: '/agencytokenlist',
-        parentKey: 'customers',
-      },
-      {
-        key: 'add-customer',
-        label: 'Sales',
-        url: '/agencysales',
-        parentKey: 'customers',
-      },
-    ],
-  },
+//   {
+//     key: 'customers',
+//     label: 'Bookings',
+//     icon: 'ri-contacts-book-3-line',
+//     collapsed: true,
+//     children: [
+//       // {
+//       //   key: 'list-view',
+//       //   label: 'List View',
+//       //   url: '/customers/list',
+//       //   parentKey: 'customers',
+//       // },
+//       // {
+//       //   key: 'grid-view',
+//       //   label: 'Grid View',
+//       //   url: '/customers/grid',
+//       //   parentKey: 'customers',
+//       // },
+//       {
+//         key: 'customer-details',
+//         label: 'Token List',
+//         url: '/agencytokenlist',
+//         parentKey: 'customers',
+//       },
+//       {
+//         key: 'add-customer',
+//         label: 'Sales',
+//         url: '/agencysales',
+//         parentKey: 'customers',
+//       },
+//     ],
+//   },
 
 
   
-  {
-    key: 'orders',
-    label: 'Posts',
-    icon: 'ri-home-office-line',
-     collapsed: true,
-     children: [
-       {
-        key: 'customer-details',
-        label: 'Announcement',
-        url: '/agencyposts',
-        parentKey: 'orders',
-      },
-      {
-        key: 'add-customer',
-        label: 'List',
-        url: '/agencypostlist',
-        parentKey: 'orders',
-      },
-     ]
-  },
+//   {
+//     key: 'orders',
+//     label: 'Posts',
+//     icon: 'ri-home-office-line',
+//      collapsed: true,
+//      children: [
+//        {
+//         key: 'customer-details',
+//         label: 'Announcement',
+//         url: '/agencyposts',
+//         parentKey: 'orders',
+//       },
+//       {
+//         key: 'add-customer',
+//         label: 'List',
+//         url: '/agencypostlist',
+//         parentKey: 'orders',
+//       },
+//      ]
+//   },
   
 
   
-  {
-    key: 'transactions',
-    label: 'Settings',
-    icon: 'ri-arrow-left-right-line',
-    url: '/agencyprofile',
-  },
-  // {
-  //   key: 'reviews',
-  //   label: 'Reviews',
-  //   icon: 'ri-chat-quote-line',
-  //   url: '/reviews',
-  // },
-  {
-    key: 'messages',
-    label: 'Contract&Aggrement',
-    icon: 'ri-discuss-line',
-    url: '/agencycontract',
-  },
-  // {
-  //   key: 'inbox',
-  //   label: 'Inbox',
-  //   icon: 'ri-inbox-line',
-  //   url: '/inbox',
-  // },
+//   {
+//     key: 'transactions',
+//     label: 'Settings',
+//     icon: 'ri-arrow-left-right-line',
+//     url: '/agencyprofile',
+//   },
+//   // {
+//   //   key: 'reviews',
+//   //   label: 'Reviews',
+//   //   icon: 'ri-chat-quote-line',
+//   //   url: '/reviews',
+//   // },
+//   {
+//     key: 'messages',
+//     label: 'Contract&Aggrement',
+//     icon: 'ri-discuss-line',
+//     url: '/agencycontract',
+//   },
+//   // {
+//   //   key: 'inbox',
+//   //   label: 'Inbox',
+//   //   icon: 'ri-inbox-line',
+//   //   url: '/inbox',
+//   // },
  
 
-];
+ ];
 
 
 
@@ -1123,130 +1124,130 @@ export const CUSTOM_MENUU: MenuItemType[] = [
         url: '/agentleadlist',
         parentKey: 'agents',
       },
-      {
-        key: 'agent-details',
-        label: 'Add Visits',
-        url: '/agentaddvisit',
-        parentKey: 'agents',
-      },
-      {
-        key: 'add-agent',
-        label: 'Visit List',
-        url: '/agentvisitlist',
-        parentKey: 'agents',
-      },
+      // {
+      //   key: 'agent-details',
+      //   label: 'Add Visits',
+      //   url: '/agentaddvisit',
+      //   parentKey: 'agents',
+      // },
+      // {
+      //   key: 'add-agent',
+      //   label: 'Visit List',
+      //   url: '/agentvisitlist',
+      //   parentKey: 'agents',
+      // },
       
     ],
   },
-  {
-    key: 'dashboards',
-    label: 'Bookings',
-    icon: 'ri-dashboard-2-line',
-    collapsed: false,
-    children: [
-      {
-        key: 'analytics',
-        label: 'Add Token',
-        url: '/agentaddtoken',
-        parentKey: 'dashboards',
-      },
-        {
-        key: 'analytics',
-        label: 'Token List',
-        url: '/agenttokenlist',
-        parentKey: 'dashboards',
-      }, 
-      {
-        key: 'agent',
-        label: 'Feature Process',
-        url: '/agentfeatureprocess',
-        parentKey: 'dashboards',
-      },
-      {
-        key: 'agent',
-        label: 'Sales',
-        url: '/agentsales',
-        parentKey: 'dashboards',
-      },
-
-      // {
-      //   key: 'customer',
-      //   label: 'Customer',
-      //   url: '/dashboards/customer',
-      //   parentKey: 'dashboards',
-      // },
-    ],
-  },
-  {
-        key: 'agents',
-        label: 'Profile',
-        url: '/agentprofile',
-        parentKey: 'dashboards',
-  },
-    {
-        key: 'agents',
-        label: 'Posts',
-        url: '/agentposts',
-        parentKey: 'dashboards',
-  },
   // {
-  //   key: 'customers',
-  //   label: 'Schedule & Appointments',
-  //   icon: 'ri-contacts-book-3-line',
-  //   collapsed: true,
+  //   key: 'dashboards',
+  //   label: 'Bookings',
+  //   icon: 'ri-dashboard-2-line',
+  //   collapsed: false,
   //   children: [
   //     {
-  //       key: 'list-view',
-  //       label: 'List View',
-  //       url: '/customers/list',
-  //       parentKey: 'customers',
+  //       key: 'analytics',
+  //       label: 'Add Token',
+  //       url: '/agentaddtoken',
+  //       parentKey: 'dashboards',
+  //     },
+  //       {
+  //       key: 'analytics',
+  //       label: 'Token List',
+  //       url: '/agenttokenlist',
+  //       parentKey: 'dashboards',
+  //     }, 
+  //     {
+  //       key: 'agent',
+  //       label: 'Feature Process',
+  //       url: '/agentfeatureprocess',
+  //       parentKey: 'dashboards',
   //     },
   //     {
-  //       key: 'grid-view',
-  //       label: 'Grid View',
-  //       url: '/customers/grid',
-  //       parentKey: 'customers',
+  //       key: 'agent',
+  //       label: 'Sales',
+  //       url: '/agentsales',
+  //       parentKey: 'dashboards',
   //     },
-  //     {
-  //       key: 'customer-details',
-  //       label: 'Customer Details',
-  //       url: '/customers/details',
-  //       parentKey: 'customers',
-  //     },
-  //     {
-  //       key: 'add-customer',
-  //       label: 'Add Customer',
-  //       url: '/customers/add',
-  //       parentKey: 'customers',
-  //     },
+
+  //     // {
+  //     //   key: 'customer',
+  //     //   label: 'Customer',
+  //     //   url: '/dashboards/customer',
+  //     //   parentKey: 'dashboards',
+  //     // },
   //   ],
-  //},
+  // },
+  // {
+  //       key: 'agents',
+  //       label: 'Profile',
+  //       url: '/agentprofile',
+  //       parentKey: 'dashboards',
+  // },
+  //   {
+  //       key: 'agents',
+  //       label: 'Posts',
+  //       url: '/agentposts',
+  //       parentKey: 'dashboards',
+  // },
+  // // {
+  // //   key: 'customers',
+  // //   label: 'Schedule & Appointments',
+  // //   icon: 'ri-contacts-book-3-line',
+  // //   collapsed: true,
+  // //   children: [
+  // //     {
+  // //       key: 'list-view',
+  // //       label: 'List View',
+  // //       url: '/customers/list',
+  // //       parentKey: 'customers',
+  // //     },
+  // //     {
+  // //       key: 'grid-view',
+  // //       label: 'Grid View',
+  // //       url: '/customers/grid',
+  // //       parentKey: 'customers',
+  // //     },
+  // //     {
+  // //       key: 'customer-details',
+  // //       label: 'Customer Details',
+  // //       url: '/customers/details',
+  // //       parentKey: 'customers',
+  // //     },
+  // //     {
+  // //       key: 'add-customer',
+  // //       label: 'Add Customer',
+  // //       url: '/customers/add',
+  // //       parentKey: 'customers',
+  // //     },
+  // //   ],
+  // //},
   
+  // // {
+  // //   key: 'transactions',
+  // //   label: 'Transactions',
+  // //   icon: 'ri-arrow-left-right-line',
+  // //   url: '/transactions',
+  // // },
   // {
-  //   key: 'transactions',
-  //   label: 'Transactions',
-  //   icon: 'ri-arrow-left-right-line',
-  //   url: '/transactions',
+  //   key: 'reviews',
+  //   label: 'Reviews',
+  //   icon: 'ri-chat-quote-line',
+  //   url: '/agentaddtoken',
   // },
-  {
-    key: 'reviews',
-    label: 'Reviews',
-    icon: 'ri-chat-quote-line',
-    url: '/agentaddtoken',
-  },
-  // {
-  //   key: 'messages',
-  //   label: 'Messages',
-  //   icon: 'ri-discuss-line',
-  //   url: '/messages',
-  // },
+  // // {
+  // //   key: 'messages',
+  // //   label: 'Messages',
+  // //   icon: 'ri-discuss-line',
+  // //   url: '/messages',
+  // // },
 
 
-    {
-    key: 'reviews',
-    label: 'Commission',
-    icon: 'ri-chat-quote-line',
-    url: '/agentcommission',
-  },
+  //   {
+  //   key: 'reviews',
+  //   label: 'Commission',
+  //   icon: 'ri-chat-quote-line',
+  //   url: '/agentcommission',
+  // },
 ];
 
