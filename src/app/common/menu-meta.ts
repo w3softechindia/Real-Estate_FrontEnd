@@ -867,18 +867,18 @@ export const CUSTOM_MENU: MenuItemType[] = [
         url: '/agencyanaylitcs',
         parentKey: 'dashboards',
       },
-      {
-        key: 'agent',
-        label: 'Sold List',
-        url: '/agencysoldList',
-        parentKey: 'dashboards',
-      },
-      {
-        key: 'customer',
-        label: 'Revenue',
-        url: '/agencyrevenu',
-        parentKey: 'dashboards',
-      },
+      // {
+      //   key: 'agent',
+      //   label: 'Sold List',
+      //   url: '/agencysoldList',
+      //   parentKey: 'dashboards',
+      // },
+      // {
+      //   key: 'customer',
+      //   label: 'Revenue',
+      //   url: '/agencyrevenu',
+      //   parentKey: 'dashboards',
+      // },
     ],
   },
   {
@@ -931,12 +931,12 @@ export const CUSTOM_MENU: MenuItemType[] = [
       //   url: '/agents/grid',
       //   parentKey: 'agents',
       // },
-      {
-        key: 'agent-details',
-        label: 'Performance',
-        url: '/agentsperormance',
-        parentKey: 'agents',
-      },
+      // {
+      //   key: 'agent-details',
+      //   label: 'Performance',
+      //   url: '/agentsperormance',
+      //   parentKey: 'agents',
+      // },
       {
         key: 'add-agent',
         label: 'Add Agent',
@@ -1054,12 +1054,12 @@ export const CUSTOM_MENUU: MenuItemType[] = [
         url: '/agentanalytics',
         parentKey: 'dashboards',
       },
-       {
-        key: 'analytics',
-        label: 'Review',
-        url: '/agentreview',
-        parentKey: 'dashboards',
-      },
+      //  {
+      //   key: 'analytics',
+      //   label: 'Review',
+      //   url: '/agentreview',
+      //   parentKey: 'dashboards',
+      // },
       // {
       //   key: 'agent',
       //   label: 'Agent',

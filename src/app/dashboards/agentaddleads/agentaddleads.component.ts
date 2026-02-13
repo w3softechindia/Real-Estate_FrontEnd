@@ -37,25 +37,25 @@ export class AgentaddleadsComponent {
   };
 
   addLead(): void {
-    if (this.leadForm.invalid) {
-      this.leadForm.markAllAsTouched();
-      return;
-    }
+    // if (this.leadForm.invalid) {
+    //   this.leadForm.markAllAsTouched();
+    //   return;
+    // }
 
-    const lead: Lead = this.leadForm.value;
-    // grab the email of the currently logged‑in agent
-    const agentEmail = this.authService.getEmail();
+    // const lead: Lead = this.leadForm.value;
+    // // grab the email of the currently logged‑in agent
+    // const agentEmail = this.authService.getEmail();
 
-    this.service.registerLead(lead, agentEmail).subscribe({
-      next: res => {
-        alert('Lead added successfully');
-        this.leadForm.reset();
-      },
-      error: err => {
-        console.error('Error:', err);
-        alert('Failed to add lead');
-      }
-    });
+    // this.service.registerLead(lead, agentEmail).subscribe({
+    //   next: res => {
+    //     alert('Lead added successfully');
+    //     this.leadForm.reset();
+    //   },
+    //   error: err => {
+    //     console.error('Error:', err);
+    //     alert('Failed to add lead');
+    //   }
+    // });
   }
 
    // convenience getter
