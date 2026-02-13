@@ -45,18 +45,18 @@ export class PropertyDataComponent {
   }
 
   private getAllVentures() {
-    this.service.getAllVentures().subscribe((data: any[]) => {
-      this.ventures = data;
-      console.log(data);
-      this.page = 1; // reset to first page
-      this.filteredVentures = this.filterVentures(this.searchService.getSearchTerm());
+    // this.service.getAllVentures().subscribe((data: any[]) => {
+    //   this.ventures = data;
+    //   console.log(data);
+    //   this.page = 1; // reset to first page
+    //   this.filteredVentures = this.filterVentures(this.searchService.getSearchTerm());
 
-       this.searchSub = this.searchService.searchTerm$.subscribe(term => {
-      console.log('Filtering for:', term);
-      this.filteredVentures = this.filterVentures(term);
-      console.log('Filtered:', this.filteredVentures);
-    });
-    });
+    //    this.searchSub = this.searchService.searchTerm$.subscribe(term => {
+    //   console.log('Filtering for:', term);
+    //   this.filteredVentures = this.filterVentures(term);
+    //   console.log('Filtered:', this.filteredVentures);
+    // });
+    // });
   }
 
 

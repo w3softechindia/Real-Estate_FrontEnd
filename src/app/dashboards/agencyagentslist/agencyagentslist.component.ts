@@ -39,15 +39,15 @@ export class AgencyagentslistComponent {
 
 
   getAgents(): void {
-    this.service.getAgentsByAgency(this.agencyName).subscribe(
-      (agents: Agent[]) => {
-        console.log('Full agent objects:', agents);
-        this.agennts = agents; // Assign the response to the array
-      },
-      error => {
-        console.error('Error fetching agents:', error);
-      }
-    );
+    // this.service.getAgentsByAgency(this.agencyName).subscribe(
+    //   (agents: Agent[]) => {
+    //     console.log('Full agent objects:', agents);
+    //     this.agennts = agents; // Assign the response to the array
+    //   },
+    //   error => {
+    //     console.error('Error fetching agents:', error);
+    //   }
+    // );
   }
 
 
