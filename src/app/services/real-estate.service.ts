@@ -13,9 +13,6 @@ export class RealEStateService {
   constructor(private http: HttpClient, private authService: AuthService) {}
 
 
-   //private baseUrl = 'http://localhost:8080'
-
-
    private baseUrl = "https://realestatebackend-dcb73a025ba8.herokuapp.com"
 
 
